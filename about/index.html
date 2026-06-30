@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于我们 — 电小团</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F8F9FC;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #14B8A6;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-logo i { font-size: 22px; }
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4B5563;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active { background: rgba(20,184,166,0.10); color: #14B8A6; }
+        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute; top: 60px; left: 0; right: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 12px 16px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 10px 14px; width: 100%; border-radius: 10px; }
+        }
+        .page-header {
+            padding: 110px 24px 20px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 800;
+            color: #1F2937;
+        }
+        .about-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 30px 24px 60px;
+        }
+        .about-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 36px 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.04);
+            margin-bottom: 24px;
+        }
+        .about-card h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .about-card h2 i { font-size: 24px; }
+        .about-card h2 .accent-green { color: #14B8A6; }
+        .about-card h2 .accent-blue { color: #3B82F6; }
+        .about-card p {
+            font-size: 15px;
+            color: #4B5563;
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+        .about-card p:last-child { margin-bottom: 0; }
+        .contact-info {
+            background: #F8F9FC;
+            border-radius: 14px;
+            padding: 20px 24px;
+            margin-top: 16px;
+        }
+        .contact-info .item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 0;
+            font-size: 14px;
+            color: #4B5563;
+        }
+        .contact-info .item i {
+            width: 20px;
+            color: #14B8A6;
+            font-size: 16px;
+        }
+        .footer {
+            background: #FFFFFF;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .footer p { font-size: 14px; color: #9CA3AF; }
+        .footer strong { color: #14B8A6; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="/" class="nav-logo"><i class="fa-solid fa-bolt"></i> 电小团</a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/training/">培训</a></li>
+        <li><a href="/tools/">工具</a></li>
+        <li><a href="/pro/">增值</a></li>
+        <li><a href="/about/" class="active">关于</a></li>
+    </ul>
+</nav>
+
+<section class="page-header">
+    <h1>关于我们</h1>
+</section>
+
+<div class="about-content">
+    <div class="about-card">
+        <h2><i class="fa-solid fa-building accent-blue"></i> 深沃控股集团</h2>
+        <p>深沃控股集团是城市更新项目开发与运营控股集团，专注于城市存量资产的改造升级与综合运营。集团依托丰富的项目场景资源，为能源管理、智慧运营等领域提供真实的落地场景支持。</p>
+        <p>从存量商业改造到产业园区运营，深沃控股持续探索"城市更新+能源管理"的融合模式，推动建筑与能源系统的协同优化。</p>
+    </div>
+
+    <div class="about-card">
+        <h2><i class="fa-solid fa-bolt accent-green"></i> 电小团</h2>
+        <p><strong>电小团</strong>是深沃控股集团旗下综合能源运营服务工具品牌，致力于为能源从业者提供从数据采集、数据分析到能源运营的全流程工具支持。</p>
+        <p>通过自研的数据采集能力（兼容 HomeAssistant 生态与利旧设备）、多维度的能源数据库（电价、负荷、政策）以及 AI 驱动的智能分析引擎，电小团帮助用户实现：</p>
+        <p style="padding-left: 12px; border-left: 3px solid #14B8A6; margin-top: 8px;">
+            ✅ 电费结构透明化 · 售电策略优化 · 需量精细管理<br>
+            ✅ 储能投资收益测算 · 虚拟电厂聚合运营 · 零碳方案设计<br>
+            ✅ 电力交易政策解读 · AI负荷预测 · 自动报告生成
+        </p>
+        <div class="contact-info">
+            <div class="item"><i class="fa-regular fa-envelope"></i> 联系邮箱：contact@aishenwo.cn</div>
+            <div class="item"><i class="fa-regular fa-globe"></i> 网站：energy.aishenwo.cn</div>
+            <div class="item"><i class="fa-regular fa-building"></i> 深沃控股集团 · 综合能源事业部</div>
+        </div>
+    </div>
+</div>
+
+<footer class="footer">
+    <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+</footer>
+
+</body>
+</html>
