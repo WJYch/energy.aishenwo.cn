@@ -153,7 +153,9 @@
 <body>
 
 <nav class="navbar">
-    <a href="/" class="nav-logo"><i class="fa-solid fa-bolt"></i> 电小团</a>
+    <a href="/" class="nav-logo">
+      <img src="/assets/images/dxt-logo.webp" alt="电小团" style="height:32px;width:auto">
+    </a>
     <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
         <i class="fa-solid fa-bars"></i>
     </button>
@@ -177,8 +179,7 @@
         <h3>电力市场与交易</h3>
         <p>电价机制、现货市场、交易策略、政策解读</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 12 篇</span>
-            <a href="/training/01-electricity-market/" class="btn">进入学习</a>
+            <a href="/training/01-electricity-market/course.html" class="btn">进入学习</a>
         </div>
     </div>
     <div class="course-card">
@@ -186,8 +187,7 @@
         <h3>储能技术</h3>
         <p>行业报告、技术路线、运营安全</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 8 篇</span>
-            <a href="/training/02-energy-storage/" class="btn">进入学习</a>
+            <a href="/training/02-energy-storage/course.html" class="btn">进入学习</a>
         </div>
     </div>
     <div class="course-card">
@@ -195,8 +195,7 @@
         <h3>风电与新能源</h3>
         <p>风电技术、新能源入市</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 6 篇</span>
-            <a href="/training/03-wind-energy/" class="btn">进入学习</a>
+            <a href="/training/03-wind-energy/course.html" class="btn">进入学习</a>
         </div>
     </div>
     <div class="course-card">
@@ -204,8 +203,7 @@
         <h3>虚拟电厂</h3>
         <p>VPP聚合、需求响应、可调负荷</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 10 篇</span>
-            <a href="/training/04-vpp/" class="btn">进入学习</a>
+            <a href="/training/04-vpp/course.html" class="btn">进入学习</a>
         </div>
     </div>
     <div class="course-card">
@@ -213,8 +211,7 @@
         <h3>零碳园区与综合能源</h3>
         <p>零碳方案、综合能源运营</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 7 篇</span>
-            <a href="/training/05-zero-carbon/" class="btn">进入学习</a>
+            <a href="/training/05-zero-carbon/course.html" class="btn">进入学习</a>
         </div>
     </div>
     <div class="course-card">
@@ -222,8 +219,7 @@
         <h3>光伏产业</h3>
         <p>光伏技术、市场分析、政策</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 9 篇</span>
-            <a href="/training/06-solar/" class="btn">进入学习</a>
+            <a href="/training/06-solar/course.html" class="btn">进入学习</a>
         </div>
     </div>
     <div class="course-card">
@@ -231,8 +227,7 @@
         <h3>AI与数字化</h3>
         <p>AI赋能电力交易、数字化</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 5 篇</span>
-            <a href="/training/07-ai-digital/" class="btn">进入学习</a>
+            <a href="/training/07-ai-digital/course.html" class="btn">进入学习</a>
         </div>
     </div>
     <div class="course-card">
@@ -240,8 +235,7 @@
         <h3>行业报告与数据</h3>
         <p>行业研报、数据分析方法</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 15 篇</span>
-            <a href="/training/08-industry-reports/" class="btn">进入学习</a>
+            <a href="/training/08-industry-reports/course.html" class="btn">进入学习</a>
         </div>
     </div>
     <div class="course-card">
@@ -249,8 +243,7 @@
         <h3>其他未归类</h3>
         <p>综合知识、碳市场等</p>
         <div class="meta">
-            <span class="files"><i class="fa-regular fa-file-lines"></i> 4 篇</span>
-            <a href="/training/09-others/" class="btn">进入学习</a>
+            <a href="/training/09-others/course.html" class="btn">进入学习</a>
         </div>
     </div>
 </div>
@@ -262,6 +255,17 @@
 <footer class="footer">
     <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
+
+<!-- 电小团虚拟形象 -->
+<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')" 
+     style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
+            background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
+            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
+            border:2px solid #14B8A6;"
+     onmouseover="this.style.transform='scale(1.1)'" 
+     onmouseout="this.style.transform='scale(1)'">
+  <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">
+</div>
 
 </body>
 </html>

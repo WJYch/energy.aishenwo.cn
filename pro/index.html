@@ -171,7 +171,9 @@
 <body>
 
 <nav class="navbar">
-    <a href="/" class="nav-logo"><i class="fa-solid fa-bolt"></i> 电小团</a>
+    <a href="/" class="nav-logo">
+      <img src="/assets/images/dxt-logo.webp" alt="电小团" style="height:32px;width:auto">
+    </a>
     <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
         <i class="fa-solid fa-bars"></i>
     </button>
@@ -221,7 +223,7 @@
     <div class="pricing-box">
         <h3>🚀 开启深度分析能力</h3>
         <p>API 服务按调用量计费，定制化方案请直接联系商务团队</p>
-        <a href="mailto:contact@aishenwo.cn" class="btn-cta">
+        <a href="https://dianxiaotuan.agent.qq.com" target="_blank" class="btn-cta">
             <i class="fa-regular fa-envelope"></i> 立即咨询
         </a>
     </div>
@@ -234,6 +236,17 @@
 <footer class="footer">
     <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
+
+<!-- 电小团虚拟形象 -->
+<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')" 
+     style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
+            background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
+            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
+            border:2px solid #14B8A6;"
+     onmouseover="this.style.transform='scale(1.1)'" 
+     onmouseout="this.style.transform='scale(1)'">
+  <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">
+</div>
 
 </body>
 </html>

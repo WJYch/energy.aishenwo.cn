@@ -75,12 +75,27 @@
         /* ===== Hero ===== */
         .hero {
             padding: 140px 24px 80px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            text-align: center;
+            display: flex;
+            align-items: center;
+            gap: 48px;
+        }
+        .hero-text {
+            flex: 1;
+            text-align: left;
+        }
+        .hero-image {
+            flex: 0 0 360px;
+        }
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
         }
         .hero h1 {
-            font-size: clamp(32px, 6vw, 52px);
+            font-size: clamp(32px, 5vw, 48px);
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -0.02em;
@@ -94,7 +109,6 @@
             font-size: 18px;
             color: #6B7280;
             max-width: 600px;
-            margin: 0 auto;
             line-height: 1.7;
         }
         .hero-tag {
@@ -106,6 +120,12 @@
             padding: 6px 16px;
             border-radius: 20px;
             margin-bottom: 24px;
+        }
+        @media (max-width: 768px) {
+            .hero { flex-direction: column; text-align: center; gap: 32px; }
+            .hero-text { text-align: center; }
+            .hero p { margin: 0 auto; }
+            .hero-image { flex: 0 0 auto; max-width: 300px; }
         }
         /* ===== Pyramid ===== */
         .pyramid-section {
@@ -262,7 +282,9 @@
 
 <!-- Navbar -->
 <nav class="navbar">
-    <a href="/" class="nav-logo"><i class="fa-solid fa-bolt"></i> 电小团</a>
+    <a href="/" class="nav-logo">
+      <img src="/assets/images/dxt-logo.webp" alt="电小团" style="height:32px;width:auto">
+    </a>
     <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
         <i class="fa-solid fa-bars"></i>
     </button>
@@ -277,9 +299,14 @@
 
 <!-- Hero -->
 <section class="hero">
-    <div class="hero-tag">电小团 出品</div>
-    <h1>让每一度电<br>创造更多价值</h1>
-    <p>电小团是综合能源运营服务工具集，从数据采集到智能分析，从运营商机洞察到项目决策支持，助力能源从业者高效工作。</p>
+    <div class="hero-text">
+        <div class="hero-tag">电小团 出品</div>
+        <h1>让每一度电<br>创造更多价值</h1>
+        <p>电小团是综合能源运营服务工具集，从数据采集到智能分析，从运营商机洞察到项目决策支持，助力能源从业者高效工作。</p>
+    </div>
+    <div class="hero-image">
+        <img src="/assets/images/hero.webp" alt="电小团综合能源运营">
+    </div>
 </section>
 
 <!-- Pyramid -->
@@ -362,6 +389,17 @@
 <footer class="footer">
     <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
+
+<!-- 电小团虚拟形象 -->
+<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')" 
+     style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
+            background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
+            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
+            border:2px solid #14B8A6;"
+     onmouseover="this.style.transform='scale(1.1)'" 
+     onmouseout="this.style.transform='scale(1)'">
+  <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">
+</div>
 
 </body>
 </html>

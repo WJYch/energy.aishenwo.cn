@@ -224,7 +224,9 @@
 <body>
 
 <nav class="navbar">
-    <a href="/" class="nav-logo"><i class="fa-solid fa-bolt"></i> 电小团</a>
+    <a href="/" class="nav-logo">
+      <img src="/assets/images/dxt-logo.webp" alt="电小团" style="height:32px;width:auto">
+    </a>
     <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
         <i class="fa-solid fa-bars"></i>
     </button>
@@ -343,6 +345,17 @@ function calcStorage() {
     el.textContent = `总投资：${totalInvest.toFixed(0)} 万元 · 回收期：${years.toFixed(1)} 年 · IRR：${years > 0 ? (1/years*100).toFixed(1) : '--'}%`;
 }
 </script>
+
+<!-- 电小团虚拟形象 -->
+<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')" 
+     style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
+            background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
+            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
+            border:2px solid #14B8A6;"
+     onmouseover="this.style.transform='scale(1.1)'" 
+     onmouseout="this.style.transform='scale(1)'">
+  <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">
+</div>
 
 </body>
 </html>
