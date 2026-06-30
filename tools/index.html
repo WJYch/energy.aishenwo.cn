@@ -12,8 +12,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #F8F9FC;
-            color: #1F2937;
+            background: var(--bg-cream);
+            color: var(--text-primary);
             line-height: 1.6;
         }
         .navbar {
@@ -31,7 +31,7 @@
         .nav-logo {
             font-size: 20px;
             font-weight: 700;
-            color: #14B8A6;
+            color: var(--teal);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -54,8 +54,8 @@
             transition: all 0.2s;
         }
         .nav-links a:hover,
-        .nav-links a.active { background: rgba(20,184,166,0.10); color: #14B8A6; }
-        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
+        .nav-links a.active { background: rgba(94,139,126,0.10); color: var(--teal); }
+        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text-primary); cursor: pointer; padding: 8px; }
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
             .nav-links {
@@ -78,7 +78,7 @@
         .page-header h1 {
             font-size: clamp(28px, 5vw, 40px);
             font-weight: 800;
-            color: #1F2937;
+            color: var(--text-primary);
         }
         .page-header p {
             color: #6B7280;
@@ -121,11 +121,11 @@
             padding: 4px 12px;
             border-radius: 12px;
         }
-        .tag-free { background: rgba(20,184,166,0.10); color: #14B8A6; }
+        .tag-free { background: rgba(94,139,126,0.10); color: var(--teal); }
         .tag-demo { background: rgba(59,130,246,0.10); color: #3B82F6; }
         .tag-pro { background: rgba(249,115,22,0.10); color: #F97316; }
         .tool-card .btn {
-            background: #14B8A6;
+            background: var(--teal);
             color: #fff;
             border: none;
             padding: 8px 20px;
@@ -168,7 +168,7 @@
         .calculator {
             margin-top: 14px;
             padding: 16px;
-            background: #F8F9FC;
+            background: var(--bg-cream);
             border-radius: 12px;
         }
         .calculator .row {
@@ -189,9 +189,9 @@
             outline: none;
             background: #fff;
         }
-        .calculator input:focus { border-color: #14B8A6; }
+        .calculator input:focus { border-color: var(--teal); }
         .calculator .calc-btn {
-            background: #14B8A6;
+            background: var(--teal);
             color: #fff;
             border: none;
             padding: 8px 18px;
@@ -207,7 +207,7 @@
             margin-top: 8px;
             font-size: 15px;
             font-weight: 700;
-            color: #14B8A6;
+            color: var(--teal);
             text-align: center;
         }
 
@@ -218,8 +218,9 @@
             text-align: center;
         }
         .footer p { font-size: 14px; color: #9CA3AF; }
-        .footer strong { color: #14B8A6; font-weight: 600; }
+        .footer strong { color: var(--teal); font-weight: 600; }
     </style>
+  <link rel="stylesheet" href="/assets/css/dxt-theme.css">
 </head>
 <body>
 
@@ -351,7 +352,7 @@ function calcStorage() {
      style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
             background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
             display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
-            border:2px solid #14B8A6;"
+            border:2px solid var(--teal);"
      onmouseover="this.style.transform='scale(1.1)'" 
      onmouseout="this.style.transform='scale(1)'">
   <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">

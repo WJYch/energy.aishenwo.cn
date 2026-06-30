@@ -12,8 +12,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #F8F9FC;
-            color: #1F2937;
+            background: var(--bg-cream);
+            color: var(--text-primary);
             line-height: 1.6;
         }
         /* ===== Navigation ===== */
@@ -32,7 +32,7 @@
         .nav-logo {
             font-size: 20px;
             font-weight: 700;
-            color: #14B8A6;
+            color: var(--teal);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -55,8 +55,8 @@
             transition: all 0.2s;
         }
         .nav-links a:hover,
-        .nav-links a.active { background: rgba(20,184,166,0.10); color: #14B8A6; }
-        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
+        .nav-links a.active { background: rgba(94,139,126,0.10); color: var(--teal); }
+        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text-primary); cursor: pointer; padding: 8px; }
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
             .nav-links {
@@ -99,7 +99,7 @@
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #14B8A6 0%, #3B82F6 40%, #8B5CF6 70%, #F97316 100%);
+            background: linear-gradient(135deg, var(--teal) 0%, #3B82F6 40%, #8B5CF6 70%, #F97316 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -113,8 +113,8 @@
         }
         .hero-tag {
             display: inline-block;
-            background: rgba(20,184,166,0.10);
-            color: #14B8A6;
+            background: rgba(94,139,126,0.10);
+            color: var(--teal);
             font-size: 13px;
             font-weight: 600;
             padding: 6px 16px;
@@ -164,7 +164,7 @@
         }
         .pyramid-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
         .pyramid-card .icon { font-size: 24px; margin-bottom: 8px; }
-        .pyramid-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: #1F2937; }
+        .pyramid-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: var(--text-primary); }
         .pyramid-card p { font-size: 13px; color: #6B7280; line-height: 1.5; }
         .pyramid-layer-label {
             font-size: 13px;
@@ -176,7 +176,7 @@
             margin-bottom: 4px;
         }
         .pyramid-layer-label i { margin-right: 5px; }
-        .layer-1 .pyramid-card { border-top: 3px solid #14B8A6; }
+        .layer-1 .pyramid-card { border-top: 3px solid var(--teal); }
         .layer-2 .pyramid-card { border-top: 3px solid #3B82F6; }
         .layer-3 .pyramid-card { border-top: 3px solid #8B5CF6; }
         /* ===== Modules ===== */
@@ -225,7 +225,7 @@
             border-radius: 12px;
             margin-top: 12px;
         }
-        .module-card:nth-child(1) .tag { background: rgba(20,184,166,0.10); color: #14B8A6; }
+        .module-card:nth-child(1) .tag { background: rgba(94,139,126,0.10); color: var(--teal); }
         .module-card:nth-child(2) .tag { background: rgba(59,130,246,0.10); color: #3B82F6; }
         .module-card:nth-child(3) .tag { background: rgba(139,92,246,0.10); color: #8B5CF6; }
         /* ===== Brands ===== */
@@ -267,7 +267,7 @@
             color: #9CA3AF;
         }
         .footer strong {
-            color: #14B8A6;
+            color: var(--teal);
             font-weight: 600;
         }
 
@@ -277,6 +277,7 @@
             .pyramid-card { min-width: 120px; flex: 1 1 40%; }
         }
     </style>
+  <link rel="stylesheet" href="/assets/css/dxt-theme.css">
 </head>
 <body>
 
@@ -395,7 +396,7 @@
      style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
             background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
             display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
-            border:2px solid #14B8A6;"
+            border:2px solid var(--teal);"
      onmouseover="this.style.transform='scale(1.1)'" 
      onmouseout="this.style.transform='scale(1)'">
   <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">

@@ -12,8 +12,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #F8F9FC;
-            color: #1F2937;
+            background: var(--bg-cream);
+            color: var(--text-primary);
             line-height: 1.6;
         }
         .navbar {
@@ -31,7 +31,7 @@
         .nav-logo {
             font-size: 20px;
             font-weight: 700;
-            color: #14B8A6;
+            color: var(--teal);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -54,8 +54,8 @@
             transition: all 0.2s;
         }
         .nav-links a:hover,
-        .nav-links a.active { background: rgba(20,184,166,0.10); color: #14B8A6; }
-        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
+        .nav-links a.active { background: rgba(94,139,126,0.10); color: var(--teal); }
+        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text-primary); cursor: pointer; padding: 8px; }
         @media (max-width: 768px) {
             .nav-toggle { display: block; }
             .nav-links {
@@ -78,7 +78,7 @@
         .page-header h1 {
             font-size: clamp(28px, 5vw, 40px);
             font-weight: 800;
-            color: #1F2937;
+            color: var(--text-primary);
         }
         .about-content {
             max-width: 720px;
@@ -102,7 +102,7 @@
             gap: 10px;
         }
         .about-card h2 i { font-size: 24px; }
-        .about-card h2 .accent-green { color: #14B8A6; }
+        .about-card h2 .accent-green { color: var(--teal); }
         .about-card h2 .accent-blue { color: #3B82F6; }
         .about-card p {
             font-size: 15px;
@@ -112,7 +112,7 @@
         }
         .about-card p:last-child { margin-bottom: 0; }
         .contact-info {
-            background: #F8F9FC;
+            background: var(--bg-cream);
             border-radius: 14px;
             padding: 20px 24px;
             margin-top: 16px;
@@ -127,7 +127,7 @@
         }
         .contact-info .item i {
             width: 20px;
-            color: #14B8A6;
+            color: var(--teal);
             font-size: 16px;
         }
         /* ===== City Projects ===== */
@@ -157,7 +157,7 @@
         .project-card .project-info h4 {
             font-size: 16px;
             font-weight: 700;
-            color: #1F2937;
+            color: var(--text-primary);
             margin-bottom: 4px;
         }
         .project-card .project-info p {
@@ -176,8 +176,9 @@
             text-align: center;
         }
         .footer p { font-size: 14px; color: #9CA3AF; }
-        .footer strong { color: #14B8A6; font-weight: 600; }
+        .footer strong { color: var(--teal); font-weight: 600; }
     </style>
+  <link rel="stylesheet" href="/assets/css/dxt-theme.css">
 </head>
 <body>
 
@@ -212,7 +213,7 @@
         <h2><i class="fa-solid fa-bolt accent-green"></i> 电小团</h2>
         <p><strong>电小团</strong>是深沃控股集团旗下综合能源运营服务工具品牌，致力于为能源从业者提供从数据采集、数据分析到能源运营的全流程工具支持。</p>
         <p>通过自研的数据采集能力（兼容 HomeAssistant 生态与利旧设备）、多维度的能源数据库（电价、负荷、政策）以及 AI 驱动的智能分析引擎，电小团帮助用户实现：</p>
-        <p style="padding-left: 12px; border-left: 3px solid #14B8A6; margin-top: 8px;">
+        <p style="padding-left: 12px; border-left: 3px solid var(--teal); margin-top: 8px;">
             ✅ 电费结构透明化 · 售电策略优化 · 需量精细管理<br>
             ✅ 储能投资收益测算 · 虚拟电厂聚合运营 · 零碳方案设计<br>
             ✅ 电力交易政策解读 · AI负荷预测 · 自动报告生成
@@ -256,7 +257,7 @@
      style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
             background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
             display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
-            border:2px solid #14B8A6;"
+            border:2px solid var(--teal);"
      onmouseover="this.style.transform='scale(1.1)'" 
      onmouseout="this.style.transform='scale(1)'">
   <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">
