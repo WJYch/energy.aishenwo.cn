@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面未找到 — 电小团</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F8F9FC;
+            color: #1F2937;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 24px;
+        }
+        .card {
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 48px 40px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            text-align: center;
+            max-width: 460px;
+            width: 100%;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .card .code {
+            font-size: 80px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #14B8A6, #3B82F6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+        .card h2 {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .card p {
+            font-size: 15px;
+            color: #6B7280;
+            margin-bottom: 28px;
+        }
+        .card .btn {
+            display: inline-block;
+            background: #14B8A6;
+            color: #fff;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .card .btn:hover { background: #0D9488; }
+        .footer {
+            margin-top: 24px;
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+        .footer strong { color: #14B8A6; font-weight: 600; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="code">404</div>
+        <h2>页面未找到</h2>
+        <p>你访问的页面不存在或已被移动，请检查链接是否正确。</p>
+        <a href="/" class="btn"><i class="fa-solid fa-house"></i> 返回首页</a>
+    </div>
+    <div class="footer">
+        <strong>电小团</strong> 出品 &nbsp;|&nbsp; energy.aishenwo.cn
+    </div>
+</body>
+</html>
