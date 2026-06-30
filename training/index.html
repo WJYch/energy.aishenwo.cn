@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>培训课程 — 电小团</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F8F9FC;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #14B8A6;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-logo i { font-size: 22px; }
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4B5563;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active { background: rgba(20,184,166,0.10); color: #14B8A6; }
+        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute; top: 60px; left: 0; right: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 12px 16px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 10px 14px; width: 100%; border-radius: 10px; }
+        }
+        .page-header {
+            padding: 110px 24px 40px;
+            text-align: center;
+        }
+        .page-header h1 {
+            font-size: clamp(28px, 5vw, 40px);
+            font-weight: 800;
+            color: #1F2937;
+        }
+        .page-header p {
+            color: #6B7280;
+            font-size: 16px;
+            margin-top: 8px;
+        }
+        .courses-grid {
+            max-width: 1060px;
+            margin: 0 auto;
+            padding: 0 24px 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        .course-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.25s;
+            display: flex;
+            flex-direction: column;
+        }
+        .course-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+        .course-card .icon { font-size: 36px; margin-bottom: 12px; }
+        .course-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+        .course-card p { font-size: 14px; color: #6B7280; line-height: 1.6; flex: 1; }
+        .course-card .meta {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .course-card .meta .files {
+            font-size: 13px;
+            color: #9CA3AF;
+        }
+        .course-card .meta .btn {
+            margin-left: auto;
+            background: #14B8A6;
+            color: #fff;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .course-card .meta .btn:hover { background: #0D9488; }
+        .footer-note {
+            text-align: center;
+            padding: 0 24px 60px;
+            color: #9CA3AF;
+            font-size: 14px;
+        }
+        .footer-note i { margin-right: 4px; }
+        .footer {
+            background: #FFFFFF;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .footer p { font-size: 14px; color: #9CA3AF; }
+        .footer strong { color: #14B8A6; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a href="/" class="nav-logo"><i class="fa-solid fa-bolt"></i> 电小团</a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/training/" class="active">培训</a></li>
+        <li><a href="/tools/">工具</a></li>
+        <li><a href="/pro/">增值</a></li>
+        <li><a href="/about/">关于</a></li>
+    </ul>
+</nav>
+
+<section class="page-header">
+    <h1>电力能源知识库</h1>
+    <p>系统化的电力能源知识体系，面向能源从业者的学习导航</p>
+</section>
+
+<div class="courses-grid">
+    <div class="course-card">
+        <div class="icon">⚡</div>
+        <h3>电力市场与交易</h3>
+        <p>电价机制、现货市场、交易策略、政策解读</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 12 篇</span>
+            <a href="/training/01-electricity-market/" class="btn">进入学习</a>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="icon">🔋</div>
+        <h3>储能技术</h3>
+        <p>行业报告、技术路线、运营安全</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 8 篇</span>
+            <a href="/training/02-energy-storage/" class="btn">进入学习</a>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="icon">🌬️</div>
+        <h3>风电与新能源</h3>
+        <p>风电技术、新能源入市</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 6 篇</span>
+            <a href="/training/03-wind-energy/" class="btn">进入学习</a>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="icon">🏭</div>
+        <h3>虚拟电厂</h3>
+        <p>VPP聚合、需求响应、可调负荷</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 10 篇</span>
+            <a href="/training/04-vpp/" class="btn">进入学习</a>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="icon">🌿</div>
+        <h3>零碳园区与综合能源</h3>
+        <p>零碳方案、综合能源运营</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 7 篇</span>
+            <a href="/training/05-zero-carbon/" class="btn">进入学习</a>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="icon">☀️</div>
+        <h3>光伏产业</h3>
+        <p>光伏技术、市场分析、政策</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 9 篇</span>
+            <a href="/training/06-solar/" class="btn">进入学习</a>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="icon">🤖</div>
+        <h3>AI与数字化</h3>
+        <p>AI赋能电力交易、数字化</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 5 篇</span>
+            <a href="/training/07-ai-digital/" class="btn">进入学习</a>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="icon">📊</div>
+        <h3>行业报告与数据</h3>
+        <p>行业研报、数据分析方法</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 15 篇</span>
+            <a href="/training/08-industry-reports/" class="btn">进入学习</a>
+        </div>
+    </div>
+    <div class="course-card">
+        <div class="icon">📚</div>
+        <h3>其他未归类</h3>
+        <p>综合知识、碳市场等</p>
+        <div class="meta">
+            <span class="files"><i class="fa-regular fa-file-lines"></i> 4 篇</span>
+            <a href="/training/09-others/" class="btn">进入学习</a>
+        </div>
+    </div>
+</div>
+
+<div class="footer-note">
+    <i class="fa-regular fa-hourglass-half"></i> 更多课程持续更新中...
+</div>
+
+<footer class="footer">
+    <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+</footer>
+
+</body>
+</html>
