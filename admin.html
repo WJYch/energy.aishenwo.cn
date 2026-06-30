@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>管理员 — 电小团</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F8F9FC;
+            color: #1F2937;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo { font-size: 20px; font-weight: 700; color: #14B8A6; text-decoration: none; }
+        .nav-links { display: flex; gap: 24px; align-items: center; }
+        .nav-links a { text-decoration: none; color: #6B7280; font-size: 14px; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: #14B8A6; }
+        .nav-links a.active { font-weight: 600; }
+        .container { max-width: 960px; margin: 0 auto; padding: 100px 20px 40px; }
+        .page-header { text-align: center; margin-bottom: 40px; }
+        .page-header h1 { font-size: 28px; color: #1F2937; margin-bottom: 8px; }
+        .page-header p { color: #6B7280; font-size: 15px; }
+        .page-header .badge { display: inline-block; background: #F9731615; color: #F97316; font-size: 12px; padding: 3px 12px; border-radius: 20px; margin-top: 8px; border: 1px solid #F9731622; font-weight: 500; }
+
+        .auth-card, .admin-card {
+            background: #FFFFFF; border-radius: 16px; padding: 32px; max-width: 520px;
+            margin: 0 auto; box-shadow: 0 1px 3px rgba(0,0,0,0.06), 0 4px 12px rgba(0,0,0,0.04);
+        }
+        .admin-card { max-width: 620px; display: none; }
+        .auth-card h2, .admin-card h2 { font-size: 18px; margin-bottom: 20px; color: #374151; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 500; color: #4B5563; margin-bottom: 6px; }
+        .form-group input {
+            width: 100%; padding: 10px 14px; border: 1px solid #E5E7EB; border-radius: 10px;
+            font-size: 14px; outline: none; transition: border-color 0.2s;
+        }
+        .form-group input:focus { border-color: #14B8A6; box-shadow: 0 0 0 3px rgba(20,184,166,0.1); }
+        .btn {
+            padding: 10px 24px; border: none; border-radius: 10px; font-size: 14px;
+            font-weight: 600; cursor: pointer; transition: all 0.2s;
+        }
+        .btn-primary { background: #14B8A6; color: #fff; }
+        .btn-primary:hover { background: #0D9488; transform: translateY(-1px); box-shadow: 0 4px 12px rgba(20,184,166,0.3); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
+        .btn-outline { background: transparent; color: #6B7280; border: 1px solid #E5E7EB; }
+        .btn-outline:hover { border-color: #14B8A6; color: #14B8A6; }
+        .btn-danger { background: #EF4444; color: #fff; }
+        .btn-danger:hover { background: #DC2626; }
+
+        .status-box {
+            background: #F9FAFB; border: 1px solid #E5E7EB; border-radius: 12px;
+            padding: 16px; margin: 20px 0;
+            font-family: 'SF Mono', 'Fira Code', monospace; font-size: 12px;
+            line-height: 1.7; color: #6B7280; max-height: 300px; overflow-y: auto; white-space: pre-wrap;
+        }
+        .status-box.success { border-color: #14B8A6; background: #F0FDFA; color: #065F46; }
+        .status-box.error { border-color: #EF4444; background: #FEF2F2; color: #991B1B; }
+        .status-box.pending { border-color: #F97316; background: #FFF7ED; color: #9A3412; }
+
+        .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 20px 0; }
+        .info-item { background: #F9FAFB; padding: 12px 16px; border-radius: 10px; }
+        .info-item .label { font-size: 12px; color: #9CA3AF; }
+        .info-item .value { font-size: 14px; font-weight: 600; color: #1F2937; margin-top: 2px; }
+
+        .error-msg { color: #EF4444; font-size: 13px; display: none; margin-top: 6px; }
+        .footer { text-align: center; padding: 40px 0 20px; color: #9CA3AF; font-size: 13px; }
+
+        @media (max-width: 640px) {
+            .nav-links { gap: 12px; }
+            .nav-links a { font-size: 13px; }
+            .info-grid { grid-template-columns: 1fr; }
+            .auth-card, .admin-card { padding: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="nav-logo"><i class="fas fa-bolt" style="margin-right:6px"></i>电小团</a>
+        <div class="nav-links">
+            <a href="/">首页</a>
+            <a href="/training/">培训</a>
+            <a href="/tools/">工具</a>
+            <a href="/pro/">增值</a>
+            <a href="/about/">关于</a>
+            <a href="/admin.html" class="active" style="color:#F97316"><i class="fas fa-cog"></i></a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="page-header">
+            <h1><i class="fas fa-shield-alt" style="color:#F97316;margin-right:8px"></i>管理员面板</h1>
+            <p>网站内容管理与发布</p>
+            <span class="badge"><i class="fas fa-lock"></i> 仅管理员可操作</span>
+        </div>
+
+        <!-- 登录 -->
+        <div class="auth-card" id="authCard">
+            <h2><i class="fas fa-key" style="color:#14B8A6;margin-right:8px"></i>身份验证</h2>
+            <div class="form-group">
+                <label>管理密码</label>
+                <input type="password" id="adminKey" placeholder="请输入管理密码" onkeydown="if(event.key==='Enter')verify()">
+            </div>
+            <div class="error-msg" id="authError">密码错误，请重试</div>
+            <button class="btn btn-primary" onclick="verify()" id="verifyBtn" style="width:100%">验证身份</button>
+        </div>
+
+        <!-- 管理面板 -->
+        <div class="admin-card" id="adminCard">
+            <h2><i class="fas fa-rocket" style="color:#14B8A6;margin-right:8px"></i>发布管理</h2>
+
+            <div class="info-grid">
+                <div class="info-item">
+                    <div class="label">网站</div>
+                    <div class="value">energy.aishenwo.cn</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">托管平台</div>
+                    <div class="value">GitHub Pages</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">知识库路径</div>
+                    <div class="value">NAS Obsidian</div>
+                </div>
+                <div class="info-item">
+                    <div class="label">当前状态</div>
+                    <div class="value" id="statusLabel">就绪</div>
+                </div>
+            </div>
+
+            <div style="display:flex;gap:12px;margin-bottom:16px">
+                <button class="btn btn-primary" onclick="publish()" id="publishBtn" style="flex:1">
+                    <i class="fas fa-upload" style="margin-right:6px"></i>推送更新
+                </button>
+                <button class="btn btn-outline" onclick="checkStatus()" id="checkBtn">
+                    <i class="fas fa-sync-alt"></i>
+                </button>
+            </div>
+
+            <div class="status-box" id="statusBox">点击「推送更新」将最新课件同步到网站。</div>
+        </div>
+
+        <div class="footer">电小团 出品 | ©2026 深沃控股集团</div>
+    </div>
+
+    <script>
+        const API_KEY = 'dxt_publish_2026';
+        const API_BASE = 'https://nas.aishenwo.cn/api/v1';
+
+        function verify() {
+            const key = document.getElementById('adminKey').value;
+            const btn = document.getElementById('verifyBtn');
+            const err = document.getElementById('authError');
+
+            if (key === API_KEY) {
+                document.getElementById('authCard').style.display = 'none';
+                document.getElementById('adminCard').style.display = 'block';
+                err.style.display = 'none';
+            } else {
+                err.style.display = 'block';
+            }
+        }
+
+        async function publish() {
+            const btn = document.getElementById('publishBtn');
+            const box = document.getElementById('statusBox');
+            const label = document.getElementById('statusLabel');
+
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> 发布中...';
+            box.className = 'status-box pending';
+            box.textContent = '正在执行同步脚本...\n';
+            label.textContent = '发布中...';
+
+            try {
+                const key = document.getElementById('adminKey').value || API_KEY;
+                const resp = await fetch(API_BASE + '/publish', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'X-Publish-Key': key }
+                });
+                const data = await resp.json();
+
+                if (data.success) {
+                    box.className = 'status-box success';
+                    box.textContent = '✅ ' + data.message + '\n\n--- 脚本输出 ---\n' + (data.output || '');
+                    label.textContent = '已发布 ✓';
+                } else {
+                    box.className = 'status-box error';
+                    box.textContent = '❌ ' + (data.message || '发布失败') + '\n\n' + (data.error || '');
+                    label.textContent = '发布失败 ✗';
+                }
+            } catch (e) {
+                box.className = 'status-box error';
+                box.textContent = '❌ 无法连接后台API\n\n请确认 NAS 服务是否正常运行\n错误: ' + e.message;
+                label.textContent = '连接失败 ✗';
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-upload" style="margin-right:6px"></i>推送更新';
+            }
+        }
+
+        async function checkStatus() {
+            const box = document.getElementById('statusBox');
+            const btn = document.getElementById('checkBtn');
+            const label = document.getElementById('statusLabel');
+
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            box.className = 'status-box pending';
+            box.textContent = '正在检查连接...';
+
+            try {
+                const resp = await fetch(API_BASE + '/health');
+                const data = await resp.json();
+                if (data.success) {
+                    box.className = 'status-box success';
+                    box.textContent = '✅ 后台服务正常\n服务: ' + data.data.service + '\n时间: ' + data.data.timestamp;
+                    label.textContent = '服务正常 ✓';
+                } else {
+                    box.textContent = '⚠️ 服务异常: ' + (data.message || '未知');
+                    label.textContent = '连接异常';
+                }
+            } catch (e) {
+                box.className = 'status-box error';
+                box.textContent = '❌ 无法连接NAS后台服务\n\n注意：\n1. 本页面需要能从公网访问 NAS 的 8079 端口\n2. 如果当前在内网，请确认 NAS IP 可访问\n3. 如果在外网，需要通过 nas.aishenwo.cn 反向代理';
+                label.textContent = '无法连接 ✗';
+            } finally {
+                btn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+            }
+        }
+    </script>
+</body>
+</html>
