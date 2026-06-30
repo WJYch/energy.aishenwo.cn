@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电小团 — 让每一度电创造更多价值</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F8F9FC;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+        /* ===== Navigation ===== */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.88);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-size: 20px;
+            font-weight: 700;
+            color: #14B8A6;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .nav-logo i { font-size: 22px; }
+        .nav-links {
+            display: flex;
+            gap: 4px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4B5563;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active { background: rgba(20,184,166,0.10); color: #14B8A6; }
+        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
+        @media (max-width: 768px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute; top: 60px; left: 0; right: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 12px 16px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 10px 14px; width: 100%; border-radius: 10px; }
+        }
+        /* ===== Hero ===== */
+        .hero {
+            padding: 140px 24px 80px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 52px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #14B8A6 0%, #3B82F6 40%, #8B5CF6 70%, #F97316 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: #6B7280;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+        .hero-tag {
+            display: inline-block;
+            background: rgba(20,184,166,0.10);
+            color: #14B8A6;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+        /* ===== Pyramid ===== */
+        .pyramid-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+        }
+        .pyramid-section h2 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 40px;
+        }
+        .pyramid {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+        .pyramid-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .pyramid-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 20px 22px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            flex: 1;
+            min-width: 160px;
+            max-width: 260px;
+            transition: all 0.25s;
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+        .pyramid-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
+        .pyramid-card .icon { font-size: 24px; margin-bottom: 8px; }
+        .pyramid-card h3 { font-size: 15px; font-weight: 700; margin-bottom: 6px; color: #1F2937; }
+        .pyramid-card p { font-size: 13px; color: #6B7280; line-height: 1.5; }
+        .pyramid-layer-label {
+            font-size: 13px;
+            font-weight: 600;
+            color: #9CA3AF;
+            letter-spacing: 0.05em;
+            text-align: center;
+            width: 100%;
+            margin-bottom: 4px;
+        }
+        .pyramid-layer-label i { margin-right: 5px; }
+        .layer-1 .pyramid-card { border-top: 3px solid #14B8A6; }
+        .layer-2 .pyramid-card { border-top: 3px solid #3B82F6; }
+        .layer-3 .pyramid-card { border-top: 3px solid #8B5CF6; }
+        /* ===== Modules ===== */
+        .modules-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        .modules-section h2 {
+            text-align: center;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        .modules-section > p {
+            text-align: center;
+            color: #6B7280;
+            font-size: 16px;
+            margin-bottom: 36px;
+        }
+        .modules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .module-card {
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 32px 28px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+            transition: all 0.25s;
+            border: 1px solid rgba(0,0,0,0.04);
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .module-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.08); }
+        .module-card .icon { font-size: 36px; margin-bottom: 14px; }
+        .module-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+        .module-card p { font-size: 14px; color: #6B7280; line-height: 1.6; }
+        .module-card .tag {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 12px;
+            margin-top: 12px;
+        }
+        .module-card:nth-child(1) .tag { background: rgba(20,184,166,0.10); color: #14B8A6; }
+        .module-card:nth-child(2) .tag { background: rgba(59,130,246,0.10); color: #3B82F6; }
+        .module-card:nth-child(3) .tag { background: rgba(139,92,246,0.10); color: #8B5CF6; }
+        /* ===== Brands ===== */
+        .brands-section {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px 60px;
+            text-align: center;
+        }
+        .brands-section h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #9CA3AF;
+            letter-spacing: 0.05em;
+            margin-bottom: 24px;
+        }
+        .brands-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px 36px;
+        }
+        .brands-list span {
+            font-size: 16px;
+            font-weight: 500;
+            color: #6B7280;
+            padding: 6px 4px;
+            letter-spacing: 0.02em;
+        }
+        /* ===== Footer ===== */
+        .footer {
+            background: #FFFFFF;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding: 28px 24px;
+            text-align: center;
+        }
+        .footer p {
+            font-size: 14px;
+            color: #9CA3AF;
+        }
+        .footer strong {
+            color: #14B8A6;
+            font-weight: 600;
+        }
+
+        /* ===== Responsive tweaks ===== */
+        @media (max-width: 640px) {
+            .hero { padding-top: 110px; }
+            .pyramid-card { min-width: 120px; flex: 1 1 40%; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar">
+    <a href="/" class="nav-logo"><i class="fa-solid fa-bolt"></i> 电小团</a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links">
+        <li><a href="/" class="active">首页</a></li>
+        <li><a href="/training/">培训</a></li>
+        <li><a href="/tools/">工具</a></li>
+        <li><a href="/pro/">增值</a></li>
+        <li><a href="/about/">关于</a></li>
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+    <div class="hero-tag">电小团 出品</div>
+    <h1>让每一度电<br>创造更多价值</h1>
+    <p>电小团是综合能源运营服务工具集，从数据采集到智能分析，从运营商机洞察到项目决策支持，助力能源从业者高效工作。</p>
+</section>
+
+<!-- Pyramid -->
+<section class="pyramid-section">
+    <h2>能力金字塔</h2>
+    <div class="pyramid">
+
+        <div class="pyramid-row layer-3">
+            <div class="pyramid-layer-label"><i class="fa-solid fa-crown"></i> 能源运营</div>
+        </div>
+        <div class="pyramid-row layer-3">
+            <div class="pyramid-card"><div class="icon">⚡</div><h3>售电优化</h3><p>交易策略分析，购售电决策支持</p></div>
+            <div class="pyramid-card"><div class="icon">❄️</div><h3>空调节能</h3><p>建筑能耗诊断，制冷制热优化</p></div>
+            <div class="pyramid-card"><div class="icon">📊</div><h3>需量管理</h3><p>最大需量预测与控制策略</p></div>
+            <div class="pyramid-card"><div class="icon">🕐</div><h3>分时电价</h3><p>峰谷价差套利与用能编排</p></div>
+            <div class="pyramid-card"><div class="icon">🏭</div><h3>虚拟电厂</h3><p>可调负荷聚合、需求响应</p></div>
+        </div>
+
+        <div class="pyramid-row layer-2">
+            <div class="pyramid-layer-label"><i class="fa-solid fa-chart-line"></i> 数据分析</div>
+        </div>
+        <div class="pyramid-row layer-2">
+            <div class="pyramid-card"><div class="icon">📋</div><h3>政策数据库</h3><p>电力交易政策结构化入库</p></div>
+            <div class="pyramid-card"><div class="icon">💰</div><h3>电价数据库</h3><p>全国各省电价历史与实时</p></div>
+            <div class="pyramid-card"><div class="icon">📈</div><h3>负荷数据库</h3><p>用户负荷曲线特征库</p></div>
+            <div class="pyramid-card"><div class="icon">🤖</div><h3>AI交叉分析</h3><p>多维度数据智能关联挖掘</p></div>
+        </div>
+
+        <div class="pyramid-row layer-1">
+            <div class="pyramid-layer-label"><i class="fa-solid fa-database"></i> 数据采集</div>
+        </div>
+        <div class="pyramid-row layer-1">
+            <div class="pyramid-card"><div class="icon">🏠</div><h3>HomeAssistant 生态</h3><p>智能化数据采集与设备接入</p></div>
+            <div class="pyramid-card"><div class="icon">⏱️</div><h3>15分钟粒度</h3><p>高频率数据采集与存储</p></div>
+            <div class="pyramid-card"><div class="icon">🔄</div><h3>利旧设备</h3><p>兼容既有表计与采集终端</p></div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Modules -->
+<section class="modules-section">
+    <h2>三大模块</h2>
+    <p>系统化知识 · 实用工具 · 深度分析</p>
+    <div class="modules-grid">
+        <a href="/training/" class="module-card">
+            <div class="icon">🎓</div>
+            <h3>培训课程</h3>
+            <p>9大主题，覆盖电力市场、储能、风电、虚拟电厂、零碳园区等核心领域，系统化的电力能源知识库。</p>
+            <span class="tag">免费学习 →</span>
+        </a>
+        <a href="/tools/" class="module-card">
+            <div class="icon">🛠</div>
+            <h3>在线工具</h3>
+            <p>电费分析、电价监控、储能测算、负荷分析等实用工具，免费试用，助力日常作业提效。</p>
+            <span class="tag">免费试用 →</span>
+        </a>
+        <a href="/pro/" class="module-card">
+            <div class="icon">🔐</div>
+            <h3>增值服务</h3>
+            <p>AI深度分析、负荷预测、策略优化、自动报告，购买电小团专属 API，释放数据价值。</p>
+            <span class="tag">了解更多 →</span>
+        </a>
+    </div>
+</section>
+
+<!-- Brands -->
+<section class="brands-section">
+    <h3>合作品牌</h3>
+    <div class="brands-list">
+        <span>碧澄能源</span>
+        <span>龙湖商置</span>
+        <span>万物云</span>
+        <span>万豪国际集团</span>
+        <span>燕舞集团</span>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+</footer>
+
+</body>
+</html>
