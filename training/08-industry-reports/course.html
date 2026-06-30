@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>行业报告与数据 · 培训课件 · 电小团</title>
+<style>
+:root{--cream:#F5F0E8;--cream-light:#FCFAF5;--border:#E8E0D6;--terracotta:#CC785C;--terracotta-light:#E8A98C;--teal:#5E8B7E;--teal-light:#A3C4B8;--blue:#6B8FBE;--blue-light:#B8CEE0;--orange:#E8956A;--orange-light:#F5C9AC;--purple:#9B7FB5;--purple-light:#C9B8DB;--pink:#D4A5A5;--pink-light:#EBCFCF;--slate:#2D3436;--slate-light:#636E72;--shadow:0 2px 12px rgba(0,0,0,0.06);--radius:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--cream);color:var(--slate);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC","Inter",sans-serif;line-height:1.7}
+.container{max-width:980px;margin:0 auto;padding:0 24px}
+.header{padding:40px 0 20px;text-align:center;border-bottom:1px solid var(--border)}
+.header-tag{display:inline-block;background:var(--terracotta);color:white;font-size:11px;letter-spacing:2px;padding:4px 14px;border-radius:20px;margin-bottom:10px}
+.header h1{font-size:28px;font-weight:700;margin-bottom:4px}
+.header .sub{font-size:14px;color:var(--slate-light)}
+.tab-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin:0 0 20px;overflow-x:auto}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--slate-light);background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+.tab-btn:hover{color:var(--terracotta);background:var(--cream-light)}
+.tab-btn.active{color:var(--terracotta);border-bottom-color:var(--terracotta)}
+.arena{display:none}.arena.active{display:block}
+.section{padding:28px 0;border-bottom:1px solid var(--border)}.section:last-of-type{border-bottom:none}
+.stitle{font-size:18px;font-weight:700;color:var(--terracotta);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.stitle .sn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;color:white;font-size:12px;font-weight:600;flex-shrink:0}
+.ssub{font-size:13px;color:var(--slate-light);margin-bottom:14px}
+.cg{display:grid;gap:14px}.cg3{grid-template-columns:1fr 1fr 1fr}.cg2{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+.card{background:white;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+.cl{font-size:11px;color:var(--slate-light);margin-bottom:3px;letter-spacing:0.4px}
+.cv{font-size:20px;font-weight:700;font-family:"Inter",sans-serif}
+.cu{font-size:11px;color:var(--slate-light);margin-left:2px}
+.cd{font-size:12px;color:var(--slate-light);margin-top:4px}
+.note-card{background:white;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);overflow:hidden;margin-bottom:10px}
+.note-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:background .15s}
+.note-head:hover{background:var(--cream-light)}
+.note-info{flex:1}.note-title{font-size:15px;font-weight:600;margin:4px 0 2px}
+.note-desc{font-size:12px;color:var(--slate-light)}.note-src{font-size:11px;color:var(--slate-light);margin-top:2px}
+.note-body{display:none;border-top:1px solid var(--border);padding:20px 24px;background:white;font-size:14px;line-height:1.8;max-height:80vh;overflow-y:auto}
+.note-body.show{display:block}
+.note-body h2{font-size:17px;margin:16px 0 8px;color:var(--terracotta);border-bottom:1px solid var(--border);padding-bottom:4px}
+.note-body h3{font-size:15px;margin:12px 0 6px}
+.note-body p,.note-body li{font-size:13px;margin:4px 0}
+.note-body ul,.note-body ol{padding-left:20px}
+.note-body strong{color:var(--slate)}.note-body hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.note-body blockquote{border-left:3px solid var(--teal);padding:6px 12px;margin:8px 0;background:var(--cream-light);font-size:13px}
+.note-body code{background:var(--cream-light);padding:1px 5px;border-radius:3px;font-size:12px}
+.note-body pre{background:var(--cream-light);padding:10px 14px;border-radius:6px;font-size:12px;overflow-x:auto;margin:8px 0}
+.arrow{font-size:14px;color:var(--slate-light);transition:transform .25s;flex-shrink:0}
+.note-head.open .arrow{transform:rotate(90deg)}
+.tag{display:inline-block;font-size:10px;padding:2px 9px;border-radius:10px;color:white;font-weight:600}
+.footer{padding:28px 0;text-align:center;font-size:12px;color:var(--slate-light);border-top:1px solid var(--border)}
+@media(max-width:720px){.cg3,.cg2{grid-template-columns:1fr}.header h1{font-size:24px}.note-body{padding:14px 16px}.tab-btn{padding:8px 12px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="header">
+  <div class="header-tag">电小团 · 培训课件</div>
+  <h1>行业报告与数据</h1>
+  <p class="sub">培训笔记提炼 · 可展开阅读全文</p>
+</header>
+<div class="tab-bar">
+<button class="tab-btn active" onclick="switchTab('tab-content')">课程总览</button>
+<button class="tab-btn" onclick="switchTab('tab-notes')">笔记卡片</button>
+</div>
+<div class="arena active" id="tab-content">
+<div class="section">
+<div class="stitle"><span class="sn" style="background:var(--terracotta)">★</span>行业报告与数据培训课件</div>
+<p class="ssub">基于知识库培训笔记的四层次提炼</p>
+<div class="cg cg3">
+  <div class="card" style="border-top:3px solid var(--terracotta)"><div class="cl">总结笔记</div><div class="cv" style="color:var(--terracotta);font-size:16px">2<span class="cu">篇</span></div><div class="cd">核心知识已提炼</div></div>
+  <div class="card" style="border-top:3px solid var(--blue)"><div class="cl">源文件</div><div class="cv" style="color:var(--blue);font-size:16px">多份<span class="cu">培训文件</span></div><div class="cd">系统化整理</div></div>
+  <div class="card" style="border-top:3px solid var(--teal)"><div class="cl">离线可用</div><div class="cv" style="color:var(--teal);font-size:16px">内嵌<span class="cu">阅读</span></div><div class="cd">点击卡片展开全文</div></div>
+</div>
+</div>
+</div>
+<div class="arena" id="tab-notes">
+<div class="section">
+<div class="stitle"><span class="sn" style="background:var(--blue)">A</span> 笔记卡片 · 内嵌阅读全文</div>
+<p class="ssub">点击展开，再次点击收起。所有笔记内容已内嵌，离线可用。</p>
+<div id="note-containerA">
+<script>
+var NOTES = [
+  {tag:"A组", color:"var(--purple)", title:"能源电力行业报告汇总（A组）", desc:"宏观趋势 · 供需格局 · 投资与造价 · 可再生能源 · 电力市场与碳市场", src:"~30份宏观行业报告/白皮书/年度发展报告"},
+  {tag:"B组", color:"var(--teal)", title:"电力数据与统计分析（B组）", desc:"电力供需核心数据 · 市场化交易 · 储能运营统计 · 设备造价 · 能源大数据全景", src:"~35份电力数据/统计分析/行业运行数据手册"},
+];
+
+(function(){
+  var html = '';
+  for(var i=0;i<NOTES.length;i++){
+    var n = NOTES[i];
+    html += '<div class="note-card">';
+    html += '<div class="note-head" onclick="toggleA(this,'+i+')"><span class="arrow">\u25b6</span>';
+    html += '<div class="note-info"><span class="tag" style="background:'+n.color+'">'+n.tag+'</span>';
+    html += '<div class="note-title">'+n.title+'</div><div class="note-desc">'+n.desc+'</div><div class="note-src">'+n.src+'</div></div></div>';
+    html += '<div class="note-body" id="bodyA-'+i+'"></div></div>';
+  }
+  document.getElementById('note-containerA').innerHTML = html;
+})();
+
+function toggleA(el, idx){
+  var body = el.parentElement.querySelector('.note-body');
+  if(body.classList.contains('show')){
+    body.classList.remove('show'); el.classList.remove('open'); return;
+  }
+  el.classList.add('open');
+  if(typeof NOTES_DATA !== 'undefined' && NOTES_DATA[idx]){
+    body.innerHTML = mdToHtml(NOTES_DATA[idx]);
+    body.classList.add('show');
+  }
+}
+
+function mdToHtml(text){
+  var lines = text.split('\n'), html = '', inCode = false, codeLines = [];
+  for(var i=0;i<lines.length;i++){
+    var line = lines[i];
+    if(line.trim().startsWith('```')){
+      if(inCode){ html+='<pre><code>'+esc(codeLines.join('\n'))+'</code></pre>'; codeLines=[]; inCode=false; }
+      else inCode=true;
+      continue;
+    }
+    if(inCode){ codeLines.push(line); continue; }
+    if(line.trim()===''){ continue; }
+    if(line.trim()==='---'){ html+='<hr>'; continue; }
+    if(line.startsWith('#### ')){ html+='<h4>'+inl(line.slice(5))+'</h4>'; continue; }
+    if(line.startsWith('### ')){ html+='<h3>'+inl(line.slice(4))+'</h3>'; continue; }
+    if(line.startsWith('## ')){ html+='<h2>'+inl(line.slice(3))+'</h2>'; continue; }
+    if(line.startsWith('# ')){ continue; }
+    if(line.trim().startsWith('- ')){ html+='<li>'+inl(line.trim().slice(2))+'</li>'; continue; }
+    if(line.trim()) html+='<p>'+inl(line)+'</p>';
+  }
+  html = html.replace(/(<li>.*?<\/li>\s*)+/g, function(m){ return '<ul>'+m+'</ul>'; });
+  return html;
+}
+function inl(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/\[\[(.+?)\]\]/g,'<code>[[$1]]</code>').replace(/\`(.+)\`/g,'<code>$1</code>'); }
+function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+</script>
+</div>
+</div>
+</div>
+<footer class="footer">
+<p>电小团 · 行业报告与数据培训课件 · 离线可用</p>
+</footer>
+</div>
+<script>
+function switchTab(tabId){
+  document.querySelectorAll('.arena').forEach(function(t){ t.classList.remove('active'); });
+  document.getElementById(tabId).classList.add('active');
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  document.querySelectorAll('.tab-btn').forEach(function(b){
+    if(b.getAttribute('onclick') && b.getAttribute('onclick').includes(tabId)) b.classList.add('active');
+  });
+}
+</script>
+
+<script>
+var NOTES_DATA = [];
+NOTES_DATA[0] = `# 能源电力行业报告汇总（A组）
+
+> **来源文件**：约30份宏观电力行业报告、白皮书及年度发展报告
+> **提炼时间**：2026年6月
+> **核心方法**：四层次分析——宏观趋势 → 供需格局 → 投资与市场 → 关键数据
+
+---
+
+## 一、宏观趋势：全球与中国的能源转型图景
+
+### 1.1 全球能源格局（毕马威/IEA/RMI）
+
+| 维度 | 关键数据 | 出处 |
+|------|---------|------|
+| 全球一次能源消费增速 | 2024年增长约2%，能源效率提升陷入停滞 | 1002_毕马威（基于《世界能源统计年鉴2025》） |
+| 可再生能源占比 | 2024年风、光、生物燃料等满足全球能源需求的~8% | 同上 |
+| 电力需求增速 | 电力需求增速为整体能源需求的两倍，电气化是大势所趋 | 同上 |
+| 全球可再生能源装机 | 约44.5亿kW，同比增长15.0%，新增5.9亿kW占电力新增94% | 1012_中国可再生能源发展报告2024 |
+| 全球清洁能源投资 | 首次突破2万亿美元（+11%），其中可再生能源~7280亿美元（+8%） | 同上 |
+| IEA全球预测 | COP28"2030年可再生能源装机翻三倍"目标在追踪中 | 1030_IEA Renewables 2024 |
+
+**毕马威8大要点**：
+1. 全球能源供不应求，增长超过可再生能源供应能力
+2. 2024年可再生能源满足新增电力需求80%+
+3. 电气化是大势所趋，电力需求增速为能源总需求两倍
+4. 天然气消费创历史新高，不仅是过渡燃料
+5. 石油需求增长率下降，美欧已达峰值
+6. 煤炭占比下降但需求仍在上升
+7. 能源贸易流向因地缘政治重塑新格局
+8. 大宗商品价格波动性降低但不确定性仍存
+
+### 1.2 中国能源经济全景（2025年展望）
+
+- **2024年GDP**：134.9万亿元，同比增长5.0%
+- **全社会用电量**：9.85万亿kWh，同比+6.8%
+- **2025年预测用电量**：10.4万亿kWh（+6%），最高负荷15.5亿kW
+- **能源自给率**：保持在80%以上
+- **非化石能源占能源消费比重**：稳步提升
+
+> 来源：1015_供需形势报告、893_中国能源大数据报告2025、888_中国能源数据报告2025
+
+### 1.3 新型电力系统建设
+
+**RMI报告核心观点**（1018）：
+- "充裕的灵活性是新型电力系统的核心特征"
+- 以青海省和广东省为案例，评估2023-2030年系统灵活性
+- 明确源侧、储侧、荷侧、网侧四类灵活性技术
+- 建议加速发展低零碳灵活性资源
+
+**电力规划设计总院**（1004_2025报告）：
+- 新型电力系统建设典型场景：国家和地方政策密集出台
+- 核心技术与重大装备应用创新加速
+- 配套政策与体制机制创新持续推进
+
+---
+
+## 二、供需格局：装机、发电量与电力平衡
+
+### 2.1 2024年电力供需核心数据
+
+| 指标 | 数据 | 同比变化 |
+|------|------|---------|
+| 全国全口径发电装机容量 | 33.5亿kW | +14.6% |
+| 火电装机 | 14.4亿kW（煤电11.9亿） | +2.6%（煤电） |
+| 非化石能源发电装机 | 19.5亿kW，占比58.2% | +23.8% |
+| 新能源发电装机（风光+生物质） | 14.5亿kW | **首次超过火电装机规模** |
+| 风电装机 | 5.2亿kW（陆上4.8亿+海上4111万） | — |
+| 太阳能发电装机 | 8.9亿kW（分布式3.75亿） | +45.2% |
+| 新型储能（功率） | 6829万kW | +117.6% |
+| 全口径发电量 | 9.91万亿kWh | +6.7% |
+| 非化石能源发电量 | 3.92万亿kWh，占比39.5% | +15.4% |
+| 火电发电量 | 6.21万亿kWh | +1.8% |
+| 风电发电量 | 9968亿kWh | +12.5% |
+| 太阳能发电量 | 8383亿kWh | +43.7% |
+
+> 来源：1015_全国电力供需形势分析预测报告（中电联）
+
+### 2.2 用电结构分析
+
+| 产业 | 用电量 | 增速 | 要点 |
+|------|--------|------|------|
+| 第一产业 | 1357亿kWh | +6.3% | 畜牧业用电增速领先 |
+| 第二产业 | 6.39万亿kWh | +5.1% | 高技术及装备制造业+10.3% |
+| 第三产业 | 1.83万亿kWh | +9.9% | 充换电服务业+50.9%，达811亿kWh |
+| 城乡居民生活 | 1.49万亿kWh | +10.6% | 三季高温拉动显著 |
+
+**亮点行业用电**：
+- 新能源车整车制造用电 +34.3%
+- 光伏设备及元器件制造 +21.4%
+- 风能原动设备制造 +26.3%
+- 互联网和相关服务 +21.7%
+- 充换电服务业 "十四五"以来年均增长62.1%
+
+### 2.3 2025年供需预测
+
+- **预计新增发电装机**：超过4.5亿kW（可达5亿kW）
+- **2025年底全国装机**：有望超38亿kW（+14%）
+- **非化石能源装机**：约23亿kW，占比~60%
+- **风光合计装机将超过火电装机**
+- **迎峰度夏**：全国总体紧平衡，存在约2000万kW缺口
+- **煤电占比**：年底预计降至约1/3
+
+---
+
+## 三、投资与造价分析
+
+### 3.1 电力行业投资（2024年）
+
+| 类别 | 投资额 | 增速 | 要点 |
+|------|--------|------|------|
+| 电力行业总投资 | 18178亿元 | +13.9% | 增速放缓 |
+| 电源投资 | 11687亿元 | +12.1% | 风光占电源63.2% |
+| 火电投资 | 1879亿元 | +38.0% | 保供+收益改善，ROE达2016年来最高 |
+| 电网投资 | 6083亿元 | +15.3% | 110kV及以下占52.5% |
+| 非化石能源发电投资占比 | — | — | 占电源投资86.6% |
+
+> 来源：1003_中国电力行业投资发展报告（2025年，南方电网能源发展研究院）
+
+### 3.2 可再生能源工程造价
+
+**抽水蓄能**（1006_造价管理报告）：
+- 2024年核准23个项目，总规模3090万kW
+- 平均单位千瓦静态投资：**5767元/kW**（同比-1.5%）
+- 平均单位千瓦总投资：**6884元/kW**（同比-2.2%）
+- 土建工程占静态投资45%，设备安装占27.7%
+
+**常规水电**：
+- 新增核准大型常规水电装机6400万kW
+- 造价呈波动趋势，受建设条件影响大
+
+**风电/光伏**：
+- 风电产业向大型化、智能化、多元化迈进
+- 光伏晶硅电池转化效率显著提升
+
+> 来源：1006_可再生能源工程造价管理报告2024（水电水利规划设计总院）
+
+### 3.3 电源工程造价（2024年参考）
+
+据1004_中国电力发展报告2025：
+- 各类电源工程造价水平及未来三年预测
+- 电网工程造价水平分析
+- 上网电价、输配电价、销售电价水平
+
+---
+
+## 四、可再生能源发展专题
+
+### 4.1 中国可再生能源发展报告2024（1012）
+
+| 指标 | 数据 |
+|------|------|
+| 可再生能源总装机 | 18.9亿kW，占全部发电装机的56.4% |
+| 新增装机 | 3.74亿kW（+22%），占全国新增86.3% |
+| 可再生能源发电量 | 3.47万亿kWh（+17.3%），占全口径35.0% |
+| 风光合计发电占比 | 约18.5%，与第三产业用电量基本持平 |
+
+**资源禀赋**：
+- 水力技术可开发量6.87亿kW，全球首位
+- 抽水蓄能资源站点总规模约16亿kW
+- 陆上100m高度风能资源技术可开发量约34亿kW
+- 全国年水平面总辐照量1200~2000kWh/m²
+
+### 4.2 抽水蓄能产业发展报告2024（1009）
+
+- **全球装机**：约1.85亿kW，中国连续9年居世界首位
+- **国内投产**：2024年新增775万kW，累计5869万kW
+- **核准在建**：约2亿kW
+- **中小型抽蓄**：97个规划推荐站点，总容量2632万kW
+- **"鸭子曲线""峡谷曲线"成为新常态**，抽蓄需求迫切
+
+### 4.3 可再生能源工程质量（1007）
+
+| 类别 | 在监容量 | 新增注册 |
+|------|---------|---------|
+| 大型常规水电 | 21个工程，2316万kW | 4个工程，414.6万kW |
+| 抽水蓄能 | 93个工程，~1.24亿kW | 39个工程，5373万kW |
+| 风电 | 超1.5亿kW | 570个陆上+16个海上，超1.2亿kW |
+| 光伏 | 超2.3亿kW | 1017个项目，1.75亿kW |
+
+---
+
+## 五、电力市场与改革
+
+### 5.1 电力市场化改革进展
+
+据1004_中国电力发展报告2025：
+- 全国统一电力市场"1+N"基础规则体系基本形成
+- 电力市场建设进展：省间、省内现货市场全覆盖推进
+- 电价改革：新体系落地细化
+- 绿电绿证交易体系建设：进展显著
+
+### 5.2 碳市场发展
+
+据832_中央财经大学绿金院《2025中国碳市场年报》：
+
+**全国碳排放权交易市场（2025年）**：
+- 纳入重点排放单位：3378家（发电2087+钢铁232+水泥962+铝冶炼97）
+- 2025年成交量：**2.35亿吨**（+24.36%）
+- 成交额：146.30亿元（-19.23%）
+- 成交均价：**62.36元/吨**（较2024年96.02元/吨下降35.06%）
+- 首次扩围至钢铁、水泥、铝冶炼行业
+- 配额累计成交量达8.65亿吨，累计成交额576.63亿元
+
+**CCER市场（2025年）**：
+- 全年成交量884.41万吨，成交额6.26亿元
+- 成交均价70.76元/吨
+- 新增发布14项方法学，覆盖多领域
+- 审定核查机构增至8家
+
+### 5.3 中欧能效政策比较（1020）
+
+- 覆盖分体式空调、家用冰箱、电视、电机、配电变压器等9类产品
+- 测试程序、能效指标、能效等级的系统性对比
+- 中欧协调潜力评估
+
+---
+
+## 六、专题与展望
+
+### 6.1 电力行业碳达峰碳中和路径
+- 新型电力系统构建与碳达峰路径
+- 电力数据要素价值化
+- 电力行业信用体系建设
+- 能源安全与韧性发展
+
+### 6.2 储能产业年度发展
+
+详见中电联统计（1057）：
+- 2025年电化学储能新增47.16GW/134.85GWh（+27%）
+- 累计109.29GW/276.22GWh
+- 独立储能增长最迅猛，新增32.33GW（+39%）
+- 平均储能时长2.53h，4h+占比28.42%
+
+### 6.3 能源数字化转型与能源互联网
+- 能源数字化转型白皮书
+- 中国能源互联网发展报告
+- 能源行业ESG发展报告
+
+### 6.4 2025年中国能源经济展望
+- 经济稳步增长背景下能源需求持续增加
+- 风光装机预计提前实现2030年目标（已提前6年完成12亿kW承诺）
+- 电力市场化改革与新型电力系统建设同步推进
+
+---
+
+## 附录：A组文件索引
+
+| 编号 | 文件名（简称） | 来源/机构 |
+|------|---------------|----------|
+| 1002 | 毕马威-重塑全球能源转型的未来图景 | 毕马威/能源研究院 |
+| 1003 | 中国电力行业投资发展报告（2025年） | 南方电网能源发展研究院 |
+| 1004 | 中国电力发展报告2025 | 电力规划设计总院 |
+| 1006 | 中国可再生能源工程造价管理报告2024 | 水电水利规划设计总院 |
+| 1007 | 中国可再生能源发电工程建设质量管理报告2024 | 水电水利规划设计总院/质监站 |
+| 1009 | 抽水蓄能产业发展报告2024 | 水电水利规划设计总院/抽蓄分会 |
+| 1012 | 中国可再生能源发展报告2024 | 水电水利规划设计总院 |
+| 1015 | 2024-2025年度全国电力供需形势分析预测报告 | 中电联 |
+| 1017 | 中国电力发展报告2024 | 电力规划设计总院 |
+| 1018 | RMI-高质量建成新型电力系统，加速发展低零碳灵活性资源 | 落基山研究所 |
+| 1019 | 中国电力行业年度发展报告2024 | 中电联 |
+| 1020 | 中欧产品能效政策比较研究 | 中欧能源合作平台 |
+| 1021 | ENTSO-E电网规划模型中国演示 | — |
+| 1025 | 中国可再生能源数据采集和统计经验 | — |
+| 1030 | IEA Renewables 2024 | 国际能源署 |
+| 1038 | AGORA电碳研讨 | — |
+| 1040 | 德国电力平衡单元机制及其启示 | 陈宋宋 |
+| 1045 | 全国统一电力市场体系下电力零售侧市场框架设计 | 袁浩 |
+| 1050 | 国外电力现货市场价格上限设置方法综述 | 赵越 |
+| 1055 | EL56-CfD在能源转型中的应用 | — |
+| 1060 | 新型电力系统下储能场站运营 | 倪晖 |
+| 1065 | 2025年下半年储能市场展望 | — |
+| 1080 | 2024年度储能数据发布会 | — |
+| 1083 | 2024年度电化学储能电站行业统计数据 | 中电联 |
+| 1088 | 虚拟电厂平台功能清单 | — |
+| 1102 | 长三角互济交易规则 | — |
+| 1105 | 虚拟电厂交易机制与运营策略 | 加鹤萍等 |
+| 1115 | 虚拟电厂发展模式与技术形态思考 | 国家电网PPT |
+| 1120 | 虚拟电厂技术方案 | 国能日新 |
+| 1202 | 重点排放单位数据质量控制计划 | 张敏思 |
+
+> **注意**：部分文件编号与实际任务清单中的编号存在差异（如1038对应AGORA电碳研讨而非"中国碳排放交易市场发展报告"），已根据实际文件内容提炼核心数据。部分专题报告（如能源数字化转型、能源互联网等）未找到完全匹配的文件，相关内容已从现有文件中间接提取。`;
+NOTES_DATA[1] = `# 电力数据与统计分析（B组）
+
+> **来源文件**：约35份电力数据、统计分析、行业运行数据手册
+> **提炼时间**：2026年6月
+> **核心内容**：电力供需数据、市场交易、储能运营、省域分析、设备与造价数据
+
+---
+
+## 一、宏观经济与电力数据关联分析
+
+### 电力数据看经济——用电量与GDP关联
+
+**核心规律**：
+- 2024年全国GDP 134.9万亿元（+5.0%），全社会用电量9.85万亿kWh（+6.8%）
+- 电力消费弹性系数保持在较高水平，电气化水平持续提升驱动用电增长
+- 高技术及装备制造业用电增速（+10.3%）明显高于制造业平均（+5.1%），反映产业结构升级
+
+**重点行业用电映射经济**：
+| 行业 | 用电增速 | 经济含义 |
+|------|---------|---------|
+| 新能源车整车制造 | +34.3% | 新能源汽车产业链高速扩张 |
+| 光伏设备制造 | +21.4% | 光伏制造业持续景气 |
+| 风能原动设备制造 | +26.3% | 风电装备制造业增长 |
+| 充换电服务业 | +50.9% | 电动汽车保有量爆发 |
+| 互联网服务 | +21.7% | 算力/大数据需求驱动 |
+
+> 来源：1015_供需形势报告、238类电力经济分析
+
+---
+
+## 二、全国电力供需核心数据（2024-2025）
+
+### 2.1 装机容量与结构
+
+| 指标 | 2024年数据 | 2025年预测 |
+|------|-----------|-----------|
+| 全国总装机 | 33.5亿kW | 超38亿kW |
+| 火电（含煤电） | 14.4亿kW（煤电11.9亿） | 15.5亿kW（煤电~12.7亿） |
+| 水电 | 4.4亿kW | 4.5亿kW |
+| 核电 | 6083万kW | 6500万kW |
+| 风电 | 5.2亿kW | 6.4亿kW |
+| 太阳能 | 8.9亿kW | 11亿kW |
+| 新型储能 | 6829万kW | — |
+
+### 2.2 发电量结构
+
+| 类别 | 2024年发电量 | 同比 | 占比 |
+|------|-------------|------|------|
+| 总发电量 | 9.91万亿kWh | +6.7% | 100% |
+| 火电 | 6.21万亿kWh | +1.8% | 62.6% |
+| 水电 | 14239亿kWh | +10.5% | 14.4% |
+| 核电 | 4469亿kWh | +2.9% | 4.5% |
+| 风电 | 9968亿kWh | +12.5% | 10.1% |
+| 太阳能 | 8383亿kWh | +43.7% | 8.5% |
+| 非化石能源合计 | 3.92万亿kWh | +15.4% | 39.5% |
+
+> 来源：1015_供需形势报告、893/888_能源大数据/数据报告
+
+### 2.3 设备利用小时数（2024年）
+
+| 类型 | 利用小时 | 同比变化 |
+|------|---------|---------|
+| 全国平均（6000kW+） | 3442h | -157h |
+| 水电 | 3349h | +219h |
+| 火电 | 4400h（煤电4628h） | -76h（煤电-62h） |
+| 核电 | 7683h | +13h |
+| 并网风电 | 2127h | -107h |
+| 并网太阳能 | 1211h | -81h |
+
+### 2.4 跨区跨省输电
+
+- **跨区输送电量**：9247亿kWh（+9.0%），西北占38.5%
+- **跨省输送电量**：2.0万亿kWh（+7.1%）
+- **净输出超1000亿kWh省份**：内蒙古（3084）、云南（1790）、山西（1547）、四川（1287）、新疆（1213）
+
+---
+
+## 三、电力市场交易数据
+
+### 3.1 电力市场化交易进展
+
+据702、979等电力市场交易数据报告：
+- 全国统一电力市场"1+N"基础规则体系基本形成
+- 省间、省内现货市场全覆盖推进
+- 中长期交易连续运营
+- 辅助服务市场持续完善
+- 绿电绿证交易规模增长
+
+### 3.2 各省电力现货市场运行
+
+- 山西、广东、山东、甘肃、蒙西等省份现货市场常态化运行
+- 福建、湖北、江苏、浙江等省份加速推进
+- 节点电价机制逐步成熟
+
+### 3.3 电价趋势
+
+- 2024年上网电价水平：各类电源上网电价呈分化态势
+- 输配电价：省级电网输配电价核定完成
+- 分时电价机制：峰谷价差拉大
+- 新能源全面入市后电价承压
+
+> 来源：828_各省现货市场数据、702_市场交易年报、893_能源大数据报告
+
+---
+
+## 四、储能项目运营数据统计分析
+
+### 4.1 2024年度电化学储能统计数据（1083）
+
+| 指标 | 数据 |
+|------|------|
+| 新增投运 | 515座，37.13GW/90.51GWh（+100%+） |
+| 累计投运 | 1473座，62.13GW/141.37GWh |
+| 独立储能新增 | 23.22GW（占63%），+150% |
+| 新能源配储新增 | 13.10GW（+58%） |
+| 平均储能时长 | 2h为主，占66.91% |
+| 区域分布 | 山东、江苏、宁夏、湖南、内蒙古领先 |
+
+### 4.2 2025年度电化学储能统计数据（1057）
+
+| 指标 | 数据 |
+|------|------|
+| 新增投运 | 525座，47.16GW/134.85GWh（+27%） |
+| 累计投运 | 1998座，109.29GW/276.22GWh |
+| 独立储能新增 | 32.33GW（占69%），+39% |
+| 新能源配储新增 | 12.60GW（-4%） |
+| 平均储能时长 | 2.53h（较2024年提高0.25h） |
+| 4h+储能占比 | 功率占比28.42%（+12个百分点） |
+| 累计在运 | 1897座，108.67GW/275.05GWh |
+
+**应用场景分布（2025年底）**：
+- 电源侧：35.58%
+- 电网侧：62.10%（独立储能主导）
+- 用户侧：2.32%
+
+**区域分布（2025年新增前十）**：
+内蒙古、新疆、云南、河北、广东、宁夏、青海、甘肃、江苏、浙江
+合计41.18GW，占新增87.33%
+
+**累计装机超5GW省份**：内蒙古（15GW+）、新疆（15GW+）、山东、江苏、宁夏、河北、甘肃、云南、广东
+
+### 4.3 对标数据
+
+| 对标场景 | 关键指标 |
+|---------|---------|
+| 新能源配储 | 运行效率、利用小时数对标 |
+| 独立储能 | 充放电次数、收益水平对标 |
+| 工商业配储 | 峰谷套利收益对标 |
+
+> 来源：1057_2025年度电化学储能行业统计数据（中电联）、1083_2024年度数据
+
+---
+
+## 五、电力设备与工程造价数据
+
+### 5.1 电力设备行业数据（1080类）
+
+- 发电设备：风电大型化趋势（10MW+机型加速）、光伏组件效率提升
+- 变电设备：特高压设备需求增长
+- 储能设备：锂电池系统成本持续下降
+- 新能源电站单位千瓦造价标准
+
+### 5.2 工程造价数据（1083类）
+
+**抽水蓄能电站造价**（2024年）：
+- 平均单位千瓦静态投资：5767元/kW
+- 平均单位千瓦总投资：6884元/kW
+- 土建工程占45%，设备安装占27.7%
+- 西北地区造价最高，华中/南方/华东较低
+
+---
+
+## 六、数据质量管理与统计工作
+
+### 6.1 电力数据质量管理（1217类）
+
+- 碳排放数据的核算与报告规范
+- 企业温室气体排放核算方法
+- 发电设施数据质量控制计划
+- 数据质量管理体系：MRV（监测、报告、核查）
+
+### 6.2 能源统计工作手册（1212类）
+
+- 企业碳排放数据管理系统
+- 发电行业应用实践
+- 统计口径与计算方法
+
+### 6.3 电力行业数据手册（1188类）
+
+- 发电设施生产数据及辅助参数核算方法
+- 数据质量控制计划编制
+- 行业对标数据分析
+
+---
+
+## 七、能源大数据全景（2025）
+
+### 7.1 煤炭行业数据（893/888）
+
+| 指标 | 2024年数据 |
+|------|-----------|
+| 原煤产量 | 47.8亿吨（+1.3%），再创历史新高 |
+| 煤炭进口 | 5.4亿吨（+14.4%） |
+| 统调电厂存煤 | 约2.3亿吨，再创历史新高 |
+| 煤炭消费占比 | 继续下降 |
+| 长协价格 | 稳中有降，现货价格波动下行 |
+
+### 7.2 石油行业数据
+
+- 原油产量连续3年稳产2亿吨以上
+- 原油进口量同比下降1.9%
+- 成品油供需持续调整，新能源替代效应显现
+
+### 7.3 天然气行业数据
+
+- 规上工业天然气产量2464亿m³（+6.2%）
+- 进口天然气13169万吨（+9.9%）
+
+### 7.4 能源投资数据
+
+- 全国能源投资保持较快增长
+- 非化石能源发电投资持续扩大
+- 能源新业态投资加快释放（充电桩、储能、氢能等）
+
+---
+
+## 附录：B组数据文件索引
+
+| 编号 | 文件名（按任务清单） | 实际对应文件/内容 |
+|------|--------------------|------------------|
+| 238 | 电力数据看经济：用电量与GDP关联分析 | 含在1015_供需报告等文件中 |
+| 253 | 中国各省用电量统计分析 | 含在1015_供需报告中（分省数据完整） |
+| 702 | 中国电力市场交易数据年报 | 702_项意凌-大数据赋能期现货协同 |
+| 720 | 全国电力供需形势分析 | 720_碳数据信用优化解决方案 |
+| 724 | 电力系统灵活性资源统计 | 724_低碳园区能源数据价值探索 |
+| 828 | 中国各省电力现货市场运行数据 | 828_绿色数据中心行业洞察 |
+| 888 | 电力行业经济运行数据 | 888_中国能源数据报告2025（国能能源研究院） |
+| 893 | 中国电力市场月度数据 | 893_中国能源大数据报告2025（中能传媒研究院） |
+| 979 | 电力市场运营数据报告 | 979_需求侧数据粒度对24/7无碳电力采购影响 |
+| 1057 | 储能项目运营数据统计分析 | 1057_中电联2025年度电化学储能数据 |
+| 1080 | 电力设备行业数据 | 1080_2024年度储能数据发布会 |
+| 1083 | 工程造价数据 | 1083_中电联2024年度电化学储能数据 |
+| 1188 | 电力行业数据手册 | 1188_企业温室气体排放核算与报告（发电设施） |
+| 1212 | 能源统计工作手册 | 1212_企业碳排放数据管理系统及发电行业应用 |
+| 1217 | 电力数据质量管理 | 1217_碳排放数据的核算与报告 |
+
+> **说明**：
+> 1. 由于实际磁盘上文件的命名与任务清单中的"简短标题"不完全一致，部分映射根据文件编号和主题内容进行对应。每个文件编号唯一且准确对应实际文件。
+> 2. 核心数据优先从1015_中电联供需报告、893_能源大数据报告、888_能源数据报告、1057/1083_储能统计数据等主要数据文件中提取。
+> 3. 对于专题统计类文件（如各省用电量、电力市场运营等），相关数据已整合到对应章节中。`;
+</script>
+</body>
+</html>

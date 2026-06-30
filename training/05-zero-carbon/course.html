@@ -1,0 +1,1700 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>零碳园区与综合能源 · 培训课件 · 电小团</title>
+<style>
+:root{--cream:#F5F0E8;--cream-light:#FCFAF5;--border:#E8E0D6;--terracotta:#CC785C;--terracotta-light:#E8A98C;--teal:#5E8B7E;--teal-light:#A3C4B8;--blue:#6B8FBE;--blue-light:#B8CEE0;--orange:#E8956A;--orange-light:#F5C9AC;--purple:#9B7FB5;--purple-light:#C9B8DB;--pink:#D4A5A5;--pink-light:#EBCFCF;--slate:#2D3436;--slate-light:#636E72;--shadow:0 2px 12px rgba(0,0,0,0.06);--radius:12px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--cream);color:var(--slate);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC","Inter",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.container{max-width:980px;margin:0 auto;padding:0 24px}
+.header{padding:40px 0 20px;text-align:center;border-bottom:1px solid var(--border)}
+.header-tag{display:inline-block;background:var(--terracotta);color:white;font-size:11px;letter-spacing:2px;padding:4px 14px;border-radius:20px;margin-bottom:10px}
+.header h1{font-size:28px;font-weight:700;margin-bottom:4px}
+.header .sub{font-size:14px;color:var(--slate-light)}
+.tab-bar{display:flex;gap:0;border-bottom:2px solid var(--border);margin:0 0 20px;overflow-x:auto}
+.tab-btn{padding:10px 18px;font-size:13px;font-weight:600;color:var(--slate-light);background:none;border:none;cursor:pointer;white-space:nowrap;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+.tab-btn:hover{color:var(--terracotta);background:var(--cream-light)}
+.tab-btn.active{color:var(--terracotta);border-bottom-color:var(--terracotta)}
+.arena{display:none}.arena.active{display:block}
+.section{padding:28px 0;border-bottom:1px solid var(--border)}
+.section:last-of-type{border-bottom:none}
+.stitle{font-size:18px;font-weight:700;color:var(--terracotta);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.stitle .sn{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;color:white;font-size:12px;font-weight:600;flex-shrink:0}
+.ssub{font-size:13px;color:var(--slate-light);margin-bottom:14px}
+.cg{display:grid;gap:14px}.cg3{grid-template-columns:1fr 1fr 1fr}
+.cg2{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+.cg4{display:grid;gap:10px;grid-template-columns:1fr 1fr 1fr 1fr}
+.card{background:white;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+.cl{font-size:11px;color:var(--slate-light);margin-bottom:3px;letter-spacing:0.4px}
+.cv{font-size:20px;font-weight:700;font-family:"Inter",sans-serif}
+.cu{font-size:11px;color:var(--slate-light);margin-left:2px}
+.cd{font-size:12px;color:var(--slate-light);margin-top:4px}
+.fig-title{font-size:12px;color:var(--slate-light);text-align:center;margin-bottom:6px}
+.fig-wrap{text-align:center;margin:18px auto;max-width:100%;overflow-x:auto}
+.fig-wrap svg{max-width:100%;height:auto}
+.tag-row{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.tag{display:inline-block;font-size:10px;padding:2px 9px;border-radius:10px;color:white;font-weight:600}
+.tag-sm{display:inline-block;font-size:10px;padding:1px 7px;border-radius:8px;font-weight:500}
+.action-card{background:white;border-radius:var(--radius);padding:18px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);border-left:4px solid var(--terracotta)}
+.action-card.mid{border-left-color:var(--blue)}
+.action-card.long{border-left-color:var(--teal)}
+.hb{background:var(--cream-light);border-left:3px solid var(--terracotta);padding:12px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.hb-teal{border-left-color:var(--teal)}
+.hb-blue{border-left-color:var(--blue)}
+.hb-purple{border-left-color:var(--purple)}
+.note-card{background:white;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04);overflow:hidden;margin-bottom:10px}
+.note-head{display:flex;align-items:center;gap:12px;padding:14px 18px;cursor:pointer;transition:background .15s}
+.note-head:hover{background:var(--cream-light)}
+.note-info{flex:1}.note-title{font-size:15px;font-weight:600;margin:4px 0 2px}
+.note-desc{font-size:12px;color:var(--slate-light)}
+.note-src{font-size:11px;color:var(--slate-light);margin-top:2px}
+.note-body{display:none;border-top:1px solid var(--border);padding:20px 24px;background:white;font-size:14px;line-height:1.8;max-height:80vh;overflow-y:auto}
+.note-body.show{display:block}
+.note-body h2{font-size:17px;margin:16px 0 8px;color:var(--terracotta);border-bottom:1px solid var(--border);padding-bottom:4px}
+.note-body h3{font-size:15px;margin:12px 0 6px;color:var(--slate)}
+.note-body h4{font-size:13px;margin:10px 0 4px;color:var(--slate-light);font-weight:600}
+.note-body p,.note-body li{font-size:13px;margin:4px 0}
+.note-body ul,.note-body ol{padding-left:20px}
+.note-body strong{color:var(--slate)}
+.note-body hr{border:none;border-top:1px solid var(--border);margin:16px 0}
+.note-body blockquote{border-left:3px solid var(--teal);padding:6px 12px;margin:8px 0;background:var(--cream-light);font-size:13px;border-radius:0 6px 6px 0}
+.note-body code{background:var(--cream-light);padding:1px 5px;border-radius:3px;font-size:12px}
+.note-body pre{background:var(--cream-light);padding:10px 14px;border-radius:6px;font-size:12px;overflow-x:auto;margin:8px 0}
+.note-body table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+.note-body th{background:var(--cream);color:var(--slate-light);font-weight:600;padding:7px 9px;text-align:center;border-bottom:2px solid var(--border)}
+.note-body td{padding:6px 9px;text-align:center;border-bottom:1px solid var(--border)}
+.note-body tr:hover td{background:var(--cream-light)}
+.arrow{font-size:14px;color:var(--slate-light);transition:transform .25s;flex-shrink:0}
+.note-head.open .arrow{transform:rotate(90deg)}
+.star-list{display:grid;gap:10px}
+.star-card{display:flex;gap:14px;align-items:flex-start;background:white;padding:14px 16px;border-radius:var(--radius);box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+.star-rank{flex-shrink:0;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:white}
+.star-title{font-weight:600;margin-bottom:2px;font-size:14px}
+.star-desc{font-size:12px;color:var(--slate-light)}
+.footer{padding:28px 0;text-align:center;font-size:12px;color:var(--slate-light);border-top:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:10px 0}
+th{background:var(--cream);color:var(--slate-light);font-weight:600;padding:7px 9px;text-align:center;border-bottom:2px solid var(--border)}
+td{padding:6px 9px;text-align:center;border-bottom:1px solid var(--border)}
+tr:hover td{background:var(--cream-light)}
+th:first-child,td:first-child{text-align:left;font-weight:500}
+@media(max-width:720px){.cg3,.cg2,.cg4{grid-template-columns:1fr}.header h1{font-size:24px}.note-body{padding:14px 16px}.tab-btn{padding:8px 12px;font-size:12px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header class="header">
+  <div class="header-tag">电小团 · 培训课件</div>
+  <h1>零碳园区与综合能源</h1>
+  <p class="sub">从政策趋势到落地实践 · 跨越8大模块 · ~50份源文件提炼 · 内嵌笔记全文</p>
+</header>
+<div class="tab-bar">
+<button class="tab-btn active" onclick="switchTab('tab-content')">课程总览</button>
+<button class="tab-btn" onclick="switchTab('tab-policy')">一 · 政策篇</button>
+<button class="tab-btn" onclick="switchTab('tab-service')">二 · 综合能源服务</button>
+<button class="tab-btn" onclick="switchTab('tab-microgrid')">三 · 智能微电网</button>
+<button class="tab-btn" onclick="switchTab('tab-case')">四 · 落地案例</button>
+<button class="tab-btn" onclick="switchTab('tab-carbon')">五 · 碳交易与绿证</button>
+<button class="tab-btn" onclick="switchTab('tab-vpp')">六 · 零碳VPP</button>
+<button class="tab-btn" onclick="switchTab('tab-action')">行动路线</button>
+</div>
+
+<!-- ====== TAB 0: 课程总览 ====== -->
+<div class="arena active" id="tab-content">
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">1</span> 核心数据速览</div>
+    <div class="cg cg3" style="margin-bottom:16px">
+      <div class="card" style="border-top:3px solid var(--terracotta)"><div class="cl">国家级零碳园区</div><div class="cv" style="color:var(--terracotta)">52<span class="cu">个</span></div><div class="cd">首批公布 · 31省全覆盖 · "十五五"目标100个</div></div>
+      <div class="card" style="border-top:3px solid var(--blue)"><div class="cl">中央预算内支持</div><div class="cv" style="color:var(--blue)">20<span class="cu">%</span></div><div class="cd">零碳园区项目支持比例 · 核定总投资</div></div>
+      <div class="card" style="border-top:3px solid var(--teal)"><div class="cl">绿电直供比例</div><div class="cv" style="color:var(--teal)">&#8805;50<span class="cu">%</span></div><div class="cd">零碳园区绿色电力直接供应比例下限</div></div>
+    </div>
+    <div class="cg cg3">
+      <div class="card" style="border-top:3px solid var(--orange)"><div class="cl">综合能源市场</div><div class="cv" style="color:var(--orange)">1.3~1.8<span class="cu">万亿</span></div><div class="cd">2035年市场规模 · 年增速15%+</div></div>
+      <div class="card" style="border-top:3px solid var(--purple)"><div class="cl">智能微电网项目</div><div class="cv" style="color:var(--purple)">210<span class="cu">个</span></div><div class="cd">2024-2025Q1并网 · 599.6MW/1.6GWh</div></div>
+      <div class="card" style="border-top:3px solid var(--teal)"><div class="cl">单位能耗碳排放</div><div class="cv" style="color:var(--teal)">&#8804;0.2<span class="cu">t/tce</span></div><div class="cd">能耗20~100万吨园区核心指标</div></div>
+    </div>
+  </section>
+
+  <!-- SVG 1: 五维协同架构 -->
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--blue)">2</span> 零碳园区五维协同架构</div>
+    <p class="ssub">源 · 网 · 荷 · 储 · 碳 五维协同，构建园区零碳能源体系</p>
+    <div class="fig-wrap">
+      <svg viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg" style="max-width:760px">
+        <defs>
+          <filter id="shadow1"><feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.12"/></filter>
+          <marker id="arrow" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#999"/></marker>
+          <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#CC785C;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#E8A98C;stop-opacity:1"/>
+          </linearGradient>
+          <linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#5E8B7E;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#A3C4B8;stop-opacity:1"/>
+          </linearGradient>
+          <linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#6B8FBE;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#B8CEE0;stop-opacity:1"/>
+          </linearGradient>
+          <linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#E8956A;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#F5C9AC;stop-opacity:1"/>
+          </linearGradient>
+          <linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#9B7FB5;stop-opacity:1"/>
+            <stop offset="100%" style="stop-color:#C9B8DB;stop-opacity:1"/>
+          </linearGradient>
+        </defs>
+        <!-- 背景圆环 -->
+        <ellipse cx="380" cy="250" rx="180" ry="180" fill="none" stroke="#E8E0D6" stroke-width="1" stroke-dasharray="6,4"/>
+        <ellipse cx="380" cy="250" rx="260" ry="260" fill="none" stroke="#E8E0D6" stroke-width="1" stroke-dasharray="6,4"/>
+        <!-- 中心园区 -->
+        <circle cx="380" cy="250" r="55" fill="url(#g1)" filter="url(#shadow1)" opacity="0.95"/>
+        <text x="380" y="242" text-anchor="middle" fill="white" font-size="15" font-weight="700">零碳</text>
+        <text x="380" y="262" text-anchor="middle" fill="white" font-size="15" font-weight="700">园区</text>
+        <!-- 连接线 -->
+        <line x1="380" y1="195" x2="380" y2="60" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+        <line x1="435" y1="215" x2="560" y2="120" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+        <line x1="435" y1="285" x2="560" y2="380" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+        <line x1="380" y1="305" x2="380" y2="440" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+        <line x1="325" y1="285" x2="200" y2="380" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+        <line x1="325" y1="215" x2="200" y2="120" stroke="#999" stroke-width="1.5" marker-end="url(#arrow)" stroke-dasharray="4,3"/>
+        <!-- 维度1: 源 - 顶部 -->
+        <rect x="310" y="4" width="140" height="56" rx="10" fill="url(#g2)" filter="url(#shadow1)"/>
+        <text x="380" y="24" text-anchor="middle" fill="white" font-size="14" font-weight="700">源 · 新能源</text>
+        <text x="380" y="46" text-anchor="middle" fill="white" font-size="10" opacity="0.9">风电/光伏/生物质</text>
+        <!-- 维度2: 网 - 右上 -->
+        <rect x="552" y="92" width="140" height="56" rx="10" fill="url(#g3)" filter="url(#shadow1)"/>
+        <text x="622" y="112" text-anchor="middle" fill="white" font-size="14" font-weight="700">网 · 智能配网</text>
+        <text x="622" y="134" text-anchor="middle" fill="white" font-size="10" opacity="0.9">增量配网/微电网</text>
+        <!-- 维度3: 荷 - 右下 -->
+        <rect x="552" y="352" width="140" height="56" rx="10" fill="url(#g4)" filter="url(#shadow1)"/>
+        <text x="622" y="372" text-anchor="middle" fill="white" font-size="14" font-weight="700">荷 · 柔性负荷</text>
+        <text x="622" y="394" text-anchor="middle" fill="white" font-size="10" opacity="0.9">可调负荷/充电桩</text>
+        <!-- 维度4: 储 - 底部 -->
+        <rect x="310" y="440" width="140" height="56" rx="10" fill="url(#g5)" filter="url(#shadow1)"/>
+        <text x="380" y="460" text-anchor="middle" fill="white" font-size="14" font-weight="700">储 · 混合储能</text>
+        <text x="380" y="482" text-anchor="middle" fill="white" font-size="10" opacity="0.9">电化学/蓄冷/氢储</text>
+        <!-- 维度5: 碳 - 左下 -->
+        <rect x="68" y="352" width="140" height="56" rx="10" fill="url(#g1)" filter="url(#shadow1)"/>
+        <text x="138" y="372" text-anchor="middle" fill="white" font-size="14" font-weight="700">碳 · 能碳管理</text>
+        <text x="138" y="394" text-anchor="middle" fill="white" font-size="10" opacity="0.9">碳核算/碳交易/绿证</text>
+        <!-- 左下角: 能耗与绿电指标 -->
+        <rect x="68" y="92" width="140" height="56" rx="10" fill="url(#g3)" filter="url(#shadow1)"/>
+        <text x="138" y="112" text-anchor="middle" fill="white" font-size="14" font-weight="700">指标框架</text>
+        <text x="138" y="134" text-anchor="middle" fill="white" font-size="10" opacity="0.9">单位能耗≤0.2t/tce</text>
+        <!-- 底部标注 -->
+        <text x="380" y="515" text-anchor="middle" fill="#636E72" font-size="11">五维协同 · 源网荷储碳一体化运行调控 · 绿色电力直接供应比例 ≥50%</text>
+      </svg>
+      <div class="fig-title">▲ 图1：零碳园区五维协同架构 — 源/网/荷/储/碳五项核心维度</div>
+    </div>
+  </section>
+
+  <!-- TOP5推荐 -->
+  <section class="section" style="border-bottom:none">
+    <div class="stitle"><span class="sn" style="background:var(--terracotta)">3</span> 重点推荐 TOP5</div>
+    <p class="ssub">基于内容密度与实践价值排序 · 建议优先阅读</p>
+    <div class="star-list">
+      <div class="star-card">
+        <div class="star-rank" style="background:var(--terracotta)">1</div>
+        <div><div class="star-title">国家级零碳园区政策 · 绿盟22家申报经验</div>
+        <div class="star-desc">核心指标解读 · 绿电直供四路径 · 申报流程 · 鄂尔多斯/盐城案例</div></div>
+      </div>
+      <div class="star-card">
+        <div class="star-rank" style="background:var(--teal)">2</div>
+        <div><div class="star-title">综合能源服务运营 · 五维协同（源-网-荷-储-碳）</div>
+        <div class="star-desc">34份行业文件分析 · 源网荷储一体化 · VPP · 智慧能源平台 · AI赋能</div></div>
+      </div>
+      <div class="star-card">
+        <div class="star-rank" style="background:var(--blue)">3</div>
+        <div><div class="star-title">智能微电网 · 绿电直连四种模式</div>
+        <div class="star-desc">650号文解读 · 四大绿电供应模式对比 · 源网荷储一体化 · 决策参考</div></div>
+      </div>
+      <div class="star-card">
+        <div class="star-rank" style="background:var(--orange)">4</div>
+        <div><div class="star-title">鄂尔多斯零碳产业园案例 | 80%绿电自发直供</div>
+        <div class="star-desc">远景"三零"模式 · 73km² · 风光储+绿电直连+EnOS™平台</div></div>
+      </div>
+      <div class="star-card">
+        <div class="star-rank" style="background:var(--purple)">5</div>
+        <div><div class="star-title">碳电协同 · 碳交易 + 绿证 + 绿电</div>
+        <div class="star-desc">CBAM合规 · 欧盟电池法 · 碳资产运营 · 电碳市场协同</div></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ====== TAB 1: 政策篇 ====== -->
+<div class="arena" id="tab-policy">
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--terracotta)">1</span> 宏观政策与趋势</div>
+    <p class="ssub">从2024.12首提"零碳园区"到首批52个园区公布，政策窗口期极短</p>
+    <table>
+      <tr><th>政策/事件</th><th>时间</th><th>核心要点</th></tr>
+      <tr><td>中央经济工作会议</td><td>2024.12</td><td>首次提出"建立一批零碳园区"</td></tr>
+      <tr><td>发改环资〔2025〕910号</td><td>2025.7</td><td>零碳园区建设基本条件、指标体系、碳排放核算方法</td></tr>
+      <tr><td>首批国家级零碳园区</td><td>2025</td><td>52个园区公布 · 31省全覆盖 · 经开区14家、高新区5家</td></tr>
+      <tr><td>"十五五"目标</td><td>2026-2030</td><td>力争建成100个左右国家级零碳园区</td></tr>
+      <tr><td>NDC3.0目标</td><td>2025.9</td><td>2035年非化石能源占比≥30% · 风电+太阳能6倍以上</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--blue)">2</span> 核心指标体系</div>
+    <div class="cg cg3">
+      <div class="card" style="border-top:3px solid var(--terracotta)"><div class="cl">核心指标</div><div class="cv" style="color:var(--terracotta);font-size:16px">单位能耗碳排放 ≤0.2 t/tce</div><div class="cd">年能耗≥100万吨园区 ≤0.3 t/tce</div></div>
+      <div class="card" style="border-top:3px solid var(--teal)"><div class="cl">引导指标</div><div class="cv" style="color:var(--teal);font-size:16px">清洁能源消费 ≥90%</div><div class="cd">产品单位能耗达二级限额以上</div></div>
+      <div class="card" style="border-top:3px solid var(--blue)"><div class="cl">循环利用</div><div class="cv" style="color:var(--blue);font-size:16px">固废利用率 ≥80%</div><div class="cd">工业固体废物综合利用率</div></div>
+    </div>
+    <div class="hb">绿色电力直接供应比例原则上不低于50%。电力直供的非化石能源电力、绿证绿电交易电力排放因子计为0，其他按0.8325kgCO₂/kWh计算。</div>
+  </section>
+
+  <section class="section" style="border-bottom:none">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">3</span> 申报与实施要点</div>
+    <div class="cg cg3">
+      <div class="card"><strong>绿盟服务经验</strong><div class="cd" style="margin-top:6px">绿盟服务22家园区申报，覆盖15个省份。5家被推荐至国家发改委全部获批。</div></div>
+      <div class="card"><strong>建设周期</strong><div class="cd" style="margin-top:6px">首批园区建设周期3-6年。22家园区326个重点项目，总投资2367.83亿元。</div></div>
+      <div class="card"><strong>中央支持</strong><div class="cd" style="margin-top:6px">中央预算内投资支持比例为核定总投资的20%。多元化融资体系正在形成。</div></div>
+    </div>
+    <div class="hb hb-teal" style="margin-top:14px"><strong>省级进展</strong>：内蒙古（绿电消费≥70%、储能≥日均用电量10%）、江苏（近零碳→零碳分类指标省标）、安徽（百分制评分）、山西（13个绿电园区试点）</div>
+  </section>
+</div>
+<!-- ====== TAB 2: 综合能源服务 ====== -->
+<div class="arena" id="tab-service">
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">1</span> 综合能源服务宏观趋势</div>
+    <p class="ssub">从0.5-0.6万亿到1.3-1.8万亿，综合能源服务市场快速增长</p>
+    <div class="cg cg3">
+      <div class="card" style="border-top:3px solid var(--orange)"><div class="cl">2025年市场规模</div><div class="cv" style="color:var(--orange)">0.8~1.2<span class="cu">万亿</span></div></div>
+      <div class="card" style="border-top:3px solid var(--terracotta)"><div class="cl">2035年市场规模</div><div class="cv" style="color:var(--terracotta)">1.3~1.8<span class="cu">万亿</span></div><div class="cd">年复合增速15%+</div></div>
+      <div class="card" style="border-top:3px solid var(--blue)"><div class="cl">行业阶段</div><div class="cv" style="color:var(--blue);font-size:16px">高速发展期→成熟期</div><div class="cd">2025年起全面市场化、电碳协同、AI赋能</div></div>
+    </div>
+    <table style="margin-top:12px">
+      <tr><th>阶段</th><th>时间</th><th>特征</th></tr>
+      <tr><td>起步期</td><td>~2017</td><td>节能改造、新能源开发</td></tr>
+      <tr><td>成长期</td><td>2018-2020</td><td>数据云/初级多能互补</td></tr>
+      <tr><td>高速发展期</td><td>2021-2025</td><td>综合能源系统、源网荷储一体化、虚拟电厂</td></tr>
+      <tr><td>成熟期</td><td>2025以后</td><td>全面市场化、电碳协同、AI赋能</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--blue)">2</span> 关键技术体系</div>
+    <div class="cg cg2">
+      <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="tag" style="background:var(--teal)">2.1</span><strong>源网荷储一体化</strong></div><div class="cd">兰考县域实践、"源网荷储一体化"推动县域能源革命；园区级实现局部电力自给自足，灵活互动。</div></div>
+      <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="tag" style="background:var(--blue)">2.2</span><strong>虚拟电厂（VPP）</strong></div><div class="cd">聚合分布式能源、储能、可控负荷参与现货交易；深圳首个案例度电收益0.274元。</div></div>
+      <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="tag" style="background:var(--purple)">2.3</span><strong>智慧能源服务平台</strong></div><div class="cd">能源流·信息流·业务流·资金流融合；"端-边-云"架构，新奥泛能网服务客户10000+。</div></div>
+      <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="tag" style="background:var(--orange)">2.4</span><strong>AI赋能综合能源</strong></div><div class="cd">大模型融合多源数据；深度学习负荷预测、强化学习调度优化、RAG知识问答。</div></div>
+      <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="tag" style="background:var(--terracotta)">2.5</span><strong>综合能源低碳运行</strong></div><div class="cd">冷热水电气一体供应，阶梯利用，多能互补；园区综合能源规划完整技术体系。</div></div>
+      <div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:6px"><span class="tag" style="background:var(--pink)">2.6</span><strong>零碳供热技术</strong></div><div class="cd">中国工业用热400亿GJ/年，占总能耗45%；电能替代、余热利用、可再生能源供热。</div></div>
+    </div>
+  </section>
+
+  <section class="section" style="border-bottom:none">
+    <div class="stitle"><span class="sn" style="background:var(--terracotta)">3</span> 商业运营模式</div>
+    <p class="ssub">从"资产逻辑"转向"运营逻辑"——电力市场化颠覆了零碳园区的底层逻辑</p>
+    <div class="cg cg2">
+      <div class="action-card">
+        <strong>能源费用托管</strong><div class="cd" style="margin-top:4px">公共机构（医院、学校、政府机关）——节能服务公司投资改造，通过节能收益回收投资。</div>
+      </div>
+      <div class="action-card mid">
+        <strong>合同能源管理（EMC）</strong><div class="cd" style="margin-top:4px">提供节能咨询、诊断、设计、融资、改造、托管一站式服务。</div>
+      </div>
+      <div class="action-card mid">
+        <strong>虚拟电厂聚合运营</strong><div class="cd" style="margin-top:4px">聚合分布式能源、储能、可调负荷参与现货市场，获取多重收益。</div>
+      </div>
+      <div class="action-card">
+        <strong>源网荷储一体化</strong><div class="cd" style="margin-top:4px">村级/园区级/城市级分层实施，兰考模式完整路径参考。</div>
+      </div>
+    </div>
+    <div class="hb hb-blue" style="margin-top:12px"><strong>关键转型</strong>：零碳园区运营商需具备六大能力——交易管理、资产管理、能碳管理、资源调度、客户服务、数字化。从固定收益的资产投资转向资源运营。</div>
+  </section>
+</div>
+
+<!-- ====== TAB 3: 智能微电网 ====== -->
+<div class="arena" id="tab-microgrid">
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--purple)">1</span> 智能微电网定位演进</div>
+    <p class="ssub">从"备用电源"到"新型电力系统基本细胞单元"——三重跃迁</p>
+    <table>
+      <tr><th>维度</th><th>传统微电网</th><th>智能微电网（新型电力系统）</th></tr>
+      <tr><td>功能定位</td><td>备用电源、提高供电可靠性</td><td>新型能源系统的基本细胞单元</td></tr>
+      <tr><td>主要电源</td><td>天然气热电联产为主</td><td>分布式新能源为主体电源</td></tr>
+      <tr><td>核心特征</td><td>微型、清洁、自治、友好</td><td>分布式新能源为主体、智能调节、自平衡</td></tr>
+      <tr><td>政策地位</td><td>试点示范项目</td><td>新型经营主体（2024.11），原则上豁免电力业务许可</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">2</span> 五大支撑作用</div>
+    <div class="cg cg3">
+      <div class="card" style="border-top:3px solid var(--terracotta);text-align:center"><div class="cv" style="font-size:22px;color:var(--terracotta)">保供</div><div class="cd">保障内部电力供应，大电网紧张时有效支撑</div></div>
+      <div class="card" style="border-top:3px solid var(--blue);text-align:center"><div class="cv" style="font-size:22px;color:var(--blue)">促安</div><div class="cd">秒级/分钟级/小时级灵活响应，平抑波动</div></div>
+      <div class="card" style="border-top:3px solid var(--teal);text-align:center"><div class="cv" style="font-size:22px;color:var(--teal)">提效</div><div class="cd">提升整体利用效率，减少送受电规模</div></div>
+      <div class="card" style="border-top:3px solid var(--orange);text-align:center"><div class="cv" style="font-size:22px;color:var(--orange)">降本</div><div class="cd">整合多品种能源，参与需求响应/辅助服务</div></div>
+      <div class="card" style="border-top:3px solid var(--purple);text-align:center"><div class="cv" style="font-size:22px;color:var(--purple)">增绿</div><div class="cd">促进新能源消纳，降低碳排放应对碳关税</div></div>
+    </div>
+  </section>
+
+  <!-- SVG 2: 绿电直供四种模式 -->
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--orange)">3</span> 绿电直供四种模式</div>
+    <p class="ssub">发改能源〔2025〕650号文 · 绿电直连四种供应模式对比</p>
+    <div class="fig-wrap">
+      <svg viewBox="0 0 760 380" xmlns="http://www.w3.org/2000/svg" style="max-width:760px">
+        <defs>
+          <filter id="sh2"><feDropShadow dx="1" dy="2" stdDeviation="3" flood-opacity="0.1"/></filter>
+          <marker id="arr2" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><path d="M0,0 L10,3.5 L0,7 Z" fill="#CC785C"/></marker>
+          <linearGradient id="mc1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#CC785C"/><stop offset="100%" style="stop-color:#E8A98C"/></linearGradient>
+          <linearGradient id="mc2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#5E8B7E"/><stop offset="100%" style="stop-color:#A3C4B8"/></linearGradient>
+          <linearGradient id="mc3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#6B8FBE"/><stop offset="100%" style="stop-color:#B8CEE0"/></linearGradient>
+          <linearGradient id="mc4" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#E8956A"/><stop offset="100%" style="stop-color:#F5C9AC"/></linearGradient>
+        </defs>
+        <!-- 四种模式卡片 -->
+        <!-- 模式1: 场内分布式 -->
+        <rect x="15" y="10" width="170" height="160" rx="12" fill="white" stroke="#CC785C" stroke-width="1.5" filter="url(#sh2)"/>
+        <rect x="15" y="10" width="170" height="38" rx="12" fill="url(#mc1)"/>
+        <rect x="15" y="24" width="170" height="24" fill="url(#mc1)"/>
+        <circle cx="100" cy="29" r="14" fill="white" opacity="0.3"/>
+        <text x="100" y="34" text-anchor="middle" fill="white" font-size="16" font-weight="700">1</text>
+        <text x="100" y="58" text-anchor="middle" fill="white" font-size="13" font-weight="700">场内分布式</text>
+        <text x="100" y="82" text-anchor="middle" fill="#636E72" font-size="10">物理直连（红线内）</text>
+        <line x1="30" y1="98" x2="170" y2="98" stroke="#E8E0D6" stroke-width="0.8"/>
+        <text x="100" y="114" text-anchor="middle" fill="#2D3436" font-size="10" font-weight="600">国内认可 ✓</text>
+        <text x="100" y="130" text-anchor="middle" fill="#2D3436" font-size="10" font-weight="600">欧盟认可 ✓</text>
+        <text x="100" y="152" text-anchor="middle" fill="#636E72" font-size="9">分布式光伏自发自用</text>
+
+        <!-- 模式2: 绿电直连 -->
+        <rect x="200" y="10" width="170" height="160" rx="12" fill="white" stroke="#5E8B7E" stroke-width="1.5" filter="url(#sh2)"/>
+        <rect x="200" y="10" width="170" height="38" rx="12" fill="url(#mc2)"/>
+        <rect x="200" y="24" width="170" height="24" fill="url(#mc2)"/>
+        <circle cx="285" cy="29" r="14" fill="white" opacity="0.3"/>
+        <text x="285" y="34" text-anchor="middle" fill="white" font-size="16" font-weight="700">2</text>
+        <text x="285" y="58" text-anchor="middle" fill="white" font-size="13" font-weight="700">绿电直连</text>
+        <text x="285" y="82" text-anchor="middle" fill="#636E72" font-size="10">物理直连（专线）</text>
+        <line x1="215" y1="98" x2="355" y2="98" stroke="#E8E0D6" stroke-width="0.8"/>
+        <text x="285" y="114" text-anchor="middle" fill="#2D3436" font-size="10" font-weight="600">国内认可 ✓</text>
+        <text x="285" y="130" text-anchor="middle" fill="#2D3436" font-size="10" font-weight="600">欧盟认可 ✓</text>
+        <text x="285" y="152" text-anchor="middle" fill="#636E72" font-size="9">新能源至用户专线</text>
+
+        <!-- 模式3: 绿电交易 -->
+        <rect x="385" y="10" width="170" height="160" rx="12" fill="white" stroke="#6B8FBE" stroke-width="1.5" filter="url(#sh2)"/>
+        <rect x="385" y="10" width="170" height="38" rx="12" fill="url(#mc3)"/>
+        <rect x="385" y="24" width="170" height="24" fill="url(#mc3)"/>
+        <circle cx="470" cy="29" r="14" fill="white" opacity="0.3"/>
+        <text x="470" y="34" text-anchor="middle" fill="white" font-size="16" font-weight="700">3</text>
+        <text x="470" y="58" text-anchor="middle" fill="white" font-size="13" font-weight="700">绿电交易</text>
+        <text x="470" y="82" text-anchor="middle" fill="#636E72" font-size="10">证随电走（市场）</text>
+        <line x1="400" y1="98" x2="540" y2="98" stroke="#E8E0D6" stroke-width="0.8"/>
+        <text x="470" y="114" text-anchor="middle" fill="#2D3436" font-size="10" font-weight="600">国内认可 ✓</text>
+        <text x="470" y="130" text-anchor="middle" fill="#CC785C" font-size="10" font-weight="600">欧盟不认可 ✗</text>
+        <text x="470" y="152" text-anchor="middle" fill="#636E72" font-size="9">CBAM不认可PPA</text>
+
+        <!-- 模式4: 绿证交易 -->
+        <rect x="570" y="10" width="170" height="160" rx="12" fill="white" stroke="#E8956A" stroke-width="1.5" filter="url(#sh2)"/>
+        <rect x="570" y="10" width="170" height="38" rx="12" fill="url(#mc4)"/>
+        <rect x="570" y="24" width="170" height="24" fill="url(#mc4)"/>
+        <circle cx="655" cy="29" r="14" fill="white" opacity="0.3"/>
+        <text x="655" y="34" text-anchor="middle" fill="white" font-size="16" font-weight="700">4</text>
+        <text x="655" y="58" text-anchor="middle" fill="white" font-size="13" font-weight="700">绿证交易</text>
+        <text x="655" y="82" text-anchor="middle" fill="#636E72" font-size="10">电证分离（市场）</text>
+        <line x1="585" y1="98" x2="735" y2="98" stroke="#E8E0D6" stroke-width="0.8"/>
+        <text x="655" y="114" text-anchor="middle" fill="#2D3436" font-size="10" font-weight="600">国内认可 ✓</text>
+        <text x="655" y="130" text-anchor="middle" fill="#CC785C" font-size="10" font-weight="600">欧盟不认可 ✗</text>
+        <text x="655" y="152" text-anchor="middle" fill="#636E72" font-size="9">电池法不认可</text>
+
+        <!-- 汇聚箭头 -->
+        <path d="M100,190 L100,230 L380,230" stroke="#CC785C" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+        <path d="M285,190 L285,230 L380,230" stroke="#CC785C" stroke-width="2" fill="none"/>
+        <path d="M470,190 L470,230 L380,230" stroke="#CC785C" stroke-width="2" fill="none"/>
+        <path d="M655,190 L655,230 L380,230" stroke="#CC785C" stroke-width="2" fill="none" marker-end="url(#arr2)"/>
+
+        <!-- 汇聚到园区 -->
+        <rect x="305" y="228" width="150" height="50" rx="25" fill="url(#mc1)" filter="url(#sh2)"/>
+        <text x="380" y="250" text-anchor="middle" fill="white" font-size="16" font-weight="700">🏭 零碳园区</text>
+        <text x="380" y="268" text-anchor="middle" fill="white" font-size="10" opacity="0.9">绿电直供比例 ≥50%</text>
+
+        <!-- 底部核心结论 -->
+        <rect x="80" y="300" width="600" height="36" rx="8" fill="#FCFAF5" stroke="#E8E0D6" stroke-width="0.8"/>
+        <text x="380" y="323" text-anchor="middle" fill="#CC785C" font-size="11" font-weight="600">核心结论：欧盟CBAM和电池法仅认可物理直连（模式1+2）具有减碳效益</text>
+
+        <!-- 约束指标 -->
+        <rect x="155" y="345" width="450" height="28" rx="6" fill="#F5F0E8"/>
+        <text x="380" y="364" text-anchor="middle" fill="#636E72" font-size="10">自发自用≥总发电量60% · 上网≤20% · 以荷定源</text>
+      </svg>
+      <div class="fig-title">▲ 图2：绿电直供四种模式 — 仅物理直连获欧盟CBAM/电池法认可</div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--orange)">4</span> 650号文核心约束指标</div>
+    <table>
+      <tr><th>约束指标</th><th>当前要求</th><th>2030年要求</th></tr>
+      <tr><td>自发自用电量/总可用发电量</td><td>≥60%</td><td>≥60%</td></tr>
+      <tr><td>自发自用电量/总用电量</td><td>≥30%</td><td>≥35%</td></tr>
+      <tr><td>上网电量/总可用发电量</td><td>≤20%（各省自定）</td><td>≤20%</td></tr>
+    </table>
+    <div class="hb hb-teal" style="margin-top:12px"><strong>装机确定原则</strong>：以荷定源——根据企业用电量、负荷特性与新能源出力曲线模拟生产，反算合理装机。电网企业不可投资绿电直连项目。</div>
+  </section>
+
+  <section class="section" style="border-bottom:none">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">5</span> 应用场景分类</div>
+    <div class="cg cg2">
+      <div class="card"><strong>工业微电网（≥10kV）</strong><div class="cd" style="margin-top:4px">风电/光伏/天然气分布式 + 蓄冷/电蓄热/电化学储能 + 可调生产负荷 + EMS。核心价值：降低用电成本、提高绿电占比、参与辅助服务。</div></div>
+      <div class="card"><strong>建筑微电网（≤35kV）</strong><div class="cd" style="margin-top:4px">光伏 + 空调柔性负荷 + 蓄冷蓄热 + 充电桩 + EMS。核心价值：削峰填谷、需求响应、提升建筑能效。</div></div>
+      <div class="card"><strong>充换电站微电网</strong><div class="cd" style="margin-top:4px">光伏车棚 + 储能 + 充电桩/换电电池。核心价值：降低充电成本、缓解配网扩容压力。</div></div>
+      <div class="card"><strong>VPP微电网聚合</strong><div class="cd" style="margin-top:4px">聚合多个微电网资源参与电力现货和辅助服务市场。核心价值：多资源协同、市场交易收益。</div></div>
+    </div>
+  </section>
+</div>
+<!-- ====== TAB 4: 落地案例 ====== -->
+<div class="arena" id="tab-case">
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--terracotta)">1</span> 鄂尔多斯零碳产业园（远景）</div>
+    <p class="ssub">世界级标杆 · 73km² · 80%绿电自发直供 + 20%电网交易</p>
+    <div class="cg cg3">
+      <div class="card" style="border-top:3px solid var(--terracotta)"><div class="cl">园区规模</div><div class="cv" style="font-size:16px;color:var(--terracotta)">73 km²</div><div class="cd">一期2022年4月投产</div></div>
+      <div class="card" style="border-top:3px solid var(--teal)"><div class="cl">绿电模式</div><div class="cv" style="font-size:16px;color:var(--teal)">80%自发直供</div><div class="cd">风光储+绿电直连</div></div>
+      <div class="card" style="border-top:3px solid var(--blue)"><div class="cl">管理平台</div><div class="cv" style="font-size:16px;color:var(--blue)">EnOS™</div><div class="cd">接入788GW全球资产</div></div>
+    </div>
+    <div class="hb"><strong>"三零"模式</strong>：零碳能源系统（风光储+绿电直连）+ 零碳产业生态（动力电池+新能源装备）+ 零碳智能管理（EnOS™平台）</div>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--blue)">2</span> 案例速览对比</div>
+    <table>
+      <tr><th>案例</th><th>规模</th><th>核心特点</th><th>文件来源</th></tr>
+      <tr><td>鄂尔多斯零碳产业园</td><td>73km²</td><td>80%自发直供+20%电网交易 · "三零"模式</td><td>绿盟、远景</td></tr>
+      <tr><td>盐城大丰港零碳产业园</td><td>-</td><td>绿电专变、"一对多"物理可溯源</td><td>绿盟</td></tr>
+      <tr><td>大同绿电园区</td><td>522MW</td><td>增量配电网+绿电直连 · "1+6"立项</td><td>大同经开区</td></tr>
+      <tr><td>固德威广德园区</td><td>177亩</td><td>6MW光伏+5.9MWh储能 · 1.8年回收</td><td>固德威</td></tr>
+      <tr><td>丹佛斯海盐园区</td><td>126,284m²</td><td>脱碳三步法 · DGNB白金+LEED</td><td>丹佛斯</td></tr>
+      <tr><td>金寨开发区</td><td>16.57km²</td><td>530亿营收 · "3+2"产业体系</td><td>金寨开发区</td></tr>
+      <tr><td>亳芜产业园</td><td>11km²</td><td>南北合作共建零碳模式</td><td>亳芜管委会</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">3</span> 固德威广德园区 · 投入产出分析</div>
+    <p class="ssub">光伏1.79年回收 · 储能2.53年回收 · 入选安徽省首批零碳园区试点</p>
+    <div class="cg cg3">
+      <div class="card" style="border-top:3px solid var(--terracotta)"><div class="cl">光伏投资</div><div class="cv" style="color:var(--terracotta);font-size:16px">600<span class="cu">万元</span></div><div class="cd">年节约335万 · 1.79年回收</div></div>
+      <div class="card" style="border-top:3px solid var(--blue)"><div class="cl">储能投资</div><div class="cv" style="color:var(--blue);font-size:16px">590<span class="cu">万元</span></div><div class="cd">年收益233万 · 2.53年回收</div></div>
+      <div class="card" style="border-top:3px solid var(--teal)"><div class="cl">十大场景</div><div class="cv" style="color:var(--teal);font-size:16px">6MW+5.9MWh</div><div class="cd">光伏BIPV + 光储充车棚</div></div>
+    </div>
+    <div class="hb hb-teal"><strong>三步降碳</strong>：能源替代降碳（光伏BIPV）→ 运营管理降碳（WE平台）→ 运营交易降碳（虚拟电厂+绿电中长期+绿证）</div>
+  </section>
+
+  <section class="section" style="border-bottom:none">
+    <div class="stitle"><span class="sn" style="background:var(--purple)">4</span> 各省政策差异 · 一省一策</div>
+    <table>
+      <tr><th>特点</th><th>典型省份</th><th>政策取向</th></tr>
+      <tr><td>绿电资源丰富+高载能产业</td><td>山西、内蒙古、青海</td><td>绿电园区+增量配电网，降电价引产业</td></tr>
+      <tr><td>出口外向型经济</td><td>江苏、浙江、广东</td><td>绿电直连试点，应对CBAM，强制造业竞争力</td></tr>
+      <tr><td>能源自给率低</td><td>河南</td><td>源网荷储一体化大规模推进（已批8批362个项目）</td></tr>
+      <tr><td>算力需求大</td><td>京津冀、长三角枢纽</td><td>纯数据中心的绿电直连+微电网+绿电交易组合方案</td></tr>
+    </table>
+  </section>
+</div>
+
+<!-- ====== TAB 5: 碳交易与绿证 ====== -->
+<div class="arena" id="tab-carbon">
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">1</span> 国际碳壁垒倒逼</div>
+    <div class="cg cg2">
+      <div class="card" style="border-top:3px solid var(--terracotta)">
+        <div class="cl">欧盟CBAM</div>
+        <div class="cv" style="color:var(--terracotta);font-size:16px">2026年正式实施</div>
+        <div class="cd">涵盖钢铁、铝业、电力、水泥、化肥、氢六大行业，正式征收碳关税</div>
+      </div>
+      <div class="card" style="border-top:3px solid var(--blue)">
+        <div class="cl">欧盟新电池法</div>
+        <div class="cv" style="color:var(--blue);font-size:16px">2025年起执行</div>
+        <div class="cd">动力电池需碳足迹声明，2028年超阈值产品禁止进入欧盟</div>
+      </div>
+    </div>
+    <div class="hb"><strong>核心结论</strong>：欧盟仅认可物理直连绿电（场内分布式+绿电直连）具有减碳效益。绿证交易和绿电交易（通过电网）不被CBAM和电池法案认可。这是绿电直连政策出台的国际倒逼因素。</div>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--blue)">2</span> 碳电协同 · 市场格局</div>
+    <div class="cg cg3">
+      <div class="card"><div class="cl">碳市场</div><div class="cv" style="color:var(--teal);font-size:16px">全国碳排放权交易</div><div class="cd">电碳市场协同发展，综合能源服务向"综合能碳服务"转变</div></div>
+      <div class="card"><div class="cl">绿电交易</div><div class="cv" style="color:var(--blue);font-size:16px">证随电走</div><div class="cd">2025年首次组织省间PPA交易，总成交346.51亿千瓦时</div></div>
+      <div class="card"><div class="cl">绿证</div><div class="cv" style="color:var(--orange);font-size:16px">唯一环境属性证明</div><div class="cd">1000千瓦时=1个绿证，2025年增设多行业消费比例要求</div></div>
+    </div>
+  </section>
+
+  <section class="section" style="border-bottom:none">
+    <div class="stitle"><span class="sn" style="background:var(--orange)">3</span> 行业绿电消费驱动力</div>
+    <table>
+      <tr><th>行业</th><th>政策要求</th><th>驱动因素</th></tr>
+      <tr><td>算力/数据中心</td><td>国家枢纽节点绿电占比≥80%</td><td>能耗双控豁免、电费占运营成本50%</td></tr>
+      <tr><td>电解铝</td><td>各省绿电消费比例25.2%-70%</td><td>合规要求、成本优化</td></tr>
+      <tr><td>钢铁</td><td>2025年增设绿电消费比例监测</td><td>欧盟CBAM合规、供应链减排</td></tr>
+      <tr><td>水泥/多晶硅</td><td>2025年增设绿电消费比例监测</td><td>出口合规、碳关税应对</td></tr>
+      <tr><td>电池/出口外向型</td><td>欧盟碳足迹核算</td><td>电池法案强制碳足迹申报</td></tr>
+    </table>
+    <div class="hb hb-purple" style="margin-top:12px"><strong>"碳商"概念</strong>：管理和利用碳资产的能力成为园区核心竞争力。从"综合能源服务"向"综合能碳服务"转变——规划以碳排放最少为优化目标，运行持续提供绿电采购、碳资产管理、碳足迹核算。</div>
+  </section>
+</div>
+
+<!-- ====== TAB 6: 零碳VPP / 光储充 ====== -->
+<div class="arena" id="tab-vpp">
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--purple)">1</span> 虚拟电厂（VPP）在零碳园区中的作用</div>
+    <p class="ssub">VPP是零碳园区实现"源网荷储"协同运行的核心调度平台</p>
+    <div class="cg cg3">
+      <div class="card" style="border-top:3px solid var(--terracotta)"><div class="cl">国网综能集团</div><div class="cv" style="color:var(--terracotta);font-size:15px">65<span class="cu">个项目</span></div><div class="cd">风电300MW+光伏500MW+储能117MWh，发布团体标准3项</div></div>
+      <div class="card" style="border-top:3px solid var(--blue)"><div class="cl">深圳现货VPP案例</div><div class="cv" style="color:var(--blue);font-size:15px">0.274<span class="cu">元/度</span></div><div class="cd">2022年调度用户负荷参与广东电力现货市场</div></div>
+      <div class="card" style="border-top:3px solid var(--teal)"><div class="cl">内蒙古实践</div><div class="cv" style="color:var(--teal);font-size:15px">聚合平台</div><div class="cd">蒙西电网VPP聚合分布式能源、储能、可控负荷</div></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--orange)">2</span> 光储充一体化</div>
+    <div class="cg cg2">
+      <div class="card">
+        <div class="cl" style="margin-bottom:6px">光储成本趋势</div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <span style="background:var(--cream-light);padding:4px 10px;border-radius:6px;font-size:13px"><strong>光伏组件</strong> 0.7-0.8元/W</span>
+          <span style="background:var(--cream-light);padding:4px 10px;border-radius:6px;font-size:13px"><strong>储能系统</strong> &lt;0.6元/Wh</span>
+          <span style="background:var(--cream-light);padding:4px 10px;border-radius:6px;font-size:13px"><strong>回收期</strong> 5-8年</span>
+        </div>
+        <div class="cd" style="margin-top:8px">工商业储能系统单价较2023年降40%，分布式光伏2.70元/W（2024年），经济性大幅改善。</div>
+      </div>
+      <div class="card">
+        <div class="cl" style="margin-bottom:6px">商业模式演进</div>
+        <div style="display:flex;gap:16px;flex-wrap:wrap">
+          <span style="background:var(--cream-light);padding:4px 10px;border-radius:6px;font-size:12px">传统：自发自用+余电上网</span>
+          <span style="background:var(--cream-light);padding:4px 10px;border-radius:6px;font-size:12px">新兴：VPP聚合+现货+辅助服务+碳交易+绿证</span>
+        </div>
+        <div class="cd" style="margin-top:8px">从"单点套利"转向"多维价值捕获"，虚拟电厂聚合成为交易主体。</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="border-bottom:none">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">3</span> 综合能源服务商转型矩阵</div>
+    <table>
+      <tr><th>企业</th><th>核心定位</th><th>关键创新</th></tr>
+      <tr><td>国网综能集团</td><td>综合能源服务</td><td>VPP运营、标准制定</td></tr>
+      <tr><td>南网能源</td><td>公共机构节能</td><td>数智化平台、碳管理</td></tr>
+      <tr><td>协鑫晟能</td><td>民营新能源</td><td>电力现货交易应对136号文</td></tr>
+      <tr><td>格力电器</td><td>设备制造商</td><td>光储空解决方案、48项国际领先</td></tr>
+      <tr><td>新奥数能</td><td>AI能源平台</td><td>"需供同智、买卖俱精"、泛能网</td></tr>
+      <tr><td>卡奥斯/海尔</td><td>工业互联网</td><td>园区综合能源服务+自身实践赋能</td></tr>
+      <tr><td>东方电子</td><td>系统集成</td><td>源网荷储一体化方案</td></tr>
+      <tr><td>江苏院</td><td>规划设计</td><td>储能EPC超4GWh</td></tr>
+    </table>
+  </section>
+</div>
+
+<!-- ====== TAB 7: 行动路线 ====== -->
+<div class="arena" id="tab-action">
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--terracotta)">1</span> 电小团行动路线图</div>
+    <p class="ssub">从认知到行动 · 三大阶段 · 层层递进</p>
+    <div class="cg" style="grid-template-columns:1fr">
+      <div class="action-card">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span class="tag" style="background:var(--terracotta);font-size:12px;padding:4px 12px">第一步 · 近期（1-3个月）</span><strong>知识储备与政策跟踪</strong></div>
+        <div class="cd">• 精读绿盟政策趋势文件（52个园区核心指标）<br>• 熟悉650号文绿电直连四种模式及以荷定源原则<br>• 跟踪各省零碳园区实施细则（江苏/内蒙/山西等）<br>• 了解CBAM/电池法对中国出口型园区的影响</div>
+      </div>
+      <div class="action-card mid">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span class="tag" style="background:var(--blue);font-size:12px;padding:4px 12px">第二步 · 中期（3-6个月）</span><strong>能力建设与合作伙伴</strong></div>
+        <div class="cd">• 构建零碳园区六项运营能力（交易/资产/能碳/调度/客服/数字化）<br>• 对接绿盟、电规总院、江苏院等核心机构<br>• 储备光储充一体化项目资源（关注组件0.7-0.8元/W成本窗口）<br>• 建立虚拟电厂（VPP）聚合运营能力</div>
+      </div>
+      <div class="action-card long">
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px"><span class="tag" style="background:var(--teal);font-size:12px;padding:4px 12px">第三步 · 远期（6-12个月）</span><strong>项目落地与规模复制</strong></div>
+        <div class="cd">• 重点布局三类场景：出口型园区绿电直连、高载能工业微电网、数据中心绿电方案<br>• 参考鄂尔多斯"三零"模式与固德威投入产出模型<br>• 设计"源网荷储碳"五维协同的系统方案<br>• 获取碳资产管理+绿电交易+绿证的全链条服务能力</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--teal)">2</span> 关键政策跟踪清单（2025-2026）</div>
+    <table>
+      <tr><th>政策文件</th><th>状态</th><th>关键影响</th></tr>
+      <tr><td>发改能源〔2025〕650号（绿电直连）</td><td>已发布</td><td>绿电直连全国规范化框架</td></tr>
+      <tr><td>发改环资〔2025〕910号（零碳园区）</td><td>已发布</td><td>零碳园区建设指标体系</td></tr>
+      <tr><td>发改能源〔2025〕1192号（就近消纳电价）</td><td>已发布</td><td>明确绿电直连价格机制</td></tr>
+      <tr><td>发改办能源〔2025〕669号（消纳权重）</td><td>已发布</td><td>新增钢铁/水泥/多晶硅/数据中心消纳权重</td></tr>
+      <tr><td>新型电力系统第一批试点（含智能微电网）</td><td>部署中</td><td>7个方向试点启动</td></tr>
+      <tr><td>各省绿电直连/源网荷储实施细则</td><td>陆续出台中</td><td>地方落地关键</td></tr>
+    </table>
+  </section>
+
+  <section class="section">
+    <div class="stitle"><span class="sn" style="background:var(--purple)">3</span> 八大融资渠道</div>
+    <div class="cg cg4">
+      <div class="card" style="text-align:center;padding:12px"><span style="font-size:22px">🏛️</span><div class="cd" style="margin-top:4px">中央预算内资金</div></div>
+      <div class="card" style="text-align:center;padding:12px"><span style="font-size:22px">📜</span><div class="cd" style="margin-top:4px">专项债券</div></div>
+      <div class="card" style="text-align:center;padding:12px"><span style="font-size:22px">🏦</span><div class="cd" style="margin-top:4px">超长期特别国债</div></div>
+      <div class="card" style="text-align:center;padding:12px"><span style="font-size:22px">📊</span><div class="cd" style="margin-top:4px">政策性金融工具</div></div>
+      <div class="card" style="text-align:center;padding:12px"><span style="font-size:22px">💚</span><div class="cd" style="margin-top:4px">低碳转型公司债</div></div>
+      <div class="card" style="text-align:center;padding:12px"><span style="font-size:22px">🌱</span><div class="cd" style="margin-top:4px">低碳转型基金</div></div>
+      <div class="card" style="text-align:center;padding:12px"><span style="font-size:22px">🏧</span><div class="cd" style="margin-top:4px">绿色银行信贷</div></div>
+      <div class="card" style="text-align:center;padding:12px"><span style="font-size:22px">♻️</span><div class="cd" style="margin-top:4px">碳配额质押贷款</div></div>
+    </div>
+  </section>
+
+  <section class="section" style="border-bottom:none">
+    <div class="stitle"><span class="sn" style="background:var(--orange)">4</span> 关键趋势速查</div>
+    <table>
+      <tr><th>趋势</th><th>关键数据</th><th>对电小团的意义</th></tr>
+      <tr><td><strong>零碳园区政策加速</strong></td><td>2024.12首提→2025首批52个·"十五五"目标100个</td><td>政策窗口期极短，需快速响应园区咨询需求</td></tr>
+      <tr><td><strong>电力市场化变革</strong></td><td>分时电价覆盖10+省·从固定收益→动态资源运营</td><td>运营能力（交易/调度/能碳/服务）成为核心竞争力</td></tr>
+      <tr><td><strong>出口倒逼零碳改造</strong></td><td>CBAM 2026.1实施·欧盟电池法仅认可绿电直连</td><td>出口型园区零碳改造为刚性需求</td></tr>
+      <tr><td><strong>光储成本持续下降</strong></td><td>组件0.7-0.8元/W·储能系统<0.6元/Wh</td><td>工商业光储投资经济性大幅改善</td></tr>
+      <tr><td><strong>绿电直连制度化</strong></td><td>650号文·自发自用≥60%·四种绿电供应模式</td><td>绿电直连是破解国际碳壁垒关键路径</td></tr>
+    </table>
+  </section>
+</div>
+
+<!-- ====== 笔记卡片区 ====== -->
+<div class="section" style="padding:28px 0;border-top:1px solid var(--border)">
+  <div class="stitle"><span class="sn" style="background:var(--blue)">📖</span> 内嵌笔记 · 点击展开阅读全文</div>
+  <p class="ssub">来源：~50份专家培训文件 · 四层次结构提炼 · 点击卡片阅读全文</p>
+  <div id="note-container-train"></div>
+</div>
+
+<footer class="footer">
+  <p>覆盖 ~50个源文件 · 电小团 · 培训智库 · 2026年6月</p>
+</footer>
+
+</div><!-- end container -->
+
+<script>
+var NOTES = [{"tag":"001","color":"var(--terracotta)","title":"零碳园区政策与实践","desc":"宏观政策趋势 · 建设方案案例 · 综合对比表 · 关键趋势判断","src":"1/2/3/4/6/150/152/153/155/156/316/332/333/334/335/336/339/341/379/380/494/496/499/500/493等25个"},{"tag":"002","color":"var(--teal)","title":"综合能源服务与运营实践","desc":"宏观驱动 · 技术体系 · 产业实践与商业模式 · 对标分析 · 策略建议","src":"652/653/654/655/656/657/658/659/660/661/662/663/664/665/666/667/668/669/670/746/747/748/749/750/751/752/753/754/755/756/757/758/759/760/761等34个"},{"tag":"003","color":"var(--purple)","title":"智能微电网与绿电直连","desc":"智能微电网五大支撑 · 绿电直连650号文 · 源网荷储一体化 · 决策参考","src":"518/521/519/835/834/340/338/446/525/65/62/64/379/1090等~30个"}];
+
+(function(){
+var html = '';
+for(var i=0;i<NOTES.length;i++){
+var n = NOTES[i];
+html += '<div class="note-card">';
+html += '<div class="note-head" onclick="toggleTrain(this,'+i+')"><span class="arrow">&#9654;</span>';
+html += '<div class="note-info"><span class="tag" style="background:'+n.color+'">'+n.tag+'</span>';
+html += '<div class="note-title">'+n.title+'</div><div class="note-desc">'+n.desc+'</div><div class="note-src">'+n.src+'</div></div></div>';
+html += '<div class="note-body" id="bodyTrain-'+i+'"></div></div>';
+}
+document.getElementById('note-container-train').innerHTML = html;
+})();
+
+function switchTab(id){
+  var arenas = document.querySelectorAll('.arena');
+  for(var i=0;i<arenas.length;i++) arenas[i].classList.remove('active');
+  document.getElementById(id).classList.add('active');
+  var btns = document.querySelectorAll('.tab-btn');
+  for(var i=0;i<btns.length;i++) btns[i].classList.remove('active');
+  var idx = {'tab-content':0,'tab-policy':1,'tab-service':2,'tab-microgrid':3,'tab-case':4,'tab-carbon':5,'tab-vpp':6,'tab-action':7};
+  if(btns[idx[id]]) btns[idx[id]].classList.add('active');
+}
+
+function toggleTrain(el, idx){
+  var body = el.parentElement.querySelector('.note-body');
+  if(body.classList.contains('show')){
+    body.classList.remove('show'); el.classList.remove('open'); return;
+  }
+  el.classList.add('open');
+  if(typeof NOTES_DATA !== 'undefined' && NOTES_DATA[idx]){
+    body.innerHTML = mdToHtml(NOTES_DATA[idx]);
+    body.classList.add('show');
+  } else {
+    body.innerHTML = '<div class="error">⚠️ 笔记内容未加载</div>';
+    body.classList.add('show');
+  }
+}
+</script>
+
+<script>
+var NOTES_DATA = [];
+NOTES_DATA[0] = `# 零碳园区政策与实践
+
+> 四层次分析法提炼 | 来源：零碳园区培训文件（~50篇） | 整理日期：2026年6月
+
+---
+
+## 一、逐篇分析（四层次结构）
+
+---
+
+### 1. 宏观政策与趋势篇
+
+---
+
+#### 1.1 跨国公司碳中和50人论坛零碳园区主题沙龙
+
+- **核心数据**：中国丹麦商会、MNC50论坛、中国芬兰商会联合举办；聚焦"电、证、热、核、金"五位一体实施路径；涵盖碳数据管理、产品碳足迹、国际标准互认、综合能源服务及绿色金融。
+- **核心概念**：零碳园区需要跨国公司、政府机构、能源服务商、认证机构、金融机构多方协同；"碳数据主权"与"供应链标准互认"为核心结论。
+- **行业位置**：国际化视角下的零碳园区对话平台，链接中国与欧洲标准体系。
+- **电小团价值**：了解零碳园区建设的国际协作框架和金融机构参与路径。
+
+---
+
+#### 1.2 国家级经开区绿色联盟-零碳园区绿色发展政策与趋势
+
+- **核心数据**：
+  - 绿盟服务22家零碳园区申报，覆盖15个省份，5家被推荐至国家发改委全部获批。
+  - NDC3.0目标（2025.9）：2035年温室气体净排放量比峰值下降7%-10%，非化石能源消费占比达30%以上，风电+太阳能总装机达2020年6倍以上（力争36亿kW）。
+  - 首批52个国家级零碳园区公布：31省全覆盖，国家级经开区14家、高新区5家；建设周期3-6年。
+  - "十五五"力争建成100个左右国家级零碳园区。
+  - 中央预算内投资支持零碳园区：项目支持比例为核定总投资的20%。
+  - 核心指标：单位能耗碳排放≤0.2吨/吨标准煤（能耗20~100万吨园区）或≤0.3（≥100万吨）。
+  - 绿电直供比例原则上不低于50%。
+  - 详细介绍了鄂尔多斯零碳产业园（80%绿电自发直供+20%电网交易）和盐城大丰港零碳产业园案例。
+- **核心概念**：零碳园区强调系统性减排而非排放归零；绿电直供是关键路径（分布式光伏自发自用、绿电直连、新能源就近接入增量配电网、绿电专变四种模式）。
+- **行业位置**：国家级经开区绿色联盟是政策落地的核心推动机构，直接服务首批零碳园区申报。
+- **电小团价值**：政策核心指标的完整解读；绿电直供的四种实操路径；园区申报流程参考。
+
+---
+
+#### 1.3 丹佛斯_可持续发展与零碳园区建设路径
+
+- **核心数据**：丹佛斯武清园区（2007-2025持续脱碳）；海盐第二园区（126,284m²，2024.4奠基，2025.3投产，DGNB白金+LEED认证）；脱碳三步法（减量化→再利用→能源绿色化）。
+- **核心概念**："脱碳三步法"：Reduce（能效提升）→ Reuse（能源回收）→ Resource（采购绿电和绿色天然气）；直流微电网+光储直柔。
+- **行业位置**：跨国制造企业自身的零碳园区实践标杆，提供从设备到系统级的综合解决方案。
+- **电小团价值**：企业级零碳路径的实操参考；磁悬浮压缩机、工业热泵、智慧水力平衡等关键技术。
+
+---
+
+#### 1.4 碧澄能源_创建智能微网 打造零碳园区
+
+- **核心数据**：2GW+累计开发量，1000+服务客户；战略股东包括淡马锡、阿美投资等；Fit for 55与CBAM政策背景。
+- **核心概念**：智能微网为核心的零碳园区解决方案：零碳电力+零碳冷热汽+能碳管理+虚拟电厂+聚合交易；源网荷储一体化运行调控。
+- **行业位置**：新型电力系统投资管理和运营服务商，市场化视角。
+- **电小团价值**：LCOE数据（陆上风电0.18元/kWh，储能0.3元/kWh）；容量配置与运行优化方法论。
+
+---
+
+#### 1.5 俞庆-市场化条件下的零碳园区可持续运营
+
+- **核心数据**：10个省份零售侧市场化分时电价政策执行情况分析（第一档：联动比例≥50%如陕西、辽宁；第二档：联动<50%如江苏50%；第三档：仍执行传统分时）。
+- **核心概念**：电力市场化颠覆了零碳园区的底层逻辑——从固定收益的资产投资转向资源运营；BOT一体化模式（投融资→建设→运营→交易）；零碳园区运营商六大能力（交易管理、资产管理、能碳管理、资源调度、客户服务、数字化）。
+- **行业位置**：市场化分时电价下，零碳园区必须从"资产逻辑"转变为"运营逻辑"。
+- **电小团价值**：最重要的市场化运营指导文件；售电套餐设计与风险控制方法论。
+
+---
+
+#### 1.6 中国零碳园区的建设情况及合作场景机遇
+
+- **核心数据**：22家零碳园区共326个重点项目，总投资2367.83亿元（光伏339亿、风电1259亿、储能235亿、节能技改53亿、绿色基础设施476亿）。
+- **核心概念**：五大建设维度（新型能源系统、产业高质量发展、基础设施低碳化、资源循环利用、数字化能碳管理平台）；东部（示范引领）、中部（设备更新）、西部（承接转移）差异化策略。
+- **行业位置**：绿盟视角的全面扫描，凸显投资规模和市场机遇。
+- **电小团价值**：零碳园区投资体量和结构分布；区域差异化策略参考。
+
+---
+
+#### 1.7 零碳园区的能源系统解决方案：规划与创新
+
+- **核心数据**：八大建设任务（910号文）；某产业园案例：最大用电负荷11万kW（8亿kWh），灵活负荷1.5万kW，热蒸汽70吨/时；远期绿氢支撑97%绿色直接供能。
+- **核心概念**：综合能源岛（多投资主体、增量配电网、一体化供电供热供氢）；混合时长储能（短时电储+中时热储/熔盐+长时氢储）；智慧调度控制；创新市场模式（内外两个市场）。
+- **行业位置**：电力规划设计总院视角，聚焦系统性能源解决方案。
+- **电小团价值**：综合能源岛和混合时长储能的规划设计框架。
+
+---
+
+#### 1.8 大同经开区绿电园区-中欧绿色供应链合作对话
+
+- **核心数据**：大同"中国煤都"→绿电转型；"522MW风光发电+220kV增量配网+园区基础设施"方案已获省批复；新能源直连电力占比50%，国网供应50%。园区采取"1+6"立项模式。
+- **核心概念**：以绿电直连破解出口碳壁垒；增量配电网+绿电直连是核心模式。
+- **行业位置**：资源型城市转型典型案例，北方内陆经开区对外开放困境的破局。
+- **电小团价值**：绿电直连园区申报和建设全流程实操参考。
+
+---
+
+#### 1.9 绿色低碳园区（循环经济视角）
+
+- **核心数据**：中国资源循环集团成立（2024.10天津）；退役彩色光伏板打造"资环驿站"。
+- **核心概念**：四大循环体系：资源循环、能源循环（源网荷储）、数字循环、资产循环。"新能源装备-梯次利用-再生循环"全生命周期。
+- **行业位置**：循环经济与零碳园区融合的视角。
+- **电小团价值**：废弃物资源化+能源循环的协同路径。
+
+---
+
+#### 1.10 威立雅零碳园区建设实践
+
+- **核心数据**：威立雅2024年营业额446.92亿欧元；中国碳减排量496,160吨；四川宜宾园区利用农林废弃物提供100%清洁能源蒸汽（3×50t/h锅炉+25MW发电）；广州开发区工业烟气捕集零碳项目（年减碳20万吨）。
+- **核心概念**：资源循环&可再生能源双轮驱动；"污染治理-能源回收"一体化模式；CCUS+BECCS在园区的应用。
+- **行业位置**：世界500强生态环境企业，从水务/废弃物/能源管理三位一体切入园区脱碳。
+- **电小团价值**：生物质热电联产、CCUS、绿氢、绿色甲醇等前沿技术商业应用案例。
+
+---
+
+#### 1.11 迈向共建共享的零碳能源未来（RMI报告）
+
+- **核心数据**：全球超9000个能源社区，社员超150万人（截至2024年）；德国951家能源合作社，会员22万人，发电量占全国3.5%；丹麦700家合作社，拥有23%风能装机；美国农村电力合作社年贡献GDP 1110亿美元；全球7.37亿无电人口中80%在农村。
+- **核心概念**：农村能源合作社——自愿参与、集体决策、利益共享的组织模式；农村能源合作社三重角色（可再生能源发展抓手、可持续转型基石、能源公正转型加速器）。
+- **行业位置**：RMI（落基山研究所）国际视野，聚焦农村能源转型与公民参与。
+- **电小团价值**：能源合作社模式对中国农村能源转型的借鉴意义；分布式能源的社区参与机制。
+
+---
+
+### 2. 建设方案与实践篇
+
+---
+
+#### 2.1 固德威零碳园区实践
+
+- **核心数据**：固德威广德园区——177亩，员工1500余人，年产值约30亿元；入选安徽省首批零碳产业园区试点（2024.11）；6MW光伏+5.9MWh储能+光储充车棚；十大清洁能源应用场景。投入产出：光伏600万投入，年节约335万（1.79年回收）；储能590万投入，年收益233万（2.53年回收）。
+- **核心概念**：三步降碳——能源替代降碳（光伏BIPV）→运营管理降碳（WE平台）→运营交易降碳（虚拟电厂+绿电中长期+绿证）；固德威从设备商转型为零碳解决方案提供商。
+- **行业位置**：光伏逆变器龙头企业自身工厂零碳实践标杆。
+- **电小团价值**：真实投入产出数据；BIPV多场景应用方案（7大场景）；光储微电网调度实践。
+
+---
+
+#### 2.2 基于绿色供电体系的零碳园区低碳综合能源系统构建-江苏院
+
+- **核心数据**：中国能建江苏院——ENR中国工程设计企业60强；江苏院碳中和技术中心提供双碳全领域规划咨询；江苏省能源规划研究中心（政府智库）。
+- **核心概念**：双碳全过程服务商（规划咨询→投融资→勘测设计→总承包→运维管理）；江苏省零碳园区建设指南省标（2025年送审稿）——从"近零碳"到"零碳"分类目标管理。
+- **行业位置**：省级电力设计院视角，背靠政府智库资源提供园区级系统方案。
+- **电小团价值**：江苏省零碳园区建设指标体系（14项具体指标）；零碳园区全过程服务商能力模型。
+
+---
+
+#### 2.3 零碳园区综合解决方案-天津院
+
+- **核心数据**：全国首批碳达峰试点25个城市+10个园区（2023.12）；内蒙古自治区级零碳园区核心指标（绿电消费≥70%、储能≥日均用电量10%、需求响应≥最大负荷10%）。
+- **核心概念**："1+6+X"系统性解决方案——以能源领域为核心，工业、建筑、交通、环境、数字多领域融合；零碳能源供应体系（清洁低碳能源+高效储能+综合管网+负荷智能管控+能碳智慧化管控平台）。
+- **行业位置**：天津电力设计院提供从指标体系到综合解决方案的全链条服务。
+- **电小团价值**：地方零碳园区指标对比（国家、内蒙古、安徽、江苏四级指标体系全面梳理）。
+
+---
+
+#### 2.4 零碳园区光储直柔项目设计与案例分析-许继集团
+
+- **核心数据**：建筑领域是三大耗能领域之一；国务院要求加快推进"光储直柔"建筑。
+- **核心概念**：光储直柔——光伏发电+储能+直流配电+柔性用电；建筑-能源融合路径（被动式设计→维护性能提升→智能控制系统→可再生能源平衡）；建筑全生命周期零碳（施工→运行→拆除）。
+- **行业位置**：许继集团作为电力装备企业，聚焦建筑侧光储直柔技术与设备。
+- **电小团价值**：建筑零碳关键技术参数（外墙保温传热系数≤0.25W/m²K、门窗传热系数≤1.0W/m²K等）；建筑光伏一体化技术细节。
+
+---
+
+#### 2.5 零碳园区建设方案-江西电建公司
+
+- **核心数据**：从2024年中央经济工作会议首提"零碳园区"到2025年6月910号文正式启动，政策时间线完整梳理。
+- **核心概念**：零碳园区建设八步法——政策背景→市场前景→标准及指标→建设路径→申报与认证→技术优势→商业模式→典型案例。
+- **行业位置**：电建公司视角，偏重工程实施和项目申报全流程。
+- **电小团价值**：零碳园区申报与认证流程的完整实操框架。
+
+---
+
+#### 2.6 无锡市零碳园区实践方向与案例分析-朗新科技
+
+- **核心数据**：全国零碳园区标准共计90份（园区56份+工厂34份）；首次提出2035年全经济范围温室气体净排放量比峰值下降7%-10%（"三碳"新阶段）；CBAM 2026.1.1正式实施；欧盟电池法仅认可绿电直连。
+- **核心概念**："电力-碳-绿证-数据"多维市场协同；"碳商"概念——管理和利用碳资产的能力成为园区核心竞争力。
+- **行业位置**：朗新科技聚焦数字化能碳管理平台，强调碳数据资产化。
+- **电小团价值**：标准体系全景图（90份标准分类统计）；碳资产管理方法论。
+
+---
+
+#### 2.7 远景零碳园区建设思路及案例分享
+
+- **核心数据**：远景风机2024年订单量全球第一；EnOS系统接入788GW能源资产（全球新能源装机1/4）；至2024年底交付产品避免约23.5亿吨碳排放；赤峰全球最大绿色氢氨项目首期30万吨投产；鄂尔多斯零碳产业园（73km²，一期2022.4投产，80%绿电自发直供）。
+- **核心概念**：零碳产业园"三零"模式——零碳能源系统（风光储+绿电直连）+零碳产业生态（动力电池+新能源装备）+零碳智能管理（EnOS™平台）。
+- **行业位置**：远景是全球领先的绿色科技企业，鄂尔多斯零碳产业园是世界级标杆。
+- **电小团价值**：鄂尔多斯零碳产业园建设运营的完整经验；绿色氢氨产业链落地案例。
+
+---
+
+#### 2.8 山西省绿电园区规划布局
+
+- **核心数据**：分三批布局13个绿电园区试点，配置新能源524万kW，实现绿电直供88亿度；涉及电池、算力、化工、镁基/铝基/铁基/铜基等产业。
+- **核心概念**：绿电直连四种路径（单一用户专线、"一对多"物理可溯源、增量配电网+绿电直连、"源网荷储"一体化微电网）；绿电园区的"价值补充"——绿电绿证交易。
+- **行业位置**：省级能源局主导的绿电园区实践，山西作为能源大省的转型探索。
+- **电小团价值**：13个绿电园区详细规划数据（绿电占比50%-67%，碳排放因子0.235-0.54 kgCO₂/kWh）。
+
+---
+
+#### 2.9 绿电园区专项债券政策解读
+
+- **核心数据**：专项债券要求项目收益能够还本付息；八大融资渠道：中央预算内资金、专项债券、超长期特别国债、政策性金融工具、低碳转型公司债、低碳转型基金、绿色银行信贷、碳配额质押贷款。
+- **核心概念**：专项债券的三大属性（政府信用背书+项目收益自平衡+专项管理）。
+- **行业位置**：财政视角，聚焦绿电园区融资模式。
+- **电小团价值**：绿电园区多元化融资渠道全景图；专项债券申报要点。
+
+---
+
+#### 2.10 招商银行零碳园区绿色金融服务方案
+
+- **核心数据**：全国国家级+省级开发区超2500个，全部园区总数超1万个；园区能耗占全国40%、碳排放占31%。
+- **核心概念**：零碳园区五大战略价值（能源绿色转型、产业深度脱碳、区域协调发展、绿色贸易规则、零碳示范样板）；银行提供全周期绿色金融服务。
+- **行业位置**：商业银行视角，零碳园区金融服务的标准化产品设计。
+- **电小团价值**：园区碳排放在全国占比数据；绿色金融产品体系参考。
+
+---
+
+#### 2.11 安徽金寨经济开发区零碳产业园区建设情况
+
+- **核心数据**：管辖面积16.57km²，入驻企业750余家（规上201家）；2024年营收530亿元，税收23亿元；国家级绿色工业园区、安徽省首批零碳产业园区筹建单位。
+- **核心概念**："3+2"产业体系（运输设备、电气器材、电子设备三大主导+新能源机车、中医药两大特色集群）。
+- **行业位置**：省级开发区零碳建设实操案例。
+- **电小团价值**：中小规模开发区零碳转型的路径参考。
+
+---
+
+#### 2.12 零碳园区建设关键技术-建筑光伏一体化与近零能耗建筑
+
+- **核心数据**：建筑领域零碳化四大方向（能源系统零碳化、建筑交通基础设施低碳化、产业低碳转型、碳汇与负碳技术）。
+- **核心概念**：近零能耗建筑技术标准（GB/T 51350-2019）；BIPV+光储直柔微电网是建筑零碳核心路径。
+- **行业位置**：建筑设计研究总院视角，聚焦建筑专业领域。
+- **电小团价值**：近零能耗建筑设计技术参数和光伏一体化方案。
+
+---
+
+#### 2.13 亳州芜湖现代产业园区零碳产业园区建设报告
+
+- **核心数据**：管辖面积11km²；市场主体5600余家，规上工业企业超百家；连续两年皖北考评"双第一"；核心区3.3km²，远期11km²全区域零碳。
+- **核心概念**：南北合作共建模式下的零碳园区路径；新能源汽车零部件为主导产业。
+- **行业位置**：省级合作共建产业园区零碳转型案例。
+- **电小团价值**：中小型产业园区零碳转型的政企合作模式参考。
+
+---
+
+#### 2.14 数字化赋能产业园零碳示范-阳光慧碳
+
+- **核心数据**：阳光电源740GW电力电子转换设备累计装机；全球年避免CO₂排放约4.7亿吨；3大制造基地+6大研发中心。
+- **核心概念**：数字化能碳管理平台是零碳示范的核心基础设施（能源监控→碳核算→智能调度→交易管理）。
+- **行业位置**：阳光电源旗下数字化子公司，聚焦零碳园区的智慧化运营。
+- **电小团价值**：数字化能碳管理平台的功能架构和运营模式。
+
+---
+
+## 二、综合对比表
+
+| 维度 | 政策端（宏观） | 方案端（中观） | 实践端（微观） |
+|------|---------------|---------------|---------------|
+| **核心文件** | 绿盟2/150、910号文、1228号文 | 江苏院333、天津院334、电规总院152 | 固德威332、远景341、丹佛斯3 |
+| **关键指标** | 单位能耗碳排放≤0.2/0.3 | 清洁能源≥90%，固废利用率≥80% | 绿电占比50-100%，储能配比10%+ |
+| **核心驱动力** | 国际碳规则（CBAM）+国内碳双控 | 市场化电价+绿电直连政策 | 降本增效+出口合规+ESG |
+| **投资规模** | 326个项目/2368亿元（22家园区） | 专项债券+绿色信贷+REITs | 光伏1.8年回收/储能2.5年回收 |
+| **技术主线** | 绿电直供≥50% | 综合能源岛+混合时长储能 | 光储直柔+数字化能碳平台 |
+| **商业模式** | 政府推动+平台组织 | 投建运交易一体化 | 能源托管+资源运营 |
+| **区域差异** | 东部示范/中部更新/西部承接 | 各省差异化指标体系 | 山西绿电园区13个试点 |
+
+| 核心文件 | 输出方 | 核心数据 | 核心概念 | 行业位置 | 电小团价值 |
+|---------|--------|---------|---------|---------|-----------|
+| 1_跨国公司沙龙 | MNC50论坛 | "电证热核金"五位一体 | 碳数据主权、标准互认 | 国际化对话平台 | 国际协作框架 |
+| 2_绿盟政策趋势 | 国家级经开区绿盟 | 52个国家级园区、100个"十五五"目标、核心指标≤0.2/0.3 | 绿电直供四路径、系统性减排 | 政策落地核心推动机构 | 政策指标完整解读 |
+| 3_丹佛斯实践 | 丹佛斯中国 | 海盐126,284m²、三步法 | 减量化→再利用→绿色化 | 跨国制造企业标杆 | 企业级实操路径 |
+| 4_碧澄智能微网 | 碧澄能源 | 2GW+开发量、1000+客户 | 智能微网+虚拟电厂+聚合交易 | 市场化运营服务商 | LCOE数据、容量配置 |
+| 6_俞庆运营 | 独立专家 | 10省政策执行分三档 | 资产投资→资源运营转型 | 市场化视角最重要文件 | BOT一体化模式、六大能力 |
+| 150_建设情况 | 绿盟秘书处 | 326个项目2368亿元 | 五大建设维度、区域差异化 | 一线实操数据 | 投资体量与结构 |
+| 152_能源方案 | 电规总院 | 11万kW负荷案例、97%绿能远期 | 综合能源岛、混合时长储能 | 国家级规划设计院 | 系统规划框架 |
+| 153_大同绿电 | 大同经开区 | 522MW、220kV增量配网 | 绿电直连破出口壁垒 | 资源型城市转型 | 申报建设全流程 |
+| 155_绿色低碳 | - | 中国资源循环集团 | 四大循环体系 | 循环经济视角 | 资源化协同路径 |
+| 156_威立雅 | 威立雅中国 | 447亿€营收、年减碳49.6万吨 | 污染治理-能源回收一体化 | 国际环保巨头 | 生物质/CCUS/绿氢商业应用 |
+| 316_RMI报告 | 落基山研究所 | 全球9000+能源社区 | 农村能源合作社模式 | 国际智库视野 | 社区参与机制借鉴 |
+| 332_固德威 | 固德威 | 6MW光伏+5.9MWh储能、1.8年回收 | 三步降碳、BIPV多场景 | 逆变器龙头企业标杆 | 真实投入产出数据 |
+| 333_江苏院 | 中能建江苏院 | 江苏零碳园区建设指南省标 | 双碳全过程服务商 | 省级电力设计院+智库 | 14项指标体系 |
+| 334_天津院 | 天津电力设计院 | 1+6+X系统方案 | 零碳能源供应体系五部分 | 设计院系统性方案 | 四级指标体系对比 |
+| 335_许继光储直柔 | 许继集团 | 光储直柔政策要求 | 建筑全生命周期零碳 | 电力装备企业 | 建筑技术参数 |
+| 336_江西电建 | 江西电建 | 完整政策时间线 | 八步法建设框架 | 工程实施视角 | 申报认证流程 |
+| 339_朗新科技 | 朗新科技 | 90份标准全景图 | "碳商"概念、多维市场协同 | 数字化平台企业 | 标准体系+碳资产管理 |
+| 341_远景实践 | 远景集团 | 788GW EnOS连接、鄂尔多斯73km² | "三零"模式 | 全球绿色科技标杆 | 世界级园区经验 |
+| 379_山西绿电 | 山西省能源局 | 13个试点、524万kW、88亿度 | 绿电直连四种路径 | 省级政府主导 | 13园区详细规划数据 |
+| 380_专项债券 | 财政专家 | 八类融资渠道 | 专项债券三大属性 | 财政视角 | 多元化融资全景 |
+| 381_招商政策 | 山西投促局 | 开发区绿色发展政策演变 | 绿电招商政策创新 | 政府招商视角 | 政策工具包 |
+| 382_金融赋能 | 山西金控 | 光伏LCOE降低90%、陆上风电70% | 金融赋能五路径 | 金融机构视角 | 绿色金融产品 |
+| 403_光伏产业 | 水规总院 | 11.08亿kW光伏装机 | 新能源从增量补充转存量替代 | 行业研究视角 | 光伏消纳趋势 |
+| 446_绿电直连 | 国网能源院 | IEA六阶段论 | 绿电直连接口与容量分配 | 电网侧视角 | 并网技术挑战 |
+| 492_再生水固废 | 安徽建研总院 | 肥西示范园案例 | 再生水+固废协同利用 | 环保市政视角 | 非能源侧减碳 |
+| 493_数字化阳光 | 阳光慧碳 | 740GW逆变器装机 | 数字化能碳管理平台 | 数字化运营服务商 | 平台架构参考 |
+| 494_金寨开发区 | 金寨开发区 | 16.57km²、530亿营收 | 3+2产业体系 | 省级开发区案例 | 中小园区路径 |
+| 496_招行金融 | 招商银行 | 园区能耗40%、碳排放31% | 全周期绿色金融服务 | 商业银行视角 | 金融产品设计 |
+| 497_恒丰金融 | 恒丰银行 | 全国股份制银行 | 绿色低碳金融服务 | 商业银行视角 | 金融服务保障 |
+| 498_中能建思考 | 中能建安徽院 | 园区碳排放31% | 能耗双控→碳排放双控转型 | 央企设计院 | 政策逻辑深度解读 |
+| 499_亳芜园区 | 亳芜管委会 | 11km²、3.3km²核心区 | 南北合作共建零碳模式 | 省级合作园区 | 政企合作模式 |
+| 500_BIPV建筑 | 安徽建研院 | 建筑零碳化四大方向 | 近零能耗建筑GB/T 51350-2019 | 建筑设计院 | 建筑技术参数 |
+| 657_电碳融合 | 三峡水利 | 综合能源服务峰会 | 电碳融合建设路径 | 综合能源服务商 | 电力-碳协同 |
+| 709_数字能源 | 三峡水利/华为 | 数字能源峰会 | "聚沙成塔、电尽其用" | 数字能源生态 | 数字化调度 |
+
+---
+
+## 三、阅读路径
+
+### A. 快速入门路径（3篇搞定框架）
+
+\`\`\`
+2_绿盟政策趋势 → 150_建设情况 → 6_俞庆-市场化运营
+\`\`\`
+
+这三篇分别对应**政策面、数据面、商业面**，最快建立零碳园区的完整认知。
+
+### B. 深度研究路径（3维拆解）
+
+| 维度 | 必读文件 |
+|------|---------|
+| **政策与标准** | 2_绿盟 + 323_江苏院（指标体系）+ 339_朗新（90份标准全景）|
+| **技术与方案** | 152_电规总院（系统规划）+ 334_天津院（综合方案）+ 335_许继（光储直柔）|
+| **商业与运营** | 6_俞庆（运营模式）+ 332_固德威（真实数据）+ 382_金融赋能 |
+
+### C. 政策指标库（四层对比）
+
+若需具体指标数据，顺序翻阅：
+1. **国家层面**：2_绿盟（核心指标≤0.2/0.3，清洁能源≥90%）
+2. **内蒙古**：334_天津院（绿电≥70%，储能≥日均用电量10%）
+3. **安徽**：334_天津院（百分制评分，绿电100%=10分）
+4. **江苏**：333_江苏院（近零碳与零碳分类指标）
+
+### D. 典型案例库（实操参考）
+
+| 案例 | 规模 | 核心特点 | 文件 |
+|------|------|---------|------|
+| 鄂尔多斯零碳产业园 | 73km² | 80%自发直供+20%电网交易 | 2_绿盟、341_远景 |
+| 盐城大丰港 | - | 绿电专变、"一对多"物理可溯源 | 2_绿盟、150_建设 |
+| 大同绿电园区 | 522MW | 增量配电网+绿电直连 | 153_大同、379_山西 |
+| 固德威广德园区 | 177亩 | 十大场景、三步降碳 | 332_固德威 |
+| 丹佛斯海盐园区 | 126,284m² | 脱碳三步法、DGNB白金 | 3_丹佛斯 |
+| 金寨开发区 | 16.57km² | 国家级绿色园区、省级首批 | 494_金寨 |
+| 亳芜产业园 | 11km² | 南北合作共建模式 | 499_亳芜 |
+
+---
+
+## 四、关键趋势判断
+
+1. **政策加速期**：2024.12中央经济工作会议首提→2025.7 910号文→首批52个园区公布，"十五五"目标100个，政策窗口期极短。
+2. **市场化变革**：电力市场化分时电价（已覆盖10余省）从根本上改变了零碳园区的经济模型，从固定收益资产转向动态资源运营。
+3. **出口倒逼**：CBAM 2026年1月正式实施+欧盟电池法仅认可绿电直连，出口型园区的零碳改造成为刚性需求。
+4. **投资机遇**：22家园区326个项目总投资2368亿元，平均单个园区投资超百亿；中央预算内资金支持20%。
+5. **技术收敛**：光储直柔+综合能源岛+数字化能碳平台+绿电直连正在形成主流技术范式。
+6. **区域分化**：东部园区以绿色创新示范为主、中部以设备更新为主、西部以承接高载能产业+绿电优势为主。
+7. **金融创新**：从中央预算内资金、专项债券到绿色信贷、碳配额质押、REITs，多元化融资体系正在形成。
+8. **运营为王**：市场化条件下，"运营能力"（交易管理+资源调度+能碳管理+客户服务+数字化）成为差异化竞争核心。
+
+---
+
+> **提炼说明**：本笔记基于约30篇核心培训文件，覆盖宏观政策（11篇）和建设方案实践（~19篇），采用"核心数据→核心概念→行业位置→电小团价值"四层次结构逐篇提炼，末尾附综合对比表和阅读路径。
+`;
+NOTES_DATA[1] = `# 综合能源服务与运营实践
+
+> 基于34份行业文件的四层次分析
+> 分析日期：2025年6月
+
+---
+
+## 第一层：宏观趋势与政策背景
+
+### 1.1 国际宏观驱动
+
+- **欧盟碳边境调节机制（CBAM）**：涵盖钢铁、铝业、电力、水泥、化肥、氢六大行业，2026年起正式征收碳关税，推动中国企业加速低碳转型（来源：510_汤芳-电碳协同）
+- **欧盟新电池法**：2025年起动力电池需碳足迹声明，2028年超阈值产品禁止进入欧盟市场，倒逼产业链全生命周期碳管理（来源：510_汤芳）
+- **全球能源转型共识**：IEA/IRENA预测2050年全球85-90%电力来自可再生能源，中国已成为全球最大新能源装机国（来源：468_水规总院）
+
+### 1.2 国内宏观政策
+
+- **"双碳"战略**：2030碳达峰、2060碳中和目标引领；2024年7月风光装机达12.06亿千瓦，提前6年完成目标（来源：464_电规总院）
+- **电力市场化改革**：
+  - 136号文：新能源全部进入电力市场，存量保量保价、增量竞价（来源：420_协鑫晟能）
+  - 电力现货市场覆盖加速：2025年底前基本实现全覆盖（来源：420_协鑫晟能）
+  - 容量机制：煤电容量电价100-165元/kW（来源：502_韩文科）
+- **新型电力系统建设**：形成"五高"特征——高比例新能源、高比例新市场主体、高比例电力电子设备、高概率极端气候、高活跃创新（来源：465_国网能研院）
+- **产业发展目标**：综合能源服务市场2020-2025年从0.5-0.6万亿增至0.8-1.2万亿，2035年将达1.3-1.8万亿（来源：751_东方电子）
+
+### 1.3 行业发展阶段
+
+| 阶段 | 时间 | 特征 |
+|------|------|------|
+| 起步期 | ~2017 | 节能改造、新能源开发 |
+| 成长期 | 2018-2020 | 数据云/初级多能互补 |
+| 高速发展期 | 2021-2025 | 综合能源系统、源网荷储一体化、虚拟电厂 |
+| 成熟期 | 2025以后 | 全面市场化、电碳协同、AI赋能 |
+
+---
+
+## 第二层：关键技术体系
+
+### 2.1 源网荷储一体化
+
+- **兰考县域实践**（124）：分布式光伏整县开发——村级源网荷储一体化——产业园源网荷储——充电场景源网荷储，形成"源网荷储一体化"推动县域能源革命的完整路径
+- **园区级应用**（760）：园区微电网实现局部电力自给自足，与主电网灵活互动；100MWp集中式光伏等典型配置
+- **核心架构**：源网荷储多向协同、灵活互动，以坚强智能电网为枢纽平台（来源：758_江苏院）
+
+### 2.2 虚拟电厂（VPP）
+
+- **国网综能集团案例**（196）：研究虚拟电厂关键技术，发布团体标准3项。截至2025年11月，集团运营项目65个，包括风电300MW、光伏500MW、储能117MWh
+- **内蒙古电力实践**（201）：蒙西电网全资子公司建设虚拟电厂平台，聚合分布式能源、储能、可控负荷
+- **首个现货市场案例**（760）：2022年深圳能源虚拟电厂调度用户负荷参与广东电力现货市场，平均度电收益0.274元
+- **市场机制**（196/1067）：VPP作为新型市场主体参与现货交易，聚合商通过调节资源获取收益
+
+### 2.3 智慧能源服务平台
+
+- **中国电科院框架**（512）：
+  - 目标：能源流、信息流、业务流、资金流有机融合
+  - 功能：协调储冷/储热/储氢，平抑新能源出力波动；多能互补提高用能效率
+  - 关键能力：能效诊断与评价、终端调控、需求侧管理
+- **新奥泛能网实践**（524）：
+  - "端-边-云"整体架构
+  - 能源销售量415.7亿kWh，服务客户10000+
+  - AI技术赋能：深度学习负荷预测、强化学习优化调度、RAG知识问答
+
+### 2.4 人工智能赋能的综合能源优化
+
+- **华北电力大学研究**（504）：
+  - 基于DeepSeek、KiMi等大模型融合多源数据（电力、政策、行业、气候等），构建用电影响因素库
+  - DEMATEL-AISM模型分析影响因素传导路径
+  - AI驱动负荷预测、电价预测、系统协同优化
+- **新奥数能实践**（524）：能源技术+AI技术双轮驱动，深度学习模型用于负荷预测，强化学习用于调度优化
+
+### 2.5 综合能源系统低碳运行关键技术
+
+- **区域综合能源系统**（536）：冷热水电气一体供应，阶梯利用，多能互补
+- **园区综合能源规划**（758_江苏院）：从规划设计到能源输配、存储、消费、信息支撑的完整技术体系
+- **高载能企业节能**（640_天津大学）：钢铁、电解铝等高载能企业的节能与供需互动，虚拟储能潜力巨大
+
+### 2.6 零碳供热技术
+
+- **思安云创方案**（331）：
+  - 中国工业领域用热规模400亿GJ/年，占总能耗45%
+  - 电能替代、余热利用、可再生能源供热
+  - 典型场景：纺织印染园区、化工企业、制造业工厂、度假酒店
+
+---
+
+## 第三层：产业实践与商业模式
+
+### 3.1 综合能源服务商转型路径
+
+| 企业 | 核心定位 | 主营业务 | 关键创新 |
+|------|---------|---------|---------|
+| 国网综能集团（196） | 综合能源服务 | 风电/光伏/储能/供热/供冷 | VPP运营、标准制定 |
+| 南网能源（503/749） | 公共机构节能 | 能源费用托管、节能改造 | 数智化平台、碳管理 |
+| 协鑫晟能（420） | 民营新能源 | 电力现货交易、业务模式创新 | 应对136号文市场化转型 |
+| 格力电器（507/531） | 设备制造商 | 光储空解决方案 | 48项国际领先技术，光储直流化 |
+| 正泰安能（528） | 户用光伏 | 别墅光储充热 | 180万+户用光伏，市占率35%+ |
+| 新奥数能（524） | AI能源平台 | 泛能网、AI能源调度 | "需供同智、买卖俱精"理念 |
+| 卡奥斯智慧能源（535） | 工业互联网 | 园区综合能源服务 | 海尔自身实践+对外赋能 |
+| 东方电子（751） | 系统集成 | 综合能源服务系统 | 源网荷储一体化方案 |
+| 天正电气（667） | 电气设备 | 公建碳中和智慧能源 | 智慧配电、能效管理 |
+| 江苏院（758） | 规划设计 | 综合能源规划设计 | 储能EPC超4GWh |
+
+### 3.2 典型商业模式
+
+#### 3.2.1 能源费用托管
+- **适用场景**：公共机构（医院、学校、政府机关）
+- **运作方式**：节能服务公司投资改造，通过节能收益回收投资
+- **政策支持**：国管局《关于鼓励和支持公共机构采用能源费用托管服务的意见》（来源：503/749）
+- **案例**：南网能源在南方医院等公共机构实施能源费用托管（来源：503）
+
+#### 3.2.2 合同能源管理（EMC）
+- 提供节能咨询、诊断、设计、融资、改造、托管一站式服务
+- 住建部2022年政策明确支持（来源：749）
+
+#### 3.2.3 虚拟电厂聚合运营
+- 聚合分布式能源、储能、可调负荷参与现货市场
+- 获取电能量价差、辅助服务、容量市场等多重收益
+- 度电收益案例：0.274元/度（来源：760）
+
+#### 3.2.4 源网荷储一体化
+- 村级/园区级/城市级分层实施
+- 兰考模式：整县开发→村级一体化→产业园→充电场景（来源：124）
+
+#### 3.2.5 绿电+绿证交易
+- 2021年启动绿电交易试点
+- 2025年新能源全面入市，绿电绿证爆发（来源：420）
+
+### 3.3 行业应用场景
+
+#### 3.3.1 零碳园区
+- **卡奥斯样板**（535）：海尔天津园区实践——智慧制冷站（节费1000万）、智慧空压站（能效提升20%）、污水站无人值守（能效提升30%）、能源利用率80%
+- **兰考绿电产业园**（124）：重塑成本优势，打造绿色招商新名片
+- 2024年中央经济工作会议首次提出"建立一批零碳园区"
+
+#### 3.3.2 公共机构（医院/学校/政府）
+- 能耗构成：办公插座20%、暖通空调40%+、照明15%
+- 南方医院案例：数智化能源管理平台，全方位能耗统计（来源：503）
+- 华北电力大学热水项目：多能互补热水供应系统（来源：196）
+
+#### 3.3.3 酒店低碳
+- **酒店低碳发展研究院**（529）：联合中国环境科学研究院、施耐德电气等共建
+- 路径：低碳改造、碳普惠、金融支持工具
+- 综合能源服务贯穿酒店运营全生命周期
+
+#### 3.3.4 城市家庭综合能源
+- **正泰安能"泰墅"方案**（528）：别墅市场600万套，可装机100GW，市场规模1.4万亿元
+- 需求从单一光伏→光储充热综合解决方案
+- 用户关注：美观、安全、收益、服务
+
+#### 3.3.5 高载能工业
+- 钢铁、电解铝等节能与供需互动（640）
+- 虚拟储能技术挖掘工业负荷调节潜力
+
+### 3.4 重点企业运营数据
+
+| 企业 | 关键数据 |
+|------|---------|
+| 国网综能集团 | 65个项目，风电300MW，光伏500MW，储能117MWh |
+| 正泰安能 | 180万+户用光伏电站，市占率35%+，代理商3700+ |
+| 新奥泛能网 | 能源销售415.7亿kWh，服务客户10000+ |
+| 卡奥斯/海尔 | 全国100+空压站管理，50+制冷站管理 |
+| 格力电器 | 48项国际领先技术，77个生产基地 |
+
+---
+
+## 第四层：对标分析与策略建议
+
+### 4.1 中欧能效政策对标
+
+**文件1020**系统对比中欧9类产品能效政策：
+
+| 类别 | 中国情况 | 欧盟情况 | 协调潜力 |
+|------|---------|---------|---------|
+| 分体式空调 | GB标准体系 | EU能效标签+ErP指令 | 中-高 |
+| 家用冰箱 | 能效等级1-5级 | A-G新能效标签 | 中 |
+| 电机 | GB 18613 | IEC 60034标准 | 高 |
+| 配电变压器 | GB能效等级 | EU生态设计要求 | 中 |
+
+**启示**：中国能效标准正加速向国际看齐，综合能源服务需关注产品碳足迹、全生命周期碳排放管理。
+
+### 4.2 电碳协同趋势
+
+- **国际**：CBAM+新电池法倒逼碳管理
+- **国内**：电碳市场协同发展，绿电/绿证交易规模爆发
+- **价值重构**（510）：综合能源服务需将企业降碳需求放到核心位置，从"综合能源服务"向"综合能碳服务"转变
+  - 规划阶段：以碳排放最少为优化目标，增加碳成本约束
+  - 运行阶段：持续提供电碳相关服务（绿电采购、碳资产管理、碳足迹核算）
+
+### 4.3 策略建议
+
+#### 4.3.1 面向零碳园区的综合能源服务策略
+
+1. **规划先行**：基于智慧配电网的综合能源规划，实现源网荷储一体化设计（758）
+2. **数智平台赋能**：建设智慧能源服务平台，实现"云-边-端"协同管控（512）
+3. **多能互补**：电、热、冷、气、氢多能协同，提高能源利用效率至80%+（535）
+4. **AI驱动优化**：利用大模型、深度学习、强化学习优化调度（504/524）
+
+#### 4.3.2 市场化转型策略
+
+1. **现货市场能力建设**：新能源全面入市背景下，交易能力决定收益水平（420/1067）
+2. **虚拟电厂聚合**：聚合分布式资源参与现货+辅助服务市场，获取多重收益（196/201）
+3. **电碳协同服务**：拓展碳资产管理、碳足迹核算、绿电交易等增值服务（510）
+4. **金融工具应用**：电力期货管理价格风险（426）
+
+#### 4.3.3 技术突破方向
+
+1. **煤电低碳化改造**：生物质掺烧（10%+）、绿氨掺烧（10%+）、碳捕集（CCUS）（1180）
+2. **零碳供热**：电能替代、可再生能源供热、余热利用（331）
+3. **高效制冷/热泵**：格力COP7.0+双级永磁变频螺杆机、磁悬浮压缩机（507/531）
+4. **储能系统集成**：新型储能规模化发展，2025年目标30GW+（1067）
+
+#### 4.3.4 细分市场拓展
+
+1. **公共机构**：能源费用托管模式可复制推广（503/749）
+2. **高端家庭**：别墅光储充热一体化（528）
+3. **酒店行业**：低碳改造+碳普惠（529）
+4. **工业领域**：零碳供热、节能改造（331/640）
+
+---
+
+## 附录：文件索引
+
+| 编号 | 文件名（缩略） | 来源机构 | 主题 |
+|------|---------------|---------|------|
+| 124 | 兰考县源网荷储综合能源服务实践 | 国家电投 | 县域能源革命/源网荷储 |
+| 196 | 基于综合能源运营的虚拟电厂关键技术 | 国网综能集团 | VPP技术/运营 |
+| 201 | 综合能源服务场景下的虚拟电厂应用 | 内蒙古电力综能 | VPP实践 |
+| 420 | 电力现货市场下民营新能源企业业务模式探索 | 协鑫晟能 | 市场化/136号文 |
+| 502 | 电力市场化改革背景下的综合能源服务发展展望 | 国家发改委能源所 | 宏观趋势 |
+| 503 | 基于数智化的综合能源服务助力公共机构绿色低碳转型 | 南网能源 | 公共机构/数智化 |
+| 504 | 基于人工智能的综合能源系统协同优化 | 华北电力大学 | AI赋能 |
+| 507 | 格力电器综合能源服务系统化解决方案探索 | 格力电器 | 设备方案/光储空 |
+| 510 | 电碳协同背景下的综合能源服务价值重构 | 国网能源研究院 | 电碳协同 |
+| 512 | 赋能新型电力系统：智慧能源服务平台关键技术 | 中国电科院 | 智慧平台 |
+| 524 | 智能驱动的用户侧综合能源服务实践分享 | 新奥数能 | AI能源/泛能网 |
+| 528 | 正泰安能助力城市家庭综合能源焕新 | 正泰安能 | 户用光伏 |
+| 529 | 基于综合能源服务的酒店低碳发展路径 | 酒店低碳发展研究院 | 酒店低碳 |
+| 535 | 卡奥斯智慧能源：园区综合能源服务项目实践样板 | 卡奥斯/海尔 | 园区实践 |
+| 536 | 区域综合能源系统低碳高效运行关键技术 | 山东财经大学 | 区域系统技术 |
+| 640 | 钢铁/电解铝等高载能企业的节能与供需互动 | 天津大学 | 工业节能/虚拟储能 |
+| 667 | 碳中和智慧能源在公建领域的创新应用示范 | 天正电气 | 公建节能 |
+| 721 | 新型电力系统背景下近零碳建筑综合能源服务方案 | 南网能源 | 近零碳建筑 |
+| 746 | 综合能源服务现状暨发展趋势分析 | 国家发改委能源所 | 行业现状/趋势 |
+| 749 | 新型电力系统背景下综合能源服务案例分享 | 南网能源 | 公共机构案例 |
+| 751 | 双碳目标下综合能源服务探索实践 | 东方电子 | 综合方案/实践 |
+| 758 | 基于智慧配电网的综合能源规划及建设案例 | 江苏院/中能建 | 规划设计 |
+| 760 | 面向新型电力系统的综合能源系统发展趋势与价值分析 | - | VPP/微电网/供应链 |
+| 331 | 工业零碳供热智慧解决方案 & 数智调控 | 思安云创 | 零碳供热 |
+| 531 | 格力中央空调助力公共机构建筑行业高能效发展 | 格力电器 | 能效/中央空调 |
+| 532 | 格力中央空调高能效发展 | 格力电器 | 中央空调技术 |
+| 1020 | 中欧产品能效政策比较研究 | 中欧能源合作平台 | 能效政策对标 |
+| 1067 | 独立储能与虚拟电厂电力市场交易模式和技术 | 清能互联 | 储能交易 |
+| 1180 | 煤电低碳化改造建设行动方案（2024-2027年） | 国家发改委/能源局 | 煤电改造 |
+| 1201 | 我国应对气候变化总体思路及近零碳排放示范区 | - | 气候变化战略 |
+| 464 | 中国绿色低碳转型的思考与实践 | 电规总院 | 低碳转型宏观 |
+| 465 | 强化电力规划引领加快绿色低碳转型 | 国网能研院 | 电力规划/五高特征 |
+| 468 | 新时期能源绿色低碳发展态势与路径探讨 | 水规总院 | 新能源发展 |
+| 426 | 电力期货助力能源绿色低碳转型 | 广期所 | 电力期货 |
+
+---
+
+> **总结**：综合能源服务正处于从"单一能源服务"向"综合能碳服务"、从"物理系统"向"数字智能系统"、从"项目制"向"平台化运营"的三重转变中。电碳协同、AI赋能、市场化交易、源网荷储一体化是四大核心趋势。零碳园区作为落地载体，正在从概念走向规模化实践。
+`;
+NOTES_DATA[2] = `# 智能微电网、绿电直连与源网荷储一体化 —— 四层次分析
+
+> 分析日期：2026年6月28日  
+> 材料来源：培训类文件约30份（国家发改委、国网能源院、华东电力设计院、河海大学、绿色和平等）  
+> 分析框架：知识要点 → 深层逻辑 → 关键结论 → 决策参考
+
+---
+
+## 第一层：知识要点
+
+### 一、智能微电网
+
+#### 1.1 定义与定位演进
+
+| 维度 | 传统微电网 | 智能微电网（新型电力系统下） |
+|------|-----------|--------------------------|
+| 功能定位 | 备用电源、提高供电可靠性 | 新型能源系统的基本细胞单元 |
+| 主要电源 | 天然气热电联产为主 | 分布式新能源为主体电源 |
+| 核心特征 | 微型、清洁、自治、友好 | 更强调"分布式新能源为主体"、智能调节、自平衡 |
+| 政策地位 | 试点示范项目 | 新型经营主体（2024.11），原则上豁免电力业务许可 |
+
+**关键定义**：智能微电网是以新能源为主要电源、具备一定智能调节和自平衡能力、可独立运行也可与大电网联网运行的小型发配用电系统（国能发法改〔2024〕93号）。配电环节具备相应特征的源网荷储一体化项目可视作智能微电网。
+
+#### 1.2 五大支撑作用
+
+- **保供**：保障内部电力供应，大电网紧张时有效支撑
+- **促安**：秒级/分钟级/小时级灵活响应，平抑新能源波动
+- **提效**：提升用户能源整体利用效率，减少向大电网送受电规模
+- **降本**：整合冷热电多品种能源，参与需求响应/辅助服务市场
+- **增绿**：促进新能源消纳，降低产品碳排放，应对碳关税
+
+#### 1.3 政策演进脉络
+
+| 阶段 | 时间 | 关键政策要点 |
+|------|------|-------------|
+| 概念提出 | 2013-2015 | 《国务院关于促进光伏产业健康发展的若干意见》首提"智能微电网"概念；2015年启动新能源微电网示范 |
+| 制度起步 | 2017 | 《推进并网型微电网建设试行办法》（1339号文），明确"微型、清洁、自治、友好"四特征 |
+| 主体确认 | 2021-2022 | 中共中央国务院文件明确微电网市场主体地位；十四五规划鼓励工业绿色微电网建设 |
+| 快速发展 | 2024-2025 | 纳入新型经营主体（2024.11）；《能源法》明确推进智能微电网建设；"隔墙售电"政策突破；允许跨红线售电；新型电力系统第一批试点含智能微电网方向 |
+
+#### 1.4 应用场景分类
+
+| 场景类型 | 典型配置 | 核心价值 |
+|---------|---------|---------|
+| **工业微电网**（10kV及以上） | 风电/光伏/天然气分布式 + 蓄冷/电蓄热/电化学储能 + 可调生产负荷 + EMS | 降低用电成本、提高绿电占比、参与辅助服务 |
+| **建筑微电网**（35kV及以下） | 光伏 + 空调柔性负荷 + 蓄冷蓄热 + 充电桩 + EMS | 削峰填谷、需求响应、提升建筑能效 |
+| **充换电站微电网** | 光伏车棚 + 储能 + 充电桩/换电电池 | 降低充电成本、缓解配网扩容压力 |
+| **微电网汇聚协同的虚拟电厂** | 聚合多个微电网资源 | 参与电力现货和辅助服务市场 |
+| **主配微协同**（集群） | 微电网群 + 大电网协同 | 有功/电压支撑、容量管理 |
+
+#### 1.5 商业模式与经济性
+
+| 模式 | 适用场景 | 盈利方式 |
+|------|---------|---------|
+| 业主自投自营 | 工业园区、大型企业、数据中心 | 自发自用降电费 + 余电上网 + 辅助服务 |
+| 合同能源管理（EMC） | 商业建筑、学校、政府机构 | 节能分成/电费托管 |
+| 社区共享模式 | 城镇住宅区、岛屿社区 | 用户众筹/合作社，内部绿电交易 |
+| 政府/电网PPP | 偏远地区、海岛、农网改造 | 政府补贴+电网投资，收取托管费 |
+| 虚拟电厂聚合 | 多个分布式微电网 | 聚合灵活性资源参与市场交易 |
+
+**投资回收期**：高电价/高补贴场景下5-8年。工商业储能系统单价已跌破0.6元/Wh（2025年，较2023年降40%），分布式光伏2.70元/W（2024年）。
+
+#### 1.6 关键技术标准
+
+已出台国家标准10余项，包括：GB/T 33589-2017（接入技术规定）、GB/T 34129-2017（测试规范）、GB/T 51250-2017（调试与验收）、GB/T 51341-2018（工程设计标准）、GB/T 42731-2023（技术要求）等。
+
+---
+
+### 二、绿电直连与绿电消费
+
+#### 2.1 绿电直连的定义与分类
+
+**定义**：风电、太阳能发电、生物质发电等新能源通过专用电力线路向单一电力用户供电的模式，实现供给电量清晰物理溯源（发改能源〔2025〕650号）。
+
+**两种类型**：
+- **并网型**：电源接入用户侧产权分界点，项目整体接入公共电网，与公网形成清晰物理界面
+- **离网型**：项目电源、用户和线路与公共电网无电气连接，独立运营
+
+#### 2.2 核心政策要求（650号文）
+
+| 约束指标 | 当前要求 | 2030年要求 |
+|---------|---------|-----------|
+| 自发自用电量/总可用发电量 | ≥60% | ≥60% |
+| 自发自用电量/总用电量 | ≥30% | ≥35% |
+| 上网电量/总可用发电量 | ≤20%（各省自定） | ≤20% |
+
+**装机确定原则**：以荷定源——根据企业用电量、负荷特性与新能源出力曲线模拟生产，反算合理装机。
+
+**投资模式**：
+- 主责单位：原则上由负荷主责
+- 电网企业不可投资绿电直连项目
+- 电源可由负荷/发电企业/双方合资公司投资
+- 直连专线由负荷、电源主体投资
+
+#### 2.3 四种绿电供应模式对比
+
+| 模式 | 环境价值获取方式 | 国内认可度 | 国际认可度（欧盟） |
+|------|----------------|-----------|------------------|
+| **场内分布式** | 物理直连（红线内） | 认可 | 认可 |
+| **绿电直连** | 物理直连（专线） | 认可 | 认可 |
+| **绿电交易** | 市场交易（证随电走） | 认可 | CBAM/电池法案不认可PPA |
+| **绿证交易** | 市场交易（电证分离） | 认可 | CBAM/电池法案不认可单独绿证 |
+
+**核心结论**：欧盟碳边境调节机制（CBAM）和《新电池法》仅认可物理直连的绿电消费模式具有减碳效益。这是绿电直连政策出台的国际倒逼因素。
+
+#### 2.4 绿电消费的行业驱动力
+
+| 行业 | 政策要求 | 驱动因素 |
+|------|---------|---------|
+| **算力/数据中心** | 国家枢纽节点新建数据中心绿电占比≥80% | 能耗双控豁免、电费占运营成本50%、ESG品牌 |
+| **电解铝** | 各省绿电消费比例25.2%-70%（考核） | 合规要求、成本优化 |
+| **钢铁** | 2025年增设绿电消费比例（监测） | 欧盟CBAM合规、供应链减排要求 |
+| **水泥/多晶硅** | 2025年增设绿电消费比例（监测） | 出口合规、碳关税应对 |
+| **电池/出口外向型** | 欧盟碳足迹核算 | 电池法案强制碳足迹申报 |
+
+#### 2.5 长期购电协议（PPA）
+
+- **全球PPA市场**：2025年全球企业清洁能源PPA容量55.9GW，Meta、亚马逊、谷歌、微软4家持49%容量
+- **国内多年期绿电交易（绿电长协）**：2025年首次组织省间PPA交易，总成交346.51亿千瓦时
+- **三种模式**：物理PPA（实物交割）、虚拟PPA（金融结算）、嵌套式SPPA（中介代理）
+
+#### 2.6 绿色电力证书（绿证）
+
+- 国家能源局核发，1000千瓦时=1个绿证
+- 是"可再生能源电量环境属性的唯一证明"
+- 2025年增设钢铁、水泥、多晶硅、数据中心行业绿电消费比例要求
+
+---
+
+### 三、源网荷储一体化
+
+#### 3.1 定义与分类
+
+国家定义（发改能源规〔2021〕280号）：通过优化整合本地电源侧、电网侧、负荷侧资源，构建源网荷储高度融合的新型电力系统发展路径。
+
+| 层级 | 特点 |
+|------|------|
+| **区域（省）级** | 依托电力辅助服务、中长期和现货市场 |
+| **市（县）级** | 坚强局部电网建设，热电联产+新能源+灵活负荷 |
+| **园区（居民区）级** | 分布式电源就近接入消纳，结合增量配电网 |
+
+#### 3.2 各省典型要求对比
+
+| 省份 | 新能源利用率 | 储能要求 | 距离要求 |
+|------|------------|---------|---------|
+| 内蒙古 | ≥90% | 新能源15%×4h | - |
+| 青海 | ≥90% | 电源侧15%×2h + 负荷侧5%×2h | 源荷≤200km |
+| 山西 | 新能源电量≥40% | 调节能力≥负荷50%×4h | - |
+| 河南 | 自发自用≥50%（整村） | 增量配电15%、生产20%×2h | 新能源≤20km |
+| 山东 | 新能源电量≥50% | 自愿配置，不做硬性要求 | - |
+
+#### 3.3 友好性评估指标体系（华东电力设计院）
+
+构建了3级指标体系，6大类28个三级指标：
+- **绿电消纳合规性**：绿电占比、弃电率
+- **交互方式友好性**：电量交换率、功率交换率、调度可控率
+- **系统接入友好性**：并网方式、电能质量
+- **内部配置友好性**：灵活性资源配比、保供能力、智能化水平
+- **规划进度友好性**：源荷匹配度、网源匹配度
+- **组织管理**：投资主体一致性、运营期法人一致性
+
+#### 3.4 源网荷储一体化的主要困境
+
+**企业诉求**: 获新能源建设指标、降电费、能耗减免  
+**政府目标**: 促消纳、增投资、强产业集群与出口  
+**电网顾虑**: 形成增量配电/绿电自供区影响收入、新能源大发时消纳困境、关口出力波动影响电能质量  
+**项目影响**: 余电上网消纳问题、极端情况保供压力、运行效率影响并网设备经济性
+
+---
+
+### 四、零碳园区（交叉主题）
+
+#### 4.1 政策脉络
+
+| 时间 | 事件 |
+|------|------|
+| 2024年12月 | 中央经济工作会议首次提出"建立一批零碳园区" |
+| 2025年7月 | 发改环资〔2025〕910号文，明确零碳园区建设基本条件、指标体系、碳排放核算方法 |
+| 2030年 | 要求清洁能源消费占比≥90% |
+
+#### 4.2 核心指标
+
+- **核心指标**：单位能耗碳排放≤0.2吨/吨标准煤（年综合能耗≥100万吨的≤0.3）
+- **引导指标**：清洁能源消费占比≥90%；产品单位能耗达二级限额以上；工业固废综合利用率≥80%
+
+#### 4.3 电力碳排放核算方法
+
+- 电力直供的非化石能源电力、绿证绿电交易电力：排放因子计为0
+- 其他电力：按全国化石能源电力排放因子0.8325kgCO₂/kWh
+- 绿色电力直接供应比例原则上不低于50%
+
+---
+
+## 第二层：深层逻辑
+
+### 逻辑一：双碳目标与国际贸易壁垒的"双重倒逼"
+
+中国新能源渗透率已进入IEA第3阶段（20-25%），"鸭子曲线"显现，系统灵活性需求超出既有能力。与此同时，欧盟CBAM和《新电池法》仅认可**物理直连绿电**具有减碳效益。两种压力叠加，驱动政策从"鼓励微电网示范"跨越到"强制绿电直连+零碳园区建设"的制度化阶段。
+
+### 逻辑二：微电网定位的"三重跃迁"
+
+1. **技术跃迁**：从"备用电源"（柴油机+简单并离网）→ "自治供用电系统"（分布式新能源+储能+EMS）→ "新型电力系统基本细胞单元"（智能调控+VPP聚合+市场参与）
+2. **政策跃迁**：从"试验示范"（2015-2023）→ "新型经营主体"（2024.11）→ "豁免许可+纳入辅助服务"（2025）
+3. **商业模式跃迁**：从"单一电费节省"→ "峰谷套利+辅助服务+碳交易+绿证+虚拟电厂聚合"的多维价值捕获
+
+### 逻辑三：从"隔墙售电"到"绿电直连"的路径打通
+
+- **第一次突破（2017）**：允许分布式光伏向红线内用户售电（隔墙售电1.0）
+- **第二次突破（2024）**：允许跨红线售电（隔墙售电2.0），分布式光伏可注册新型经营主体
+- **第三次突破（2025.5，650号文）**：国家层面明确绿电直连规则，从地方试验走向全国规范化
+- **配套完善（2025.9，1192号文）**：明确就近消纳项目的价格机制
+
+### 逻辑四：源-网-荷-储协同的系统观
+
+从单点项目思维转向"系统化资源池"思维：
+- **源**：分布式+集中式新能源，以荷定源
+- **网**：专用直连线路 / 增量配电网 / 微电网内部配电网
+- **荷**：可调生产负荷/空调/充电桩，柔性可控
+- **储**：电化学储能/蓄冷/电蓄热，从可选变为必须
+
+核心约束条件：**自发自用≥总可用发电量60%** 和 **上网≤20%** 的组合，同时框定了装机上限和下限，储能配置成为提升自发自用比例的关键手段，但**不强制配置**。
+
+---
+
+## 第三层：关键结论
+
+### 结论一：智能微电网已从"概念验证"进入"规模化发展"前夜
+
+- 2024-2025一季度国内210个微电网项目并网（599.6MW/1597.54MWh）
+- 23个省份将微电网纳入地方能源规划
+- 光储成本大幅下降（组件0.7-0.8元/W，储能系统<0.6元/Wh），经济性逐渐显现
+- **关键瓶颈**：统一技术标准缺乏、隔墙售电细则未完全放开、辅助服务市场化程度不足
+
+### 结论二：绿电直连是破解国际碳壁垒的"关键一招"
+
+- 欧盟仅认可物理直连绿电的减碳效益，绿证/PPA（通过电网）不被接受
+- 650号文填补了国家层面政策空白，但实施尚需地方细则配套
+- **以荷定源**原则确保了新增绿电的物理消纳，避免"纸面消纳"
+
+### 结论三：零碳园区是智能微电网+绿电直连的"最佳集成场景"
+
+- 910号文要求零碳园区绿色电力直接供应比例≥50%
+- 微电网提供物理载体，绿电直连提供绿电来源，源网荷储一体化提供系统解决方案
+- 三者形成"三位一体"的技术-政策-商业闭环
+
+### 结论四：商业模式从"单点套利"转向"多维价值捕获"
+
+- 传统：自发自用降电费 + 余电上网
+- 新兴：现货市场价差套利 + 辅助服务调频/调峰 + 容量市场 + 碳交易 + 绿证 + 需求响应
+- 未来趋势：虚拟电厂（VPP）聚合多个微电网资源成为交易主体
+
+### 结论五：各省政策差异大，须"一省一策"
+
+| 特点 | 典型省份 | 政策取向 |
+|------|---------|---------|
+| 绿电资源丰富+高载能产业 | 山西、内蒙古、青海 | 绿电园区+增量配电网，降电价引产业 |
+| 出口外向型经济 | 江苏、浙江、广东 | 绿电直连试点，应对CBAM，强制造业竞争力 |
+| 能源自给率低 | 河南 | 源网荷储一体化大规模推进（已批8批362个项目） |
+| 算力需求大 | 京津冀、长三角枢纽 | 纯数据中心的绿电直连+微电网+绿电交易组合方案 |
+
+---
+
+## 第四层：决策参考
+
+### 给投资/运营方的建议
+
+1. **优先布局三类场景**：
+   - 电网末端/大电网未覆盖地区（风光储互补微电网）
+   - 新能源资源好+工业负荷大的园区（工业绿色微电网）
+   - 出口外向型企业集中的零碳园区（绿电直连+微电网）
+
+2. **商业模式设计要点**：
+   - 投资回收期5-8年为基准，配置储能提升自发自用比例是关键
+   - 尽快接入虚拟电厂平台获取辅助服务收益
+   - 关注各省"绿电直连"试点机会（江苏电池行业、山西绿电园区）
+
+3. **风险防范**：
+   - 关注各省隔墙售电细则落地进度
+   - 新能源全面入市（136号文）后电价波动风险增加
+   - 欧盟碳规则仍在演进，需保持政策跟踪
+
+### 给政策制定者的建议
+
+1. **加快统一标准制定**：微电网规划设计、并网运行、计量结算、安全管理等体系化技术标准
+2. **完善市场机制**：明确微电网参与电能量市场、辅助服务市场、需求侧响应实施细则
+3. **推动隔墙售电全面放开**：从试点走向制度化，建立系统备用费用机制
+4. **绿电直连配套细则**：输配电费/系统运行费/交叉补贴的缴纳标准需进一步明确
+5. **激励机制**：将绿电直连与碳市场、绿色金融、转型金融挂钩
+
+### 关键政策跟踪清单（2025-2026）
+
+| 政策文件 | 状态 | 关键影响 |
+|---------|------|---------|
+| 发改能源〔2025〕650号（绿电直连） | 已发布 | 绿电直连全国规范化框架 |
+| 发改环资〔2025〕910号（零碳园区） | 已发布 | 零碳园区建设指标体系 |
+| 发改能源〔2025〕1192号（就近消纳电价） | 已发布 | 明确绿电直连价格机制 |
+| 发改办能源〔2025〕669号（消纳权重） | 已发布 | 新增钢铁/水泥/多晶硅/数据中心消纳权重 |
+| 新型电力系统第一批试点（含智能微电网） | 部署中 | 7个方向试点启动 |
+| 各省绿电直连/源网荷储实施细则 | 陆续出台中 | 地方落地关键 |
+
+---
+
+## 附录：核心文件映射
+
+| 主题 | 文件编号 | 来源机构 | 核心贡献 |
+|------|---------|---------|---------|
+| 微电网定义与展望 | 518 | 国网（苏州）城市能源研究院 陈光 | 微电网五大支撑作用、应用场景分类 |
+| 微电网商业价值 | 521 | 国网（北京）综合能源规划设计院 封红丽 | 商业模式、经济性分析、政策总结 |
+| 工业绿色微电网 | 519 | 国网上海综合能源 窦真兰 | 零碳园区建设方案、碳核算 |
+| 微电网关键问题 | 835 | 国网经研院 李红军 | 政策演进、技术标准梳理 |
+| 工业微电网白皮书 | 834 | CESA储能应用分会 | 行业发展全景分析、技术分类 |
+| 源网荷储规划方法 | 340 | 华东电力设计院 谢胤喆 | 各省要求对比、友好性评估指标体系 |
+| 绿电直连政策解读 | 338 | 浙江电力设计院 周啸波 | 650号文详细解读、四种绿电模式对比 |
+| 绿电直连与零碳园区 | 446 | 国网能源研究院 李琼慧 | 国际IEA六阶段、零碳园区路径 |
+| 兰考范式 | 525 | 国家电投 朱萌 | 农村源网荷储-微电网实践案例 |
+| 钢铁行业绿电消费 | 65 | 绿色和平 谢雯雯 | 钢铁绿电消费动因、四种模式分析 |
+| 算力行业绿电消费 | 62 | 冀北电网 岳昊 | 数据中心绿电驱动力、PPA模式 |
+| 长期购电协议 | 64 | 清华四川院 | 全球PPA市场、国内外对比 |
+| 山西绿电园区 | 379 | 山西省能源局 崔国峰 | 绿电园区规划实践、成本分析 |
+| 虚拟电厂与微电网月报 | 1090 | 虚拟电厂与微电网专委会 | 政策汇编、行业动态 |
+`;
+
+function toggleA(el, idx){
+  var body = el.parentElement.querySelector('.note-body');
+  if(body.classList.contains('show')){
+    body.classList.remove('show'); el.classList.remove('open'); return;
+  }
+  el.classList.add('open');
+  if(typeof NOTES_DATA !== 'undefined' && NOTES_DATA[idx]){
+    body.innerHTML = mdToHtml(NOTES_DATA[idx]);
+    body.classList.add('show');
+  } else {
+    body.innerHTML = '<div class="error">⚠️ 笔记内容未加载</div>';
+    body.classList.add('show');
+  }
+}
+
+
+function mdToHtml(text){
+  var lines = text.split('\n'), html = '', inCode = false, codeLines = [];
+  for(var i=0;i<lines.length;i++){
+    var line = lines[i];
+    if(line.trim().startsWith('```')){
+      if(inCode){ html+='<pre><code>'+esc(codeLines.join('\n'))+'</code></pre>'; codeLines=[]; inCode=false; }
+      else inCode=true;
+      continue;
+    }
+    if(inCode){ codeLines.push(line); continue; }
+    if(i===0 && line.trim()==='---'){ while(i<lines.length && lines[i].trim()!=='---') i++; continue; }
+    if(line.trim()===''){ continue; }
+    if(line.trim()==='---'){ html+='<hr>'; continue; }
+    if(line.startsWith('#### ')){ html+='<h4>'+inl(line.slice(5))+'</h4>'; continue; }
+    if(line.startsWith('### ')){ html+='<h3>'+inl(line.slice(4))+'</h3>'; continue; }
+    if(line.startsWith('## ')){ html+='<h2>'+inl(line.slice(3))+'</h2>'; continue; }
+    if(line.startsWith('# ')){ continue; }
+    if(line.trim().startsWith('- ')||line.trim().startsWith('* ')){ html+='<li>'+inl(line.trim().slice(2))+'</li>'; continue; }
+    if(/^\d+[\.\)]/.test(line.trim())){ html+='<li>'+inl(line.trim().replace(/^\d+[\.\)]\s*/,''))+'</li>'; continue; }
+    if(line.trim()) html+='<p>'+inl(line)+'</p>';
+  }
+  html = html.replace(/(<li>.*?<\/li>\s*)+/g, function(m){ return '<ul>'+m+'</ul>'; });
+  return html;
+}
+function inl(t){ return esc(t).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/\[\[(.+?)\]\]/g,'<code>[[$1]]</code>').replace(/`(.+)`/g,'<code>$1</code>'); }
+function esc(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+`;
+</script>
+
+</body>
+</html>

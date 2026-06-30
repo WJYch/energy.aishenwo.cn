@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>储能技术 · 培训课件 · 电小团</title>
+<style>
+:root {
+  --teal: #5E8B7E; --teal-light: #A3C4B8; --teal-bg: #E8F2EE;
+  --blue: #6B8FBE; --blue-light: #B8CEE0; --blue-bg: #EDF2F8;
+  --terracotta: #CC785C; --terracotta-light: #E8A98C; --terracotta-bg: #F8EDE8;
+  --orange: #E8956A; --orange-light: #F5C9AC; --orange-bg: #FDF2EB;
+  --purple: #9B7FB5; --purple-light: #C9B8DB; --purple-bg: #F3EEF7;
+  --pink: #D4A5A5; --pink-light: #EBCFCF; --pink-bg: #F9F0F0;
+  --cream: #F5F0E8; --cream-light: #FCFAF5; --border: #E8E0D6;
+  --slate: #2D3436; --slate-light: #636E72;
+  --shadow: 0 2px 12px rgba(0,0,0,0.06); --radius: 12px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--cream);color:var(--slate);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","Noto Sans SC","Inter",sans-serif;line-height:1.7;-webkit-font-smoothing:antialiased}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.header{padding:36px 0 20px;text-align:center;border-bottom:1px solid var(--border)}
+.header-tag{display:inline-block;background:var(--terracotta);color:white;font-size:11px;letter-spacing:2px;padding:4px 14px;border-radius:20px;margin-bottom:12px}
+.header h1{font-size:28px;font-weight:700;margin-bottom:4px}
+.header .sub{font-size:13px;color:var(--slate-light)}
+.tabs{display:flex;gap:4px;border-bottom:2px solid var(--border);padding:16px 0 0;overflow-x:auto;flex-wrap:nowrap}
+.tab{padding:10px 18px;font-size:13px;font-weight:600;color:var(--slate-light);cursor:pointer;border-radius:8px 8px 0 0;border:1px solid transparent;white-space:nowrap;transition:all .2s;user-select:none}
+.tab:hover{background:var(--cream-light);color:var(--slate)}
+.tab.active{background:white;color:var(--terracotta);border-color:var(--border);border-bottom-color:white;margin-bottom:-2px}
+.tab .tab-icon{display:inline-block;width:20px;text-align:center;margin-right:4px}
+.panel{display:none;background:white;border-radius:0 0 var(--radius) var(--radius);box-shadow:var(--shadow);border:1px solid var(--border);border-top:none;padding:28px 32px;margin-bottom:32px}
+.panel.active{display:block}
+.section-title{font-size:20px;font-weight:700;color:var(--slate);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--terracotta)}
+.section-title .sn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:50%;color:white;font-size:13px;font-weight:600;margin-right:8px;flex-shrink:0}
+.sub-title{font-size:16px;font-weight:600;margin:20px 0 10px;color:var(--slate)}
+.sub-sub{font-size:14px;font-weight:600;margin:14px 0 6px;color:var(--slate-light)}
+.card{background:var(--cream-light);border-radius:var(--radius);padding:18px;margin:12px 0;border:1px solid var(--border)}
+.card-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:16px 0}
+.card-item{background:var(--cream-light);border-radius:var(--radius);padding:16px;border:1px solid var(--border);border-top:3px solid var(--teal)}
+.card-item .ci-label{font-size:11px;color:var(--slate-light);margin-bottom:4px;letter-spacing:.4px;text-transform:uppercase}
+.card-item .ci-value{font-size:22px;font-weight:700;color:var(--slate)}
+.card-item .ci-desc{font-size:12px;color:var(--slate-light);margin-top:4px}
+.card-item.cteam{border-top-color:var(--teal)}
+.card-item.cblue{border-top-color:var(--blue)}
+.card-item.cterracotta{border-top-color:var(--terracotta)}
+.card-item.corange{border-top-color:var(--orange)}
+.card-item.cpurple{border-top-color:var(--purple)}
+.card-item.cpink{border-top-color:var(--pink)}
+table{width:100%;border-collapse:collapse;font-size:13px;margin:14px 0}
+th{background:var(--cream);color:var(--slate-light);font-weight:600;padding:8px 10px;text-align:center;border-bottom:2px solid var(--border)}
+td{padding:7px 10px;text-align:center;border-bottom:1px solid var(--border)}
+tr:hover td{background:var(--cream-light)}
+th:first-child,td:first-child{text-align:left;font-weight:500}
+ul,ol{padding-left:22px;margin:8px 0}
+li{margin:4px 0;font-size:14px}
+p{font-size:14px;margin:8px 0}
+.hb{background:var(--cream-light);border-left:3px solid var(--terracotta);padding:10px 16px;border-radius:0 8px 8px 0;margin:12px 0;font-size:13px}
+.svg-container{background:white;border-radius:var(--radius);padding:20px;margin:16px 0;border:1px solid var(--border);overflow-x:auto;text-align:center}
+.svg-container svg{max-width:100%;height:auto}
+.flow-row{display:flex;gap:6px;align-items:center;justify-content:center;flex-wrap:wrap;margin:20px 0}
+.flow-step{background:var(--teal);color:white;padding:12px 16px;border-radius:8px;font-size:13px;font-weight:600;text-align:center;min-width:80px}
+.flow-step:nth-child(odd){background:var(--blue)}
+.flow-step:nth-child(3){background:var(--orange)}
+.flow-step:nth-child(5){background:var(--purple)}
+.flow-arrow{font-size:22px;color:var(--slate-light);font-weight:700}
+.flow-note{font-size:11px;color:var(--slate-light);margin-top:2px}
+.row-2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0}
+.row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+.tag{display:inline-block;font-size:10px;padding:2px 8px;border-radius:10px;color:white;font-weight:600;margin-right:4px}
+.tag-g{background:var(--teal)}.tag-b{background:var(--blue)}.tag-o{background:var(--orange)}.tag-p{background:var(--purple)}.tag-t{background:var(--terracotta)}.tag-pk{background:var(--pink)}
+.highlight{border-left:4px solid var(--teal);padding:10px 16px;margin:12px 0;background:var(--teal-bg);border-radius:0 8px 8px 0;font-size:13px}
+.highlight.orange{border-left-color:var(--orange);background:var(--orange-bg)}
+.highlight.purple{border-left-color:var(--purple);background:var(--purple-bg)}
+.highlight.blue{border-left-color:var(--blue);background:var(--blue-bg)}
+.highlight.pink{border-left-color:var(--pink);background:var(--pink-bg)}
+.highlight.terracotta{border-left-color:var(--terracotta);background:var(--terracotta-bg)}
+footer{padding:24px 0;text-align:center;font-size:12px;color:var(--slate-light);border-top:1px solid var(--border);margin-top:20px}
+.kpi-group{display:flex;gap:14px;flex-wrap:wrap;margin:12px 0}
+.kpi-item{flex:1;min-width:140px;background:white;border-radius:var(--radius);padding:14px 16px;text-align:center;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,0.04)}
+.kpi-value{font-size:24px;font-weight:700}
+.kpi-label{font-size:11px;color:var(--slate-light);margin-top:2px}
+@media(max-width:768px){.card-grid,.row-2,.row-3{grid-template-columns:1fr}.panel{padding:18px 16px}}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<header class="header">
+  <div class="header-tag">电小团 · 培训课件</div>
+  <h1>储能技术</h1>
+  <p class="sub">从 ~36份专家培训/行业报告中提炼 · 覆盖产业数据/技术路线/商业模式/运营安全/AI数据中心/算电协同</p>
+</header>
+
+<div class="tabs" id="tabBar">
+  <div class="tab active" onclick="switchTab(0)"><span class="tab-icon">📊</span>课程总览</div>
+  <div class="tab" onclick="switchTab(1)"><span class="tab-icon">📘</span>行业报告与白皮书</div>
+  <div class="tab" onclick="switchTab(2)"><span class="tab-icon">⚡</span>ESIE2026峰会</div>
+  <div class="tab" onclick="switchTab(3)"><span class="tab-icon">🔧</span>技术运营与安全</div>
+  <div class="tab" onclick="switchTab(4)"><span class="tab-icon">💰</span>商业模式</div>
+  <div class="tab" onclick="switchTab(5)"><span class="tab-icon">🔬</span>技术路线</div>
+  <div class="tab" onclick="switchTab(6)"><span class="tab-icon">🏗️</span>应用场景</div>
+  <div class="tab" onclick="switchTab(7)"><span class="tab-icon">🎯</span>电小团行动路线</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 0: 课程总览 -->
+<!-- ============================================================ -->
+<div class="panel active" id="panel0">
+<div class="section-title"><span class="sn" style="background:var(--teal)">1</span> 课程总览 · KPI + 核心速览</div>
+
+<div class="card-grid">
+  <div class="card-item cteam"><div class="ci-label">中国新型储能装机</div><div class="ci-value" style="color:var(--teal)">73.76<span style="font-size:13px;font-weight:400;color:var(--slate-light)"> GW</span></div><div class="ci-desc">2024年底 · 首超抽水蓄能 · 全球40%+</div></div>
+  <div class="card-item cblue"><div class="ci-label">年度新增装机</div><div class="ci-value" style="color:var(--blue)">42.37<span style="font-size:13px;font-weight:400;color:var(--slate-light)"> GW</span></div><div class="ci-desc">2024年新增 · 同比+130%</div></div>
+  <div class="card-item cterracotta"><div class="ci-label">电芯价格</div><div class="ci-value" style="color:var(--terracotta)">0.3<span style="font-size:13px;font-weight:400;color:var(--slate-light)"> 元/Wh</span></div><div class="ci-desc">2025年 · 较2021年下降60%+</div></div>
+  <div class="card-item corange"><div class="ci-label">系统均价</div><div class="ci-value" style="color:var(--orange)">0.6~0.7<span style="font-size:13px;font-weight:400;color:var(--slate-light)"> 元/Wh</span></div><div class="ci-desc">2h磷酸铁锂系统</div></div>
+  <div class="card-item cpurple"><div class="ci-label">大电芯趋势</div><div class="ci-value" style="color:var(--purple)">500+<span style="font-size:13px;font-weight:400;color:var(--slate-light)"> Ah</span></div><div class="ci-desc">280→500+Ah已成行业共识</div></div>
+  <div class="card-item cpink"><div class="ci-label">2027年目标</div><div class="ci-value" style="color:var(--pink)">100<span style="font-size:13px;font-weight:400;color:var(--slate-light)"> GW</span></div><div class="ci-desc">2030年目标200GW</div></div>
+</div>
+
+<div class="section-title" style="margin-top:24px;font-size:18px;border-bottom-color:var(--blue)"><span class="sn" style="background:var(--blue)">2</span> 储能系统架构</div>
+<div class="svg-container" id="svg1-container"></div>
+
+<div class="section-title" style="margin-top:24px;font-size:18px;border-bottom-color:var(--orange)"><span class="sn" style="background:var(--orange)">3</span> 独立储能收益模式对比</div>
+<div class="svg-container" id="svg2-container"></div>
+
+<div class="section-title" style="margin-top:24px;font-size:18px;border-bottom-color:var(--purple)"><span class="sn" style="background:var(--purple)">4</span> 推荐阅读 TOP5</div>
+<div class="row-3">
+  <div class="highlight blue"><strong>⭐ #1 新型储能发展报告</strong><br>1068 · 官方年度蓝皮书<br><span style="font-size:12px;color:var(--slate-light)">最权威行业数据 · 必备参考</span></div>
+  <div class="highlight orange"><strong>⭐ #2 构网型储能PCS</strong><br>1081 · 技术趋势方向<br><span style="font-size:12px;color:var(--slate-light)">跟网→构网 · IRR提升5-8%</span></div>
+  <div class="highlight purple"><strong>⭐ #3 储能电站安全管理</strong><br>1060 · 安全合规必读<br><span style="font-size:12px;color:var(--slate-light)">大电芯时代的安全防线</span></div>
+  <div class="highlight pink"><strong>⭐ #4 独立储能商业模式</strong><br>1084 · 盈利模型分析<br><span style="font-size:12px;color:var(--slate-light)">四省IRR 6.7%-7.5%</span></div>
+  <div class="highlight" style="grid-column:span 2"><strong>⭐ #5 长时储能技术</strong><br>1082 · 未来发展路径<br><span style="font-size:12px;color:var(--slate-light)">LDES · 4h+项目占比提升</span></div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 1: 行业报告与白皮书 -->
+<!-- ============================================================ -->
+<div class="panel" id="panel1">
+<div class="section-title"><span class="sn" style="background:var(--blue)">1</span> 行业报告与白皮书</div>
+
+<div class="sub-title">📌 2024年关键数据</div>
+<div class="card">
+<table>
+<tr><th>指标</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th></tr>
+<tr><td>中国新型储能累计装机</td><td>~5.7GW</td><td>~13.1GW</td><td>~31.4GW</td><td><strong>73.7-78.3GW</strong></td></tr>
+<tr><td>全球新型储能累计装机</td><td>~27GW</td><td>~45GW</td><td>~91.3GW</td><td><strong>165.4GW</strong></td></tr>
+<tr><td>年度新增装机</td><td>~3.2GW</td><td>~7.3GW</td><td>~21.5GW</td><td><strong>42.5-43.7GW</strong></td></tr>
+<tr><td>锂电池占比</td><td>&gt;99%</td><td>~97%</td><td>~97%</td><td><strong>~96%</strong></td></tr>
+<tr><td>电芯价格（元/Wh）</td><td>~0.8</td><td>~0.7</td><td>~0.5</td><td><strong>~0.3</strong></td></tr>
+<tr><td>系统均价（元/kWh）</td><td>&gt;1.5</td><td>~1.3</td><td>~1.1</td><td><strong>~0.63</strong></td></tr>
+<tr><td>年均利用小时数</td><td>-</td><td>-</td><td>~611h</td><td><strong>~911h</strong></td></tr>
+</table>
+</div>
+
+<div class="sub-title">📌 各省装机TOP5（2024累计）</div>
+<div class="card-grid" style="grid-template-columns:1fr 1fr 1fr 1fr 1fr">
+  <div class="card-item cteam"><div class="ci-label">🥇 内蒙古</div><div class="ci-value" style="color:var(--teal);font-size:20px">1023<span style="font-size:12px"> 万kW</span></div></div>
+  <div class="card-item cblue"><div class="ci-label">🥈 新疆</div><div class="ci-value" style="color:var(--blue);font-size:20px">857<span style="font-size:12px"> 万kW</span></div></div>
+  <div class="card-item cterracotta"><div class="ci-label">🥉 山东</div><div class="ci-value" style="color:var(--terracotta);font-size:20px">717<span style="font-size:12px"> 万kW</span></div></div>
+  <div class="card-item corange"><div class="ci-label">江苏</div><div class="ci-value" style="color:var(--orange);font-size:20px">562<span style="font-size:12px"> 万kW</span></div></div>
+  <div class="card-item cpurple"><div class="ci-label">宁夏</div><div class="ci-value" style="color:var(--purple);font-size:20px">443<span style="font-size:12px"> 万kW</span></div></div>
+</div>
+
+<div class="sub-title">📌 产业数据要点</div>
+<ul>
+  <li><strong>1068《中国新型储能发展报告（2025）》</strong>：国家能源局官方年度报告，首次确认新型储能首超抽水蓄能</li>
+  <li><strong>1069~1072 CNESA四年白皮书</strong>：完整记录从商业化初期到规模化发展的跃迁过程</li>
+  <li><strong>1073《泽平宏观》</strong>：聚焦长时储能趋势，提出"长时储能是下一个风口"</li>
+  <li><strong>1074《储能产业趋势》</strong>：2025年新增预测40.8-51.9GW，商业模式加速调整</li>
+  <li><strong>1077产业发展白皮书</strong>：2024年投资超2399亿元，规划项目281.63GW/706.36GWh</li>
+  <li><strong>1078招投标报告</strong>：2024年采招落地61.04GW/179.18GWh，采购总金额1580亿元</li>
+  <li>全国累计发布储能政策<strong>2470项</strong>（2024新增770+项）</li>
+  <li>2030年累计预测（保守）<strong>236GW</strong>，（理想）<strong>291GW</strong></li>
+</ul>
+
+<div class="sub-title">📌 政策脉络</div>
+<div class="flow-row">
+  <div class="flow-step">136号文<br><span class="flow-note">2021 · 鼓励储能</span></div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step">新能源配储<br><span class="flow-note">10%-20%</span></div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step">136号文2025<br><span class="flow-note">取消强制配储</span></div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step">114号文<br><span class="flow-note">2026 · 容量电价机制</span></div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 2: ESIE2026峰会 -->
+<!-- ============================================================ -->
+<div class="panel" id="panel2">
+<div class="section-title"><span class="sn" style="background:var(--orange)">2</span> ESIE2026储能峰会（15~36）</div>
+
+<div class="sub-title">📌 核心共识</div>
+<div class="row-2">
+  <div class="highlight blue"><strong>储能+AI数据中心 = 最热赛道</strong><br>4个文件密集讨论同一主题<br>AI训练负载的高功率/高波动/高可靠性</div>
+  <div class="highlight orange"><strong>构网型储能 → 工程化落地</strong><br>VSG+黑启动+多机协同已成标配<br>SiC/GaN宽禁带器件为核心技术</div>
+  <div class="highlight purple"><strong>运营能力 = 盈利分水岭</strong><br>"会交易的储能才是聪明的资产"<br>容量保底+能量套利+辅助增益</div>
+  <div class="highlight pink"><strong>多技术路线并行发展</strong><br>超级电容/液流/飞轮/熔盐/Ti酸锂<br>LFP仍主流 · 钠离子/半固态值得关注</div>
+</div>
+
+<div class="sub-title">📌 关键数据速览</div>
+<div class="card-grid">
+  <div class="card-item cteam"><div class="ci-label">冀北储能IRR</div><div class="ci-value" style="color:var(--teal)">11%</div><div class="ci-desc">2充2放 · 10年 · 每度电1.056元</div></div>
+  <div class="card-item cblue"><div class="ci-label">甘肃100MW/400MWh</div><div class="ci-value" style="color:var(--blue)">8~10%</div><div class="ci-desc">投资3.6亿 · 年收益8177万</div></div>
+  <div class="card-item cterracotta"><div class="ci-label">构网型IRR提升</div><div class="ci-value" style="color:var(--terracotta)">5~8%</div><div class="ci-desc">三维盈利 · K值提升60%</div></div>
+  <div class="card-item corange"><div class="ci-label">LDES全球部署</div><div class="ci-value" style="color:var(--orange)">116.84<span style="font-size:13px"> GWh</span></div><div class="ci-desc">2040年目标8TW</div></div>
+  <div class="card-item cpurple"><div class="ci-label">火储调频K值</div><div class="ci-value" style="color:var(--purple)">+60%</div><div class="ci-desc">响应&lt;216ms · 收益5700万</div></div>
+  <div class="card-item cpink"><div class="ci-label">AI数据中心投入</div><div class="ci-value" style="color:var(--pink)">$370B</div><div class="ci-desc">2025年巨头投入 · 2030年需求增2-3倍</div></div>
+</div>
+
+<div class="sub-title">📌 储能+AI数据中心专题</div>
+<div class="row-2">
+  <div>
+    <div class="highlight purple"><strong>算电协同的"不可能三角"</strong></div>
+    <ul>
+      <li><strong>安全充裕</strong>：敏捷构网型补偿近100%负荷阶跃</li>
+      <li><strong>绿色低碳</strong>：支撑绿电直连 · 怀来铁铬液流500kW/4000kWh</li>
+      <li><strong>经济高效</strong>：峰谷套利+削峰填谷+辅助服务</li>
+    </ul>
+  </div>
+  <div>
+    <div class="highlight orange"><strong>智算中心三层储能方案</strong></div>
+    <ul>
+      <li><strong>① 超级电容</strong>：毫秒到秒级，吸收GPU瞬时峰值</li>
+      <li><strong>② UPS电池</strong>：秒到分钟级后备</li>
+      <li><strong>③ 电网侧储能</strong>：分钟到小时级，源网荷储协同</li>
+    </ul>
+  </div>
+</div>
+<p>张家口腾讯微电网：年发电<strong>1400万度</strong>，年减排<strong>7984吨</strong>，节省<strong>350万+</strong></p>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 3: 技术运营与安全 -->
+<!-- ============================================================ -->
+<div class="panel" id="panel3">
+<div class="section-title"><span class="sn" style="background:var(--purple)">3</span> 技术运营与安全</div>
+
+<div class="sub-title">📌 大电芯趋势</div>
+<div class="flow-row">
+  <div class="flow-step">280Ah</div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step">314Ah</div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step">500+Ah</div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step">587-684Ah</div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step">1000+Ah</div>
+  <span class="flow-arrow">→</span>
+  <div class="flow-step" style="background:var(--pink)">2710Ah<br><span class="flow-note">BYD</span></div>
+</div>
+
+<div class="row-2">
+  <div>
+    <div class="sub-sub">电芯技术演进</div>
+    <ul>
+      <li>系统容量：3.7MWh→5MWh→6.25MWh→14.5MWh</li>
+      <li>能效提升：93%→96%+（国标→强制GB44240）</li>
+      <li>循环寿命：8,000→12,000 cycles</li>
+      <li>电芯价格低至<strong>0.3元/Wh</strong></li>
+      <li>度电成本下降<strong>15%-20%</strong>，空间利用率提升<strong>30%</strong></li>
+    </ul>
+  </div>
+  <div>
+    <div class="sub-sub">BMS技术升级</div>
+    <ul>
+      <li>主动均衡技术：均衡电流达<strong>3A</strong>（远超被动均衡）</li>
+      <li>DSP数控：响应快、无芯片间交互延迟</li>
+      <li>云边端协同 + AI预测运维</li>
+      <li>"小储能大电芯"：314Ah平台拓展2-15串方案</li>
+      <li>天邦达累计交付<strong>60GWh+</strong></li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub-title">📌 安全防护体系</div>
+<div class="card">
+<table>
+<tr><th>电芯容量</th><th>热失控温度</th><th>推荐防护方案</th></tr>
+<tr><td>314Ah</td><td><strong>514℃</strong></td><td>1mm纳米板 → 背温218℃</td></tr>
+<tr><td>392Ah</td><td><strong>585℃</strong></td><td>1.2mm纳米板</td></tr>
+<tr><td>587Ah</td><td><strong>605℃</strong></td><td>1.8mm纳米板 → 背温203℃</td></tr>
+<tr><td>684Ah</td><td><strong>808℃</strong></td><td>3mm纳米板 → 背温202℃</td></tr>
+</table>
+</div>
+
+<div class="highlight terracotta"><strong>"一化三多"零热蔓延策略</strong>：化整为零 + 多材一体 + 多级防护 + 多管齐下</div>
+
+<div class="sub-title">📌 运营挑战</div>
+<div class="row-2">
+  <div class="highlight blue"><strong>报量报价 vs 报量不报价</strong><br>安徽实践：报量报价价差270.31元/MWh<br>自调度模式仅110.52元/MWh</div>
+  <div class="highlight orange"><strong>四大运营挑战</strong><br>① 缺乏专业运营人员<br>② 缺乏市场化运营标准<br>③ 缺乏运营管理平台<br>④ 缺乏收益测算工具</div>
+</div>
+<p>2024年全球储能火灾超<strong>46起</strong>（23人死亡），2025年Q1已发生<strong>9起</strong></p>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 4: 商业模式 -->
+<!-- ============================================================ -->
+<div class="panel" id="panel4">
+<div class="section-title"><span class="sn" style="background:var(--teal)">4</span> 商业模式</div>
+
+<div class="sub-title">📌 独立储能四种盈利模式</div>
+<div class="card">
+<table>
+<tr><th>省份</th><th>收益来源</th><th>模式特征</th><th>预期IRR</th></tr>
+<tr><td><strong>山东</strong></td><td>容量租赁+现货价差+容量补偿</td><td>三重收益 · 现货引领</td><td><strong>~6.7%</strong></td></tr>
+<tr><td><strong>山西</strong></td><td>容量租赁+现货价差+一次调频</td><td>三重收益 · 调频活跃</td><td><strong>~7.5%</strong></td></tr>
+<tr><td><strong>河南</strong></td><td>容量租赁+调峰辅助服务</td><td>双重收益 · 保底补偿</td><td><strong>~7.3%</strong></td></tr>
+<tr><td><strong>广东</strong></td><td>容量租赁+现货价差</td><td>双重收益 · 调频型最高收益</td><td><strong>~7.4%</strong></td></tr>
+</table>
+</div>
+
+<div class="sub-title">📌 典型电站收益测算</div>
+<div class="card-grid">
+  <div class="card-item cteam"><div class="ci-label">广东（调频型）</div><div class="ci-value" style="color:var(--teal);font-size:18px">30.39<span style="font-size:11px"> 万/MWh·年</span></div><div class="ci-desc">全国最高收益省份</div></div>
+  <div class="card-item cblue"><div class="ci-label">甘肃（综合型）</div><div class="ci-value" style="color:var(--blue);font-size:18px">18.77<span style="font-size:11px"> 万/MWh·年</span></div><div class="ci-desc">容量租赁+现货+调频+调峰</div></div>
+  <div class="card-item cterracotta"><div class="ci-label">宁夏（调峰型）</div><div class="ci-value" style="color:var(--terracotta);font-size:18px">9.57<span style="font-size:11px"> 万/MWh·年</span></div><div class="ci-desc">调峰型收益最低</div></div>
+</div>
+
+<div class="sub-title">📌 甘肃100MW/400MWh项目经济模型</div>
+<div class="card">
+<table>
+<tr><th>项目</th><th>数值</th></tr>
+<tr><td>总投资</td><td><strong>3.6亿元</strong>（0.9元/Wh）</td></tr>
+<tr><td>年收益</td><td><strong>8177万元</strong></td></tr>
+<tr><td style="padding-left:24px">其中：容量电费</td><td>1935万元</td></tr>
+<tr><td style="padding-left:24px">其中：现货价差</td><td>2497万元</td></tr>
+<tr><td style="padding-left:24px">其中：调频辅助</td><td>3745万元</td></tr>
+<tr><td>IRR</td><td><strong>8-10%</strong></td></tr>
+<tr><td>静态回收期</td><td><strong>9.88年</strong></td></tr>
+</table>
+</div>
+
+<div class="sub-title">📌 收益结构解读</div>
+<ul>
+  <li><strong>容量保底</strong>：114号文建立独立储能容量电价机制，2h折算0.5，4h+可达1.0</li>
+  <li><strong>能量套利</strong>：现货价差套利，报量报价模式远优于自调度（270 vs 110元/MWh）</li>
+  <li><strong>辅助增益</strong>：调频/调峰/备用/爬坡等辅助服务，K值提升60%可增收</li>
+  <li><strong>一体多用、分时复用</strong>：同一储能资源在不同时段提供不同服务</li>
+  <li><strong>风险警示</strong>：容量租赁有价无市（出租率部分&lt;30%）、价格下降15%</li>
+</ul>
+
+<div class="sub-title">📌 政策要点</div>
+<div class="row-2">
+  <div class="highlight blue"><strong>136号文（2025）</strong><br>取消强制配储<br>储能进入市场驱动时代</div>
+  <div class="highlight orange"><strong>114号文（2026）</strong><br>首次建立独立储能容量电价机制<br>以煤电容量电价为基础折算</div>
+  <div class="highlight purple"><strong>各省高度分化</strong><br>河南：保底补偿0.765元/kW·日<br>云南：增容租赁（铁锂1.8倍/钒液流3倍）</div>
+  <div class="highlight pink"><strong>盈利测算基准</strong><br>容量租赁200-400元/kW·年<br>河北：200元/kW·年+100元/kW·年补偿</div>
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 5: 技术路线 -->
+<!-- ============================================================ -->
+<div class="panel" id="panel5">
+<div class="section-title"><span class="sn" style="background:var(--blue)">5</span> 技术路线</div>
+
+<div class="sub-title">📌 2024新增装机技术路线占比</div>
+<div class="card-grid">
+  <div class="card-item cteam"><div class="ci-label">磷酸铁锂</div><div class="ci-value" style="color:var(--teal)">92.6%</div><div class="ci-desc">绝对主力 · BNEF预测峰值93%</div></div>
+  <div class="card-item cblue"><div class="ci-label">混合储能</div><div class="ci-value" style="color:var(--blue)">8.0%</div><div class="ci-desc">磷酸铁锂+模式</div></div>
+  <div class="card-item cterracotta"><div class="ci-label">液流电池</div><div class="ci-value" style="color:var(--terracotta)">1.9%</div><div class="ci-desc">2024装机突破1.81GWh</div></div>
+  <div class="card-item corange"><div class="ci-label">压缩空气</div><div class="ci-value" style="color:var(--orange)">1.7%</div><div class="ci-desc">长时储能场景优势</div></div>
+  <div class="card-item cpurple"><div class="ci-label">钠离子/飞轮/半固态</div><div class="ci-value" style="color:var(--purple)">＜1%</div><div class="ci-desc">替代技术值得关注</div></div>
+  <div class="card-item cpink"><div class="ci-label">平均储能时长</div><div class="ci-value" style="color:var(--pink)">2.3h</div><div class="ci-desc">4h+项目占15.4%且持续提升</div></div>
+</div>
+
+<div class="sub-title">📌 六大技术路线对比</div>
+<div class="card">
+<table>
+<tr><th>技术</th><th>优势</th><th>劣势</th><th>适用场景</th></tr>
+<tr><td><strong>磷酸铁锂</strong></td><td>成本低·效率高·产业链成熟</td><td>安全性·循环寿命</td><td>2-4h短时储能</td></tr>
+<tr><td><strong>液流电池</strong></td><td>本质安全·超长寿命·容量扩展易</td><td>能量密度低·成本高</td><td>4-10h长时储能</td></tr>
+<tr><td><strong>压缩空气</strong></td><td>大容量·低成本（~0.6元/Wh）</td><td>响应慢·效率低（40-70%）</td><td>8h+长时/大规模</td></tr>
+<tr><td><strong>超级电容</strong></td><td>循环10年+·响应ms级·效率91.5%</td><td>能量密度低·成本高1.5-3倍</td><td>火储调频·功率型</td></tr>
+<tr><td><strong>飞轮储能</strong></td><td>千万次循环·瞬时响应</td><td>成本高·自放电大</td><td>调频·UPS</td></tr>
+<tr><td><strong>钠离子</strong></td><td>钠资源丰富·低温性能好</td><td>能量密度低·LFP降价承压</td><td>替代LFP潜力</td></tr>
+</table>
+</div>
+
+<div class="sub-title">📌 构网型储能技术</div>
+<div class="row-2">
+  <div class="highlight blue"><strong>跟网型 (Grid-Following)</strong><br>电流源 · 被动跟随电网<br>依赖电网电压和频率参考<br>SCR需要一定强度</div>
+  <div class="highlight orange"><strong>构网型 (Grid-Forming)</strong><br>电压源 · 主动构网<br>惯量响应&lt;5ms · 一次调频&lt;1s<br>3倍短路电流 · 黑启动能力</div>
+</div>
+
+<div class="sub-sub">构网型核心技术</div>
+<ul>
+  <li><strong>VSG（虚拟同步机控制）</strong>：模拟同步机运行特性</li>
+  <li><strong>黑启动</strong>：不依赖外部电源自建电压，无网零起升压</li>
+  <li><strong>多机协同</strong>：百MW级场站构网，自同步技术（无主从设计）</li>
+  <li><strong>SiC/GaN宽禁带器件</strong>：AC/DC转换效率99%以上</li>
+</ul>
+
+<div class="sub-sub">长时储能（LDES）</div>
+<ul>
+  <li>定义：<strong>8小时到数天/周/季</strong>的储能</li>
+  <li>四大类别：热储能 · 电化学 · 机械 · 化学</li>
+  <li>全球部署：<strong>116.84GWh</strong>，以20% CAGR增长</li>
+  <li>LDES Council愿景：<strong>2040年部署8TW</strong>，带动4万亿美元投资</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 6: 应用场景 -->
+<!-- ============================================================ -->
+<div class="panel" id="panel6">
+<div class="section-title"><span class="sn" style="background:var(--orange)">6</span> 应用场景</div>
+
+<div class="sub-title">📌 储能七大应用场景</div>
+<div class="card-grid" style="grid-template-columns:1fr 1fr">
+  <div class="card-item cteam"><div class="ci-label">⚡ 独立储能</div><div class="ci-desc">电网侧独立电站 · 容量租赁+现货+辅助服务</div></div>
+  <div class="card-item cblue"><div class="ci-label">🏭 工商业储能</div><div class="ci-desc">用户侧峰谷套利 · 需关注峰谷价差&gt;0.7元/kWh</div></div>
+  <div class="card-item cterracotta"><div class="ci-label">🔌 光储充一体化</div><div class="ci-desc">充电桩配储 · BNEF预估2035年可达市场1-16%</div></div>
+  <div class="card-item corange"><div class="ci-label">💻 算电协同 · AIDC</div><div class="ci-desc">AI数据中心配储 · 三层储能方案 · 2026最热赛道</div></div>
+  <div class="card-item cpurple"><div class="ci-label">🔥 火储联合调频</div><div class="ci-desc">盈利模式最好的储能场景 · K值提升60%</div></div>
+  <div class="card-item cpink"><div class="ci-label">🏝️ 零碳海岛/微电网</div><div class="ci-desc">100%新能源供电离网微电网 · 构网型关键</div></div>
+  <div class="card-item cteam"><div class="ci-label">🏢 园区微电网</div><div class="ci-desc">绿电直连+储能+零碳解决方案</div></div>
+  <div class="card-item cblue"><div class="ci-label">🧩 VPP聚合储能</div><div class="ci-desc">电小团核心赛道 · 分布式储能聚合参与市场</div></div>
+</div>
+
+<div class="sub-title">📌 算电协同 · 价值详解</div>
+<div class="card">
+<table>
+<tr><th>储能作用</th><th>价值体现</th><th>案例/数据</th></tr>
+<tr><td><strong>安全充裕</strong></td><td>敏捷构网型补偿近100%负荷阶跃</td><td>优于传统40-60%</td></tr>
+<tr><td><strong>绿色低碳</strong></td><td>支撑绿电直连，降低碳足迹</td><td>怀来铁铬液流500kW/4000kWh</td></tr>
+<tr><td><strong>经济高效</strong></td><td>峰谷套利+削峰填谷+辅助服务</td><td>河南移动1MW/2MWh → 净收益192万元</td></tr>
+</table>
+</div>
+
+<div class="sub-title">📌 全球储能市场分布</div>
+<ul>
+  <li><strong>中国</strong>：全球最大市场（占52%），2025年新增47.6GW/130.4GWh</li>
+  <li><strong>欧洲</strong>：德国领军（2030年200亿美元），东欧新兴市场爆发</li>
+  <li><strong>澳大利亚</strong>：商业化驱动，557个&gt;100MW电池项目推进，60%为4h+长时储能</li>
+  <li><strong>美国</strong>：AI数据中心配储需求爆发，并网排队3-5年</li>
+  <li><strong>新兴市场</strong>：中东/东南亚/拉美（智利5GW+/巴西25GW）增速更快</li>
+</ul>
+
+<div class="sub-title">📌 储能+VPP协同</div>
+<div class="highlight purple">
+  <strong>工商业配储正从单一峰谷套利向多元模式演进</strong><br>
+  峰谷套利 → 需求响应 → VPP聚合 → 辅助服务 → 容量市场<br>
+  电小团的VPP平台天然适合聚合分布式储能参与电力市场
+</div>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB 7: 电小团行动路线 -->
+<!-- ============================================================ -->
+<div class="panel" id="panel7">
+<div class="section-title"><span class="sn" style="background:var(--pink)">7</span> 电小团行动路线</div>
+
+<div class="sub-title">🎯 核心战略：储能+VPP = 差异化竞争壁垒</div>
+
+<div class="row-2">
+  <div class="highlight terracotta"><strong>🔥 立即关注：储能+AI数据中心</strong><br>2026-2027年最确定的增长极<br>三层储能方案（超级电容→BESS→电网侧储能）<br>800V直流供电技术路线</div>
+  <div class="highlight blue"><strong>📊 运营为王 · 交易为王</strong><br>自建储能运营管理系统<br>AI电价预测+交易策略核心能力<br>精准预测可使现货收益提升10-20%</div>
+  <div class="highlight orange"><strong>🔧 大电芯时代选型策略</strong><br>优选通过GB44240认证的电芯<br>配套3A级主动均衡BMS<br>防护材料匹配热失控温度</div>
+  <div class="highlight purple"><strong>🌏 海外市场开拓</strong><br>欧洲户储适合VPP聚合<br>澳洲住宅储能VPP驱动增长<br>东南亚工商业储能需求快增</div>
+</div>
+
+<div class="sub-title">📋 行动清单</div>
+<div class="row-2">
+  <div>
+    <div class="sub-sub">短期（0-3个月）</div>
+    <ul>
+      <li>深度研究构网型储能技术方案和收益模型</li>
+      <li>掌握800V直流供电技术路线（HVDC→SST）</li>
+      <li>建立储能项目经济性测算框架</li>
+    </ul>
+  </div>
+  <div>
+    <div class="sub-sub">中期（3-12个月）</div>
+    <ul>
+      <li>搭建储能运营管理系统（电价预测→交易决策→复盘优化）</li>
+      <li>与天邦达等BMS厂商对接，实现BMS+云平台+VPP三层联动</li>
+      <li>布局算电协同赛道，储备AIDC配储方案</li>
+    </ul>
+  </div>
+  <div>
+    <div class="sub-sub">长期（1-3年）</div>
+    <ul>
+      <li>构建储能聚合能力，成为区域VPP+储能运营商</li>
+      <li>探索独立储能项目投资（参考甘肃模型IRR 8-10%）</li>
+      <li>拓展海外市场（欧洲VPP / 澳洲离网市场）</li>
+    </ul>
+  </div>
+  <div>
+    <div class="sub-sub">重点省份推荐</div>
+    <ul>
+      <li><strong>西北</strong>：甘肃/内蒙古/宁夏（容量补偿+调频活跃）</li>
+      <li><strong>东部</strong>：山东/江苏/广东（现货价差大+工商业活跃）</li>
+      <li><strong>关注</strong>：河南（保底补偿）/云南（增容租赁优惠）</li>
+    </ul>
+  </div>
+</div>
+
+<div class="sub-title">📌 标杆项目参考</div>
+<div class="card">
+<table>
+<tr><th>项目</th><th>规模</th><th>投资/收益</th><th>关键数据</th></tr>
+<tr><td>甘肃独立储能</td><td>100MW/400MWh</td><td>投资3.6亿 · 年收益8177万</td><td>IRR 8-10%</td></tr>
+<tr><td>冀北储能</td><td>2充2放</td><td>每度电1.056元</td><td>IRR &gt;11%</td></tr>
+<tr><td>华能罗源火储调频</td><td>超容5MW+锂电15MW</td><td>收益5700万元</td><td>K值+60%</td></tr>
+<tr><td>张家口腾讯微电网</td><td>风光储一体化</td><td>年节省350万+</td><td>年发电1400万度</td></tr>
+</table>
+</div>
+
+<div class="sub-title">📌 TOP5 推荐阅读</div>
+<div class="row-3">
+  <div class="highlight blue"><strong>① 新型储能发展报告</strong><br>1068 · 官方年度蓝皮书<br>最权威行业数据</div>
+  <div class="highlight orange"><strong>② 构网型储能PCS</strong><br>1081 · 技术趋势方向<br>跟网→构网</div>
+  <div class="highlight terracotta"><strong>③ 储能电站安全管理</strong><br>1060 · 安全合规必读<br>大电芯时代的安全防线</div>
+  <div class="highlight purple"><strong>④ 独立储能商业模式</strong><br>1084 · 盈利模型分析<br>四省IRR 6.7%-7.5%</div>
+  <div class="highlight pink" style="grid-column:span 2"><strong>⑤ 长时储能技术</strong><br>1082 · 未来发展路径<br>LDES 4h+项目占比提升</div>
+</div>
+</div>
+
+<footer>
+  <p>电小团 · 培训课件 · 储能技术 &nbsp;|&nbsp; 基于 ~36份专家培训/行业报告 &nbsp;|&nbsp; 更新于 2026年6月</p>
+</footer>
+
+</div><!-- /container -->
+
+<script>
+// ============================================================
+// Tab switching
+// ============================================================
+function switchTab(idx) {
+  var panels = document.querySelectorAll('.panel');
+  var tabs = document.querySelectorAll('.tab');
+  for(var i=0;i<panels.length;i++) {
+    panels[i].classList.remove('active');
+    tabs[i].classList.remove('active');
+  }
+  panels[idx].classList.add('active');
+  tabs[idx].classList.add('active');
+}
+
+// ============================================================
+// SVG 1: 储能系统架构（从电芯到电网）
+// ============================================================
+(function() {
+var svg = '<svg viewBox="0 0 1000 340" xmlns="http://www.w3.org/2000/svg" style="max-width:980px">';
+svg += '<defs>';
+svg += '<linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#5E8B7E;stop-opacity:1" /><stop offset="100%" style="stop-color:#A3C4B8;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="g2" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#6B8FBE;stop-opacity:1" /><stop offset="100%" style="stop-color:#B8CEE0;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="g3" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#CC785C;stop-opacity:1" /><stop offset="100%" style="stop-color:#E8A98C;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="g4" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#E8956A;stop-opacity:1" /><stop offset="100%" style="stop-color:#F5C9AC;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="g5" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#9B7FB5;stop-opacity:1" /><stop offset="100%" style="stop-color:#C9B8DB;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="g6" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:#D4A5A5;stop-opacity:1" /><stop offset="100%" style="stop-color:#EBCFCF;stop-opacity:1" /></linearGradient>';
+svg += '<marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#636E72" /></marker>';
+svg += '</defs>';
+
+// Background
+svg += '<rect x="0" y="0" width="1000" height="340" rx="12" fill="#FCFAF5" stroke="#E8E0D6" stroke-width="1" />';
+svg += '<text x="500" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#2D3436">储能系统架构 · 从电芯到电网</text>';
+
+// Row 1 boxes (7 stages)
+var boxes = [
+  {x:20, w:105, label:"电芯", sub:"Cell\n280→500+Ah", color:"url(#g1)"},
+  {x:150, w:105, label:"模组", sub:"Module\n串并联成组", color:"url(#g2)"},
+  {x:280, w:105, label:"电池簇", sub:"Rack\n高压直流回路", color:"url(#g3)"},
+  {x:410, w:105, label:"BMS", sub:"电池管理系统\n监控+均衡+保护", color:"url(#g4)"},
+  {x:540, w:105, label:"PCS", sub:"储能变流器\nDC/AC双向", color:"url(#g5)"},
+  {x:670, w:105, label:"EMS", sub:"能量管理系统\n调度+交易+优化", color:"url(#g6)"},
+  {x:800, w:105, label:"电网", sub:"Grid\n源网荷储协同", color:"url(#g1)"}
+];
+
+for(var i=0;i<boxes.length;i++) {
+  var b = boxes[i];
+  svg += '<rect x="'+b.x+'" y="70" width="'+b.w+'" height="100" rx="10" fill="'+b.color+'" stroke="white" stroke-width="2" />';
+  svg += '<text x="'+(b.x+b.w/2)+'" y="100" text-anchor="middle" font-size="15" font-weight="700" fill="white">'+b.label+'</text>';
+  var lines = b.sub.split('\\n');
+  for(var j=0;j<lines.length;j++) {
+    svg += '<text x="'+(b.x+b.w/2)+'" y="'+(122+j*16)+'" text-anchor="middle" font-size="11" fill="white" opacity="0.95">'+lines[j]+'</text>';
+  }
+}
+
+// Arrows between boxes
+for(var i=0;i<boxes.length-1;i++) {
+  var x1 = boxes[i].x + boxes[i].w;
+  var y1 = 120;
+  var x2 = boxes[i+1].x;
+  svg += '<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y1+'" stroke="#636E72" stroke-width="2" marker-end="url(#arrow)" />';
+}
+
+// Bottom section: Key parameters
+svg += '<rect x="20" y="195" width="885" height="120" rx="8" fill="#E8F2EE" stroke="#A3C4B8" stroke-width="1" />';
+svg += '<text x="40" y="220" font-size="13" font-weight="700" fill="#5E8B7E">关键参数</text>';
+
+var params = [
+  {x:40, label:"系统电压", val:"1000V~1500V DC"},
+  {x:240, label:"循环寿命", val:"8,000~12,000 cycles"},
+  {x:440, label:"响应时间", val:"&lt;100ms (PCS级)"},
+  {x:640, label:"系统效率", val:"85%~92% (AC-AC)"}
+];
+for(var i=0;i<params.length;i++) {
+  var p = params[i];
+  svg += '<text x="'+p.x+'" y="242" font-size="12" fill="#636E72">'+p.label+'</text>';
+  svg += '<text x="'+p.x+'" y="262" font-size="14" font-weight="700" fill="#2D3436">'+p.val+'</text>';
+}
+
+// Bottom tech trend bar
+svg += '<rect x="20" y="285" width="885" height="24" rx="12" fill="#EDF2F8" />';
+svg += '<text x="40" y="301" font-size="12" fill="#6B8FBE" font-weight="600">趋势· 大电芯 280Ah→500+Ah · GB44240强制国标 · 主动均衡BMS · 构网型PCS · 云边端协同</text>';
+
+svg += '</svg>';
+document.getElementById('svg1-container').innerHTML = svg;
+})();
+
+// ============================================================
+// SVG 2: 独立储能收益模式对比（山东/山西/河南/广东）
+// ============================================================
+(function() {
+var svg = '<svg viewBox="0 0 1000 420" xmlns="http://www.w3.org/2000/svg" style="max-width:980px">';
+svg += '<defs>';
+svg += '<linearGradient id="h1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#5E8B7E;stop-opacity:1" /><stop offset="100%" style="stop-color:#A3C4B8;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="h2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#6B8FBE;stop-opacity:1" /><stop offset="100%" style="stop-color:#B8CEE0;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="h3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#CC785C;stop-opacity:1" /><stop offset="100%" style="stop-color:#E8A98C;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="h4" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#E8956A;stop-opacity:1" /><stop offset="100%" style="stop-color:#F5C9AC;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="hb1" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#E8F2EE;stop-opacity:1" /><stop offset="100%" style="stop-color:#E8F2EE;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="hb2" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#EDF2F8;stop-opacity:1" /><stop offset="100%" style="stop-color:#EDF2F8;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="hb3" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#F8EDE8;stop-opacity:1" /><stop offset="100%" style="stop-color:#F8EDE8;stop-opacity:1" /></linearGradient>';
+svg += '<linearGradient id="hb4" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:#FDF2EB;stop-opacity:1" /><stop offset="100%" style="stop-color:#FDF2EB;stop-opacity:1" /></linearGradient>';
+svg += '</defs>';
+
+// Background
+svg += '<rect x="0" y="0" width="1000" height="420" rx="12" fill="#FCFAF5" stroke="#E8E0D6" stroke-width="1" />';
+svg += '<text x="500" y="32" text-anchor="middle" font-size="16" font-weight="700" fill="#2D3436">独立储能收益模式对比 · 四省经济性测算</text>';
+
+// Four columns
+var cols = [
+  {x:20, w:225, label:"山东", bg:"url(#hb1)", head:"url(#h1)", bgColor:"#5E8B7E"},
+  {x:260, w:225, label:"山西", bg:"url(#hb2)", head:"url(#h2)", bgColor:"#6B8FBE"},
+  {x:500, w:225, label:"河南", bg:"url(#hb3)", head:"url(#h3)", bgColor:"#CC785C"},
+  {x:740, w:225, label:"广东", bg:"url(#hb4)", head:"url(#h4)", bgColor:"#E8956A"}
+];
+
+var colData = [
+  {sources:["容量租赁","现货价差","容量补偿"], irr:"~6.7%", color:"#5E8B7E", note:"三重收益 · 现货引领"},
+  {sources:["容量租赁","现货价差","一次调频"], irr:"~7.5%", color:"#6B8FBE", note:"三重收益 · 调频活跃"},
+  {sources:["容量租赁","调峰辅助"], irr:"~7.3%", color:"#CC785C", note:"双重收益 · 保底补偿"},
+  {sources:["容量租赁","现货价差"], irr:"~7.4%", color:"#E8956A", note:"双重收益 · 收益最高"}
+];
+
+for(var i=0;i<cols.length;i++) {
+  var c = cols[i];
+  var d = colData[i];
+  
+  // Column background
+  svg += '<rect x="'+c.x+'" y="55" width="'+c.w+'" height="340" rx="10" fill="'+c.bg+'" stroke="#E8E0D6" stroke-width="1" />';
+  
+  // Header
+  svg += '<rect x="'+c.x+'" y="55" width="'+c.w+'" height="40" rx="10" fill="'+c.head+'" />';
+  svg += '<rect x="'+c.x+'" y="75" width="'+c.w+'" height="20" fill="'+c.head+'" />';
+  svg += '<text x="'+(c.x+c.w/2)+'" y="81" text-anchor="middle" font-size="16" font-weight="700" fill="white">'+c.label+'</text>';
+  
+  // IRR
+  svg += '<text x="'+(c.x+c.w/2)+'" y="138" text-anchor="middle" font-size="13" fill="#636E72">预期IRR</text>';
+  svg += '<text x="'+(c.x+c.w/2)+'" y="172" text-anchor="middle" font-size="32" font-weight="700" fill="'+d.color+'">'+d.irr+'</text>';
+  
+  // Bar area - show income sources
+  var barY = 200;
+  var barH = 28;
+  var barGap = 10;
+  
+  for(var j=0;j<d.sources.length;j++) {
+    var by = barY + j*(barH+barGap);
+    var bw = 180 - j*10;
+    // Bar background
+    svg += '<rect x="'+(c.x+22)+'" y="'+by+'" width="'+(bw)+'" height="'+barH+'" rx="5" fill="'+d.color+'" opacity="'+(1-j*0.15)+'" />';
+    svg += '<text x="'+(c.x+40)+'" y="'+(by+18)+'" font-size="12" font-weight="600" fill="white">'+d.sources[j]+'</text>';
+  }
+  
+  // Note
+  svg += '<text x="'+(c.x+c.w/2)+'" y="320" text-anchor="middle" font-size="11" fill="#636E72">'+d.note+'</text>';
+  
+  // Policy highlight
+  if(i==0) svg += '<text x="'+(c.x+c.w/2)+'" y="350" text-anchor="middle" font-size="10" fill="#5E8B7E">114号文容量电价</text>';
+  if(i==1) svg += '<text x="'+(c.x+c.w/2)+'" y="350" text-anchor="middle" font-size="10" fill="#6B8FBE">调频K值提升60%</text>';
+  if(i==2) svg += '<text x="'+(c.x+c.w/2)+'" y="350" text-anchor="middle" font-size="10" fill="#CC785C">保底0.765元/kW·日</text>';
+  if(i==3) svg += '<text x="'+(c.x+c.w/2)+'" y="350" text-anchor="middle" font-size="10" fill="#E8956A">30.39万/MWh·年</text>';
+}
+
+// Legend at bottom
+svg += '<line x1="20" y1="375" x2="980" y2="375" stroke="#E8E0D6" stroke-width="1" />';
+svg += '<text x="40" y="398" font-size="11" fill="#636E72">容量租赁: 200-400元/kW·年</text>';
+svg += '<text x="300" y="398" font-size="11" fill="#636E72">现货价差: 报量报价模式最佳</text>';
+svg += '<text x="560" y="398" font-size="11" fill="#636E72">调频: 5-15元/MW里程补偿</text>';
+svg += '<text x="780" y="398" font-size="11" fill="#636E72">甘肃综合型: IRR 8-10%</text>';
+
+svg += '</svg>';
+document.getElementById('svg2-container').innerHTML = svg;
+})();
+
+// ============================================================
+// Make SVG responsive on resize
+// ============================================================
+window.addEventListener('resize', function() {
+  var svgs = document.querySelectorAll('.svg-container svg');
+  for(var i=0;i<svgs.length;i++) {
+    svgs[i].style.maxWidth = '100%';
+  }
+});
+</script>
+
+<script>
+var NOTES_DATA = [];
+NOTES_DATA[0] = `# 储能行业报告与白皮书综合提炼笔记
+
+> 来源文件：1068-1084（共10份文件，含1069-1072四年白皮书系列）
+> 提炼方式：四层次提炼，合并为1篇
+
+---
+
+## 一、1068《中国新型储能发展报告（2025）》
+
+### 层次1：核心内容
+- **一句话**：由国家能源局和电规总院编制，系统总结2024年中国新型储能发展，首次官方确认新型储能累计装机**73.76GW/1.68亿kWh**，占全球超40%，较2023年底增长超130%。
+- **关键数据**：
+  - 2024全年新增装机 **42.37GW/1.01亿kWh**
+  - 平均储能时长 **2.3小时**
+  - 锂离子电池占比 **96.4%**，压缩空气、液流各占 **1.0%**
+  - 年均等效利用小时数 **911小时**（比2023提升约300小时）
+  - 装机TOP5省份：内蒙古**1023万kW**、新疆**857万kW**、山东**717万kW**、江苏**562万kW**、宁夏**443万kW**
+- **核心概念**：新型储能、独立储能、构网型储能、容量补偿机制
+
+### 层次4：对电小团的参考价值
+- 提供了最官方的储能行业宏观数据，适合作为培训的基础背景材料
+- 2021-2024年大事记部分完整回溯了政策演进历程
+
+---
+
+## 二、1069~1072 四年储能产业白皮书系列（2021-2025）
+
+### 各年关键对比
+
+| 维度 | 2021 | 2022 | 2023 | 2025 |
+|------|------|------|------|------|
+| 中国新型储能累计装机 | ~5.7GW | ~13.1GW | ~31.4GW | 78.3GW/184.2GWh |
+| 全球新型储能累计装机 | ~27GW | ~45GW | ~91.3GW | 165.4GW |
+| 年度新增装机 | ~3.2GW | ~7.3GW | ~21.5GW | 43.7GW/109.8GWh |
+| 电芯价格 | ~0.8元/Wh | ~0.7元/Wh | ~0.5元/Wh | 0.3元/Wh |
+| 系统均价 | >1.5元/Wh | ~1.3元/Wh | ~1.1元/Wh | 0.628元/kWh |
+
+### 关键转变趋势
+- 2021→2022：独立储能市场主体地位确立，共享储能模式兴起
+- 2022→2023：装机爆发式增长，年新增超此前历年累计
+- 2023→2025：新型储能累计装机首次超过抽水蓄能
+
+---
+
+## 三~十、其他白皮书要点
+
+### 1073《中国储能研究报告2025》（泽平宏观）
+- 长时储能是下一个风口
+- 4小时以上项目装机占比15.4%，液流电池2024年装机突破1.81GWh
+
+### 1074《储能产业趋势》
+- 2025年新增预测40.8-51.9GW
+- 容量租赁价格下降15%
+
+### 1075《储能政策月报》
+- 2025年1月全国47项储能政策
+- 四川2027年目标500万kW，永康放电补贴0.8元/kWh
+
+### 1077产业发展白皮书
+- 2024年投资超2399亿元
+- 规划项目规模281.63GW/706.36GWh，计划投资超10224亿元
+
+### 1078招投标报告
+- 2024年采招落地61.04GW/179.18GWh
+- 头部集中：Top15企业中标占57%
+
+### 1081构网控制及并网测试
+- 构网型储能可提供：惯量支撑（<5ms）、一次调频（<1s）、3倍短路电流、黑启动
+- 新疆要求构网型储能比例不低于20%
+
+### 1082商业化运营模式
+- 安徽实践：报量报价价差270.31元/MWh vs 自调度110.52元/MWh
+- K值计算：k=0.4×k1+0.3×k2+0.3×k3
+
+### 1084独立储能政策及投资机会
+- 山东IRR 6.7%、山西7.51%、河南7.27%、广东7.41%
+- 独立储能三大风险：容量租赁有价无市、辅助服务补偿无法兼得、峰谷价差不及预期
+
+---
+
+## 综合提炼
+
+### 储能行业关键数据汇总表
+
+| 指标 | 2021 | 2022 | 2023 | 2024 |
+|------|------|------|------|------|
+| 中国新型储能累计装机 | ~5.7GW | ~13.1GW | ~31.4GW | 73.7-78.3GW |
+| 全球新型储能累计装机 | ~27GW | ~45GW | ~91.3GW | 165.4GW |
+| 年度新增装机 | ~3.2GW | ~7.3GW | ~21.5GW | 42.5-43.7GW / ~110GWh |
+| 锂电池占比 | >99% | ~97% | ~97% | ~96% |
+| 电芯价格（元/Wh） | ~0.8 | ~0.7 | ~0.5 | ~0.3 |
+| 系统均价（元/kWh） | >1.5 | ~1.3 | ~1.1 | ~0.63 |
+| 年均利用小时数 | - | - | ~611h | ~911h |
+| 全国储能政策累计 | - | - | ~1700项 | ~2470项 |
+| 招投标落地规模 | - | - | ~35.4GW | 61GW/179GWh |
+| 2030年累计预测（保守） | - | - | - | 236GW |
+
+### 技术路线占比（2024新增装机）
+| 技术路线 | 占比 |
+|---------|------|
+| 磷酸铁锂电池 | 92.6% |
+| 液流电池 | 1.9% |
+| 压缩空气 | 1.7% |
+| 混合储能 | 8.0% |
+| 其他（钠电、飞轮、半固态等） | <1% |
+
+### 各省装机TOP5（2024累计）
+| 省份 | 装机（万kW） |
+|------|------------|
+| 内蒙古 | 1023 |
+| 新疆 | 857 |
+| 山东 | 717 |
+| 江苏 | 562 |
+| 宁夏 | 443 |
+
+### 独立储能商业模式对比
+| 模式 | 收益来源 | 代表省份 | 预期IRR |
+|------|---------|---------|---------|
+| 容量租赁+现货价差+容量补偿 | 三重收益 | 山东 | ~6.7% |
+| 容量租赁+现货价差+一次调频 | 三重收益 | 山西 | ~7.5% |
+| 容量租赁+调峰辅助服务 | 双重收益 | 河南 | ~7.3% |
+| 容量租赁+现货价差 | 双重收益 | 广东 | ~7.4% |
+
+---
+
+## 对电小团的启示
+1. 储能已从"商业化初期"迈入"规模化发展"阶段
+2. 磷酸铁锂仍是绝对主力（>92%），但长时储能是确定性发展方向
+3. 独立储能高度依赖容量租赁收入（40-60%），"一体多用、分时复用"是趋势
+4. 储能系统价格已降至0.6-0.7元/kWh，电芯低至0.3元/Wh
+5. 西北以源网侧为主，华东/华南以用户侧和电网侧为主
+6. 从"跟网"到"构网"是电力电子化电力系统的必然趋势
+
+---
+
+## 建议培训重点关注
+- 新型储能的多种技术路线特点对比
+- 独立储能商业模式演变
+- 构网型控制的基本原理
+- 招投标市场价格基准
+- 各省政策差异和补贴情况
+`;
+
+NOTES_DATA[1] = `# ESIE2026储能峰会（编号15~36）综合笔记
+
+> **峰会背景**：第十四届储能国际峰会暨展览会（ESIE2026），2026年4月1-3日，北京·首都国际会展中心
+
+---
+
+## 核心共识
+
+1. **储能已成为新型电力系统的"刚需"基础设施**，政策+市场双轮驱动格局已形成
+2. **"储能+AI数据中心"是2026年最热门的增长赛道**，四个文件密集讨论同一主题
+3. **构网型储能从"概念"走向"工程化落地"**，VSG、黑启动、多机协同已成为标配
+4. **运营能力（特别是交易能力）是储能资产盈利的分水岭**
+5. **多技术路线并行发展**—超级电容+火储调频、长时储能、液流/钒电池、固态电池
+6. **全球储能市场机遇与挑战并存**—并网等待3-5年、安全保险压力、本地化合规要求
+
+---
+
+## 关键数据
+
+- 冀北储能IRR>11%（2充2放，10年，每度电1.056元）
+- 甘肃100MW/400MWh：投资3.6亿元，年收益8177万（容量1935+现货2497+调频3745），IRR 8-10%
+- 构网型储能IRR提升5-8%，K值提升60%
+- 火储调频响应时间<216ms
+- 超级电容效率91.5%，循环寿命超10年
+- AI数据中心三大矛盾：能源需求2030年增2-3倍，GPU负载从14kW/机架到1.5MW/机架
+- LDES全球部署116.84GWh，以20% CAGR增长，2040年目标8TW
+
+---
+
+## 储能+AI数据中心专题
+
+### 算电协同的"不可能三角"
+- **安全充裕**：敏捷构网型储能补偿近100%负荷阶跃
+- **绿色低碳**：支撑绿电直连，铁铬液流500kW/4000kWh已部署
+- **经济高效**：峰谷套利+削峰填谷+辅助服务
+
+### 智算中心三层储能方案
+1. 超级电容（毫秒到秒级，吸收GPU瞬时峰值）
+2. UPS后备电池（秒到分钟级）
+3. 电网侧储能（分钟到小时级，源网荷储协同）
+
+### 标杆案例
+- 张家口腾讯风光储微电网：年发电1400万度，年减排7984吨，节省350万+
+- 河南移动1MW/2MWh：全生命周期净收益192万元
+- 华能罗源电厂：超容+锂电池混合，K值提高60%，收益5700万元
+
+---
+
+## 核心趋势判断
+- 储能从"硬件中心"向"生态中心"转变，"会交易的储能才是聪明的资产"
+- 收益从单一峰谷套利转向现货+调频+容量补偿+需求响应多元收益池
+- 中国规模驱动（69%+增速）低毛利，欧美价值驱动高毛利
+- 构网型技术核心：SiC/GaN宽禁带器件，AC/DC转换效率99%以上
+`;
+
+NOTES_DATA[2] = `# 储能技术、运营与安全综合笔记（1056-1065等）
+
+> 本笔记合并提炼自12个储能技术/运营/安全类文件
+
+---
+
+## 一、储能技术路线与投资（4篇）
+
+### 1061_储能技术路线
+- 四大分类：机械储能、电磁储能、电化学储能、化学储能
+- 电芯选择需权衡：能量密度、功率密度、响应时间、效率、寿命、成本、安全
+
+### 1062_储能投资研讨
+- 储能的本质是"能量的时空转移"
+- 盈利模式四维结构：电力交易+调频服务+调峰服务费+政策补贴
+
+### 1064_全球储能市场深度解析
+- 欧洲：德国领军，东欧新兴市场爆发
+- 澳大利亚：557个>100MW电池项目推进，60%为4h+长时储能
+- 拉美：智利5GW+，巴西2030年可达25GW
+
+### 1065_BloombergNEF市场展望
+- 2025年全球新增92GW/247GWh（同比+23%）
+- 2035年累计达2.0TW/7.3TWh
+- LFP主导（2035年前占比峰值93%），大电芯趋势明确
+
+---
+
+## 二、储能运营与收益（4篇）
+
+### 1056_储能电站运营与投资策略
+- 截至2025年底全国装机136GW/351GWh
+- 114号文首次建立独立储能容量电价机制
+- 广东（调频型）收益30.39万元/MWh·年最高
+- 核心结论："容量保底、能量套利、辅助增益"复合收益结构
+
+### 1058/1060_储能场站运营
+- 三类交易：电能量（中长期+现货）、辅助服务（调频/调峰/爬坡/备用）、容量（租赁+补偿）
+- 四大挑战：缺乏专业运营人员、缺乏市场化运营标准、缺乏运营管理平台、缺乏收益测算工具
+
+### 116_独立储能市场机制政策地图
+- 覆盖21个重点省份，每省一张市场机制表
+- 河南保底补偿0.765元/kW·日
+- 云南增容租赁（磷酸铁锂1.8倍、全钒液流3倍）
+
+---
+
+## 三、储能安全与电芯（4篇）
+
+### 157_大电芯开发方向（融捷能源）
+- 容量路径：280→314→500+Ah
+- 能效：93%→96%+，循环：8,000→12,000 cycles
+- GB44240-2024强制国标实施
+
+### 158_大电芯大时代（鹏辉能源）
+- 储能3.0时代：从初始投资成本→本质安全、超长寿命、高效收益、极简运维
+- 587Ah大电芯，万次循环
+
+### 160_大容量储能电池安全防护
+- 2024年全球储能火灾超46起，23人死亡
+- "一化三多"零热蔓延策略
+- 电芯热失控温度：314Ah 514℃→684Ah 808℃
+- 纳米板导热系数仅0.017-0.021W/m·K
+
+### 163_智能锂电BMS技术演进（天邦达）
+- 主动均衡3A电流（远超被动均衡）
+- "小储能大电芯"概念
+- 云边端协同、AI预测运维
+
+---
+
+## 综合总结
+
+### 五大趋势
+1. **电芯大型化加速**：280Ah→500+Ah→1000+Ah
+2. **技术路线高度集中**：LFP占比峰值93%
+3. **商业模式从政策驱动转向市场驱动**：136号文取消强制配储
+4. **安全成为核心竞争力**：GB44240强制国标
+5. **全球市场持续高速增长**：2025年92GW/247GWh
+
+---
+
+## 对电小团的建议（VPP业务视角）
+1. 抓住中国市场转型期机遇（136号文取消强制配储，独立储能需通过市场运营赚钱）
+2. VPP聚合储能是差异化竞争壁垒
+3. 储能运营数字化是核心能力（AI电价预测+交易策略）
+4. 大电芯趋势下的选型策略（GB44240认证+3A主动均衡BMS）
+5. 海外市场开拓（欧洲户储VPP、澳洲住宅VPP）
+6. 关注新场景协同（光储充、算电协同、绿电直连、储能+虚拟电厂）
+`;
+
+// Rendering helper for note data
+function renderNotesData(containerId, dataIdx) {
+  var container = document.getElementById(containerId);
+  if(!container) return;
+  var text = NOTES_DATA[dataIdx];
+  if(!text) { container.innerHTML = '<p style="color:#636E72">暂无笔记内容</p>'; return; }
+  container.innerHTML = mdToHtml(text);
+}
+
+function mdToHtml(text) {
+  var lines = text.split('\n'), html = '', inCode = false, codeLines = [];
+  var esc = function(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); };
+  for(var i=0;i<lines.length;i++) {
+    var line = lines[i];
+    if(line.trim()==='---'){ html+='<hr>'; continue; }
+    if(line.startsWith('#### ')){ html+='<h4>'+esc(line.slice(5))+'</h4>'; continue; }
+    if(line.startsWith('### ')){ html+='<h3>'+esc(line.slice(4))+'</h3>'; continue; }
+    if(line.startsWith('## ')){ html+='<h2>'+esc(line.slice(3))+'</h2>'; continue; }
+    if(line.startsWith('# ')){ continue; }
+    if(line.trim().startsWith('- ')||line.trim().startsWith('* ')){ html+='<li>'+esc(line.trim().slice(2))+'</li>'; continue; }
+    if(/^\d+[\.\)]/.test(line.trim())){ html+='<li>'+esc(line.trim().replace(/^\d+[\.\)]\s*/,''))+'</li>'; continue; }
+    if(line.trim().startsWith('|')){ 
+      var cells = line.split('|').filter(Boolean);
+      if(cells.length>1) {
+        var isHeader = false;
+        if(i+1<lines.length && lines[i+1].trim().match(/^[\|:\s\-]+$/)) { isHeader = true; }
+        if(isHeader) {
+          html += '<table><tr>';
+          for(var j=0;j<cells.length;j++) html += '<th>'+esc(cells[j].trim())+'</th>';
+          html += '</tr>';
+          i++;
+        } else {
+          html += '<tr>';
+          for(var j=0;j<cells.length;j++) html += '<td>'+esc(cells[j].trim())+'</td>';
+          html += '</tr>';
+        }
+        continue;
+      }
+    }
+    if(line.trim()) html += '<p>'+esc(line)+'</p>';
+  }
+  html = html.replace(/(<li>.*?<\/li>\s*)+/g, function(m){ return '<ul>'+m+'</ul>'; });
+  html = html.replace(/<tr>.*?<\/tr>\s*<\/table>/g, function(m){ return m; });
+  return html;
+}
+</script>
+</body>
+</html>
