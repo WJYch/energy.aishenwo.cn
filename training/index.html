@@ -1,271 +1,449 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>培训课程 — 电小团</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #F8F9FC;
-            color: #1F2937;
-            line-height: 1.6;
-        }
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(255,255,255,0.88);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-            padding: 0 24px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .nav-logo {
-            font-size: 20px;
-            font-weight: 700;
-            color: #14B8A6;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .nav-logo i { font-size: 22px; }
-        .nav-links {
-            display: flex;
-            gap: 4px;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #4B5563;
-            font-size: 14px;
-            font-weight: 500;
-            padding: 6px 14px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        .nav-links a:hover,
-        .nav-links a.active { background: rgba(20,184,166,0.10); color: #14B8A6; }
-        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
-        @media (max-width: 768px) {
-            .nav-toggle { display: block; }
-            .nav-links {
-                display: none;
-                position: absolute; top: 60px; left: 0; right: 0;
-                background: rgba(255,255,255,0.98);
-                backdrop-filter: blur(16px);
-                flex-direction: column;
-                padding: 12px 16px;
-                border-bottom: 1px solid rgba(0,0,0,0.06);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-            }
-            .nav-links.open { display: flex; }
-            .nav-links a { padding: 10px 14px; width: 100%; border-radius: 10px; }
-        }
-        .page-header {
-            padding: 110px 24px 40px;
-            text-align: center;
-        }
-        .page-header h1 {
-            font-size: clamp(28px, 5vw, 40px);
-            font-weight: 800;
-            color: #1F2937;
-        }
-        .page-header p {
-            color: #6B7280;
-            font-size: 16px;
-            margin-top: 8px;
-        }
-        .courses-grid {
-            max-width: 1060px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .course-card {
-            background: #FFFFFF;
-            border-radius: 20px;
-            padding: 28px 24px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.04);
-            transition: all 0.25s;
-            display: flex;
-            flex-direction: column;
-        }
-        .course-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.08); }
-        .course-card .icon { font-size: 36px; margin-bottom: 12px; }
-        .course-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-        .course-card p { font-size: 14px; color: #6B7280; line-height: 1.6; flex: 1; }
-        .course-card .meta {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-top: 16px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        .course-card .meta .files {
-            font-size: 13px;
-            color: #9CA3AF;
-        }
-        .course-card .meta .btn {
-            margin-left: auto;
-            background: #14B8A6;
-            color: #fff;
-            border: none;
-            padding: 8px 20px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .course-card .meta .btn:hover { background: #0D9488; }
-        .footer-note {
-            text-align: center;
-            padding: 0 24px 60px;
-            color: #9CA3AF;
-            font-size: 14px;
-        }
-        .footer-note i { margin-right: 4px; }
-        .footer {
-            background: #FFFFFF;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            padding: 28px 24px;
-            text-align: center;
-        }
-        .footer p { font-size: 14px; color: #9CA3AF; }
-        .footer strong { color: #14B8A6; font-weight: 600; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>培训课程 — 电小团</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root { --transition: 0.3s; }
+/* ===== Light Theme ===== */
+.theme-light {
+  --bg-body: #F8F9FC;
+  --bg-nav: rgba(255,255,255,0.9);
+  --border-nav: rgba(0,0,0,0.04);
+  --text: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --bg-card: #FFFFFF;
+  --border-card: rgba(0,0,0,0.04);
+  --card-hover: rgba(94,139,126,0.06);
+  --accent: #5E8B7E;
+  --accent2: #7C9FBA;
+  --accent3: #A78BCC;
+  --accent4: #E8A87C;
+  --line-color: rgba(94,139,126,0.2);
+  --hero-bg: transparent;
+}
+/* ===== Dark Theme ===== */
+.theme-dark {
+  --bg-body: #000;
+  --bg-nav: rgba(0,0,0,0.85);
+  --border-nav: rgba(255,255,255,0.06);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.45);
+  --text-muted: rgba(255,255,255,0.25);
+  --bg-card: rgba(255,255,255,0.03);
+  --border-card: rgba(255,255,255,0.06);
+  --card-hover: rgba(255,255,255,0.06);
+  --accent: #5E8B7E;
+  --accent2: #7C9FBA;
+  --accent3: #A78BCC;
+  --accent4: #E8A87C;
+  --line-color: rgba(255,255,255,0.12);
+  --hero-bg: transparent;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-body);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-nav);
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--transition), border var(--transition);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 28px; width: auto; }
+.theme-dark .nav-logo img { filter: brightness(1.2); }
+.nav-logo .logo-text { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+.nav-logo .logo-sub { font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 2px; list-style: none; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary);
+  font-size: 13px; font-weight: 500; padding: 6px 14px;
+  border-radius: 6px; transition: all 0.2s;
+}
+.nav-links a:hover { color: var(--text); background: var(--card-hover); }
+.nav-links a.active { color: var(--accent); }
+.theme-dark .nav-links a.active { color: #fff; }
+.nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 8px; }
+.theme-toggle {
+  background: none; border: 1px solid var(--border-card); border-radius: 20px;
+  padding: 6px 14px; cursor: pointer; font-size: 14px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 6px; transition: all 0.2s; margin-left: 8px;
+}
+.theme-toggle:hover { background: var(--card-hover); color: var(--text); }
+@media (max-width: 900px) {
+  .navbar { padding: 0 16px; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--bg-nav); backdrop-filter: blur(20px);
+    flex-direction: column; padding: 12px 16px;
+    border-bottom: 1px solid var(--border-nav);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 14px; width: 100%; }
+}
+/* ===== Page Header ===== */
+.page-header {
+  padding: 110px 32px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.theme-dark .page-header .bg-glow {
+  position: absolute; inset: 0; pointer-events: none;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,184,166,0.08) 0%, transparent 60%);
+}
+.theme-light .page-header .bg-glow { display: none; }
+.page-header h1 {
+  position: relative; z-index: 1;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+.page-header .sub {
+  position: relative; z-index: 1;
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-top: 10px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ===== Tag Filter Bar ===== */
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding: 0 32px 36px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.filter-bar .tag {
+  font-size: 12px;
+  font-weight: 500;
+  padding: 6px 16px;
+  border-radius: 20px;
+  border: 1px solid var(--border-card);
+  background: var(--bg-card);
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.filter-bar .tag:hover,
+.filter-bar .tag.active {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--card-hover);
+}
+/* ===== Course Cards Grid ===== */
+.courses-grid {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 32px 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.course-card {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+  border: 1px solid var(--border-card);
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.course-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+  background: var(--card-hover);
+}
+.course-card .card-accent {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.course-card .card-accent.green { background: #5E8B7E; }
+.course-card .card-accent.blue { background: #7C9FBA; }
+.course-card .card-accent.purple { background: #A78BCC; }
+.course-card .card-accent.orange { background: #E8A87C; }
+.course-card .card-accent.pink { background: #D489A7; }
+.course-card .card-accent.teal { background: #5BA3A3; }
+.course-card .icon { font-size: 36px; margin-bottom: 12px; }
+.course-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.course-card p {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  flex: 1;
+}
+.course-card .meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-card);
+}
+.course-card .meta .btn {
+  margin-left: auto;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 8px 20px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.course-card .meta .btn:hover { background: #0D9488; }
+/* ===== Footer Note ===== */
+.footer-note {
+  text-align: center;
+  padding: 0 32px 60px;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+.footer-note i { margin-right: 4px; }
+/* ===== Footer ===== */
+.footer {
+  border-top: 1px solid var(--border-card);
+  padding: 28px 32px;
+  text-align: center;
+}
+.footer p { font-size: 13px; color: var(--text-muted); }
+.footer strong { color: var(--accent); font-weight: 500; }
+/* ===== Responsive ===== */
+@media (max-width: 640px) {
+  .page-header { padding: 100px 16px 30px; }
+  .courses-grid { padding: 0 16px 40px; grid-template-columns: 1fr; }
+  .filter-bar { padding: 0 16px 24px; }
+  .footer-note { padding: 0 16px 40px; }
+}
+</style>
 </head>
-<body>
+<body class="theme-dark">
 
+<!-- Navbar -->
 <nav class="navbar">
-    <a href="/" class="nav-logo">
-      <img src="/assets/images/dxt-logo.webp" alt="电小团" style="height:32px;width:auto">
-    </a>
-    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-    <ul class="nav-links">
-        <li><a href="/">首页</a></li>
-        <li><a href="/training/" class="active">培训</a></li>
-        <li><a href="/tools/">工具</a></li>
-        <li><a href="/pro/">增值</a></li>
-        <li><a href="/about/">关于</a></li>
-    </ul>
+  <a href="/" class="nav-logo">
+    <img src="/assets/images/dxt-logo.webp" alt="电小团">
+    <div>
+      <div class="logo-text">电小团</div>
+      <div class="logo-sub">Little Electric Cloud</div>
+    </div>
+  </a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links">
+    <li><a href="/">首页</a></li>
+    <li><a href="/training/" class="active">免费课程</a></li>
+    <li><a href="/policy/">政策数据库</a></li>
+    <li><a href="/price/">电价数据库</a></li>
+    <li><a href="/tools/">能源运营工具</a></li>
+    <li><a href="/pro/">增值服务</a></li>
+    <li><a href="/about/">公司介绍</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
+  </ul>
 </nav>
 
+<!-- Page Header -->
 <section class="page-header">
-    <h1>电力能源知识库</h1>
-    <p>系统化的电力能源知识体系，面向能源从业者的学习导航</p>
+  <div class="bg-glow"></div>
+  <h1>电力能源知识库</h1>
+  <p class="sub">系统化的电力能源知识体系，面向能源从业者的学习导航</p>
 </section>
 
+<!-- Tag Filter -->
+<div class="filter-bar">
+  <span class="tag active" onclick="filterTag(this,'all')">全部</span>
+  <span class="tag" onclick="filterTag(this,'market')">⚡ 电力市场</span>
+  <span class="tag" onclick="filterTag(this,'storage')">🔋 储能</span>
+  <span class="tag" onclick="filterTag(this,'wind')">🌬️ 风电</span>
+  <span class="tag" onclick="filterTag(this,'vpp')">🏭 虚拟电厂</span>
+  <span class="tag" onclick="filterTag(this,'carbon')">🌿 零碳园区</span>
+  <span class="tag" onclick="filterTag(this,'solar')">☀️ 光伏</span>
+  <span class="tag" onclick="filterTag(this,'ai')">🤖 AI数字化</span>
+  <span class="tag" onclick="filterTag(this,'report')">📊 行业报告</span>
+  <span class="tag" onclick="filterTag(this,'other')">📚 其他</span>
+</div>
+
+<!-- Courses Grid -->
 <div class="courses-grid">
-    <div class="course-card">
-        <div class="icon">⚡</div>
-        <h3>电力市场与交易</h3>
-        <p>电价机制、现货市场、交易策略、政策解读</p>
-        <div class="meta">
-            <a href="/training/01-electricity-market/course.html" class="btn">进入学习</a>
-        </div>
+  <div class="course-card" data-tag="market">
+    <div class="card-accent green"></div>
+    <div class="icon">⚡</div>
+    <h3>电力市场与交易</h3>
+    <p>电价机制、现货市场、交易策略、政策解读</p>
+    <div class="meta">
+      <a href="/training/01-electricity-market/course.html" class="btn">进入学习</a>
     </div>
-    <div class="course-card">
-        <div class="icon">🔋</div>
-        <h3>储能技术</h3>
-        <p>行业报告、技术路线、运营安全</p>
-        <div class="meta">
-            <a href="/training/02-energy-storage/course.html" class="btn">进入学习</a>
-        </div>
+  </div>
+  <div class="course-card" data-tag="storage">
+    <div class="card-accent blue"></div>
+    <div class="icon">🔋</div>
+    <h3>储能技术</h3>
+    <p>行业报告、技术路线、运营安全</p>
+    <div class="meta">
+      <a href="/training/02-energy-storage/course.html" class="btn">进入学习</a>
     </div>
-    <div class="course-card">
-        <div class="icon">🌬️</div>
-        <h3>风电与新能源</h3>
-        <p>风电技术、新能源入市</p>
-        <div class="meta">
-            <a href="/training/03-wind-energy/course.html" class="btn">进入学习</a>
-        </div>
+  </div>
+  <div class="course-card" data-tag="wind">
+    <div class="card-accent purple"></div>
+    <div class="icon">🌬️</div>
+    <h3>风电与新能源</h3>
+    <p>风电技术、新能源入市</p>
+    <div class="meta">
+      <a href="/training/03-wind-energy/course.html" class="btn">进入学习</a>
     </div>
-    <div class="course-card">
-        <div class="icon">🏭</div>
-        <h3>虚拟电厂</h3>
-        <p>VPP聚合、需求响应、可调负荷</p>
-        <div class="meta">
-            <a href="/training/04-vpp/course.html" class="btn">进入学习</a>
-        </div>
+  </div>
+  <div class="course-card" data-tag="vpp">
+    <div class="card-accent orange"></div>
+    <div class="icon">🏭</div>
+    <h3>虚拟电厂</h3>
+    <p>VPP聚合、需求响应、可调负荷</p>
+    <div class="meta">
+      <a href="/training/04-vpp/course.html" class="btn">进入学习</a>
     </div>
-    <div class="course-card">
-        <div class="icon">🌿</div>
-        <h3>零碳园区与综合能源</h3>
-        <p>零碳方案、综合能源运营</p>
-        <div class="meta">
-            <a href="/training/05-zero-carbon/course.html" class="btn">进入学习</a>
-        </div>
+  </div>
+  <div class="course-card" data-tag="carbon">
+    <div class="card-accent pink"></div>
+    <div class="icon">🌿</div>
+    <h3>零碳园区与综合能源</h3>
+    <p>零碳方案、综合能源运营</p>
+    <div class="meta">
+      <a href="/training/05-zero-carbon/course.html" class="btn">进入学习</a>
     </div>
-    <div class="course-card">
-        <div class="icon">☀️</div>
-        <h3>光伏产业</h3>
-        <p>光伏技术、市场分析、政策</p>
-        <div class="meta">
-            <a href="/training/06-solar/course.html" class="btn">进入学习</a>
-        </div>
+  </div>
+  <div class="course-card" data-tag="solar">
+    <div class="card-accent teal"></div>
+    <div class="icon">☀️</div>
+    <h3>光伏产业</h3>
+    <p>光伏技术、市场分析、政策</p>
+    <div class="meta">
+      <a href="/training/06-solar/course.html" class="btn">进入学习</a>
     </div>
-    <div class="course-card">
-        <div class="icon">🤖</div>
-        <h3>AI与数字化</h3>
-        <p>AI赋能电力交易、数字化</p>
-        <div class="meta">
-            <a href="/training/07-ai-digital/course.html" class="btn">进入学习</a>
-        </div>
+  </div>
+  <div class="course-card" data-tag="ai">
+    <div class="card-accent" style="background:#5BA3A3"></div>
+    <div class="icon">🤖</div>
+    <h3>AI与数字化</h3>
+    <p>AI赋能电力交易、数字化</p>
+    <div class="meta">
+      <a href="/training/07-ai-digital/course.html" class="btn">进入学习</a>
     </div>
-    <div class="course-card">
-        <div class="icon">📊</div>
-        <h3>行业报告与数据</h3>
-        <p>行业研报、数据分析方法</p>
-        <div class="meta">
-            <a href="/training/08-industry-reports/course.html" class="btn">进入学习</a>
-        </div>
+  </div>
+  <div class="course-card" data-tag="report">
+    <div class="card-accent green"></div>
+    <div class="icon">📊</div>
+    <h3>行业报告与数据</h3>
+    <p>行业研报、数据分析方法</p>
+    <div class="meta">
+      <a href="/training/08-industry-reports/course.html" class="btn">进入学习</a>
     </div>
-    <div class="course-card">
-        <div class="icon">📚</div>
-        <h3>其他未归类</h3>
-        <p>综合知识、碳市场等</p>
-        <div class="meta">
-            <a href="/training/09-others/course.html" class="btn">进入学习</a>
-        </div>
+  </div>
+  <div class="course-card" data-tag="other">
+    <div class="card-accent blue"></div>
+    <div class="icon">📚</div>
+    <h3>其他未归类</h3>
+    <p>综合知识、碳市场等</p>
+    <div class="meta">
+      <a href="/training/09-others/course.html" class="btn">进入学习</a>
     </div>
+  </div>
 </div>
 
 <div class="footer-note">
-    <i class="fa-regular fa-hourglass-half"></i> 更多课程持续更新中...
+  <i class="fa-regular fa-hourglass-half"></i> 更多课程持续更新中...
 </div>
 
+<!-- Footer -->
 <footer class="footer">
-    <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
 
-<!-- 电小团虚拟形象 -->
+<!-- Chat Button -->
 <div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')" 
-     style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
-            background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
-            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
-            border:2px solid #14B8A6;"
+     style="position:fixed;bottom:24px;right:24px;width:52px;height:52px;border-radius:50%;
+            background:var(--bg-card);box-shadow:0 4px 24px rgba(0,0,0,0.3);cursor:pointer;z-index:999;
+            display:flex;align-items:center;justify-content:center;transition:all 0.2s;
+            border:1px solid var(--border-card);backdrop-filter:blur(8px);"
      onmouseover="this.style.transform='scale(1.1)'" 
      onmouseout="this.style.transform='scale(1)'">
-  <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">
+  <img src="/assets/images/bot.webp" alt="电小团" style="width:36px;height:36px;border-radius:50%;">
 </div>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.getElementById('theme-icon');
+  const label = document.getElementById('theme-label');
+  if (body.classList.contains('theme-dark')) {
+    body.classList.replace('theme-dark', 'theme-light');
+    icon.textContent = '🌙';
+    label.textContent = '深色';
+    localStorage.setItem('dxt-theme', 'light');
+  } else {
+    body.classList.replace('theme-light', 'theme-dark');
+    icon.textContent = '☀️';
+    label.textContent = '浅色';
+    localStorage.setItem('dxt-theme', 'dark');
+  }
+}
+// Restore theme
+(function() {
+  const saved = localStorage.getItem('dxt-theme');
+  if (saved === 'light') {
+    document.body.classList.replace('theme-dark', 'theme-light');
+    document.getElementById('theme-icon').textContent = '🌙';
+    document.getElementById('theme-label').textContent = '深色';
+  }
+})();
+
+// Tag filter
+function filterTag(el, tag) {
+  document.querySelectorAll('.filter-bar .tag').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.course-card').forEach(card => {
+    if (tag === 'all' || card.dataset.tag === tag) {
+      card.style.display = 'flex';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
 
 </body>
 </html>

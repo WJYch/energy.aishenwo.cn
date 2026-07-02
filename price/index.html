@@ -9,22 +9,108 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        /* ===== Theme Variables ===== */
+        :root {
+            --bg: #000;
+            --text: #fff;
+            --text-secondary: rgba(255,255,255,0.55);
+            --text-tertiary: rgba(255,255,255,0.35);
+            --text-muted: rgba(255,255,255,0.2);
+            --text-strong: rgba(255,255,255,0.4);
+            --card-bg: rgba(255,255,255,0.03);
+            --card-border: rgba(255,255,255,0.06);
+            --card-hover-bg: rgba(255,255,255,0.05);
+            --card-hover-border: rgba(255,255,255,0.12);
+            --nav-bg: rgba(0,0,0,0.85);
+            --nav-border: rgba(255,255,255,0.06);
+            --nav-link: rgba(255,255,255,0.6);
+            --nav-link-hover: #fff;
+            --nav-link-hover-bg: rgba(255,255,255,0.06);
+            --nav-toggle-color: #fff;
+            --footer-border: rgba(255,255,255,0.04);
+            --iframe-border: rgba(255,255,255,0.06);
+            --iframe-bg: rgba(255,255,255,0.02);
+            --icon-bg: rgba(255,255,255,0.05);
+            --logo-filter: brightness(1.2);
+            --card-title: #fff;
+            --card-text: rgba(255,255,255,0.45);
+            --stat-color: #5E8B7E;
+            --icon-1-bg: rgba(94,139,126,0.15);
+            --icon-2-bg: rgba(124,159,186,0.15);
+            --icon-3-bg: rgba(167,139,204,0.15);
+            --icon-4-bg: rgba(232,168,124,0.15);
+            --icon-5-bg: rgba(94,139,126,0.15);
+            --icon-6-bg: rgba(124,159,186,0.15);
+            --gradient-text: linear-gradient(135deg, #5E8B7E 0%, #7C9FBA 50%, #A78BCC 100%);
+            --iframe-label-color: rgba(255,255,255,0.45);
+            --nav-mobile-bg: rgba(0,0,0,0.95);
+            --tagline-text: rgba(255,255,255,0.35);
+            --tagline-highlight: #5E8B7E;
+            --dxt-btn-bg: rgba(255,255,255,0.08);
+            --dxt-btn-shadow: rgba(0,0,0,0.5);
+            --dxt-btn-border: rgba(255,255,255,0.15);
+            --dxt-btn-hover-border: rgba(255,255,255,0.3);
+        }
+
+        [data-theme="light"] {
+            --bg: #f5f5f0;
+            --text: #1a1a1a;
+            --text-secondary: rgba(0,0,0,0.55);
+            --text-tertiary: rgba(0,0,0,0.35);
+            --text-muted: rgba(0,0,0,0.2);
+            --text-strong: rgba(0,0,0,0.5);
+            --card-bg: rgba(255,255,255,0.7);
+            --card-border: rgba(0,0,0,0.08);
+            --card-hover-bg: rgba(255,255,255,0.9);
+            --card-hover-border: rgba(0,0,0,0.15);
+            --nav-bg: rgba(255,255,255,0.85);
+            --nav-border: rgba(0,0,0,0.06);
+            --nav-link: rgba(0,0,0,0.5);
+            --nav-link-hover: #000;
+            --nav-link-hover-bg: rgba(0,0,0,0.05);
+            --nav-toggle-color: #000;
+            --footer-border: rgba(0,0,0,0.06);
+            --iframe-border: rgba(0,0,0,0.08);
+            --iframe-bg: rgba(255,255,255,0.5);
+            --icon-bg: rgba(0,0,0,0.04);
+            --logo-filter: brightness(0.9);
+            --card-title: #000;
+            --card-text: rgba(0,0,0,0.5);
+            --stat-color: #4a7a6a;
+            --icon-1-bg: rgba(74,122,106,0.12);
+            --icon-2-bg: rgba(90,127,154,0.12);
+            --icon-3-bg: rgba(138,106,170,0.12);
+            --icon-4-bg: rgba(192,128,90,0.12);
+            --icon-5-bg: rgba(74,122,106,0.12);
+            --icon-6-bg: rgba(90,127,154,0.12);
+            --gradient-text: linear-gradient(135deg, #4a7a6a 0%, #5a7f9a 50%, #8a6aaa 100%);
+            --iframe-label-color: rgba(0,0,0,0.45);
+            --nav-mobile-bg: rgba(255,255,255,0.95);
+            --tagline-text: rgba(0,0,0,0.35);
+            --tagline-highlight: #4a7a6a;
+            --dxt-btn-bg: rgba(255,255,255,0.7);
+            --dxt-btn-shadow: rgba(0,0,0,0.12);
+            --dxt-btn-border: rgba(0,0,0,0.1);
+            --dxt-btn-hover-border: rgba(0,0,0,0.2);
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #000;
-            color: #FFFFFF;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
-        /* ===== Navigation (dark, match homepage) ===== */
+        /* ===== Navigation ===== */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(0,0,0,0.85);
+            background: var(--nav-bg);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255,255,255,0.06);
+            border-bottom: 1px solid var(--nav-border);
             padding: 0 32px;
             height: 64px;
             display: flex;
@@ -37,17 +123,17 @@
             gap: 10px;
             text-decoration: none;
         }
-        .nav-logo img { height: 28px; width: auto; filter: brightness(1.2); }
+        .nav-logo img { height: 28px; width: auto; filter: var(--logo-filter); transition: filter 0.3s ease; }
         .nav-logo .logo-text {
             font-size: 16px;
             font-weight: 700;
-            color: #fff;
+            color: var(--text);
             letter-spacing: 0.02em;
         }
         .nav-logo .logo-sub {
             font-size: 10px;
             font-weight: 400;
-            color: rgba(255,255,255,0.35);
+            color: var(--text-tertiary);
             letter-spacing: 0.12em;
             text-transform: uppercase;
         }
@@ -59,7 +145,7 @@
         }
         .nav-links a {
             text-decoration: none;
-            color: rgba(255,255,255,0.6);
+            color: var(--nav-link);
             font-size: 13px;
             font-weight: 500;
             padding: 6px 14px;
@@ -67,23 +153,37 @@
             transition: all 0.2s;
             letter-spacing: 0.02em;
         }
-        .nav-links a:hover { color: #fff; background: rgba(255,255,255,0.06); }
-        .nav-links a.active { color: #fff; }
-        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #fff; cursor: pointer; padding: 8px; }
+        .nav-links a:hover { color: var(--nav-link-hover); background: var(--nav-link-hover-bg); }
+        .nav-links a.active { color: var(--nav-link-hover); }
+        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--nav-toggle-color); cursor: pointer; padding: 8px; }
+
+        /* ===== Theme Toggle Button ===== */
+        .theme-toggle {
+            background: none; border: none; cursor: pointer; padding: 8px 10px;
+            font-size: 16px; color: var(--nav-link); border-radius: 6px;
+            transition: all 0.2s; display: flex; align-items: center; gap: 4px;
+            margin-left: 4px;
+        }
+        .theme-toggle:hover { color: var(--nav-link-hover); background: var(--nav-link-hover-bg); }
+        .theme-toggle .toggle-label {
+            font-size: 11px; font-weight: 600; letter-spacing: 0.04em;
+        }
         @media (max-width: 900px) {
             .navbar { padding: 0 16px; }
             .nav-toggle { display: block; }
             .nav-links {
                 display: none;
                 position: absolute; top: 64px; left: 0; right: 0;
-                background: rgba(0,0,0,0.95);
+                background: var(--nav-mobile-bg);
                 backdrop-filter: blur(20px);
                 flex-direction: column;
                 padding: 12px 16px;
-                border-bottom: 1px solid rgba(255,255,255,0.06);
+                border-bottom: 1px solid var(--nav-border);
             }
             .nav-links.open { display: flex; }
             .nav-links a { padding: 12px 14px; width: 100%; }
+            .theme-toggle { padding: 8px 6px; }
+            .theme-toggle .toggle-label { display: none; }
         }
 
         /* ===== Page Header ===== */
@@ -97,17 +197,17 @@
             display: inline-block;
             font-size: 12px;
             font-weight: 600;
-            color: rgba(255,255,255,0.35);
+            color: var(--tagline-text);
             letter-spacing: 0.08em;
             margin-bottom: 16px;
         }
-        .page-header .tagline span { color: #5E8B7E; font-weight: 700; }
+        .page-header .tagline span { color: var(--tagline-highlight); font-weight: 700; }
         .page-header h1 {
             font-size: clamp(28px, 4.5vw, 40px);
             font-weight: 800;
             line-height: 1.2;
             letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #5E8B7E 0%, #7C9FBA 50%, #A78BCC 100%);
+            background: var(--gradient-text);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
@@ -115,7 +215,7 @@
         }
         .page-header p {
             font-size: 16px;
-            color: rgba(255,255,255,0.55);
+            color: var(--text-secondary);
             max-width: 640px;
             margin: 0 auto;
             line-height: 1.8;
@@ -133,21 +233,22 @@
             gap: 16px;
         }
         .stat-card {
-            background: rgba(255,255,255,0.03);
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 24px 18px;
             text-align: center;
-            border: 1px solid rgba(255,255,255,0.06);
+            border: 1px solid var(--card-border);
+            transition: background 0.3s ease, border-color 0.3s ease;
         }
         .stat-card .number {
             font-size: 28px;
             font-weight: 800;
-            color: #5E8B7E;
+            color: var(--stat-color);
             line-height: 1.2;
         }
         .stat-card .label {
             font-size: 12px;
-            color: rgba(255,255,255,0.35);
+            color: var(--text-tertiary);
             font-weight: 500;
             margin-top: 4px;
         }
@@ -166,7 +267,7 @@
         }
         .features-section > .subtitle {
             text-align: center;
-            color: rgba(255,255,255,0.35);
+            color: var(--text-tertiary);
             font-size: 14px;
             margin-bottom: 36px;
         }
@@ -176,14 +277,14 @@
             gap: 20px;
         }
         .feature-card {
-            background: rgba(255,255,255,0.03);
+            background: var(--card-bg);
             border-radius: 18px;
             padding: 28px 24px;
-            transition: all 0.25s;
-            border: 1px solid rgba(255,255,255,0.06);
+            transition: all 0.25s, background 0.3s ease, border-color 0.3s ease;
+            border: 1px solid var(--card-border);
             text-align: center;
         }
-        .feature-card:hover { transform: translateY(-4px); background: rgba(255,255,255,0.05); border-color: rgba(255,255,255,0.12); }
+        .feature-card:hover { transform: translateY(-4px); background: var(--card-hover-bg); border-color: var(--card-hover-border); }
         .feature-card .icon {
             width: 52px;
             height: 52px;
@@ -193,16 +294,17 @@
             margin: 0 auto 14px;
             border-radius: 14px;
             font-size: 24px;
-            background: rgba(255,255,255,0.05);
+            background: var(--icon-bg);
+            transition: background 0.3s ease;
         }
-        .feature-card:nth-child(1) .icon { background: rgba(94,139,126,0.15); }
-        .feature-card:nth-child(2) .icon { background: rgba(124,159,186,0.15); }
-        .feature-card:nth-child(3) .icon { background: rgba(167,139,204,0.15); }
-        .feature-card:nth-child(4) .icon { background: rgba(232,168,124,0.15); }
-        .feature-card:nth-child(5) .icon { background: rgba(94,139,126,0.15); }
-        .feature-card:nth-child(6) .icon { background: rgba(124,159,186,0.15); }
-        .feature-card h3 { font-size: 16px; font-weight: 700; color: #fff; margin-bottom: 8px; }
-        .feature-card p { font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+        .feature-card:nth-child(1) .icon { background: var(--icon-1-bg); }
+        .feature-card:nth-child(2) .icon { background: var(--icon-2-bg); }
+        .feature-card:nth-child(3) .icon { background: var(--icon-3-bg); }
+        .feature-card:nth-child(4) .icon { background: var(--icon-4-bg); }
+        .feature-card:nth-child(5) .icon { background: var(--icon-5-bg); }
+        .feature-card:nth-child(6) .icon { background: var(--icon-6-bg); }
+        .feature-card h3 { font-size: 16px; font-weight: 700; color: var(--card-title); margin-bottom: 8px; }
+        .feature-card p { font-size: 13px; color: var(--card-text); line-height: 1.7; }
 
         /* ===== Iframe Section ===== */
         .iframe-section {
@@ -213,20 +315,21 @@
         .iframe-label {
             text-align: center;
             font-size: 14px;
-            color: rgba(255,255,255,0.45);
+            color: var(--iframe-label-color);
             margin-bottom: 16px;
             letter-spacing: 0.03em;
         }
         .iframe-label i {
             margin-right: 6px;
-            color: #5E8B7E;
+            color: var(--stat-color);
         }
         .iframe-wrapper {
             width: 100%;
             border-radius: 16px;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.06);
-            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--iframe-border);
+            background: var(--iframe-bg);
+            transition: border-color 0.3s ease, background 0.3s ease;
         }
         .iframe-wrapper iframe {
             width: 100%;
@@ -235,14 +338,30 @@
             display: block;
         }
 
-        /* ===== Footer (dark, match homepage) ===== */
+        /* ===== Footer ===== */
         .footer {
-            border-top: 1px solid rgba(255,255,255,0.04);
+            border-top: 1px solid var(--footer-border);
             padding: 32px 32px;
             text-align: center;
         }
-        .footer p { font-size: 13px; color: rgba(255,255,255,0.2); letter-spacing: 0.03em; }
-        .footer strong { color: rgba(255,255,255,0.4); font-weight: 500; }
+        .footer p { font-size: 13px; color: var(--text-muted); letter-spacing: 0.03em; }
+        .footer strong { color: var(--text-strong); font-weight: 500; }
+
+        /* ===== Chat Button ===== */
+        #dxt-chat-btn {
+            position: fixed; bottom: 24px; right: 24px;
+            width: 52px; height: 52px; border-radius: 50%;
+            background: var(--dxt-btn-bg);
+            box-shadow: 0 4px 24px var(--dxt-btn-shadow);
+            cursor: pointer; z-index: 999;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--dxt-btn-border);
+            backdrop-filter: blur(8px);
+            transition: all 0.2s, background 0.3s ease, border-color 0.3s ease;
+        }
+        #dxt-chat-btn img {
+            width: 36px; height: 36px; border-radius: 50%; filter: brightness(1.1);
+        }
 
         @media (max-width: 640px) {
             .page-header { padding-top: 90px; }
@@ -272,6 +391,10 @@
         <li><a href="/tools/">能源运营工具</a></li>
         <li><a href="/pro/">增值服务</a></li>
         <li><a href="/about/">公司介绍</a></li>
+        <li><button class="theme-toggle" onclick="toggleTheme()" title="切换主题" aria-label="切换主题">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+            <span class="toggle-label" id="theme-label">深色</span>
+        </button></li>
     </ul>
 </nav>
 
@@ -359,15 +482,40 @@
 </footer>
 
 <!-- 电小团虚拟形象 -->
-<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')" 
-     style="position:fixed;bottom:24px;right:24px;width:52px;height:52px;border-radius:50%;
-            background:rgba(255,255,255,0.08);box-shadow:0 4px 24px rgba(0,0,0,0.5);cursor:pointer;z-index:999;
-            display:flex;align-items:center;justify-content:center;transition:all 0.2s;
-            border:1px solid rgba(255,255,255,0.15);backdrop-filter:blur(8px);"
-     onmouseover="this.style.transform='scale(1.1)';this.style.borderColor='rgba(255,255,255,0.3)'" 
-     onmouseout="this.style.transform='scale(1)';this.style.borderColor='rgba(255,255,255,0.15)'">
-  <img src="/assets/images/bot.webp" alt="电小团" style="width:36px;height:36px;border-radius:50%;filter:brightness(1.1);">
+<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')"
+     onmouseover="this.style.transform='scale(1.1)';this.style.borderColor='var(--dxt-btn-hover-border)'"
+     onmouseout="this.style.transform='scale(1)';this.style.borderColor='var(--dxt-btn-border)'">
+  <img src="/assets/images/bot.webp" alt="电小团">
 </div>
+
+<script>
+(function() {
+    const theme = localStorage.getItem('theme') || 'dark';
+    document.documentElement.setAttribute('data-theme', theme);
+    updateThemeUI(theme);
+})();
+
+function toggleTheme() {
+    const current = document.documentElement.getAttribute('data-theme') || 'dark';
+    const next = current === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+    updateThemeUI(next);
+}
+
+function updateThemeUI(theme) {
+    const icon = document.getElementById('theme-icon');
+    const label = document.getElementById('theme-label');
+    if (!icon || !label) return;
+    if (theme === 'dark') {
+        icon.className = 'fa-solid fa-moon';
+        label.textContent = '深色';
+    } else {
+        icon.className = 'fa-solid fa-sun';
+        label.textContent = '浅色';
+    }
+}
+</script>
 
 </body>
 </html>
