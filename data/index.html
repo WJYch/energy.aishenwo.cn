@@ -1,347 +1,400 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>专有负荷侧数据库 - 电小团 Little Electric Cloud</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #F8F9FC;
-            color: #1F2937;
-            line-height: 1.6;
-        }
-        /* ===== Navigation (identical to homepage) ===== */
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-            padding: 0 24px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .nav-logo {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1F2937;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .nav-logo img { height: 28px; width: auto; }
-        .nav-logo .logo-text { font-size: 15px; }
-        .nav-logo .logo-sub {
-            font-size: 11px;
-            font-weight: 400;
-            color: #9CA3AF;
-            letter-spacing: 0.05em;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2px;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #4B5563;
-            font-size: 13px;
-            font-weight: 500;
-            padding: 5px 11px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        .nav-links a:hover,
-        .nav-links a.active { background: rgba(94,139,126,0.10); color: #5E8B7E; }
-        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
-        @media (max-width: 900px) {
-            .nav-toggle { display: block; }
-            .nav-links {
-                display: none;
-                position: absolute; top: 60px; left: 0; right: 0;
-                background: rgba(255,255,255,0.98);
-                backdrop-filter: blur(16px);
-                flex-direction: column;
-                padding: 12px 16px;
-                border-bottom: 1px solid rgba(0,0,0,0.06);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-            }
-            .nav-links.open { display: flex; }
-            .nav-links a { padding: 10px 14px; width: 100%; border-radius: 10px; }
-        }
-        /* ===== Page Header ===== */
-        .page-header {
-            padding: 100px 24px 0;
-            max-width: 1000px;
-            margin: 0 auto;
-            text-align: center;
-        }
-        .page-header .tag {
-            display: inline-block;
-            font-size: 12px;
-            font-weight: 600;
-            color: #9CA3AF;
-            letter-spacing: 0.08em;
-            margin-bottom: 12px;
-        }
-        .page-header .tag span { color: #5E8B7E; font-weight: 700; }
-        .page-header h1 {
-            font-size: clamp(28px, 4vw, 38px);
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #5E8B7E 0%, #7C9FBA 40%, #A78BCC 70%, #E8A87C 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 14px;
-        }
-        .page-header .subtitle {
-            color: #9CA3AF;
-            font-size: 14px;
-            margin-bottom: 36px;
-        }
-        /* ===== Description ===== */
-        .description {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px 40px;
-        }
-        .description .desc-card {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 24px 28px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.04);
-            font-size: 14px;
-            color: #6B7280;
-            line-height: 1.8;
-        }
-        .description .desc-card strong {
-            color: #5E8B7E;
-            font-weight: 600;
-        }
-        /* ===== Database Grid ===== */
-        .db-section {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-        }
-        .db-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-        .db-card {
-            background: #FFFFFF;
-            border-radius: 18px;
-            padding: 28px 24px 24px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            transition: all 0.25s;
-            border: 1px solid rgba(0,0,0,0.04);
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-        .db-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.07);
-        }
-        .db-card .icon-wrap {
-            width: 52px; height: 52px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            border-radius: 12px;
-            margin-bottom: 14px;
-        }
-        .db-card:nth-child(1) .icon-wrap { background: rgba(94,139,126,0.10); }
-        .db-card:nth-child(2) .icon-wrap { background: rgba(124,159,186,0.10); }
-        .db-card:nth-child(3) .icon-wrap { background: rgba(167,139,204,0.10); }
-        .db-card:nth-child(4) .icon-wrap { background: rgba(232,168,124,0.10); }
-        .db-card:nth-child(5) .icon-wrap { background: rgba(94,139,126,0.08); }
-        .db-card h3 {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 4px;
-            color: #1F2937;
-        }
-        .db-card .badge {
-            display: inline-block;
-            font-size: 11px;
-            font-weight: 600;
-            color: #5E8B7E;
-            background: rgba(94,139,126,0.08);
-            padding: 2px 10px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-        }
-        .db-card p {
-            font-size: 13px;
-            color: #6B7280;
-            line-height: 1.7;
-        }
-        /* ===== Privacy Notice ===== */
-        .privacy-section {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-        }
-        .privacy-card {
-            background: #FFFFFF;
-            border-radius: 16px;
-            padding: 22px 28px;
-            text-align: center;
-            font-size: 14px;
-            color: #6B7280;
-            line-height: 1.7;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.04);
-        }
-        .privacy-card a {
-            color: #5E8B7E;
-            text-decoration: none;
-            font-weight: 500;
-            border-bottom: 1px dashed rgba(94,139,126,0.3);
-            transition: border-color 0.2s;
-        }
-        .privacy-card a:hover {
-            border-bottom-color: #5E8B7E;
-        }
-        /* ===== Footer (identical to homepage) ===== */
-        .footer {
-            background: #FFFFFF;
-            border-top: 1px solid rgba(0,0,0,0.04);
-            padding: 24px 24px;
-            text-align: center;
-        }
-        .footer p { font-size: 13px; color: #9CA3AF; }
-        .footer strong { color: #5E8B7E; font-weight: 600; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>专有负荷侧数据库 - 电小团 Little Electric Cloud</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root { --transition: 0.3s; }
+/* ===== Light Theme ===== */
+.theme-light {
+  --bg-body: #F8F9FC;
+  --bg-nav: rgba(255,255,255,0.9);
+  --border-nav: rgba(0,0,0,0.04);
+  --text: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --bg-card: #FFFFFF;
+  --border-card: rgba(0,0,0,0.04);
+  --card-hover: rgba(94,139,126,0.06);
+  --accent: #5E8B7E;
+  --accent2: #7C9FBA;
+  --accent3: #A78BCC;
+  --accent4: #E8A87C;
+  --badge-bg: rgba(94,139,126,0.08);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.04);
+  --shadow-hover: 0 10px 28px rgba(0,0,0,0.07);
+  --desc-color: #6B7280;
+}
+/* ===== Dark Theme ===== */
+.theme-dark {
+  --bg-body: #000;
+  --bg-nav: rgba(0,0,0,0.85);
+  --border-nav: rgba(255,255,255,0.06);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.45);
+  --text-muted: rgba(255,255,255,0.25);
+  --bg-card: rgba(255,255,255,0.03);
+  --border-card: rgba(255,255,255,0.06);
+  --card-hover: rgba(255,255,255,0.06);
+  --accent: #5E8B7E;
+  --accent2: #7C9FBA;
+  --accent3: #A78BCC;
+  --accent4: #E8A87C;
+  --badge-bg: rgba(94,139,126,0.12);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.3);
+  --shadow-hover: 0 10px 28px rgba(0,0,0,0.4);
+  --desc-color: rgba(255,255,255,0.5);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-body);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-nav);
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--transition), border var(--transition);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 28px; width: auto; }
+.theme-dark .nav-logo img { filter: brightness(1.2); }
+.nav-logo .logo-text { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+.nav-logo .logo-sub { font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 2px; list-style: none; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary);
+  font-size: 13px; font-weight: 500; padding: 6px 14px;
+  border-radius: 6px; transition: all 0.2s;
+}
+.nav-links a:hover { color: var(--text); background: var(--card-hover); }
+.nav-links a.active { color: var(--accent); }
+.theme-dark .nav-links a.active { color: #fff; }
+.nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 8px; }
+.theme-toggle {
+  background: none; border: 1px solid var(--border-card); border-radius: 20px;
+  padding: 6px 14px; cursor: pointer; font-size: 14px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 6px; transition: all 0.2s; margin-left: 8px;
+}
+.theme-toggle:hover { background: var(--card-hover); color: var(--text); }
+@media (max-width: 900px) {
+  .navbar { padding: 0 16px; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--bg-nav); backdrop-filter: blur(20px);
+    flex-direction: column; padding: 12px 16px;
+    border-bottom: 1px solid var(--border-nav);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 14px; width: 100%; }
+}
+/* ===== Page Header ===== */
+.page-header {
+  padding: 100px 24px 0;
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+.page-header .tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  letter-spacing: 0.08em;
+  margin-bottom: 12px;
+}
+.page-header .tag span { color: var(--accent); font-weight: 700; }
+.page-header h1 {
+  font-size: clamp(28px, 4vw, 38px);
+  font-weight: 800;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  background: linear-gradient(135deg, #5E8B7E 0%, #7C9FBA 40%, #A78BCC 70%, #E8A87C 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 14px;
+}
+.page-header .subtitle {
+  color: var(--text-muted);
+  font-size: 14px;
+  margin-bottom: 36px;
+}
+/* ===== Description ===== */
+.description {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 40px;
+}
+.description .desc-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-card);
+  font-size: 14px;
+  color: var(--desc-color);
+  line-height: 1.8;
+}
+.description .desc-card strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+/* ===== Database Grid ===== */
+.db-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+.db-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.db-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 28px 24px 24px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s;
+  border: 1px solid var(--border-card);
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.db-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.db-card .icon-wrap {
+  width: 52px; height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+}
+.db-card:nth-child(1) .icon-wrap { background: rgba(94,139,126,0.10); }
+.db-card:nth-child(2) .icon-wrap { background: rgba(124,159,186,0.10); }
+.db-card:nth-child(3) .icon-wrap { background: rgba(167,139,204,0.10); }
+.db-card:nth-child(4) .icon-wrap { background: rgba(232,168,124,0.10); }
+.db-card:nth-child(5) .icon-wrap { background: rgba(94,139,126,0.08); }
+.db-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  color: var(--text);
+}
+.db-card .badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--badge-bg);
+  padding: 2px 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+.db-card p {
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+/* ===== Privacy Notice ===== */
+.privacy-section {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+.privacy-card {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 22px 28px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-card);
+}
+.privacy-card a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  border-bottom: 1px dashed rgba(94,139,126,0.3);
+  transition: border-color 0.2s;
+}
+.privacy-card a:hover {
+  border-bottom-color: var(--accent);
+}
+/* ===== Footer ===== */
+.footer {
+  border-top: 1px solid var(--border-card);
+  padding: 24px 24px;
+  text-align: center;
+}
+.footer p { font-size: 13px; color: var(--text-muted); }
+.footer strong { color: var(--accent); font-weight: 600; }
 
-        @media (max-width: 640px) {
-            .page-header { padding-top: 80px; }
-            .db-card { padding: 20px; }
-        }
-    </style>
+@media (max-width: 640px) {
+  .page-header { padding-top: 80px; }
+  .db-card { padding: 20px; }
+}
+</style>
 </head>
-<body>
+<body class="theme-dark">
 
-<!-- Navbar (identical to homepage) -->
+<!-- Navbar -->
 <nav class="navbar">
-    <a href="/" class="nav-logo">
-        <img src="/assets/images/dxt-logo.webp" alt="电小团">
-        <div>
-            <div class="logo-text">电小团</div>
-            <div class="logo-sub">Little Electric Cloud</div>
-        </div>
-    </a>
-    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-    <ul class="nav-links">
-        <li><a href="/">首页</a></li>
-        <li><a href="/training/">免费课程</a></li>
-        <li><a href="/policy/">政策数据库</a></li>
-        <li><a href="/price/">电价数据库</a></li>
-        <li><a href="/tools/">能源运营工具</a></li>
-        <li><a href="/pro/">增值服务</a></li>
-        <li><a href="/about/">公司介绍</a></li>
-    </ul>
+  <a href="/" class="nav-logo">
+    <img src="/assets/images/dxt-logo.webp" alt="电小团">
+    <div>
+      <div class="logo-text">电小团</div>
+      <div class="logo-sub">Little Electric Cloud</div>
+    </div>
+  </a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links">
+    <li><a href="/">首页</a></li>
+    <li><a href="/training/">免费课程</a></li>
+    <li><a href="/policy/">政策数据库</a></li>
+    <li><a href="/price/">电价数据库</a></li>
+    <li><a href="/tools/">能源运营工具</a></li>
+    <li><a href="/pro/">增值服务</a></li>
+    <li><a href="/about/">公司介绍</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
+  </ul>
 </nav>
 
 <!-- Page Header -->
 <div class="page-header">
-    <div class="tag"><span>电小团</span> 数据资产</div>
-    <h1>专有负荷侧数据库</h1>
-    <p class="subtitle">五大核心维度 · 15分钟级精度 · 结构化数据底座</p>
+  <div class="tag"><span>电小团</span> 数据资产</div>
+  <h1>专有负荷侧数据库</h1>
+  <p class="subtitle">五大核心维度 · 15分钟级精度 · 结构化数据底座</p>
 </div>
 
 <!-- Description -->
 <div class="description">
-    <div class="desc-card">
-        <strong>专有负荷侧数据库</strong>是电小团的核心数据资产，涵盖<strong>电力政策、电价、负荷、需量、气象</strong>五大维度。数据均经过清洗、标准化和结构化处理，支持15分钟级粒度的交叉分析，为综合能源运营提供可靠数据底座。
-    </div>
+  <div class="desc-card">
+    <strong>专有负荷侧数据库</strong>是电小团的核心数据资产，涵盖<strong>电力政策、电价、负荷、需量、气象</strong>五大维度。数据均经过清洗、标准化和结构化处理，支持15分钟级粒度的交叉分析，为综合能源运营提供可靠数据底座。
+  </div>
 </div>
 
 <!-- Database Grid -->
 <section class="db-section">
-    <div class="db-grid">
-        <!-- 1. 政策数据库 -->
-        <div class="db-card">
-            <div class="icon-wrap">📜</div>
-            <h3>政策数据库</h3>
-            <span class="badge">政策结构化</span>
-            <p>电力交易政策结构化入库，覆盖国家／省级／区域政策，支持多维检索与对比分析。</p>
-        </div>
-
-        <!-- 2. 电价数据库 -->
-        <div class="db-card">
-            <div class="icon-wrap">💰</div>
-            <h3>电价数据库</h3>
-            <span class="badge">现货电价</span>
-            <p>全国各省现货电价历史与实时数据，15分钟粒度，覆盖日前市场与实时市场。</p>
-        </div>
-
-        <!-- 3. 负荷数据库 -->
-        <div class="db-card">
-            <div class="icon-wrap">⚡</div>
-            <h3>负荷数据库</h3>
-            <span class="badge">负荷特征库</span>
-            <p>用户负荷曲线特征库，15分钟级采集，支持聚类分析与模式识别。</p>
-        </div>
-
-        <!-- 4. 需量数据库 -->
-        <div class="db-card">
-            <div class="icon-wrap">📊</div>
-            <h3>需量数据库</h3>
-            <span class="badge">需量分析</span>
-            <p>最大需量历史与趋势分析，支持需量预测与优化控制，降低基本电费。</p>
-        </div>
-
-        <!-- 5. 气象数据库 -->
-        <div class="db-card">
-            <div class="icon-wrap">🌤️</div>
-            <h3>气象数据库</h3>
-            <span class="badge">气象参数</span>
-            <p>温度／湿度／辐照度等气象参数历史数据，支撑负荷预测与光伏发电评估。</p>
-        </div>
+  <div class="db-grid">
+    <!-- 1. 政策数据库 -->
+    <div class="db-card">
+      <div class="icon-wrap">📜</div>
+      <h3>政策数据库</h3>
+      <span class="badge">政策结构化</span>
+      <p>电力交易政策结构化入库，覆盖国家／省级／区域政策，支持多维检索与对比分析。</p>
     </div>
+
+    <!-- 2. 电价数据库 -->
+    <div class="db-card">
+      <div class="icon-wrap">💰</div>
+      <h3>电价数据库</h3>
+      <span class="badge">现货电价</span>
+      <p>全国各省现货电价历史与实时数据，15分钟粒度，覆盖日前市场与实时市场。</p>
+    </div>
+
+    <!-- 3. 负荷数据库 -->
+    <div class="db-card">
+      <div class="icon-wrap">⚡</div>
+      <h3>负荷数据库</h3>
+      <span class="badge">负荷特征库</span>
+      <p>用户负荷曲线特征库，15分钟级采集，支持聚类分析与模式识别。</p>
+    </div>
+
+    <!-- 4. 需量数据库 -->
+    <div class="db-card">
+      <div class="icon-wrap">📊</div>
+      <h3>需量数据库</h3>
+      <span class="badge">需量分析</span>
+      <p>最大需量历史与趋势分析，支持需量预测与优化控制，降低基本电费。</p>
+    </div>
+
+    <!-- 5. 气象数据库 -->
+    <div class="db-card">
+      <div class="icon-wrap">🌤️</div>
+      <h3>气象数据库</h3>
+      <span class="badge">气象参数</span>
+      <p>温度／湿度／辐照度等气象参数历史数据，支撑负荷预测与光伏发电评估。</p>
+    </div>
+  </div>
 </section>
 
 <!-- Privacy Notice -->
 <div class="privacy-section">
-    <div class="privacy-card">
-        🔒 数据库含客户商业隐私数据，具体项目数据不对外公开。<br>
-        欢迎 <a href="mailto:contact@energy.aishenwo.cn">联系我们</a> 获取脱敏数据样例和合作方案。
-    </div>
+  <div class="privacy-card">
+    🔒 数据库含客户商业隐私数据，具体项目数据不对外公开。<br>
+    欢迎 <a href="mailto:contact@energy.aishenwo.cn">联系我们</a> 获取脱敏数据样例和合作方案。
+  </div>
 </div>
 
-<!-- Footer (identical to homepage) -->
+<!-- Footer -->
 <footer class="footer">
-    <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
 
-<!-- 电小团虚拟形象 / Chat Button (identical to homepage) -->
-<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')" 
+<!-- 电小团虚拟形象 -->
+<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')"
      style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;
-            background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
+            background:var(--bg-card);box-shadow:0 4px 16px rgba(0,0,0,0.3);cursor:pointer;z-index:999;
             display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
             border:2px solid #5E8B7E;"
-     onmouseover="this.style.transform='scale(1.1)'" 
+     onmouseover="this.style.transform='scale(1.1)'"
      onmouseout="this.style.transform='scale(1)'">
   <img src="/assets/images/bot.webp" alt="电小团" style="width:40px;height:40px;border-radius:50%;">
 </div>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.getElementById('theme-icon');
+  const label = document.getElementById('theme-label');
+  if (body.classList.contains('theme-dark')) {
+    body.classList.replace('theme-dark', 'theme-light');
+    icon.textContent = '🌙';
+    label.textContent = '深色';
+    localStorage.setItem('dxt-theme', 'light');
+  } else {
+    body.classList.replace('theme-light', 'theme-dark');
+    icon.textContent = '☀️';
+    label.textContent = '浅色';
+    localStorage.setItem('dxt-theme', 'dark');
+  }
+}
+// Restore theme
+(function() {
+  const saved = localStorage.getItem('dxt-theme');
+  if (saved === 'light') {
+    document.body.classList.replace('theme-dark', 'theme-light');
+    document.getElementById('theme-icon').textContent = '🌙';
+    document.getElementById('theme-label').textContent = '深色';
+  }
+})();
+</script>
 
 </body>
 </html>

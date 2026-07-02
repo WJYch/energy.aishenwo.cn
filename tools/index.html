@@ -1,294 +1,357 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>能源运营工具 — 电小团</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: #F8F9FC;
-            color: #1F2937;
-            line-height: 1.6;
-        }
-        /* ===== Navigation ===== */
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            background: rgba(255,255,255,0.92);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border-bottom: 1px solid rgba(0,0,0,0.04);
-            padding: 0 24px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .nav-logo {
-            font-size: 16px;
-            font-weight: 700;
-            color: #1F2937;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .nav-logo img { height: 28px; width: auto; }
-        .nav-logo .logo-text { font-size: 15px; }
-        .nav-logo .logo-sub {
-            font-size: 11px;
-            font-weight: 400;
-            color: #9CA3AF;
-            letter-spacing: 0.05em;
-        }
-        .nav-links {
-            display: flex;
-            gap: 2px;
-            list-style: none;
-            align-items: center;
-        }
-        .nav-links a {
-            text-decoration: none;
-            color: #4B5563;
-            font-size: 13px;
-            font-weight: 500;
-            padding: 5px 11px;
-            border-radius: 8px;
-            transition: all 0.2s;
-        }
-        .nav-links a:hover,
-        .nav-links a.active { background: rgba(94,139,126,0.10); color: #5E8B7E; }
-        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
-        @media (max-width: 900px) {
-            .nav-toggle { display: block; }
-            .nav-links {
-                display: none;
-                position: absolute; top: 60px; left: 0; right: 0;
-                background: rgba(255,255,255,0.98);
-                backdrop-filter: blur(16px);
-                flex-direction: column;
-                padding: 12px 16px;
-                border-bottom: 1px solid rgba(0,0,0,0.06);
-                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-            }
-            .nav-links.open { display: flex; }
-            .nav-links a { padding: 10px 14px; width: 100%; border-radius: 10px; }
-        }
-        /* ===== Page Header ===== */
-        .page-header {
-            padding: 120px 24px 36px;
-            text-align: center;
-        }
-        .page-header h1 {
-            font-size: clamp(28px, 5vw, 38px);
-            font-weight: 800;
-            color: #1F2937;
-        }
-        .page-header p {
-            color: #6B7280;
-            font-size: 15px;
-            margin-top: 6px;
-            max-width: 520px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        /* ===== Tools Grid ===== */
-        .tools-grid {
-            max-width: 980px;
-            margin: 0 auto;
-            padding: 0 24px 60px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .tool-card {
-            background: #FFFFFF;
-            border-radius: 18px;
-            padding: 28px 24px 22px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
-            border: 1px solid rgba(0,0,0,0.04);
-            transition: all 0.25s;
-            display: flex;
-            flex-direction: column;
-        }
-        .tool-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(94,139,126,0.10);
-            border-color: rgba(94,139,126,0.15);
-        }
-        .tool-icon {
-            width: 56px;
-            height: 56px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 28px;
-            background: rgba(94,139,126,0.08);
-            border-radius: 14px;
-            margin-bottom: 16px;
-        }
-        .tool-card h3 {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            color: #1F2937;
-        }
-        .tool-card .desc {
-            font-size: 14px;
-            color: #6B7280;
-            line-height: 1.7;
-            flex: 1;
-        }
-        .tool-card .tool-footer {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 18px;
-            padding-top: 16px;
-            border-top: 1px solid rgba(0,0,0,0.05);
-        }
-        .tag {
-            font-size: 11px;
-            font-weight: 600;
-            padding: 3px 12px;
-            border-radius: 10px;
-            letter-spacing: 0.02em;
-        }
-        .tag-free { background: rgba(94,139,126,0.10); color: #5E8B7E; }
-        .tag-demo { background: rgba(59,130,246,0.10); color: #3B82F6; }
-        .tool-card .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: #5E8B7E;
-            color: #fff;
-            border: none;
-            padding: 7px 18px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-        .tool-card .btn:hover { background: #4D7569; }
-        .tool-card .btn-disabled {
-            background: rgba(94,139,126,0.12);
-            color: #9CA3AF;
-            padding: 7px 18px;
-            border-radius: 10px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: default;
-            text-decoration: none;
-            pointer-events: none;
-        }
-        /* ===== Footer ===== */
-        .footer {
-            background: #FFFFFF;
-            border-top: 1px solid rgba(0,0,0,0.05);
-            padding: 28px 24px;
-            text-align: center;
-        }
-        .footer p { font-size: 14px; color: #9CA3AF; }
-        .footer strong { color: #5E8B7E; font-weight: 600; }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>能源运营工具 — 电小团</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root { --transition: 0.3s; }
+/* ===== Light Theme ===== */
+.theme-light {
+  --bg-body: #F8F9FC;
+  --bg-nav: rgba(255,255,255,0.9);
+  --border-nav: rgba(0,0,0,0.04);
+  --text: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --bg-card: #FFFFFF;
+  --border-card: rgba(0,0,0,0.04);
+  --card-hover: rgba(94,139,126,0.06);
+  --accent: #5E8B7E;
+  --accent2: #7C9FBA;
+  --accent3: #A78BCC;
+  --accent4: #E8A87C;
+  --tag-free-bg: rgba(94,139,126,0.10);
+  --tag-demo-bg: rgba(59,130,246,0.10);
+  --tag-demo-text: #3B82F6;
+  --btn-primary: #5E8B7E;
+  --btn-primary-hover: #4D7569;
+  --btn-disabled-bg: rgba(94,139,126,0.12);
+  --btn-disabled-text: #9CA3AF;
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.04);
+  --shadow-hover: 0 10px 30px rgba(94,139,126,0.10);
+}
+/* ===== Dark Theme ===== */
+.theme-dark {
+  --bg-body: #000;
+  --bg-nav: rgba(0,0,0,0.85);
+  --border-nav: rgba(255,255,255,0.06);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.45);
+  --text-muted: rgba(255,255,255,0.25);
+  --bg-card: rgba(255,255,255,0.03);
+  --border-card: rgba(255,255,255,0.06);
+  --card-hover: rgba(255,255,255,0.06);
+  --accent: #5E8B7E;
+  --accent2: #7C9FBA;
+  --accent3: #A78BCC;
+  --accent4: #E8A87C;
+  --tag-free-bg: rgba(94,139,126,0.15);
+  --tag-demo-bg: rgba(59,130,246,0.15);
+  --tag-demo-text: #60A5FA;
+  --btn-primary: #5E8B7E;
+  --btn-primary-hover: #4D7569;
+  --btn-disabled-bg: rgba(255,255,255,0.08);
+  --btn-disabled-text: rgba(255,255,255,0.25);
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.2);
+  --shadow-hover: 0 10px 30px rgba(94,139,126,0.15);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-body);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-nav);
+  padding: 0 32px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: background var(--transition), border var(--transition);
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 28px; width: auto; }
+.theme-dark .nav-logo img { filter: brightness(1.2); }
+.nav-logo .logo-text { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+.nav-logo .logo-sub { font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 2px; list-style: none; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary);
+  font-size: 13px; font-weight: 500; padding: 6px 14px;
+  border-radius: 6px; transition: all 0.2s;
+}
+.nav-links a:hover { color: var(--text); background: var(--card-hover); }
+.nav-links a.active { color: var(--accent); }
+.theme-dark .nav-links a.active { color: #fff; }
+.nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 8px; }
+.theme-toggle {
+  background: none; border: 1px solid var(--border-card); border-radius: 20px;
+  padding: 6px 14px; cursor: pointer; font-size: 14px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 6px; transition: all 0.2s; margin-left: 8px;
+}
+.theme-toggle:hover { background: var(--card-hover); color: var(--text); }
+@media (max-width: 900px) {
+  .navbar { padding: 0 16px; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--bg-nav); backdrop-filter: blur(20px);
+    flex-direction: column; padding: 12px 16px;
+    border-bottom: 1px solid var(--border-nav);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 14px; width: 100%; }
+}
+/* ===== Page Header ===== */
+.page-header {
+  padding: 120px 24px 36px;
+  text-align: center;
+}
+.page-header h1 {
+  font-size: clamp(28px, 5vw, 38px);
+  font-weight: 800;
+  color: var(--text);
+}
+.page-header p {
+  color: var(--text-secondary);
+  font-size: 15px;
+  margin-top: 6px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+}
+/* ===== Tools Grid ===== */
+.tools-grid {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+.tool-card {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 28px 24px 22px;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-card);
+  transition: all 0.25s;
+  display: flex;
+  flex-direction: column;
+}
+.tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(94,139,126,0.15);
+}
+.tool-icon {
+  width: 56px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  background: rgba(94,139,126,0.08);
+  border-radius: 14px;
+  margin-bottom: 16px;
+}
+.tool-card h3 {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--text);
+}
+.tool-card .desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.7;
+  flex: 1;
+}
+.tool-card .tool-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-card);
+}
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 12px;
+  border-radius: 10px;
+  letter-spacing: 0.02em;
+}
+.tag-free { background: var(--tag-free-bg); color: var(--accent); }
+.tag-demo { background: var(--tag-demo-bg); color: var(--tag-demo-text); }
+.tool-card .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: var(--btn-primary);
+  color: #fff;
+  border: none;
+  padding: 7px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.tool-card .btn:hover { background: var(--btn-primary-hover); }
+.tool-card .btn-disabled {
+  background: var(--btn-disabled-bg);
+  color: var(--btn-disabled-text);
+  padding: 7px 18px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: default;
+  text-decoration: none;
+  pointer-events: none;
+}
+/* ===== Footer ===== */
+.footer {
+  border-top: 1px solid var(--border-card);
+  padding: 28px 24px;
+  text-align: center;
+}
+.footer p { font-size: 14px; color: var(--text-muted); }
+.footer strong { color: var(--accent); font-weight: 600; }
+</style>
 </head>
-<body>
+<body class="theme-dark">
 
 <!-- Navbar -->
 <nav class="navbar">
-    <a href="/" class="nav-logo">
-        <img src="/assets/images/dxt-logo.webp" alt="电小团">
-        <div>
-            <div class="logo-text">电小团</div>
-            <div class="logo-sub">Little Electric Cloud</div>
-        </div>
-    </a>
-    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
-        <i class="fa-solid fa-bars"></i>
-    </button>
-    <ul class="nav-links">
-        <li><a href="/">首页</a></li>
-        <li><a href="/training/">免费课程</a></li>
-        <li><a href="/policy/">政策数据库</a></li>
-        <li><a href="/price/">电价数据库</a></li>
-        <li><a href="/tools/" class="active">能源运营工具</a></li>
-        <li><a href="/pro/">增值服务</a></li>
-        <li><a href="/about/">公司介绍</a></li>
-    </ul>
+  <a href="/" class="nav-logo">
+    <img src="/assets/images/dxt-logo.webp" alt="电小团">
+    <div>
+      <div class="logo-text">电小团</div>
+      <div class="logo-sub">Little Electric Cloud</div>
+    </div>
+  </a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links">
+    <li><a href="/">首页</a></li>
+    <li><a href="/training/">免费课程</a></li>
+    <li><a href="/policy/">政策数据库</a></li>
+    <li><a href="/price/">电价数据库</a></li>
+    <li><a href="/tools/" class="active">能源运营工具</a></li>
+    <li><a href="/pro/">增值服务</a></li>
+    <li><a href="/about/">公司介绍</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
+  </ul>
 </nav>
 
 <!-- Page Header -->
 <section class="page-header">
-    <h1>🛠️ 能源运营工具</h1>
-    <p>电费解析 · 运营规划 · 用能诊断 — 一站式综合能源运营工具集</p>
+  <h1>🛠️ 能源运营工具</h1>
+  <p>电费解析 · 运营规划 · 用能诊断 — 一站式综合能源运营工具集</p>
 </section>
 
 <!-- Tools Grid -->
 <div class="tools-grid">
 
-    <!-- Tool 1: 电费联单分析 -->
-    <div class="tool-card">
-        <div class="tool-icon">📄</div>
-        <h3>电费联单分析</h3>
-        <p class="desc">上传国网电费PDF，自动解析电费结构，清晰展示度电成本、峰谷分析、需量分析等关键指标。</p>
-        <div class="tool-footer">
-            <span class="tag tag-free">免费</span>
-            <a href="https://wjych.github.io/elec-bill-analyzer/" target="_blank" class="btn">
-                <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px"></i> 打开工具
-            </a>
-        </div>
+  <!-- Tool 1: 电费联单分析 -->
+  <div class="tool-card">
+    <div class="tool-icon">📄</div>
+    <h3>电费联单分析</h3>
+    <p class="desc">上传国网电费PDF，自动解析电费结构，清晰展示度电成本、峰谷分析、需量分析等关键指标。</p>
+    <div class="tool-footer">
+      <span class="tag tag-free">免费</span>
+      <a href="https://wjych.github.io/elec-bill-analyzer/" target="_blank" class="btn">
+        <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px"></i> 打开工具
+      </a>
     </div>
+  </div>
 
-    <!-- Tool 2: 能源运营规划 -->
-    <div class="tool-card">
-        <div class="tool-icon">📋</div>
-        <h3>能源运营规划</h3>
-        <p class="desc">基于项目基础数据（电费联单、设备参数、运营时间等），自动生成综合能源运营方案框架，涵盖储能、光伏、空调、VPP等多维度评估。</p>
-        <div class="tool-footer">
-            <span class="tag tag-demo">演示</span>
-            <a href="#" class="btn btn-disabled">
-                <i class="fa-regular fa-clock" style="font-size:11px"></i> 即将上线
-            </a>
-        </div>
+  <!-- Tool 2: 能源运营规划 -->
+  <div class="tool-card">
+    <div class="tool-icon">📋</div>
+    <h3>能源运营规划</h3>
+    <p class="desc">基于项目基础数据（电费联单、设备参数、运营时间等），自动生成综合能源运营方案框架，涵盖储能、光伏、空调、VPP等多维度评估。</p>
+    <div class="tool-footer">
+      <span class="tag tag-demo">演示</span>
+      <a href="#" class="btn btn-disabled">
+        <i class="fa-regular fa-clock" style="font-size:11px"></i> 即将上线
+      </a>
     </div>
+  </div>
 
-    <!-- Tool 3: 能源运营诊断 -->
-    <div class="tool-card">
-        <div class="tool-icon">🔍</div>
-        <h3>能源运营诊断</h3>
-        <p class="desc">接入负荷数据后，系统自动诊断用能效率、异常识别、节能潜力评估，生成专业诊断报告，助力运营优化提效。</p>
-        <div class="tool-footer">
-            <span class="tag tag-demo">演示</span>
-            <a href="#" class="btn btn-disabled">
-                <i class="fa-regular fa-clock" style="font-size:11px"></i> 即将上线
-            </a>
-        </div>
+  <!-- Tool 3: 能源运营诊断 -->
+  <div class="tool-card">
+    <div class="tool-icon">🔍</div>
+    <h3>能源运营诊断</h3>
+    <p class="desc">接入负荷数据后，系统自动诊断用能效率、异常识别、节能潜力评估，生成专业诊断报告，助力运营优化提效。</p>
+    <div class="tool-footer">
+      <span class="tag tag-demo">演示</span>
+      <a href="#" class="btn btn-disabled">
+        <i class="fa-regular fa-clock" style="font-size:11px"></i> 即将上线
+      </a>
     </div>
+  </div>
 
 </div>
 
 <!-- Footer -->
 <footer class="footer">
-    <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
 
 <!-- 电小团虚拟形象 -->
 <div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')"
      style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;
-            background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
+            background:var(--bg-card);box-shadow:0 4px 16px rgba(0,0,0,0.3);cursor:pointer;z-index:999;
             display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
             border:2px solid #5E8B7E;"
      onmouseover="this.style.transform='scale(1.1)'"
      onmouseout="this.style.transform='scale(1)'">
   <img src="/assets/images/bot.webp" alt="电小团" style="width:40px;height:40px;border-radius:50%;">
 </div>
+
+<script>
+// Theme toggle
+function toggleTheme() {
+  const body = document.body;
+  const icon = document.getElementById('theme-icon');
+  const label = document.getElementById('theme-label');
+  if (body.classList.contains('theme-dark')) {
+    body.classList.replace('theme-dark', 'theme-light');
+    icon.textContent = '🌙';
+    label.textContent = '深色';
+    localStorage.setItem('dxt-theme', 'light');
+  } else {
+    body.classList.replace('theme-light', 'theme-dark');
+    icon.textContent = '☀️';
+    label.textContent = '浅色';
+    localStorage.setItem('dxt-theme', 'dark');
+  }
+}
+// Restore theme
+(function() {
+  const saved = localStorage.getItem('dxt-theme');
+  if (saved === 'light') {
+    document.body.classList.replace('theme-dark', 'theme-light');
+    document.getElementById('theme-icon').textContent = '🌙';
+    document.getElementById('theme-label').textContent = '深色';
+  }
+})();
+</script>
 
 </body>
 </html>
