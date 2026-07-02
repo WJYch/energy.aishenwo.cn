@@ -300,13 +300,49 @@ body {
   display: none; position: fixed; inset: 0; z-index: 199;
 }
 .popover-overlay.show { display: block; }
-/* ===== Modules (radial) ===== */
-.radial-modules { padding-top: 0; }
-.radial-modules .radial-layer { margin-bottom: 8px; }
-@media (max-width: 640px) {
-  .radial-modules .radial-nodes { gap: 8px; }
-  .radial-modules .radial-node { padding: 6px 14px; font-size: 12px; }
+/* ===== Service Cards (区别于辐射式) ===== */
+.service-section { padding-top: 0; }
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
+.service-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 16px;
+  padding: 36px 28px 28px;
+  transition: all 0.3s;
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+.service-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.service-card:nth-child(1)::before { background: linear-gradient(90deg, #5E8B7E, #7C9FBA); }
+.service-card:nth-child(2)::before { background: linear-gradient(90deg, #7C9FBA, #A78BCC); }
+.service-card:nth-child(3)::before { background: linear-gradient(90deg, #A78BCC, #E8A87C); }
+.service-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
+.theme-light .service-card:hover { box-shadow: 0 12px 32px rgba(94,139,126,0.10); }
+.service-card .svc-icon { font-size: 32px; margin-bottom: 16px; }
+.service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; flex: 1; }
+.service-card .svc-tag {
+  display: inline-block; margin-top: 18px;
+  font-size: 12px; font-weight: 600;
+  color: var(--accent); padding: 5px 16px;
+  border: 1px solid var(--accent); border-radius: 20px;
+  align-self: flex-start; transition: all 0.2s;
+}
+.service-card:hover .svc-tag { background: var(--accent); color: #fff; }
+@media (max-width: 768px) { .service-cards { grid-template-columns: 1fr; } }
 /* ===== Footer ===== */
 .footer {
   border-top: 1px solid var(--border-card); padding: 28px 32px; text-align: center;
@@ -433,41 +469,31 @@ body {
   </div>
 </section>
 
-<!-- Modules (radial) -->
-<section class="section radial-modules">
+<!-- Service Cards (三大服务模块) -->
+<section class="section service-section">
   <div class="section-inner">
     <div class="section-label">服务体系</div>
     <h2>三大服务模块</h2>
     <p class="subtitle">系统化学习 · 在线工具 · 深度服务</p>
-    <div class="radial-container">
-      <div class="radial-layer">
-        <a class="radial-center" href="/training/"><span class="dot"></span> 综合能源学习课程 <span class="dot"></span></a>
-        <div class="radial-nodes">
-          <a class="radial-node clickable" href="/training/01-electricity-market/"><span class="node-dot green"></span>电力市场</a>
-          <a class="radial-node clickable" href="/training/02-energy-storage/"><span class="node-dot blue"></span>储能技术</a>
-          <a class="radial-node clickable" href="/training/03-wind-energy/"><span class="node-dot purple"></span>风电</a>
-          <a class="radial-node clickable" href="/training/04-vpp/"><span class="node-dot orange"></span>虚拟电厂</a>
-          <a class="radial-node clickable" href="/training/05-zero-carbon/"><span class="node-dot pink"></span>零碳园区</a>
-          <a class="radial-node clickable" href="/training/06-solar/"><span class="node-dot teal"></span>光伏</a>
-          <a class="radial-node clickable" href="/training/07-ai-digital/"><span class="node-dot" style="background:#5BA3A3"></span>AI数字化</a>
-        </div>
-      </div>
-      <div class="radial-layer">
-        <a class="radial-center" href="/tools/"><span class="dot"></span> 综合能源运营服务工具 <span class="dot"></span></a>
-        <div class="radial-nodes">
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot green"></span>电费联单分析</a>
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot blue"></span>能源运营规划</a>
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot purple"></span>能源运营诊断</a>
-        </div>
-      </div>
-      <div class="radial-layer">
-        <a class="radial-center" href="/pro/"><span class="dot"></span> 增值服务 <span class="dot"></span></a>
-        <div class="radial-nodes">
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot green"></span>水冷空调节能</a>
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot blue"></span>虚拟电厂聚合</a>
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot purple"></span>虚拟电厂运营</a>
-        </div>
-      </div>
+    <div class="service-cards">
+      <a href="/training/" class="service-card">
+        <div class="svc-icon">📚</div>
+        <h3>综合能源学习课程</h3>
+        <p>9大主题，覆盖电力市场、储能、风电、虚拟电厂、零碳园区等核心领域，系统化的综合能源知识库，免费学习。</p>
+        <span class="svc-tag">免费学习 →</span>
+      </a>
+      <a href="/tools/" class="service-card">
+        <div class="svc-icon">🛠️</div>
+        <h3>综合能源运营服务工具</h3>
+        <p>电费联单分析、能源运营规划、能源运营诊断等实用工具，免费试用，助力日常作业提效。</p>
+        <span class="svc-tag">免费试用 →</span>
+      </a>
+      <a href="/pro/" class="service-card">
+        <div class="svc-icon">🔐</div>
+        <h3>增值服务</h3>
+        <p>水冷空调节能优化、虚拟电厂聚合管理、虚拟电厂运营服务，深度能源服务释放数据价值。</p>
+        <span class="svc-tag">了解更多 →</span>
+      </a>
     </div>
   </div>
 </section>
