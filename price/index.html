@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>电价数据库 — 电小团 Little Electric Cloud</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Noto+Sans+SC:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #F8F9FC;
+            color: #1F2937;
+            line-height: 1.6;
+        }
+        /* ===== Navigation (same as homepage) ===== */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(0,0,0,0.04);
+            padding: 0 24px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1F2937;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .nav-logo img { height: 28px; width: auto; }
+        .nav-logo .logo-text { font-size: 15px; }
+        .nav-logo .logo-sub {
+            font-size: 11px;
+            font-weight: 400;
+            color: #9CA3AF;
+            letter-spacing: 0.05em;
+        }
+        .nav-links {
+            display: flex;
+            gap: 2px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #4B5563;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 5px 11px;
+            border-radius: 8px;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover,
+        .nav-links a.active { background: rgba(94,139,126,0.10); color: #5E8B7E; }
+        .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: #1F2937; cursor: pointer; padding: 8px; }
+        @media (max-width: 900px) {
+            .nav-toggle { display: block; }
+            .nav-links {
+                display: none;
+                position: absolute; top: 60px; left: 0; right: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(16px);
+                flex-direction: column;
+                padding: 12px 16px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            }
+            .nav-links.open { display: flex; }
+            .nav-links a { padding: 10px 14px; width: 100%; border-radius: 10px; }
+        }
+
+        /* ===== Page Header ===== */
+        .page-header {
+            padding: 130px 24px 50px;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .page-header .tagline {
+            display: inline-block;
+            font-size: 12px;
+            font-weight: 600;
+            color: #9CA3AF;
+            letter-spacing: 0.08em;
+            margin-bottom: 16px;
+        }
+        .page-header .tagline span { color: #5E8B7E; font-weight: 700; }
+        .page-header h1 {
+            font-size: clamp(28px, 4.5vw, 40px);
+            font-weight: 800;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #5E8B7E 0%, #7C9FBA 50%, #A78BCC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+        }
+        .page-header p {
+            font-size: 16px;
+            color: #6B7280;
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ===== Hero CTA Section ===== */
+        .cta-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px 24px 60px;
+            text-align: center;
+        }
+        .cta-card {
+            background: linear-gradient(135deg, #5E8B7E 0%, #6B9E8F 100%);
+            border-radius: 24px;
+            padding: 60px 40px 50px;
+            box-shadow: 0 12px 40px rgba(94,139,126,0.25);
+            position: relative;
+            overflow: hidden;
+        }
+        .cta-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: rgba(255,255,255,0.04);
+            border-radius: 50%;
+        }
+        .cta-card::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 50%;
+        }
+        .cta-card .icon-wrap {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.15);
+            font-size: 36px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-card h2 {
+            font-size: clamp(22px, 3.5vw, 30px);
+            font-weight: 700;
+            color: #FFFFFF;
+            margin-bottom: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-card .desc {
+            font-size: 15px;
+            color: rgba(255,255,255,0.80);
+            max-width: 520px;
+            margin: 0 auto 32px;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+        .cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #FFFFFF;
+            color: #5E8B7E;
+            font-size: 17px;
+            font-weight: 700;
+            padding: 16px 40px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: all 0.25s;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.10);
+            position: relative;
+            z-index: 1;
+        }
+        .cta-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(0,0,0,0.18);
+        }
+        .cta-btn i { font-size: 14px; }
+
+        /* ===== Features Grid ===== */
+        .features-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 24px 70px;
+        }
+        .features-section h2 {
+            text-align: center;
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #1F2937;
+        }
+        .features-section > .subtitle {
+            text-align: center;
+            color: #9CA3AF;
+            font-size: 14px;
+            margin-bottom: 36px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .feature-card {
+            background: #FFFFFF;
+            border-radius: 18px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.04);
+            transition: all 0.25s;
+            border: 1px solid rgba(0,0,0,0.04);
+            text-align: center;
+        }
+        .feature-card:hover { transform: translateY(-4px); box-shadow: 0 10px 28px rgba(0,0,0,0.07); }
+        .feature-card .icon {
+            width: 52px;
+            height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 14px;
+            border-radius: 14px;
+            font-size: 24px;
+            background: rgba(94,139,126,0.08);
+        }
+        .feature-card:nth-child(1) .icon { background: rgba(94,139,126,0.10); }
+        .feature-card:nth-child(2) .icon { background: rgba(124,159,186,0.10); }
+        .feature-card:nth-child(3) .icon { background: rgba(167,139,204,0.10); }
+        .feature-card:nth-child(4) .icon { background: rgba(232,168,124,0.10); }
+        .feature-card:nth-child(5) .icon { background: rgba(94,139,126,0.10); }
+        .feature-card:nth-child(6) .icon { background: rgba(124,159,186,0.10); }
+        .feature-card h3 { font-size: 16px; font-weight: 700; color: #1F2937; margin-bottom: 8px; }
+        .feature-card p { font-size: 13px; color: #6B7280; line-height: 1.7; }
+
+        /* ===== Stats Row ===== */
+        .stats-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 10px 24px 60px;
+        }
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px;
+        }
+        .stat-card {
+            background: #FFFFFF;
+            border-radius: 16px;
+            padding: 24px 18px;
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.04);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        }
+        .stat-card .number {
+            font-size: 28px;
+            font-weight: 800;
+            color: #5E8B7E;
+            line-height: 1.2;
+        }
+        .stat-card .label {
+            font-size: 12px;
+            color: #9CA3AF;
+            font-weight: 500;
+            margin-top: 4px;
+        }
+
+        /* ===== Footer ===== */
+        .footer {
+            background: #FFFFFF;
+            border-top: 1px solid rgba(0,0,0,0.04);
+            padding: 24px 24px;
+            text-align: center;
+        }
+        .footer p { font-size: 13px; color: #9CA3AF; }
+        .footer strong { color: #5E8B7E; font-weight: 600; }
+
+        /* ===== Bot Button ===== */
+        #dxt-chat-btn {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+            cursor: pointer;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s;
+            border: 2px solid #5E8B7E;
+        }
+        #dxt-chat-btn:hover { transform: scale(1.1); }
+        #dxt-chat-btn img { width: 40px; height: 40px; border-radius: 50%; }
+
+        @media (max-width: 640px) {
+            .page-header { padding-top: 100px; }
+            .cta-card { padding: 40px 24px 36px; }
+            .cta-btn { padding: 14px 28px; font-size: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar (same as homepage) -->
+<nav class="navbar">
+    <a href="/" class="nav-logo">
+        <img src="/assets/images/dxt-logo.webp" alt="电小团">
+        <div>
+            <div class="logo-text">电小团</div>
+            <div class="logo-sub">Little Electric Cloud</div>
+        </div>
+    </a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/training/">免费课程</a></li>
+        <li><a href="/policy/">政策数据库</a></li>
+        <li><a href="/price/" class="active">电价数据库</a></li>
+        <li><a href="/tools/">能源运营工具</a></li>
+        <li><a href="/pro/">增值服务</a></li>
+        <li><a href="/about/">公司介绍</a></li>
+    </ul>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+    <div class="tagline"><span>电小团</span> · 电价数据库</div>
+    <h1>全国各省现货电价<br>实时监控 · 历史趋势 · 价差分析</h1>
+    <p>覆盖全国各省电力现货市场实时电价数据，支持历史价格回溯、峰谷价差分析、省份间横向对比，为售电交易策略与用电成本优化提供数据支撑。</p>
+</section>
+
+<!-- Stats Row -->
+<section class="stats-section">
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="number">30+</div>
+            <div class="label">覆盖省份</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">15min</div>
+            <div class="label">更新频率</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">实时</div>
+            <div class="label">现货价格</div>
+        </div>
+        <div class="stat-card">
+            <div class="number">历史</div>
+            <div class="label">趋势回溯</div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Grid -->
+<section class="features-section">
+    <h2>核心监控能力</h2>
+    <p class="subtitle">全方位电力市场价格数据支撑</p>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="icon">⚡</div>
+            <h3>现货实时电价</h3>
+            <p>全国各省电力现货市场实时出清价格，15分钟级刷新，第一时间掌握市场行情。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📈</div>
+            <h3>历史趋势分析</h3>
+            <p>支持日、周、月、年多时间维度回溯，电价走势一目了然，辅助长期交易决策。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📊</div>
+            <h3>峰谷价差分析</h3>
+            <p>自动计算峰谷价差比、峰平谷时段分布，识别套利空间与最优用电时段。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🗺️</div>
+            <h3>省份横向对比</h3>
+            <p>多省电价同屏对比，区域价差可视化，发现跨省交易与套利机会。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🔮</div>
+            <h3>价格预测</h3>
+            <p>基于历史数据与气象特征的AI预测模型，预判未来价格走势，提前布局交易策略。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📋</div>
+            <h3>数据导出</h3>
+            <p>支持CSV、Excel等格式导出，无缝对接内部分析系统与报表工具。</p>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="cta-card">
+        <div class="icon-wrap">💰</div>
+        <h2>进入电价监控系统</h2>
+        <p class="desc">打开实时电价监控面板，查看各省现货电价、历史趋势与价差分析。数据安全、权威、高效。</p>
+        <a href="https://wjych.github.io/price-monitor/" class="cta-btn" target="_blank" rel="noopener noreferrer">
+            进入监控平台 <i class="fa-solid fa-arrow-right"></i>
+        </a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+</footer>
+
+<!-- 电小团虚拟形象 -->
+<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')">
+    <img src="/assets/images/bot.webp" alt="电小团">
+</div>
+
+</body>
+</html>
