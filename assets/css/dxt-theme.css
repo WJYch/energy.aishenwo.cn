@@ -495,17 +495,7 @@ a { text-decoration: none; color: inherit; }
 }
 .footer-note i { margin-right: 4px; }
 
-/* --- 电小团聊天按钮 (全站统一) --- */
-#dxt-chat-btn {
-  position: fixed; bottom: 24px; right: 24px;
-  width: 64px; height: 64px; border-radius: 50%;
-  background: white; box-shadow: 0 4px 16px rgba(0,0,0,0.12); cursor: pointer; z-index: 999;
-  display: flex; align-items: center; justify-content: center;
-  transition: transform var(--transition-fast);
-  border: 2px solid var(--teal);
-}
-#dxt-chat-btn:hover { transform: scale(1.1); }
-#dxt-chat-btn img { width: 48px; height: 48px; border-radius: 50%; }
+/* --- 电小团聊天按钮 (全站统一) - 已迁移到 dxt-chat-pet.css --- */
 
 /* --- 色条辅助类 --- */
 .cl { font-size: 11px; color: var(--text-secondary); margin-bottom: 3px; letter-spacing: 0.4px; }

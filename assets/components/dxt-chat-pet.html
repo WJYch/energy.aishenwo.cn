@@ -1,0 +1,208 @@
+<!-- ============================================================
+     电小团宠物对话组件 (Chat Pet) v1.0
+     插入方式: 在 body 末尾 </body> 前加入此区块
+     需要配套: dxt-chat-pet.css 已加载
+     ============================================================ -->
+
+<!-- 宠物按钮 -->
+<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
+  <div class="dxt-pet-body">
+    <svg class="dxt-pet-svg" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <!-- 身体 -->
+      <circle cx="24" cy="24" r="20" fill="#F0EDE8" stroke="#5E8B7E" stroke-width="1.5"/>
+      <!-- 眼睛 -->
+      <ellipse cx="18" cy="22" rx="3.5" ry="4" fill="#5E8B7E"/>
+      <ellipse cx="30" cy="22" rx="3.5" ry="4" fill="#5E8B7E"/>
+      <!-- 眼睛高光 -->
+      <ellipse cx="17" cy="20.5" rx="1.5" ry="1.8" fill="white" opacity="0.8"/>
+      <ellipse cx="29" cy="20.5" rx="1.5" ry="1.8" fill="white" opacity="0.8"/>
+      <!-- 嘴巴微笑 -->
+      <path d="M16 29 C18 33, 22 35, 24 35 C26 35, 30 33, 32 29" stroke="#5E8B7E" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+      <!-- 腮红 -->
+      <ellipse cx="12" cy="27" rx="4" ry="2.5" fill="#E8A98C" opacity="0.35"/>
+      <ellipse cx="36" cy="27" rx="4" ry="2.5" fill="#E8A98C" opacity="0.35"/>
+    </svg>
+    <div class="dxt-pet-dot">💬</div>
+  </div>
+</div>
+
+<!-- 对话浮层 -->
+<div id="dxt-pet-overlay">
+  <!-- 头部 -->
+  <div class="dxt-overlay-head">
+    <svg class="pet-icon" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="15" fill="rgba(255,255,255,0.2)"/>
+      <ellipse cx="14" cy="17" rx="2.5" ry="3" fill="white"/>
+      <ellipse cx="22" cy="17" rx="2.5" ry="3" fill="white"/>
+      <path d="M12 23 C14 26, 18 27, 18 27 C18 27, 22 26, 24 23" stroke="white" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+      <ellipse cx="9" cy="20" rx="3" ry="2" fill="rgba(255,255,255,0.15)"/>
+      <ellipse cx="27" cy="20" rx="3" ry="2" fill="rgba(255,255,255,0.15)"/>
+    </svg>
+    <div class="head-text">
+      <h3>电小团</h3>
+      <p>综合能源运营助手 · 随时为您解答</p>
+    </div>
+    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
+  </div>
+
+  <!-- 消息区 -->
+  <div class="dxt-msg-area" id="dxt-msg-area">
+    <div class="dxt-msg bot">
+      你好！我是电小团 👋<br>
+      我可以帮你了解电小团的产品、服务，或者查找官网资料。<br>
+      有什么想问的吗？
+    </div>
+    <div class="dxt-msg-time">刚刚</div>
+  </div>
+
+  <!-- 快捷回复 -->
+  <div class="dxt-quick-replies" id="dxt-quick-replies">
+    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
+  </div>
+
+  <!-- 输入框 -->
+  <div class="dxt-input-area">
+    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+// ===== 电小团宠物对话核心逻辑 =====
+
+// 预设 FAQ 问答库（阶段一：静态FAQ。阶段三：对接Hermes Agent）
+const FAQ = {
+  '做哪些业务': '电小团聚焦综合能源运营服务，核心业务包括：\n\n🔹 数据采集 — 基于HomeAssistant生态，15分钟级高频率数据采集\n🔹 数据分析 — 电价/负荷/政策多维数据库，AI交叉分析\n🔹 能源运营 — 售电优化、空调节能、需量管理、VPP虚拟电厂\n🔹 在线工具 — 储能测算、电费分析、电价监控等\n\n你可以查看<a href="/pro/" style="color:var(--teal);font-weight:600">增值服务 →</a>了解更多。',
+  '储能': '电小团提供储能投资测算工具，支持：\n\n• 基于江苏行政分时电价的充放策略\n• 两充两放/一充一放模式对比\n• 投资回报周期、IRR测算\n• 项目参数灵活调整\n\n👉 <a href="/tools/" style="color:var(--teal);font-weight:600">免费试用储能测算工具 →</a>',
+  '培训': '电小团提供9大主题培训课程：\n\n⚡ 电力市场 &nbsp;|&nbsp; 💰 电价数据\n🔋 储能 &nbsp;|&nbsp; 🌬️ 风电\n🏭 VPP虚拟电厂 &nbsp;|&nbsp; 🌱 零碳园区\n🤖 AI数字化 &nbsp;|&nbsp; 📊 行业报告\n📝 其他专题\n\n所有课程免费学习 👉 <a href="/training/" style="color:var(--teal);font-weight:600">进入培训 →</a>',
+  '联系': '您可以通过以下方式联系电小团：\n\n📧 邮件：dianxiaotuan@aishenwo.cn\n💬 飞书：直接搜索"电小团"机器人\n🌐 官网：energy.aishenwo.cn\n\n也可直接留言，我们会在1个工作日内回复。',
+  '虚拟电厂': '电小团在VPP领域提供：\n\n• 可调负荷聚合（空调/充电桩/储能）\n• 需求响应策略优化\n• 用能编排与削峰填谷\n• 多站室协同调度\n\n我们已在隆兴未来社、万豪源宿酒店等项目中实战验证。',
+  '空调节能': '电小团空调节能方案：\n\n• 基于物理模型+AI的深度能效优化\n• 兼容既有设备（利旧，不改原有系统）\n• 15分钟级实时监控与自动寻优\n• 典型节能率10-25%\n\n适用于商场、酒店、写字楼、工厂等。',
+  '电费': '电小团电费分析工具支持：\n\n• 单一制/两部制电价对比\n• 峰平谷时段用电结构分析\n• 需量管理建议\n• 分时电价策略优化\n\n帮助用户降低综合用电成本。',
+  '价格': '电小团提供灵活的定价模式：\n\n🔹 免费层 — 培训课程、基础工具免费使用\n🔹 专业层 — 增值API服务，按调用量计费\n🔹 定制层 — 专属项目定制，按项目报价\n\n👉 <a href="/pro/" style="color:var(--teal);font-weight:600">查看价格详情 →</a>',
+  '你好': '你好呀！欢迎来到电小团 👋\n我是你的综合能源运营助手。你可以问我：\n• 电小团做哪些业务？\n• 怎么使用储能测算？\n• 有哪些培训课程？\n• 怎么联系合作？\n\n或者直接在下面输入任何问题～',
+  '默认': '感谢你的提问！目前我还在学习更多知识，建议你先看看这些：\n\n👉 <a href="/training/" style="color:var(--teal);font-weight:600">免费培训课程 →</a>\n👉 <a href="/tools/" style="color:var(--teal);font-weight:600">在线工具 →</a>\n👉 <a href="/about/" style="color:var(--teal);font-weight:600">关于电小团 →</a>\n\n或者换个问题试试？'
+};
+
+// 对话历史
+let chatHistory = [];
+
+// 切换对话浮层
+function togglePetChat() {
+  const overlay = document.getElementById('dxt-pet-overlay');
+  overlay.classList.toggle('open');
+  if (overlay.classList.contains('open')) {
+    setTimeout(() => {
+      document.getElementById('dxt-user-input').focus();
+    }, 350);
+  }
+}
+
+// 关闭
+function closePetChat() {
+  document.getElementById('dxt-pet-overlay').classList.remove('open');
+}
+
+// 添加消息到对话区
+function addMessage(text, role) {
+  const area = document.getElementById('dxt-msg-area');
+  const msg = document.createElement('div');
+  msg.className = 'dxt-msg ' + role;
+  msg.innerHTML = text.replace(/\n/g, '<br>');
+  area.appendChild(msg);
+
+  // 时间戳
+  const now = new Date();
+  const t = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+  const time = document.createElement('div');
+  time.className = 'dxt-msg-time';
+  time.textContent = t;
+  area.appendChild(time);
+
+  // 滚动到底部
+  area.scrollTop = area.scrollHeight;
+
+  return msg;
+}
+
+// 显示「正在输入…」
+function showTyping() {
+  const area = document.getElementById('dxt-msg-area');
+  const el = document.createElement('div');
+  el.className = 'dxt-typing';
+  el.id = 'dxt-typing-indicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  area.appendChild(el);
+  area.scrollTop = area.scrollHeight;
+}
+
+// 隐藏「正在输入…」
+function hideTyping() {
+  const el = document.getElementById('dxt-typing-indicator');
+  if (el) el.remove();
+}
+
+// 查找最匹配的FAQ
+function findAnswer(text) {
+  const t = text.trim();
+  for (let key in FAQ) {
+    if (key === '默认') continue;
+    if (t.includes(key)) return FAQ[key];
+  }
+  return FAQ['默认'];
+}
+
+// 发送消息（来自输入框）
+function sendMessage() {
+  const input = document.getElementById('dxt-user-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+
+  // 用户消息
+  addMessage(text, 'user');
+  chatHistory.push({role: 'user', text: text});
+
+  // 禁用发送按钮
+  document.getElementById('dxt-send-btn').disabled = true;
+
+  // 隐藏快捷回复
+  document.getElementById('dxt-quick-replies').style.display = 'none';
+
+  // 模拟对话回复
+  showTyping();
+  setTimeout(() => {
+    hideTyping();
+    const answer = findAnswer(text);
+    addMessage(answer, 'bot');
+    chatHistory.push({role: 'bot', text: answer});
+
+    // 恢复发送按钮
+    document.getElementById('dxt-send-btn').disabled = false;
+  }, 600 + Math.random() * 600);
+}
+
+// 快捷回复
+function sendQuick(text) {
+  document.getElementById('dxt-user-input').value = text;
+  sendMessage();
+}
+
+// 点击外部关闭浮层
+document.addEventListener('click', function(e) {
+  const overlay = document.getElementById('dxt-pet-overlay');
+  const btn = document.getElementById('dxt-pet-btn');
+  if (overlay.classList.contains('open') &&
+      !overlay.contains(e.target) &&
+      !btn.contains(e.target)) {
+    closePetChat();
+  }
+});
+</script>

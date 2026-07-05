@@ -252,16 +252,135 @@
     <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
 
-<!-- 电小团虚拟形象 -->
-<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')" 
-     style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
-            background:white;box-shadow:0 4px 16px rgba(0,0,0,0.12);cursor:pointer;z-index:999;
-            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
-            border:2px solid var(--teal);"
-     onmouseover="this.style.transform='scale(1.1)'" 
-     onmouseout="this.style.transform='scale(1)'">
-  <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">
+<!-- 电小团宠物对话组件 -->
+<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
+<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
+  <div class="dxt-pet-body" style="background:#fff;">
+    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+    <div class="dxt-pet-dot">💬</div>
+  </div>
 </div>
+
+<div id="dxt-pet-overlay">
+  <div class="dxt-overlay-head">
+    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <div class="head-text">
+      <h3>电小团</h3>
+      <p>综合能源运营助手 · 随时为您解答</p>
+    </div>
+    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
+  </div>
+  <div class="dxt-msg-area" id="dxt-msg-area">
+    <div class="dxt-msg bot">
+      你好！我是电小团 👋<br>
+      我可以帮你了解产品、服务，或者查找官网资料。<br>
+      有什么想问的吗？
+    </div>
+    <div class="dxt-msg-time">刚刚</div>
+  </div>
+  <div class="dxt-quick-replies" id="dxt-quick-replies">
+    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
+  </div>
+  <div class="dxt-input-area">
+    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+const FAQ = {
+  '做哪些业务': '电小团聚焦综合能源运营服务，核心业务包括：\n\n🔹 数据采集 — 基于HomeAssistant生态，15分钟级高频率数据采集\n🔹 数据分析 — 电价/负荷/政策多维数据库，AI交叉分析\n🔹 能源运营 — 售电优化、空调节能、需量管理、VPP虚拟电厂\n🔹 在线工具 — 储能测算、电费分析、电价监控等\n\n你可以查看<a href="/pro/" style="color:var(--teal);font-weight:600">增值服务 →</a>了解更多。',
+  '储能': '电小团提供储能投资测算工具，支持：\n\n• 基于江苏行政分时电价的充放策略\n• 两充两放/一充一放模式对比\n• 投资回报周期、IRR测算\n• 项目参数灵活调整\n\n👉 <a href="/tools/" style="color:var(--teal);font-weight:600">免费试用 →</a>',
+  '培训': '电小团提供9大主题培训课程：\n\n⚡ 电力市场 &nbsp;|&nbsp; 💰 电价数据\n🔋 储能 &nbsp;|&nbsp; 🌬️ 风电\n🏭 VPP虚拟电厂 &nbsp;|&nbsp; 🌱 零碳园区\n🤖 AI数字化 &nbsp;|&nbsp; 📊 行业报告\n📝 其他专题\n\n所有课程免费学习 👉 <a href="/training/" style="color:var(--teal);font-weight:600">进入培训 →</a>',
+  '联系': '您可以通过以下方式联系电小团：\n\n📧 邮件：dianxiaotuan@aishenwo.cn\n💬 飞书：搜索"电小团"机器人\n🌐 官网：energy.aishenwo.cn\n\n也可直接留言，我们会在1个工作日内回复。',
+  '虚拟电厂': '电小团在VPP领域提供：\n\n• 可调负荷聚合（空调/充电桩/储能）\n• 需求响应策略优化\n• 用能编排与削峰填谷\n• 多站室协同调度\n\n我们已在隆兴未来社、万豪源宿酒店等项目中实战验证。',
+  '空调节能': '电小团空调节能方案：\n\n• 基于物理模型+AI的深度能效优化\n• 兼容既有设备\n• 15分钟级实时监控与自动寻优\n• 典型节能率10-25%',
+  '电费': '电小团电费分析工具支持：\n\n• 单一制/两部制电价对比\n• 峰平谷时段用电结构分析\n• 需量管理建议\n• 分时电价策略优化',
+  '价格': '电小团提供灵活的定价模式：\n\n🔹 免费层 — 培训课程、基础工具免费\n🔹 专业层 — 增值API服务，按调用量计费\n🔹 定制层 — 专属项目定制\n\n👉 <a href="/pro/" style="color:var(--teal);font-weight:600">查看价格 →</a>',
+  '你好': '你好呀！欢迎来到电小团 👋\n我是你的综合能源运营助手。可以问我：\n• 做哪些业务？\n• 储能测算怎么用？\n• 有哪些培训课程？\n• 怎么联系合作？\n\n或者直接输入任何问题～',
+  '默认': '感谢提问！建议先看看这些：\n\n👉 <a href="/training/" style="color:var(--teal);font-weight:600">免费培训 →</a>\n👉 <a href="/tools/" style="color:var(--teal);font-weight:600">在线工具 →</a>\n👉 <a href="/about/" style="color:var(--teal);font-weight:600">关于电小团 →</a>\n\n或者换个问题试试？'
+};
+
+function togglePetChat() {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  overlay.classList.toggle('open');
+  if (overlay.classList.contains('open')) {
+    setTimeout(function(){ document.getElementById('dxt-user-input').focus(); }, 350);
+  }
+}
+function closePetChat() {
+  document.getElementById('dxt-pet-overlay').classList.remove('open');
+}
+function addMessage(text, role) {
+  var area = document.getElementById('dxt-msg-area');
+  var msg = document.createElement('div');
+  msg.className = 'dxt-msg ' + role;
+  msg.innerHTML = text.replace(/\n/g, '<br>');
+  area.appendChild(msg);
+  var now = new Date();
+  var t = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  var tm = document.createElement('div');
+  tm.className = 'dxt-msg-time';
+  tm.textContent = t;
+  area.appendChild(tm);
+  area.scrollTop = area.scrollHeight;
+}
+function showTyping() {
+  var area = document.getElementById('dxt-msg-area');
+  var el = document.createElement('div');
+  el.className = 'dxt-typing';
+  el.id = 'dxt-typing-indicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  area.appendChild(el);
+  area.scrollTop = area.scrollHeight;
+}
+function hideTyping() {
+  var el = document.getElementById('dxt-typing-indicator');
+  if (el) el.remove();
+}
+function findAnswer(text) {
+  var t = text.trim();
+  for (var key in FAQ) {
+    if (key === '默认') continue;
+    if (t.indexOf(key) !== -1) return FAQ[key];
+  }
+  return FAQ['默认'];
+}
+function sendMessage() {
+  var input = document.getElementById('dxt-user-input');
+  var text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMessage(text, 'user');
+  document.getElementById('dxt-send-btn').disabled = true;
+  document.getElementById('dxt-quick-replies').style.display = 'none';
+  showTyping();
+  setTimeout(function(){
+    hideTyping();
+    addMessage(findAnswer(text), 'bot');
+    document.getElementById('dxt-send-btn').disabled = false;
+  }, 600 + Math.random() * 600);
+}
+function sendQuick(text) {
+  document.getElementById('dxt-user-input').value = text;
+  sendMessage();
+}
+document.addEventListener('click', function(e) {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  var btn = document.getElementById('dxt-pet-btn');
+  if (overlay.classList.contains('open') && !overlay.contains(e.target) && !btn.contains(e.target)) {
+    closePetChat();
+  }
+});
+</script>
+
 
 </body>
 </html>
