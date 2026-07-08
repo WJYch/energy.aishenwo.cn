@@ -246,129 +246,10 @@ body {
 .footer p { font-size: 14px; color: var(--text-muted); }
 .footer strong { color: var(--accent); font-weight: 600; }
 </style>
-</head>
+\n<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">\n</head>
 <body class="theme-dark">
 
-<!-- Navbar -->
-<nav class="navbar">
-  <a href="/" class="nav-logo">
-    <img src="/assets/images/dxt-logo.webp" alt="电小团">
-    <div>
-      <div class="logo-text">电小团</div>
-      <div class="logo-sub">Little Electric Cloud</div>
-    </div>
-  </a>
-  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
-  <ul class="nav-links">
-    <li><a href="/">首页</a></li>
-    <li><a href="/training/">免费课程</a></li>
-    <li><a href="/policy/">政策数据库</a></li>
-    <li><a href="/price/">电价数据库</a></li>
-    <li><a href="/tools/">能源运营工具</a></li>
-    <li><a href="/pro/" class="active">增值服务</a></li>
-    <li><a href="/about/">公司介绍</a></li>
-    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
-  </ul>
-</nav>
 
-<!-- Page Header -->
-<section class="page-header">
-  <h1>⚡ 增值 <span>服务</span></h1>
-  <p>从能效优化到电力市场运营，一站式数字化能源增值解决方案</p>
-</section>
-
-<!-- Service Cards -->
-<div class="services">
-
-  <!-- 板块 1：水冷空调节能 -->
-  <div class="service-card">
-    <div class="card-icon">
-      <i class="fa-solid fa-snowflake"></i>
-    </div>
-    <div class="card-body">
-      <h2>❄️ 水冷空调节能</h2>
-      <p class="desc">
-        制冷主机 + 冷却塔 + 冷冻泵冷却泵系统级寻优，基于负荷预测与气象数据实时优化运行策略，有效降低空调系统能耗 15%–30%。
-      </p>
-      <ul class="feature-list">
-        <li><i class="fa-solid fa-check"></i> 制冷主机群控智能调度</li>
-        <li><i class="fa-solid fa-check"></i> 冷却塔风机变频优化</li>
-        <li><i class="fa-solid fa-check"></i> 冷冻 / 冷却水泵最优温差控制</li>
-        <li><i class="fa-solid fa-check"></i> 负荷预测 + 气象数据融合驱动</li>
-        <li><i class="fa-solid fa-check"></i> 全系统 COP 实时监测与寻优</li>
-        <li><i class="fa-solid fa-check"></i> 系统能耗降低 15%–30%</li>
-      </ul>
-      <a href="https://dianxiaotuan.agent.qq.com" target="_blank" class="btn-cta">
-        <i class="fa-regular fa-envelope"></i> 联系咨询
-      </a>
-    </div>
-  </div>
-
-  <!-- 板块 2：虚拟电厂聚合 -->
-  <div class="service-card">
-    <div class="card-icon">
-      <i class="fa-solid fa-plug-circle-bolt"></i>
-    </div>
-    <div class="card-body">
-      <h2>🔌 虚拟电厂聚合</h2>
-      <p class="desc">
-        可调负荷资源聚合平台，支持蔚来换电站、充电桩、空气源热泵、水冷空调等多类型柔性负荷接入，实现统一调度管理。
-      </p>
-      <ul class="feature-list">
-        <li><i class="fa-solid fa-check"></i> 多类型柔性负荷统一接入</li>
-        <li><i class="fa-solid fa-check"></i> 蔚来换电站、充电桩即插即用</li>
-        <li><i class="fa-solid fa-check"></i> 空气源热泵 / 水冷空调快速适配</li>
-        <li><i class="fa-solid fa-check"></i> 资源实时监测与可调能力评估</li>
-        <li><i class="fa-solid fa-check"></i> 统一调度指令下发与执行跟踪</li>
-        <li><i class="fa-solid fa-check"></i> 聚合容量可视化看板</li>
-      </ul>
-      <a href="https://dianxiaotuan.agent.qq.com" target="_blank" class="btn-cta">
-        <i class="fa-regular fa-envelope"></i> 联系咨询
-      </a>
-    </div>
-  </div>
-
-  <!-- 板块 3：虚拟电厂运营 -->
-  <div class="service-card">
-    <div class="card-icon">
-      <i class="fa-solid fa-chart-line"></i>
-    </div>
-    <div class="card-body">
-      <h2>📈 虚拟电厂运营</h2>
-      <p class="desc">
-        需求响应竞标、聚合商结算、响应效果评估全流程运营服务，帮助用户获取电力市场收益。
-      </p>
-      <ul class="feature-list">
-        <li><i class="fa-solid fa-check"></i> 需求响应竞标策略优化</li>
-        <li><i class="fa-solid fa-check"></i> 聚合商收益自动结算</li>
-        <li><i class="fa-solid fa-check"></i> 响应效果实时评估与报告</li>
-        <li><i class="fa-solid fa-check"></i> 电力市场规则智能适配</li>
-        <li><i class="fa-solid fa-check"></i> 收益预测与风险预警</li>
-        <li><i class="fa-solid fa-check"></i> 全流程闭环运营管理</li>
-      </ul>
-      <a href="https://dianxiaotuan.agent.qq.com" target="_blank" class="btn-cta">
-        <i class="fa-regular fa-envelope"></i> 联系咨询
-      </a>
-    </div>
-  </div>
-
-</div>
-
-<!-- Footer -->
-<footer class="footer">
-  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
-</footer>
-
-<!-- 电小团虚拟形象 -->
-<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')"
-     style="position:fixed;bottom:24px;right:24px;width:64px;height:64px;border-radius:50%;
-            background:var(--bg-card);box-shadow:0 4px 16px rgba(0,0,0,0.3);cursor:pointer;z-index:999;
-            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
-            border:2px solid #5E8B7E;"
-     onmouseover="this.style.transform='scale(1.1)'"
-     onmouseout="this.style.transform='scale(1)'">
-  <img src="/assets/images/bot.webp" alt="电小团" style="width:48px;height:48px;border-radius:50%;">
-</div>
 
 <script>
 // Theme toggle
@@ -399,5 +280,85 @@ function toggleTheme() {
 })();
 </script>
 
-</body>
+
+<script>
+const FAQ = {
+  '做哪些业务': '电小团聚焦综合能源运营服务，核心业务包括：\n\n🔹 数据采集 — 基于HomeAssistant生态，15分钟级高频率数据采集\n🔹 数据分析 — 电价/负荷/政策多维数据库，AI交叉分析\n🔹 能源运营 — 售电优化、空调节能、需量管理、VPP虚拟电厂\n🔹 在线工具 — 电费分析、能源规划、能源诊断等\n\n你可以查看<a href="/pro/" style="color:var(--accent);font-weight:600">增值服务 →</a>了解更多。',
+  '你好': '你好呀！欢迎来到电小团 👋\n我是你的综合能源运营助手。可以问我：\n\u2022 做哪些业务？\n\u2022 有哪些工具？\n\u2022 有哪些培训课程？\n\u2022 怎么联系合作？\n\n或者直接输入任何问题～',
+  '默认': '感谢提问！建议先看看这些：\n\n👉 <a href="/training/" style="color:var(--accent);font-weight:600">免费培训 →</a>\n👉 <a href="/tools/" style="color:var(--accent);font-weight:600">在线工具 →</a>\n👉 <a href="/about/" style="color:var(--accent);font-weight:600">关于电小团 →</a>\n\n或者换个问题试试？'
+};
+
+function togglePetChat() {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  overlay.classList.toggle('open');
+  if (overlay.classList.contains('open')) {
+    setTimeout(function(){ document.getElementById('dxt-user-input').focus(); }, 350);
+  }
+}
+function closePetChat() {
+  document.getElementById('dxt-pet-overlay').classList.remove('open');
+}
+function addMessage(text, role) {
+  var area = document.getElementById('dxt-msg-area');
+  var msg = document.createElement('div');
+  msg.className = 'dxt-msg ' + role;
+  msg.innerHTML = text.replace(/\n/g, '<br>');
+  area.appendChild(msg);
+  var now = new Date();
+  var t = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  var tm = document.createElement('div');
+  tm.className = 'dxt-msg-time';
+  tm.textContent = t;
+  area.appendChild(tm);
+  area.scrollTop = area.scrollHeight;
+}
+function showTyping() {
+  var area = document.getElementById('dxt-msg-area');
+  var el = document.createElement('div');
+  el.className = 'dxt-typing';
+  el.id = 'dxt-typing-indicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  area.appendChild(el);
+  area.scrollTop = area.scrollHeight;
+}
+function hideTyping() {
+  var el = document.getElementById('dxt-typing-indicator');
+  if (el) el.remove();
+}
+function findAnswer(text) {
+  var t = text.trim();
+  for (var key in FAQ) {
+    if (key === '\u9ed8\u8ba4') continue;
+    if (t.indexOf(key) !== -1) return FAQ[key];
+  }
+  return FAQ['\u9ed8\u8ba4'];
+}
+function sendMessage() {
+  var input = document.getElementById('dxt-user-input');
+  var text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMessage(text, 'user');
+  document.getElementById('dxt-send-btn').disabled = true;
+  document.getElementById('dxt-quick-replies').style.display = 'none';
+  showTyping();
+  setTimeout(function(){
+    hideTyping();
+    addMessage(findAnswer(text), 'bot');
+    document.getElementById('dxt-send-btn').disabled = false;
+  }, 600 + Math.random() * 600);
+}
+function sendQuick(text) {
+  document.getElementById('dxt-user-input').value = text;
+  sendMessage();
+}
+// Click outside to close
+document.addEventListener('click', function(e) {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  var btn = document.getElementById('dxt-pet-btn');
+  if (overlay && overlay.classList.contains('open') && !overlay.contains(e.target) && !btn.contains(e.target)) {
+    closePetChat();
+  }
+});
+</script></body>
 </html>

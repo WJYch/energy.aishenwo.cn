@@ -224,198 +224,10 @@ body {
 .footer p { font-size: 13px; color: var(--text-muted); }
 .footer strong { color: var(--accent); font-weight: 600; }
 </style>
-</head>
+\n<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">\n</head>
 <body class="theme-dark">
 
-<!-- Navbar -->
-<nav class="navbar">
-  <a href="/" class="nav-logo">
-    <img src="/assets/images/dxt-logo.webp" alt="电小团">
-    <div>
-      <div class="logo-text">电小团</div>
-      <div class="logo-sub">Little Electric Cloud</div>
-    </div>
-  </a>
-  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
-  <ul class="nav-links">
-    <li><a href="/">首页</a></li>
-    <li><a href="/training/">免费课程</a></li>
-    <li><a href="/policy/">政策数据库</a></li>
-    <li><a href="/price/">电价数据库</a></li>
-    <li><a href="/tools/">能源运营工具</a></li>
-    <li><a href="/pro/">增值服务</a></li>
-    <li><a href="/about/" class="active">公司介绍</a></li>
-    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
-  </ul>
-</nav>
 
-<!-- Page Header -->
-<section class="page-header">
-  <div class="tag"><span>电小团</span> 公司介绍</div>
-  <h1>关于我们</h1>
-</section>
-
-<!-- Content -->
-<div class="about-content">
-
-  <!-- 深沃控股集团 -->
-  <div class="about-card">
-    <h2><i class="fa-solid fa-building accent-green"></i> 深沃控股集团</h2>
-    <p>深沃核心团队深耕城市更新领域十余年，作为城市更新的创新实践者，曾深度操盘深圳南头古城、福州烟台山、东莞记忆、苏州源点LiveLab等项目。</p>
-    <p>公司总部扎根于深圳，在江苏、浙江、福建等地均设有分公司。项目范围覆盖大湾区、长三角及东南沿海片区。</p>
-    <p>业务体系主要为两大核心板块：<strong>开发板块</strong>，提供项目全链条、全过程开发综合服务，贯穿前期策划、城市规划设计、设计咨询、工程管理等环节。<strong>运营板块</strong>，通过设计运营一体化模式，精准研判定位，盘活闲置低效资产，运营标的包括历史街区、小体量商业、非标商业等。</p>
-    <p>从项目开发到持续运营，我们将站在市场与未来的视角，提出综合的项目解决方案，用独到认知和专业技术，助力城市发展与资产升级，为更美好的城市而努力。</p>
-  </div>
-
-  <!-- 电小团 -->
-  <div class="about-card">
-    <h2><i class="fa-solid fa-bolt accent-green"></i> 电小团</h2>
-    <p><strong>电小团</strong>是深沃控股集团旗下综合能源运营服务工具品牌，致力于为能源从业者提供从数据采集、数据分析到能源运营的全流程工具支持。</p>
-    <p>电小团提供"一套完整的能管系统 + 若干能源节费算法 + 长期能源运营服务"的综合解决方案。以轻硬件改造、重软件算法为特色，实现低投入、低改造、少布线、不破坏装修，并为客户提供运营兜底保障。</p>
-  </div>
-
-  <!-- 项目展示 -->
-  <div class="about-card">
-    <h2><i class="fa-solid fa-city accent-blue"></i> 项目展示</h2>
-
-    <div class="section-subtitle">城市更新项目</div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/shenzhen-nantou-old-city.webp" alt="深圳南头古城">
-        <div class="project-info">
-          <h4>深圳南头古城</h4>
-          <p>历史街区活化</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/shenzhen-nantou-phase2.webp" alt="深圳南头古城2期">
-        <div class="project-info">
-          <h4>深圳南头古城2期</h4>
-          <p>历史街区活化</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/dongguan-dg-memory.webp" alt="东莞记忆">
-        <div class="project-info">
-          <h4>东莞·东莞记忆</h4>
-          <p>历史街区活化保护</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/fuzhou-yantaishan.webp" alt="福州烟台山">
-        <div class="project-info">
-          <h4>福州烟台山</h4>
-          <p>历史街区活化</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/suzhou-huaihai-street.webp" alt="苏州淮海街">
-        <div class="project-info">
-          <h4>苏州淮海街</h4>
-          <p>特色商业街区</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/chengdu-mengzhuiwan.webp" alt="成都猛追湾">
-        <div class="project-info">
-          <h4>成都猛追湾</h4>
-          <p>城市更新项目</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/shenzhen-pingshan.webp" alt="深圳平山村">
-        <div class="project-info">
-          <h4>深圳平山村</h4>
-          <p>城中村综合治理</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/shenzhen-baiwang.webp" alt="深圳百旺村">
-        <div class="project-info">
-          <h4>深圳百旺村</h4>
-          <p>城中村综合治理</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/shenzhen-zhongying-street.webp" alt="深圳中英街">
-        <div class="project-info">
-          <h4>深圳中英街</h4>
-          <p>历史街区活化</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/shanghai-guanghe.webp" alt="上海光合新座">
-        <div class="project-info">
-          <h4>上海光合新座</h4>
-          <p>城市更新项目</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/yancheng-kkpark.webp" alt="盐城KK PARK">
-        <div class="project-info">
-          <h4>盐城KK PARK国际街区</h4>
-          <p>特色商业街区</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/shaoguan-ruyuan.webp" alt="韶关乳源">
-        <div class="project-info">
-          <h4>韶关乳源</h4>
-          <p>城市更新项目</p>
-        </div>
-      </div>
-    </div>
-
-    <div class="section-subtitle" style="margin-top:24px;">综合能源运营和低碳项目</div>
-    <div class="projects-grid">
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/yuandian.webp" alt="苏州源点综合能源运营">
-        <div class="project-info">
-          <h4>苏州源点</h4>
-          <p>综合能源运营</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/suzhou-livelab.webp" alt="苏州源点LiveLab街区">
-        <div class="project-info">
-          <h4>苏州源点LiveLab街区</h4>
-          <p>城市更新+综合能源</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/yangzhou-emergency-base.webp" alt="扬州应急救援基地">
-        <div class="project-info">
-          <h4>扬州应急救援基地</h4>
-          <p>绿色低碳项目</p>
-        </div>
-      </div>
-      <div class="project-card">
-        <img class="project-img" src="/assets/images/projects/wuxi-icampus.webp" alt="无锡国际生命科学创新园区">
-        <div class="project-info">
-          <h4>无锡I·Campus</h4>
-          <p>低碳产业园区</p>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-
-<!-- Footer -->
-<footer class="footer">
-  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
-</footer>
-
-<!-- 电小团虚拟形象 -->
-<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')"
-     style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;
-            background:var(--bg-card);box-shadow:0 4px 16px rgba(0,0,0,0.3);cursor:pointer;z-index:999;
-            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
-            border:2px solid #5E8B7E;"
-     onmouseover="this.style.transform='scale(1.1)'"
-     onmouseout="this.style.transform='scale(1)'">
-  <img src="/assets/images/bot.webp" alt="电小团" style="width:40px;height:40px;border-radius:50%;">
-</div>
 
 <script>
 // Theme toggle
@@ -446,5 +258,85 @@ function toggleTheme() {
 })();
 </script>
 
-</body>
+
+<script>
+const FAQ = {
+  '做哪些业务': '电小团聚焦综合能源运营服务，核心业务包括：\n\n🔹 数据采集 — 基于HomeAssistant生态，15分钟级高频率数据采集\n🔹 数据分析 — 电价/负荷/政策多维数据库，AI交叉分析\n🔹 能源运营 — 售电优化、空调节能、需量管理、VPP虚拟电厂\n🔹 在线工具 — 电费分析、能源规划、能源诊断等\n\n你可以查看<a href="/pro/" style="color:var(--accent);font-weight:600">增值服务 →</a>了解更多。',
+  '你好': '你好呀！欢迎来到电小团 👋\n我是你的综合能源运营助手。可以问我：\n\u2022 做哪些业务？\n\u2022 有哪些工具？\n\u2022 有哪些培训课程？\n\u2022 怎么联系合作？\n\n或者直接输入任何问题～',
+  '默认': '感谢提问！建议先看看这些：\n\n👉 <a href="/training/" style="color:var(--accent);font-weight:600">免费培训 →</a>\n👉 <a href="/tools/" style="color:var(--accent);font-weight:600">在线工具 →</a>\n👉 <a href="/about/" style="color:var(--accent);font-weight:600">关于电小团 →</a>\n\n或者换个问题试试？'
+};
+
+function togglePetChat() {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  overlay.classList.toggle('open');
+  if (overlay.classList.contains('open')) {
+    setTimeout(function(){ document.getElementById('dxt-user-input').focus(); }, 350);
+  }
+}
+function closePetChat() {
+  document.getElementById('dxt-pet-overlay').classList.remove('open');
+}
+function addMessage(text, role) {
+  var area = document.getElementById('dxt-msg-area');
+  var msg = document.createElement('div');
+  msg.className = 'dxt-msg ' + role;
+  msg.innerHTML = text.replace(/\n/g, '<br>');
+  area.appendChild(msg);
+  var now = new Date();
+  var t = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  var tm = document.createElement('div');
+  tm.className = 'dxt-msg-time';
+  tm.textContent = t;
+  area.appendChild(tm);
+  area.scrollTop = area.scrollHeight;
+}
+function showTyping() {
+  var area = document.getElementById('dxt-msg-area');
+  var el = document.createElement('div');
+  el.className = 'dxt-typing';
+  el.id = 'dxt-typing-indicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  area.appendChild(el);
+  area.scrollTop = area.scrollHeight;
+}
+function hideTyping() {
+  var el = document.getElementById('dxt-typing-indicator');
+  if (el) el.remove();
+}
+function findAnswer(text) {
+  var t = text.trim();
+  for (var key in FAQ) {
+    if (key === '\u9ed8\u8ba4') continue;
+    if (t.indexOf(key) !== -1) return FAQ[key];
+  }
+  return FAQ['\u9ed8\u8ba4'];
+}
+function sendMessage() {
+  var input = document.getElementById('dxt-user-input');
+  var text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMessage(text, 'user');
+  document.getElementById('dxt-send-btn').disabled = true;
+  document.getElementById('dxt-quick-replies').style.display = 'none';
+  showTyping();
+  setTimeout(function(){
+    hideTyping();
+    addMessage(findAnswer(text), 'bot');
+    document.getElementById('dxt-send-btn').disabled = false;
+  }, 600 + Math.random() * 600);
+}
+function sendQuick(text) {
+  document.getElementById('dxt-user-input').value = text;
+  sendMessage();
+}
+// Click outside to close
+document.addEventListener('click', function(e) {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  var btn = document.getElementById('dxt-pet-btn');
+  if (overlay && overlay.classList.contains('open') && !overlay.contains(e.target) && !btn.contains(e.target)) {
+    closePetChat();
+  }
+});
+</script></body>
 </html>

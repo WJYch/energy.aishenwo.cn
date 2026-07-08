@@ -25,13 +25,10 @@
   --accent2: #7C9FBA;
   --accent3: #A78BCC;
   --accent4: #E8A87C;
-  --tag-free-bg: rgba(94,139,126,0.10);
-  --tag-demo-bg: rgba(59,130,246,0.10);
-  --tag-demo-text: #3B82F6;
+  --popover-bg: #FFFFFF;
+  --popover-shadow: 0 8px 32px rgba(0,0,0,0.10);
   --btn-primary: #5E8B7E;
   --btn-primary-hover: #4D7569;
-  --btn-disabled-bg: rgba(94,139,126,0.12);
-  --btn-disabled-text: #9CA3AF;
   --shadow-sm: 0 2px 10px rgba(0,0,0,0.04);
   --shadow-hover: 0 10px 30px rgba(94,139,126,0.10);
 }
@@ -50,13 +47,10 @@
   --accent2: #7C9FBA;
   --accent3: #A78BCC;
   --accent4: #E8A87C;
-  --tag-free-bg: rgba(94,139,126,0.15);
-  --tag-demo-bg: rgba(59,130,246,0.15);
-  --tag-demo-text: #60A5FA;
+  --popover-bg: #1A1A1A;
+  --popover-shadow: 0 8px 32px rgba(0,0,0,0.5);
   --btn-primary: #5E8B7E;
   --btn-primary-hover: #4D7569;
-  --btn-disabled-bg: rgba(255,255,255,0.08);
-  --btn-disabled-text: rgba(255,255,255,0.25);
   --shadow-sm: 0 2px 10px rgba(0,0,0,0.2);
   --shadow-hover: 0 10px 30px rgba(94,139,126,0.15);
 }
@@ -115,9 +109,31 @@ body {
   .nav-links.open { display: flex; }
   .nav-links a { padding: 12px 14px; width: 100%; }
 }
+/* ===== Popover ===== */
+.popover {
+  display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%,-50%);
+  z-index: 1001; max-width: 420px; width: 90%; padding: 32px 28px;
+  background: var(--popover-bg); border-radius: 20px;
+  box-shadow: var(--popover-shadow);
+  border: 1px solid var(--border-card);
+}
+.popover.show { display: block; }
+.popover h4 { font-size: 16px; font-weight: 700; margin-bottom: 10px; }
+.popover p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+.popover .pop-close {
+  position: absolute; top: 14px; right: 16px;
+  background: none; border: none; font-size: 18px; cursor: pointer;
+  color: var(--text-muted); transition: color 0.2s;
+}
+.popover .pop-close:hover { color: var(--text); }
+.popover-overlay {
+  display: none; position: fixed; inset: 0; z-index: 1000;
+  background: rgba(0,0,0,0.4);
+}
+.popover-overlay.show { display: block; }
 /* ===== Page Header ===== */
 .page-header {
-  padding: 120px 24px 36px;
+  padding: 120px 24px 40px;
   text-align: center;
 }
 .page-header h1 {
@@ -128,145 +144,152 @@ body {
 .page-header p {
   color: var(--text-secondary);
   font-size: 15px;
-  margin-top: 6px;
+  margin-top: 8px;
   max-width: 520px;
   margin-left: auto;
   margin-right: auto;
 }
-/* ===== Tools Grid ===== */
-.tools-grid {
-  max-width: 1000px;
+/* ===== Cards Grid ===== */
+.cards-grid {
+  max-width: 820px;
   margin: 0 auto;
-  padding: 0 24px 60px;
+  padding: 0 24px 40px;
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
 }
 .tool-card {
   background: var(--bg-card);
-  border-radius: 18px;
-  padding: 28px 24px 22px;
+  border-radius: 20px;
+  padding: 32px 20px;
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-card);
+  cursor: pointer;
   transition: all 0.25s;
+  text-align: center;
   display: flex;
   flex-direction: column;
-}
-.tool-card:hover {
-  box-shadow: var(--shadow-hover);
-  border-color: rgba(94,139,126,0.15);
-}
-.tool-icon {
-  width: 56px;
-  height: 56px;
-  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 28px;
-  background: rgba(94,139,126,0.08);
-  border-radius: 14px;
+  min-height: 200px;
+  aspect-ratio: 1 / 1;
+}
+.tool-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--accent);
+  background: var(--card-hover);
+}
+.tool-card .card-icon {
+  font-size: 42px;
   margin-bottom: 16px;
 }
-.tool-card-header {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  margin-bottom: 0;
-}
-.tool-card-header .tool-icon {
-  margin-bottom: 0;
-  flex-shrink: 0;
-}
-.tool-card-header > div:last-child { flex: 1; }
-.tool-card-header h3 { margin-bottom: 4px; }
 .tool-card h3 {
-  font-size: 17px;
+  font-size: 18px;
   font-weight: 700;
   margin-bottom: 8px;
   color: var(--text);
 }
-.tool-card .desc {
-  font-size: 14px;
-  color: var(--text-secondary);
-  line-height: 1.7;
-  flex: 1;
-}
-.tool-api-key-bar {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 12px 16px;
-  background: var(--bg-body);
-  border-radius: 10px;
-  margin-top: 16px;
+.tool-card .card-desc {
   font-size: 13px;
   color: var(--text-secondary);
-  flex-wrap: wrap;
+  line-height: 1.5;
 }
-.tool-api-key-bar span { white-space: nowrap; font-weight: 500; }
-.tool-api-key-bar input {
-  flex: 1;
-  min-width: 180px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border-card);
-  background: var(--bg-card);
-  color: var(--text);
-  font-size: 13px;
-  outline: none;
-  transition: border 0.2s;
+/* ===== Iframe Section ===== */
+.iframe-section {
+  max-width: 1060px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: none;
 }
-.tool-api-key-bar input:focus { border-color: var(--accent); }
-.tool-api-key-bar button {
-  padding: 8px 18px;
-  border-radius: 8px;
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.tool-api-key-bar button:hover { background: var(--btn-primary-hover); }
-.tool-iframe-wrapper {
-  margin-top: 16px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border-card);
-  background: var(--bg-body);
-}
-.tool-card .tool-footer {
+.iframe-section.open { display: block; }
+.iframe-bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 18px;
-  padding-top: 16px;
-  border-top: 1px solid var(--border-card);
+  margin-bottom: 16px;
 }
-.tag {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 12px;
+.iframe-bar .iframe-title {
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.iframe-bar .iframe-title .back-btn {
+  background: none;
+  border: 1px solid var(--border-card);
   border-radius: 10px;
-  letter-spacing: 0.02em;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
-.tag-free { background: var(--tag-free-bg); color: var(--accent); }
-.tag-demo { background: var(--tag-demo-bg); color: var(--tag-demo-text); }
-.btn-gh-style {
+.iframe-bar .iframe-title .back-btn:hover {
+  background: var(--card-hover);
+  color: var(--text);
+}
+.iframe-bar .iframe-links {
+  display: flex;
+  gap: 10px;
+}
+.iframe-bar .iframe-links a,
+.iframe-bar .iframe-links button {
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 6px 14px;
+  border-radius: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
   display: inline-flex;
   align-items: center;
-  gap: 5px;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 12px;
-  padding: 6px 12px;
-  border-radius: 8px;
-  border: 1px solid var(--border-card);
-  transition: all 0.2s;
+  gap: 6px;
 }
-.btn-gh-style:hover { border-color: var(--accent); color: var(--accent); }
+.iframe-bar .iframe-links a.github-link {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-card);
+}
+.iframe-bar .iframe-links a.github-link:hover {
+  background: var(--card-hover);
+  color: var(--text);
+}
+.iframe-bar .iframe-links a.open-link {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+.iframe-bar .iframe-links a.open-link:hover {
+  background: var(--btn-primary-hover);
+}
+.iframe-wrapper {
+  background: var(--bg-card);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-card);
+  height: 80vh;
+  min-height: 500px;
+}
+.iframe-wrapper iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+/* ===== Coming Soon ===== */
+.coming-soon {
+  text-align: center;
+  padding: 40px 24px 50px;
+  color: var(--text-muted);
+  font-size: 15px;
+}
+.coming-soon span { font-weight: 600; color: var(--accent); }
 /* ===== Footer ===== */
 .footer {
   border-top: 1px solid var(--border-card);
@@ -275,7 +298,27 @@ body {
 }
 .footer p { font-size: 14px; color: var(--text-muted); }
 .footer strong { color: var(--accent); font-weight: 600; }
+/* ===== Responsive ===== */
+@media (max-width: 700px) {
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 0 16px 30px;
+  }
+  .tool-card {
+    min-height: 160px;
+    padding: 24px 16px;
+  }
+  .tool-card .card-icon { font-size: 32px; }
+  .tool-card h3 { font-size: 15px; }
+  .iframe-wrapper { height: 70vh; }
+  .iframe-bar { flex-direction: column; gap: 10px; align-items: flex-start; }
+}
+@media (max-width: 440px) {
+  .cards-grid { grid-template-columns: 1fr; max-width: 320px; }
+}
 </style>
+<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
 </head>
 <body class="theme-dark">
 
@@ -301,82 +344,142 @@ body {
   </ul>
 </nav>
 
-<!-- Page Header -->
+<!-- Overlay for popover -->
+<div class="popover-overlay" id="popoverOverlay" onclick="closePopover()"></div>
+<div class="popover" id="popover">
+  <button class="pop-close" onclick="closePopover()">✕</button>
+  <h4 id="popoverTitle">提示</h4>
+  <p id="popoverDesc">功能开发中，敬请期待。</p>
+</div>
+
 <section class="page-header">
-  <h1>🛠️ 能源运营工具</h1>
-  <p>电费解析 · 运营规划 · 用能诊断 — 一站式综合能源运营工具集</p>
+  <h1>能源运营工具</h1>
+  <p>点击卡片，在线使用</p>
 </section>
 
-<!-- Tools Grid -->
-<div class="tools-grid">
+<!-- ===== 3 Square Cards ===== -->
+<div class="cards-grid">
 
-  <!-- Tool 1: 电费联单AI分析 -->
-  <div class="tool-card" id="bill">
-    <div class="tool-card-header">
-      <div class="tool-icon">📄</div>
-      <div>
-        <h3>电费联单AI分析</h3>
-        <p class="desc">上传国网电费账单PDF，AI自动解析电费结构，展示度电成本、峰谷分析、需量分析等关键指标，支持多月份对比与两部制测算。<br>支持两种模式：<strong>本地解析</strong>（免费，直接浏览器内完成）或 <strong>电小团AI</strong>（需电小团 API Key）。</p>
-      </div>
-    </div>
-    <div class="tool-iframe-wrapper">
-      <iframe src="https://wjych.github.io/elec-bill-analyzer/" width="100%" height="850" style="border:none;border-radius:12px;" loading="lazy"></iframe>
-    </div>
-    <div class="tool-footer">
-      <span class="tag tag-free">需API Key</span>
-    </div>
+  <div class="tool-card" onclick="openTool('elec')">
+    <div class="card-icon">📄</div>
+    <h3>电费联单分析器</h3>
+    <div class="card-desc">上传PDF解析电费结构</div>
   </div>
 
-  <!-- Tool 2: 能源运营规划 -->
-  <div class="tool-card" id="planning">
-    <div class="tool-card-header">
-      <div class="tool-icon">📋</div>
-      <div>
-        <h3>能源运营规划</h3>
-        <p class="desc">基于项目基础数据（电费联单、设备参数、运营时间等），自动生成综合能源运营方案框架，涵盖储能、光伏、空调、VPP等多维度评估。</p>
-      </div>
-    </div>
-    <div class="tool-iframe-wrapper">
-      <iframe src="https://wjych.github.io/energy-planning/" width="100%" height="850" style="border:none;border-radius:12px;" loading="lazy"></iframe>
-    </div>
-    <div class="tool-footer">
-      <span class="tag tag-demo">演示</span>
-    </div>
+  <div class="tool-card" onclick="openTool('plan')">
+    <div class="card-icon">🔆</div>
+    <h3>能源运营规划</h3>
+    <div class="card-desc">光储充方案规划助手</div>
   </div>
 
-  <!-- Tool 3: 能源运营诊断 -->
-  <div class="tool-card" id="diagnosis">
-    <div class="tool-card-header">
-      <div class="tool-icon">🔍</div>
-      <div>
-        <h3>能源运营诊断</h3>
-        <p class="desc">接入负荷数据后，系统自动诊断用能效率、异常识别、节能潜力评估，生成专业诊断报告，助力运营优化提效。</p>
-      </div>
-    </div>
-    <div class="tool-iframe-wrapper">
-      <iframe src="https://wjych.github.io/energy-diagnosis/" width="100%" height="850" style="border:none;border-radius:12px;" loading="lazy"></iframe>
-    </div>
-    <div class="tool-footer">
-      <span class="tag tag-demo">演示</span>
-    </div>
+  <div class="tool-card" onclick="openTool('diag')">
+    <div class="card-icon">🔍</div>
+    <h3>能源运营诊断</h3>
+    <div class="card-desc">AI商业能耗诊断系统</div>
   </div>
 
 </div>
 
-<!-- Footer -->
+<!-- ===== Iframe Sections ===== -->
+
+<!-- 电费联单分析器 -->
+<div id="section-elec" class="iframe-section">
+  <div class="iframe-bar">
+    <div class="iframe-title">
+      <button class="back-btn" onclick="closeTool('elec')"><i class="fa-solid fa-arrow-left"></i> 返回</button>
+      📄 电费联单分析器
+    </div>
+    <div class="iframe-links">
+      <a href="https://github.com/WJYch/elec-bill-analyzer" target="_blank" class="github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://wjych.github.io/elec-bill-analyzer/" target="_blank" class="open-link">新窗口打开 <i class="fa-solid fa-external-link-alt"></i></a>
+    </div>
+  </div>
+  <div class="iframe-wrapper">
+    <iframe src="https://wjych.github.io/elec-bill-analyzer/" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- 能源运营规划 -->
+<div id="section-plan" class="iframe-section">
+  <div class="iframe-bar">
+    <div class="iframe-title">
+      <button class="back-btn" onclick="closeTool('plan')"><i class="fa-solid fa-arrow-left"></i> 返回</button>
+      🔆 能源运营规划
+    </div>
+    <div class="iframe-links">
+      <a href="https://github.com/WJYch/energy-planning" target="_blank" class="github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://wjych.github.io/energy-planning/" target="_blank" class="open-link">新窗口打开 <i class="fa-solid fa-external-link-alt"></i></a>
+    </div>
+  </div>
+  <div class="iframe-wrapper">
+    <iframe src="https://wjych.github.io/energy-planning/" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- 能源运营诊断 -->
+<div id="section-diag" class="iframe-section">
+  <div class="iframe-bar">
+    <div class="iframe-title">
+      <button class="back-btn" onclick="closeTool('diag')"><i class="fa-solid fa-arrow-left"></i> 返回</button>
+      🔍 能源运营诊断
+    </div>
+    <div class="iframe-links">
+      <a href="https://github.com/WJYch/energy-diagnosis" target="_blank" class="github-link"><i class="fa-brands fa-github"></i> GitHub</a>
+      <a href="https://wjych.github.io/energy-diagnosis/" target="_blank" class="open-link">新窗口打开 <i class="fa-solid fa-external-link-alt"></i></a>
+    </div>
+  </div>
+  <div class="iframe-wrapper">
+    <iframe src="https://wjych.github.io/energy-diagnosis/" loading="lazy"></iframe>
+  </div>
+</div>
+
+<div class="coming-soon">
+  其他功能扩展中 · <span>敬请期待</span>
+</div>
+
 <footer class="footer">
   <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
 
-<!-- 电小团虚拟形象 -->
-<div id="dxt-chat-btn" onclick="window.open('https://dianxiaotuan.agent.qq.com','_blank')"
-     style="position:fixed;bottom:24px;right:24px;width:56px;height:56px;border-radius:50%;
-            background:var(--bg-card);box-shadow:0 4px 16px rgba(0,0,0,0.3);cursor:pointer;z-index:999;
-            display:flex;align-items:center;justify-content:center;transition:transform 0.2s;
-            border:2px solid #5E8B7E;"
-     onmouseover="this.style.transform='scale(1.1)'"
-     onmouseout="this.style.transform='scale(1)'">
-  <img src="/assets/images/bot.webp" alt="电小团" style="width:40px;height:40px;border-radius:50%;">
+<!-- Chat Button & Overlay -->
+<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
+  <div class="dxt-pet-body" style="background:#fff;">
+    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+    <div class="dxt-pet-dot">💬</div>
+  </div>
+</div>
+
+<div id="dxt-pet-overlay">
+  <div class="dxt-overlay-head">
+    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <div class="head-text">
+      <h3>电小团</h3>
+      <p>综合能源运营助手 · 随时为您解答</p>
+    </div>
+    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
+  </div>
+  <div class="dxt-msg-area" id="dxt-msg-area">
+    <div class="dxt-msg bot">
+      你好！我是电小团 👋<br>
+      我可以帮你了解产品、服务，或者查找官网资料。<br>
+      有什么想问的吗？
+    </div>
+    <div class="dxt-msg-time">刚刚</div>
+  </div>
+  <div class="dxt-quick-replies" id="dxt-quick-replies">
+    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
+  </div>
+  <div class="dxt-input-area">
+    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
+      </svg>
+    </button>
+  </div>
 </div>
 
 <script>
@@ -406,7 +509,119 @@ function toggleTheme() {
     document.getElementById('theme-label').textContent = '深色';
   }
 })();
+
+// Popover
+function showPopover(title, desc) {
+  document.getElementById('popoverTitle').textContent = title;
+  document.getElementById('popoverDesc').innerHTML = desc;
+  document.getElementById('popover').classList.add('show');
+  document.getElementById('popoverOverlay').classList.add('show');
+}
+function closePopover() {
+  document.getElementById('popover').classList.remove('show');
+  document.getElementById('popoverOverlay').classList.remove('show');
+}
+
+// Tool open/close logic
+var currentTool = null;
+
+function openTool(name) {
+  if (currentTool && currentTool !== name) {
+    document.getElementById('section-' + currentTool).classList.remove('open');
+  }
+  currentTool = name;
+  document.getElementById('section-' + name).classList.add('open');
+  setTimeout(function() {
+    document.getElementById('section-' + name).scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 100);
+}
+
+function closeTool(name) {
+  document.getElementById('section-' + name).classList.remove('open');
+  currentTool = null;
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 </script>
 
+<script>
+const FAQ = {
+  '做哪些业务': '电小团聚焦综合能源运营服务，核心业务包括：\n\n🔹 数据采集 — 基于HomeAssistant生态，15分钟级高频率数据采集\n🔹 数据分析 — 电价/负荷/政策多维数据库，AI交叉分析\n🔹 能源运营 — 售电优化、空调节能、需量管理、VPP虚拟电厂\n🔹 在线工具 — 电费分析、能源规划、能源诊断等\n\n你可以查看<a href="/pro/" style="color:var(--accent);font-weight:600">增值服务 →</a>了解更多。',
+  '你好': '你好呀！欢迎来到电小团 👋\n我是你的综合能源运营助手。可以问我：\n\u2022 做哪些业务？\n\u2022 有哪些工具？\n\u2022 有哪些培训课程？\n\u2022 怎么联系合作？\n\n或者直接输入任何问题～',
+  '默认': '感谢提问！建议先看看这些：\n\n👉 <a href="/training/" style="color:var(--accent);font-weight:600">免费培训 →</a>\n👉 <a href="/tools/" style="color:var(--accent);font-weight:600">在线工具 →</a>\n👉 <a href="/about/" style="color:var(--accent);font-weight:600">关于电小团 →</a>\n\n或者换个问题试试？'
+};
+
+function togglePetChat() {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  overlay.classList.toggle('open');
+  if (overlay.classList.contains('open')) {
+    setTimeout(function(){ document.getElementById('dxt-user-input').focus(); }, 350);
+  }
+}
+function closePetChat() {
+  document.getElementById('dxt-pet-overlay').classList.remove('open');
+}
+function addMessage(text, role) {
+  var area = document.getElementById('dxt-msg-area');
+  var msg = document.createElement('div');
+  msg.className = 'dxt-msg ' + role;
+  msg.innerHTML = text.replace(/\n/g, '<br>');
+  area.appendChild(msg);
+  var now = new Date();
+  var t = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
+  var tm = document.createElement('div');
+  tm.className = 'dxt-msg-time';
+  tm.textContent = t;
+  area.appendChild(tm);
+  area.scrollTop = area.scrollHeight;
+}
+function showTyping() {
+  var area = document.getElementById('dxt-msg-area');
+  var el = document.createElement('div');
+  el.className = 'dxt-typing';
+  el.id = 'dxt-typing-indicator';
+  el.innerHTML = '<span></span><span></span><span></span>';
+  area.appendChild(el);
+  area.scrollTop = area.scrollHeight;
+}
+function hideTyping() {
+  var el = document.getElementById('dxt-typing-indicator');
+  if (el) el.remove();
+}
+function findAnswer(text) {
+  var t = text.trim();
+  for (var key in FAQ) {
+    if (key === '\u9ed8\u8ba4') continue;
+    if (t.indexOf(key) !== -1) return FAQ[key];
+  }
+  return FAQ['\u9ed8\u8ba4'];
+}
+function sendMessage() {
+  var input = document.getElementById('dxt-user-input');
+  var text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMessage(text, 'user');
+  document.getElementById('dxt-send-btn').disabled = true;
+  document.getElementById('dxt-quick-replies').style.display = 'none';
+  showTyping();
+  setTimeout(function(){
+    hideTyping();
+    addMessage(findAnswer(text), 'bot');
+    document.getElementById('dxt-send-btn').disabled = false;
+  }, 600 + Math.random() * 600);
+}
+function sendQuick(text) {
+  document.getElementById('dxt-user-input').value = text;
+  sendMessage();
+}
+// Click outside to close
+document.addEventListener('click', function(e) {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  var btn = document.getElementById('dxt-pet-btn');
+  if (overlay && overlay.classList.contains('open') && !overlay.contains(e.target) && !btn.contains(e.target)) {
+    closePetChat();
+  }
+});
+</script>
 </body>
 </html>

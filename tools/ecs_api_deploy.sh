@@ -21,7 +21,7 @@ echo "[1/6] 安装 Python 环境..."
 if ! command -v python3 &> /dev/null; then
     apt-get update && apt-get install -y python3 python3-pip
 fi
-pip3 install flask gunicorn requests --break-system-packages 2>/dev/null || pip3 install flask gunicorn requests
+pip3 install flask gunicorn requests --break-system-packages --user 2>/dev/null || PIP_REQUIRE_VIRTUALENV=false pip3 install flask gunicorn requests --break-system-packages --user
 
 # 2. 创建服务程序
 echo "[2/6] 创建 API 服务..."
