@@ -559,54 +559,7 @@ body {
   <i class="fa-regular fa-hourglass-half"></i> 更多课程持续更新中...
 </div>
 
-<!-- Footer -->
-<footer class="footer">
-  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
-</footer>
 
-<!-- Chat Button -->
-
-<script>
-// Theme toggle
-function toggleTheme() {
-  const body = document.body;
-  const icon = document.getElementById('theme-icon');
-  const label = document.getElementById('theme-label');
-  if (body.classList.contains('theme-dark')) {
-    body.classList.replace('theme-dark', 'theme-light');
-    icon.textContent = '🌙';
-    label.textContent = '深色';
-    localStorage.setItem('dxt-theme', 'light');
-  } else {
-    body.classList.replace('theme-light', 'theme-dark');
-    icon.textContent = '☀️';
-    label.textContent = '浅色';
-    localStorage.setItem('dxt-theme', 'dark');
-  }
-}
-// Restore theme
-(function() {
-  const saved = localStorage.getItem('dxt-theme');
-  if (saved === 'light') {
-    document.body.classList.replace('theme-dark', 'theme-light');
-    document.getElementById('theme-icon').textContent = '🌙';
-    document.getElementById('theme-label').textContent = '深色';
-  }
-})();
-
-// Tag filter
-function filterTag(el, tag) {
-  document.querySelectorAll('.filter-bar .tag').forEach(t => t.classList.remove('active'));
-  el.classList.add('active');
-  document.querySelectorAll('.course-card').forEach(card => {
-    if (tag === 'all' || card.dataset.tag === tag) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-</script>
 
 
 <script>

@@ -350,7 +350,9 @@ body {
 .footer strong { color: var(--accent); font-weight: 500; }
 @media (max-width: 640px) { .section { padding: 50px 16px; } }
 </style>
-\n<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">\n</head>
+<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
+
+</head>
 <body class="theme-dark">
 
 <!-- Navbar -->
@@ -359,186 +361,6 @@ body {
     <img src="/assets/images/dxt-logo.webp" alt="电小团">
     <div>
       <div class="logo-text">电小团</div>
-      <div class="logo-sub">Little Electric Cloud</div>
-    </div>
-  </a>
-  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
-  <ul class="nav-links">
-    <li><a href="/" class="active">首页</a></li>
-    <li><a href="/training/">免费课程</a></li>
-    <li><a href="/policy/">政策数据库</a></li>
-    <li><a href="/price/">电价数据库</a></li>
-    <li><a href="/tools/">能源运营工具</a></li>
-    <li><a href="/pro/">增值服务</a></li>
-    <li><a href="/about/">公司介绍</a></li>
-    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
-  </ul>
-</nav>
-
-<!-- Overlay for popover -->
-<div class="popover-overlay" id="popoverOverlay" onclick="closePopover()"></div>
-<div class="popover" id="popover">
-  <button class="pop-close" onclick="closePopover()">×</button>
-  <h4 id="popTitle"></h4>
-  <p id="popDesc"></p>
-</div>
-
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-tag"><span>电小团</span> Little Electric Cloud</div>
-    <h1>让每一度电<br><span class="gradient">创造更多价值</span></h1>
-    <p>电小团是综合能源运营服务工具集，从数据采集到智能分析，从电力政策到电价查询，从运营商机洞察到项目决策支持，助力能源从业者高效工作。</p>
-    <div class="hero-cta">
-      <a href="/tools/" class="primary">探索工具集</a>
-      <a href="/about/" class="secondary">了解更多</a>
-    </div>
-  </div>
-</section>
-
-<!-- Stats -->
-<section class="section" style="padding: 30px 32px 0;">
-  <div class="section-inner">
-    <div class="stats-bar">
-      <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">覆盖省份</div></div>
-      <div class="stat-item"><div class="stat-num">15min</div><div class="stat-label">数据粒度</div></div>
-      <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">政策文件库</div></div>
-      <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">运营模块</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- Radial Capability -->
-<section class="section radial-section">
-  <div class="section-inner">
-    <div class="section-label">能力架构</div>
-    <h2>能力金字塔</h2>
-    <p class="subtitle">从采集到分析，从数据库到运营决策</p>
-
-    <div class="radial-container">
-
-      <!-- Layer 1: 数据采集 -->
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据采集 · 能源监测 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <span class="radial-node no-click" onclick="showPopover(this,'三级计量','建筑级 · 楼层级 · 设备级三级电能计量体系，精准溯源每一度电的流向')">
-            <span class="node-dot green"></span>三级计量
-            <span class="info-badge">ⓘ</span>
-          </span>
-          <span class="radial-node no-click" onclick="showPopover(this,'利旧设备','兼容既有智能表计与采集终端，无需更换硬件，大幅降低改造成本')">
-            <span class="node-dot blue"></span>利旧设备
-            <span class="info-badge">ⓘ</span>
-          </span>
-          <span class="radial-node no-click" onclick="showPopover(this,'多设备协议打通','支持 Modbus RTU/TCP、MQTT、BACnet、DL/T645 等多种协议的统一接入与数据汇聚')">
-            <span class="node-dot purple"></span>多设备协议打通
-            <span class="info-badge">ⓘ</span>
-          </span>
-        </div>
-      </div>
-
-      <!-- Layer 2: 数据清洗 -->
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据清洗 · 专有负荷侧数据库 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <a class="radial-node clickable" href="/policy/"><span class="node-dot green"></span>政策数据库</a>
-          <a class="radial-node clickable" href="/price/"><span class="node-dot blue"></span>电价数据库</a>
-          <a class="radial-node clickable" href="/data/"><span class="node-dot purple"></span>负荷数据库</a>
-          <a class="radial-node clickable" href="/data/"><span class="node-dot orange"></span>需量数据库</a>
-          <a class="radial-node clickable" href="/data/"><span class="node-dot pink"></span>气象数据库</a>
-        </div>
-      </div>
-
-      <!-- Layer 3: 数据应用 -->
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据应用 · 综合能源运营 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot green"></span>电费单分析</a>
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot blue"></span>售电优化</a>
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot teal"></span>水机空调寻优节能</a>
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot purple"></span>多联机末端管理节能</a>
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot orange"></span>最大需量管理</a>
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot pink"></span>分时电价管理</a>
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot" style="background:#5BA3A3"></span>VPP可调负荷聚合</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- Service Cards (三大服务模块) -->
-<section class="section service-section">
-  <div class="section-inner">
-    <div class="section-label">服务体系</div>
-    <h2>三大服务模块</h2>
-    <p class="subtitle">系统化学习 · 在线工具 · 深度服务</p>
-    <div class="service-cards">
-      <a href="/training/" class="service-card">
-        <h3>综合能源学习课程</h3>
-        <p>9大主题，覆盖电力市场、储能、风电、虚拟电厂、零碳园区等核心领域，系统化的综合能源知识库，免费学习。</p>
-        <span class="svc-tag">免费学习 →</span>
-      </a>
-      <a href="/tools/" class="service-card">
-        <h3>综合能源运营服务工具</h3>
-        <p>电费联单分析、能源运营规划、能源运营诊断等实用工具，免费试用，助力日常作业提效。</p>
-        <span class="svc-tag">免费试用 →</span>
-      </a>
-      <a href="/pro/" class="service-card">
-        <h3>增值服务</h3>
-        <p>水冷空调节能优化、虚拟电厂聚合管理、虚拟电厂运营服务，深度能源服务释放数据价值。</p>
-        <span class="svc-tag">了解更多 →</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="footer">
-  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
-</footer>
-
-<!-- Pet Chat Button -->
-<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
-  <div class="dxt-pet-body" style="background:#fff;">
-    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
-    <div class="dxt-pet-dot">💬</div>
-  </div>
-</div>
-
-<div id="dxt-pet-overlay">
-  <div class="dxt-overlay-head">
-    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-    <div class="head-text">
-      <h3>电小团</h3>
-      <p>综合能源运营助手 · 随时为您解答</p>
-    </div>
-    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
-  </div>
-  <div class="dxt-msg-area" id="dxt-msg-area">
-    <div class="dxt-msg bot">
-      你好！我是电小团 👋<br>
-      我可以帮你了解产品、服务，或者查找官网资料。<br>
-      有什么想问的吗？
-    </div>
-    <div class="dxt-msg-time">刚刚</div>
-  </div>
-  <div class="dxt-quick-replies" id="dxt-quick-replies">
-    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
-    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
-    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
-    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
-  </div>
-  <div class="dxt-input-area">
-    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
-    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
-      </svg>
-    </button>
-  </div>
-</div>\n
       <div class="logo-sub">Little Electric Cloud</div>
     </div>
   </a>
@@ -729,6 +551,48 @@ function closePopover() {
 </script>
 
 
+
+<!-- Pet Chat Button -->
+<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
+  <div class="dxt-pet-body" style="background:#fff;">
+    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+    <div class="dxt-pet-dot">💬</div>
+  </div>
+</div>
+
+<div id="dxt-pet-overlay">
+  <div class="dxt-overlay-head">
+    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <div class="head-text">
+      <h3>电小团</h3>
+      <p>综合能源运营助手 · 随时为您解答</p>
+    </div>
+    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
+  </div>
+  <div class="dxt-msg-area" id="dxt-msg-area">
+    <div class="dxt-msg bot">
+      你好！我是电小团 👋<br>
+      我可以帮你了解产品、服务，或者查找官网资料。<br>
+      有什么想问的吗？
+    </div>
+    <div class="dxt-msg-time">刚刚</div>
+  </div>
+  <div class="dxt-quick-replies" id="dxt-quick-replies">
+    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
+  </div>
+  <div class="dxt-input-area">
+    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
 <script>
 const FAQ = {
   '做哪些业务': '电小团聚焦综合能源运营服务，核心业务包括：\n\n🔹 数据采集 — 基于HomeAssistant生态，15分钟级高频率数据采集\n🔹 数据分析 — 电价/负荷/政策多维数据库，AI交叉分析\n🔹 能源运营 — 售电优化、空调节能、需量管理、VPP虚拟电厂\n🔹 在线工具 — 电费分析、能源规划、能源诊断等\n\n你可以查看<a href="/pro/" style="color:var(--accent);font-weight:600">增值服务 →</a>了解更多。',
@@ -776,10 +640,10 @@ function hideTyping() {
 function findAnswer(text) {
   var t = text.trim();
   for (var key in FAQ) {
-    if (key === '\u9ed8\u8ba4') continue;
+    if (key === '默认') continue;
     if (t.indexOf(key) !== -1) return FAQ[key];
   }
-  return FAQ['\u9ed8\u8ba4'];
+  return FAQ['默认'];
 }
 function sendMessage() {
   var input = document.getElementById('dxt-user-input');
@@ -808,5 +672,7 @@ document.addEventListener('click', function(e) {
     closePetChat();
   }
 });
-</script></body>
+</script>
+
+</body>
 </html>
