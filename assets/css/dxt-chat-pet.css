@@ -378,6 +378,19 @@
   animation-delay: 0.3s;
 }
 
+.dxt-typing-text {
+  font-size: 12px;
+  color: #6B7280;
+  margin-left: 6px;
+  align-self: center;
+  white-space: nowrap;
+  transition: opacity 0.4s;
+}
+
+.theme-dark .dxt-typing-text {
+  color: #9CA3AF;
+}
+
 @keyframes dxt-bounce {
   0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
   30% { transform: translateY(-6px); opacity: 1; }

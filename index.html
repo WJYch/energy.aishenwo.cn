@@ -619,18 +619,35 @@ function addMessage(text, role) {
   area.appendChild(tm);
   area.scrollTop = area.scrollHeight;
 }
+var dxtTypingTimer = null;
 function showTyping() {
   var area = document.getElementById('dxt-msg-area');
   var el = document.createElement('div');
   el.className = 'dxt-typing';
   el.id = 'dxt-typing-indicator';
-  el.innerHTML = '<span></span><span></span><span></span>';
+  el.innerHTML = '<span></span><span></span><span></span><span class="dxt-typing-text"></span>';
   area.appendChild(el);
   area.scrollTop = area.scrollHeight;
+  // 渐次提示文案
+  var txt = el.querySelector('.dxt-typing-text');
+  if (dxtTypingTimer) clearTimeout(dxtTypingTimer);
+  dxtTypingTimer = setTimeout(function() {
+    txt.textContent = ' 正在查资料...';
+    area.scrollTop = area.scrollHeight;
+  }, 3000);
+  dxtTypingTimer = setTimeout(function() {
+    txt.textContent = ' 还在思考中，再稍等一下...';
+    area.scrollTop = area.scrollHeight;
+  }, 10000);
+  dxtTypingTimer = setTimeout(function() {
+    txt.textContent = ' 问题有点复杂，正在全力分析...';
+    area.scrollTop = area.scrollHeight;
+  }, 20000);
 }
 function hideTyping() {
   var el = document.getElementById('dxt-typing-indicator');
   if (el) el.remove();
+  if (dxtTypingTimer) { clearTimeout(dxtTypingTimer); dxtTypingTimer = null; }
 }
 function sendMessage() {
   var input = document.getElementById('dxt-user-input');

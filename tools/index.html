@@ -570,18 +570,25 @@ function addMessage(text, role) {
   area.appendChild(tm);
   area.scrollTop = area.scrollHeight;
 }
+var dxtTypingTimer = null;
 function showTyping() {
   var area = document.getElementById('dxt-msg-area');
   var el = document.createElement('div');
   el.className = 'dxt-typing';
   el.id = 'dxt-typing-indicator';
-  el.innerHTML = '<span></span><span></span><span></span>';
+  el.innerHTML = '<span></span><span></span><span></span><span class="dxt-typing-text"></span>';
   area.appendChild(el);
   area.scrollTop = area.scrollHeight;
+  var txt = el.querySelector('.dxt-typing-text');
+  if (dxtTypingTimer) clearTimeout(dxtTypingTimer);
+  setTimeout(function() { txt.textContent = ' 正在查资料...'; area.scrollTop = area.scrollHeight; }, 3000);
+  setTimeout(function() { txt.textContent = ' 还在思考中，再稍等一下...'; area.scrollTop = area.scrollHeight; }, 10000);
+  setTimeout(function() { txt.textContent = ' 问题有点复杂，正在全力分析...'; area.scrollTop = area.scrollHeight; }, 20000);
 }
 function hideTyping() {
   var el = document.getElementById('dxt-typing-indicator');
   if (el) el.remove();
+  if (dxtTypingTimer) { clearTimeout(dxtTypingTimer); dxtTypingTimer = null; }
 }
 function sendMessage() {
   var input = document.getElementById('dxt-user-input');
@@ -636,83 +643,7 @@ document.addEventListener('click', function(e) {
 });
 </script>
 
-  '做哪些业务': '电小团聚焦综合能源运营服务，核心业务包括：\n\n🔹 数据采集 — 基于HomeAssistant生态，15分钟级高频率数据采集\n🔹 数据分析 — 电价/负荷/政策多维数据库，AI交叉分析\n🔹 能源运营 — 售电优化、空调节能、需量管理、VPP虚拟电厂\n🔹 在线工具 — 电费分析、能源规划、能源诊断等\n\n你可以查看<a href="/pro/" style="color:var(--accent);font-weight:600">增值服务 →</a>了解更多。',
-  '你好': '你好呀！欢迎来到电小团 👋\n我是你的综合能源运营助手。可以问我：\n\u2022 做哪些业务？\n\u2022 有哪些工具？\n\u2022 有哪些培训课程？\n\u2022 怎么联系合作？\n\n或者直接输入任何问题～',
-  '默认': '感谢提问！建议先看看这些：\n\n👉 <a href="/training/" style="color:var(--accent);font-weight:600">免费培训 →</a>\n👉 <a href="/tools/" style="color:var(--accent);font-weight:600">在线工具 →</a>\n👉 <a href="/about/" style="color:var(--accent);font-weight:600">关于电小团 →</a>\n\n或者换个问题试试？'
-};
 
-function togglePetChat() {
-  var overlay = document.getElementById('dxt-pet-overlay');
-  overlay.classList.toggle('open');
-  if (overlay.classList.contains('open')) {
-    setTimeout(function(){ document.getElementById('dxt-user-input').focus(); }, 350);
-  }
-}
-function closePetChat() {
-  document.getElementById('dxt-pet-overlay').classList.remove('open');
-}
-function addMessage(text, role) {
-  var area = document.getElementById('dxt-msg-area');
-  var msg = document.createElement('div');
-  msg.className = 'dxt-msg ' + role;
-  msg.innerHTML = text.replace(/\n/g, '<br>');
-  area.appendChild(msg);
-  var now = new Date();
-  var t = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
-  var tm = document.createElement('div');
-  tm.className = 'dxt-msg-time';
-  tm.textContent = t;
-  area.appendChild(tm);
-  area.scrollTop = area.scrollHeight;
-}
-function showTyping() {
-  var area = document.getElementById('dxt-msg-area');
-  var el = document.createElement('div');
-  el.className = 'dxt-typing';
-  el.id = 'dxt-typing-indicator';
-  el.innerHTML = '<span></span><span></span><span></span>';
-  area.appendChild(el);
-  area.scrollTop = area.scrollHeight;
-}
-function hideTyping() {
-  var el = document.getElementById('dxt-typing-indicator');
-  if (el) el.remove();
-}
-function findAnswer(text) {
-  var t = text.trim();
-  for (var key in FAQ) {
-    if (key === '\u9ed8\u8ba4') continue;
-    if (t.indexOf(key) !== -1) return FAQ[key];
-  }
-  return FAQ['\u9ed8\u8ba4'];
-}
-function sendMessage() {
-  var input = document.getElementById('dxt-user-input');
-  var text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  addMessage(text, 'user');
-  document.getElementById('dxt-send-btn').disabled = true;
-  document.getElementById('dxt-quick-replies').style.display = 'none';
-  showTyping();
-  setTimeout(function(){
-    hideTyping();
-    addMessage(findAnswer(text), 'bot');
-    document.getElementById('dxt-send-btn').disabled = false;
-  }, 600 + Math.random() * 600);
-}
-function sendQuick(text) {
-  document.getElementById('dxt-user-input').value = text;
-  sendMessage();
-}
-// Click outside to close
-document.addEventListener('click', function(e) {
-  var overlay = document.getElementById('dxt-pet-overlay');
-  var btn = document.getElementById('dxt-pet-btn');
-  if (overlay && overlay.classList.contains('open') && !overlay.contains(e.target) && !btn.contains(e.target)) {
-    closePetChat();
-  }
-});
 </script>
 </body>
 </html>
