@@ -135,14 +135,13 @@ body {
 }
 /* ===== Tools Grid ===== */
 .tools-grid {
-  max-width: 980px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 24px 60px;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: 1fr;
   gap: 20px;
 }
-.tool-wide { grid-column: 1 / -1; max-width: 100%; }
 .tool-card {
   background: var(--bg-card);
   border-radius: 18px;
@@ -154,7 +153,6 @@ body {
   flex-direction: column;
 }
 .tool-card:hover {
-  transform: translateY(-4px);
   box-shadow: var(--shadow-hover);
   border-color: rgba(94,139,126,0.15);
 }
@@ -169,6 +167,18 @@ body {
   border-radius: 14px;
   margin-bottom: 16px;
 }
+.tool-card-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 0;
+}
+.tool-card-header .tool-icon {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+.tool-card-header > div:last-child { flex: 1; }
+.tool-card-header h3 { margin-bottom: 4px; }
 .tool-card h3 {
   font-size: 17px;
   font-weight: 700;
@@ -180,6 +190,52 @@ body {
   color: var(--text-secondary);
   line-height: 1.7;
   flex: 1;
+}
+.tool-api-key-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-body);
+  border-radius: 10px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+.tool-api-key-bar span { white-space: nowrap; font-weight: 500; }
+.tool-api-key-bar input {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-card);
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border 0.2s;
+}
+.tool-api-key-bar input:focus { border-color: var(--accent); }
+.tool-api-key-bar button {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.tool-api-key-bar button:hover { background: var(--btn-primary-hover); }
+.tool-iframe-wrapper {
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  background: var(--bg-body);
 }
 .tool-card .tool-footer {
   display: flex;
@@ -198,106 +254,6 @@ body {
 }
 .tag-free { background: var(--tag-free-bg); color: var(--accent); }
 .tag-demo { background: var(--tag-demo-bg); color: var(--tag-demo-text); }
-.tool-card .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 5px;
-  background: var(--btn-primary);
-  color: #fff;
-  border: none;
-  padding: 7px 18px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  transition: background 0.2s;
-}
-.tool-card .btn:hover { background: var(--btn-primary-hover); }
-.tool-card .btn-disabled {
-  background: var(--btn-disabled-bg);
-  color: var(--btn-disabled-text);
-  padding: 7px 18px;
-  border-radius: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: default;
-  text-decoration: none;
-  pointer-events: none;
-}
-/* ===== Tool-wide card enhancements ===== */
-.tool-wide:hover {
-  transform: none !important;
-}
-.tool-card-header {
-  display: flex;
-  gap: 16px;
-  align-items: center;
-  margin-bottom: 0;
-}
-.tool-card-header .tool-icon {
-  margin-bottom: 0;
-  flex-shrink: 0;
-}
-.tool-card-header > div:last-child {
-  flex: 1;
-}
-.tool-card-header h3 {
-  margin-bottom: 4px;
-}
-.tool-api-key-bar {
-  display: flex;
-  gap: 10px;
-  align-items: center;
-  padding: 12px 16px;
-  background: var(--bg-body);
-  border-radius: 10px;
-  margin-top: 16px;
-  font-size: 13px;
-  color: var(--text-secondary);
-  flex-wrap: wrap;
-}
-.tool-api-key-bar span {
-  white-space: nowrap;
-  font-weight: 500;
-}
-.tool-api-key-bar input {
-  flex: 1;
-  min-width: 180px;
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 1px solid var(--border-card);
-  background: var(--bg-card);
-  color: var(--text);
-  font-size: 13px;
-  outline: none;
-  transition: border 0.2s;
-}
-.tool-api-key-bar input:focus {
-  border-color: var(--accent);
-}
-.tool-api-key-bar button {
-  padding: 8px 18px;
-  border-radius: 8px;
-  border: none;
-  background: var(--accent);
-  color: #fff;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.2s;
-  white-space: nowrap;
-}
-.tool-api-key-bar button:hover {
-  background: var(--btn-primary-hover);
-}
-.tool-iframe-wrapper {
-  margin-top: 16px;
-  border-radius: 12px;
-  overflow: hidden;
-  border: 1px solid var(--border-card);
-  background: var(--bg-body);
-}
 .btn-gh-style {
   display: inline-flex;
   align-items: center;
@@ -310,32 +266,7 @@ body {
   border: 1px solid var(--border-card);
   transition: all 0.2s;
 }
-.btn-gh-style:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-.coming-soon-placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 80px 20px;
-  text-align: center;
-  border-radius: 12px;
-  background: var(--bg-body);
-  border: 1px dashed var(--border-card);
-  margin-top: 16px;
-}
-.coming-soon-placeholder .big-icon {
-  font-size: 56px;
-  opacity: 0.25;
-  margin-bottom: 16px;
-}
-.coming-soon-placeholder p {
-  font-size: 16px;
-  color: var(--text-muted);
-  font-weight: 500;
-}
+.btn-gh-style:hover { border-color: var(--accent); color: var(--accent); }
 /* ===== Footer ===== */
 .footer {
   border-top: 1px solid var(--border-card);
@@ -379,19 +310,14 @@ body {
 <!-- Tools Grid -->
 <div class="tools-grid">
 
-  <!-- Tool 1: 电费联单AI分析 - iframe嵌入 -->
-  <div class="tool-card tool-wide" id="bill">
+  <!-- Tool 1: 电费联单AI分析 -->
+  <div class="tool-card" id="bill">
     <div class="tool-card-header">
       <div class="tool-icon">📄</div>
       <div>
         <h3>电费联单AI分析</h3>
-        <p class="desc">上传国网电费账单PDF，AI自动解析电费结构，展示度电成本、峰谷分析、需量分析等关键指标，支持多月份对比与两部制测算。</p>
+        <p class="desc">上传国网电费账单PDF，AI自动解析电费结构，展示度电成本、峰谷分析、需量分析等关键指标，支持多月份对比与两部制测算。<br>支持两种模式：<strong>本地解析</strong>（免费，直接浏览器内完成）或 <strong>电小团AI</strong>（需电小团 API Key）。</p>
       </div>
-    </div>
-    <div class="tool-api-key-bar">
-      <span>🔑 电小团 API Key</span>
-      <input type="password" id="billApiKey" placeholder="输入您的电小团 API Key" value="">
-      <button onclick="saveBillApiKey()">保存</button>
     </div>
     <div class="tool-iframe-wrapper">
       <iframe src="https://wjych.github.io/elec-bill-analyzer/" width="100%" height="850" style="border:none;border-radius:12px;" loading="lazy"></iframe>
@@ -402,8 +328,8 @@ body {
     </div>
   </div>
 
-  <!-- Tool 2: 能源运营规划 - iframe嵌入 -->
-  <div class="tool-card tool-wide" id="vpp">
+  <!-- Tool 2: 能源运营规划 -->
+  <div class="tool-card" id="planning">
     <div class="tool-card-header">
       <div class="tool-icon">📋</div>
       <div>
@@ -420,8 +346,8 @@ body {
     </div>
   </div>
 
-  <!-- Tool 3: 能源运营诊断 - iframe嵌入 -->
-  <div class="tool-card tool-wide" id="diagnosis">
+  <!-- Tool 3: 能源运营诊断 -->
+  <div class="tool-card" id="diagnosis">
     <div class="tool-card-header">
       <div class="tool-icon">🔍</div>
       <div>
@@ -457,25 +383,6 @@ body {
 </div>
 
 <script>
-// Save bill API key to localStorage
-function saveBillApiKey() {
-  const key = document.getElementById('billApiKey').value.trim();
-  if (key) {
-    localStorage.setItem('dxt-bill-api-key', key);
-    alert('API Key 已保存');
-  } else {
-    localStorage.removeItem('dxt-bill-api-key');
-    alert('已清除 API Key');
-  }
-}
-// Restore bill API key on load
-(function() {
-  const saved = localStorage.getItem('dxt-bill-api-key');
-  if (saved) {
-    const el = document.getElementById('billApiKey');
-    if (el) el.value = saved;
-  }
-})();
 // Theme toggle
 function toggleTheme() {
   const body = document.body;
