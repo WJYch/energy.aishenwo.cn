@@ -1,75 +1,52 @@
-/* ============================================================
-   电小团宠物对话组件 (Chat Pet)
-   版本: 1.0.0
-   设计: 小清新科技风 · 暖色经典
-   ============================================================ */
+/* ===== 电小团对话宠物样式 ===== */
+/* 适配双主题：深色科技风（#000） + 浅色小清新（#F8F9FC） */
+/* ================================= */
 
-/* --- 右下角宠物按钮 --- */
+/* --- 右下角触发按钮 --- */
 #dxt-pet-btn {
   position: fixed;
   bottom: 24px;
   right: 24px;
   z-index: 9999;
   cursor: pointer;
-  transition: transform var(--transition, 0.3s);
-  filter: drop-shadow(0 4px 16px rgba(0,0,0,0.10));
+  transition: transform 0.2s;
 }
-
 #dxt-pet-btn:hover {
   transform: scale(1.08);
 }
-
-/* 宠物主体 — 小团子SVG容器 */
 .dxt-pet-body {
-  width: 68px;
-  height: 68px;
+  position: relative;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #ffffff 0%, #F8F5F0 100%);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.10);
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid rgba(94, 139, 126, 0.25);
-  position: relative;
-  overflow: hidden;
-  animation: dxt-pet-breathe 3s ease-in-out infinite;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 2px var(--accent, #5E8B7E);
+  transition: box-shadow 0.3s;
 }
-
-/* 呼吸动效 */
-@keyframes dxt-pet-breathe {
-  0%, 100% { transform: scale(1); box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
-  50% { transform: scale(1.04); box-shadow: 0 6px 24px rgba(0,0,0,0.12); }
+.dxt-pet-body:hover {
+  box-shadow: 0 6px 28px rgba(0,0,0,0.2), 0 0 0 2px var(--accent, #5E8B7E);
 }
-
-/* 宠物SVG内部 */
-.dxt-pet-svg {
-  width: 44px;
-  height: 44px;
-  display: block;
-}
-
-/* --- 通知小红点 --- */
 .dxt-pet-dot {
   position: absolute;
   top: 0;
   right: 0;
-  width: 18px;
-  height: 18px;
-  background: var(--accent4, #E8A87C);
-  border: 2px solid white;
+  width: 20px;
+  height: 20px;
+  background: var(--accent, #5E8B7E);
   border-radius: 50%;
-  font-size: 10px;
-  color: white;
-  font-weight: 700;
   display: flex;
   align-items: center;
   justify-content: center;
-  animation: dxt-dot-pulse 2s ease-in-out infinite;
+  font-size: 10px;
+  color: white;
+  box-shadow: 0 0 0 2px var(--bg-body, #FFFFFF);
+  animation: dxt-pulse 2s infinite;
 }
-
-@keyframes dxt-dot-pulse {
+@keyframes dxt-pulse {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+  50% { transform: scale(1.1); }
 }
 
 /* --- 对话浮层 --- */
@@ -80,14 +57,19 @@
   z-index: 9998;
   width: 360px;
   max-height: 520px;
-  background: #FFFFFF;
+  background: var(--bg-card, #FFFFFF);
   border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(0,0,0,0.12), 0 0 0 1px rgba(0,0,0,0.04);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.12), 0 0 0 1px var(--border-card, rgba(0,0,0,0.04));
   display: none;
   flex-direction: column;
   overflow: hidden;
   animation: dxt-overlay-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   transform-origin: bottom right;
+}
+
+.theme-dark #dxt-pet-overlay {
+  background: #1A1B1E;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.06);
 }
 
 #dxt-pet-overlay.open {
@@ -170,6 +152,11 @@
   min-height: 200px;
   max-height: 340px;
   scroll-behavior: smooth;
+  background: var(--bg-body, #F8F9FC);
+}
+
+.theme-dark .dxt-msg-area {
+  background: #1A1B1E;
 }
 
 .dxt-msg-area::-webkit-scrollbar {
@@ -177,7 +164,7 @@
 }
 
 .dxt-msg-area::-webkit-scrollbar-thumb {
-  background: #D1D5DB;
+  background: var(--text-muted, #9CA3AF);
   border-radius: 4px;
 }
 
@@ -200,16 +187,34 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.dxt-msg.bot {
+/* bot 消息气泡 - 浅色主题 */
+.theme-light .dxt-msg.bot {
   align-self: flex-start;
   background: #F0EDE8;
-  color: var(--text, #1F2937);
+  color: #1F2937;
   border-bottom-left-radius: 4px;
 }
 
-.dxt-msg.user {
+/* bot 消息气泡 - 深色主题 */
+.theme-dark .dxt-msg.bot {
+  align-self: flex-start;
+  background: #2A2D35;
+  color: #E5E7EB;
+  border-bottom-left-radius: 4px;
+}
+
+/* user 消息气泡 - 浅色主题 */
+.theme-light .dxt-msg.user {
   align-self: flex-end;
   background: var(--accent, #5E8B7E);
+  color: white;
+  border-bottom-right-radius: 4px;
+}
+
+/* user 消息气泡 - 深色主题 */
+.theme-dark .dxt-msg.user {
+  align-self: flex-end;
+  background: #4A7A6E;
   color: white;
   border-bottom-right-radius: 4px;
 }
@@ -233,6 +238,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
+  background: var(--bg-body, #F8F9FC);
+}
+
+.theme-dark .dxt-quick-replies {
+  background: #1A1B1E;
 }
 
 .dxt-quick-btn {
@@ -241,11 +251,17 @@
   border-radius: 18px;
   padding: 6px 14px;
   font-size: 12px;
-  color: var(--text-secondary, #6B7280);
+  color: #6B7280;
   cursor: pointer;
   transition: all var(--transition, 0.3s);
   font-family: inherit;
   white-space: nowrap;
+}
+
+.theme-dark .dxt-quick-btn {
+  background: #2A2D35;
+  border-color: #3A3D45;
+  color: #9CA3AF;
 }
 
 .dxt-quick-btn:hover {
@@ -260,12 +276,18 @@
   align-items: center;
   gap: 8px;
   padding: 10px 16px 14px;
-  border-top: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid var(--border-card, rgba(0,0,0,0.05));
+  background: var(--bg-card, #FFFFFF);
+}
+
+.theme-dark .dxt-input-area {
+  background: #1A1B1E;
+  border-top-color: rgba(255,255,255,0.06);
 }
 
 .dxt-input-area input {
   flex: 1;
-  border: 1px solid #E8E0D6;
+  border: 1px solid var(--border-card, #E8E0D6);
   border-radius: 20px;
   padding: 9px 14px;
   font-size: 13px;
@@ -273,16 +295,31 @@
   outline: none;
   transition: border-color var(--transition, 0.3s);
   color: var(--text, #1F2937);
-  background: #F8F7F4;
+  background: var(--bg-body, #F8F7F4);
+}
+
+.theme-dark .dxt-input-area input {
+  background: #2A2D35;
+  border-color: #3A3D45;
+  color: #E5E7EB;
 }
 
 .dxt-input-area input:focus {
   border-color: var(--accent, #5E8B7E);
-  background: white;
+  background: var(--bg-card, #FFFFFF);
+}
+
+.theme-dark .dxt-input-area input:focus {
+  background: #2A2D35;
+  border-color: #6BB5A6;
 }
 
 .dxt-input-area input::placeholder {
-  color: #B0AFA8;
+  color: var(--text-muted, #B0AFA8);
+}
+
+.theme-dark .dxt-input-area input::placeholder {
+  color: #6B7280;
 }
 
 .dxt-send-btn {
@@ -315,28 +352,35 @@
   align-self: flex-start;
   display: flex;
   gap: 4px;
-  padding: 10px 14px;
+  padding: 12px 18px;
   background: #F0EDE8;
   border-radius: 16px;
   border-bottom-left-radius: 4px;
-  animation: dxt-msg-in 0.25s ease;
+}
+
+.theme-dark .dxt-typing {
+  background: #2A2D35;
 }
 
 .dxt-typing span {
-  width: 6px;
-  height: 6px;
-  background: #B0AFA8;
+  width: 7px;
+  height: 7px;
+  background: #9CA3AF;
   border-radius: 50%;
-  animation: dxt-bounce 1.2s ease-in-out infinite;
+  animation: dxt-bounce 1.2s infinite;
 }
 
-.dxt-typing span:nth-child(1) { animation-delay: 0s; }
-.dxt-typing span:nth-child(2) { animation-delay: 0.2s; }
-.dxt-typing span:nth-child(3) { animation-delay: 0.4s; }
+.dxt-typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.dxt-typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
 
 @keyframes dxt-bounce {
-  0%, 60%, 100% { transform: translateY(0); }
-  30% { transform: translateY(-6px); }
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+  30% { transform: translateY(-6px); opacity: 1; }
 }
 
 /* --- 响应式 --- */
@@ -344,7 +388,8 @@
   #dxt-pet-overlay {
     width: calc(100vw - 32px);
     right: 16px;
-    bottom: 96px;
+    bottom: 100px;
+    max-height: 60vh;
   }
 
   #dxt-pet-btn {
@@ -355,10 +400,5 @@
   .dxt-pet-body {
     width: 58px;
     height: 58px;
-  }
-
-  .dxt-pet-svg {
-    width: 36px;
-    height: 36px;
   }
 }
