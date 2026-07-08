@@ -225,6 +225,117 @@ body {
   text-decoration: none;
   pointer-events: none;
 }
+/* ===== Tool-wide card enhancements ===== */
+.tool-wide:hover {
+  transform: none !important;
+}
+.tool-card-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 0;
+}
+.tool-card-header .tool-icon {
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+.tool-card-header > div:last-child {
+  flex: 1;
+}
+.tool-card-header h3 {
+  margin-bottom: 4px;
+}
+.tool-api-key-bar {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg-body);
+  border-radius: 10px;
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  flex-wrap: wrap;
+}
+.tool-api-key-bar span {
+  white-space: nowrap;
+  font-weight: 500;
+}
+.tool-api-key-bar input {
+  flex: 1;
+  min-width: 180px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 1px solid var(--border-card);
+  background: var(--bg-card);
+  color: var(--text);
+  font-size: 13px;
+  outline: none;
+  transition: border 0.2s;
+}
+.tool-api-key-bar input:focus {
+  border-color: var(--accent);
+}
+.tool-api-key-bar button {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  white-space: nowrap;
+}
+.tool-api-key-bar button:hover {
+  background: var(--btn-primary-hover);
+}
+.tool-iframe-wrapper {
+  margin-top: 16px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-card);
+  background: var(--bg-body);
+}
+.btn-gh-style {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 12px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-card);
+  transition: all 0.2s;
+}
+.btn-gh-style:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.coming-soon-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px 20px;
+  text-align: center;
+  border-radius: 12px;
+  background: var(--bg-body);
+  border: 1px dashed var(--border-card);
+  margin-top: 16px;
+}
+.coming-soon-placeholder .big-icon {
+  font-size: 56px;
+  opacity: 0.25;
+  margin-bottom: 16px;
+}
+.coming-soon-placeholder p {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
 /* ===== Footer ===== */
 .footer {
   border-top: 1px solid var(--border-card);
@@ -268,61 +379,63 @@ body {
 <!-- Tools Grid -->
 <div class="tools-grid">
 
-  <!-- Tool 1: 电费联单AI分析 -->
+  <!-- Tool 1: 电费联单AI分析 - iframe嵌入 -->
   <div class="tool-card tool-wide" id="bill">
-    <div class="tool-icon">📄</div>
-    <h3>电费联单AI分析</h3>
-    <p class="desc">上传国网电费PDF或拍照截图，AI自动解析电费结构，展示度电成本、峰谷分析、需量分析等关键指标，生成专业分析报告。</p>
-    <div style="margin:18px 0 0;padding:20px;border-radius:12px;border:1px dashed var(--border-card);background:var(--bg-body);text-align:center;">
-      <div style="font-size:40px;margin-bottom:12px;opacity:0.3;">📄</div>
-      <p style="font-size:14px;color:var(--text-secondary);margin-bottom:12px;">上传电费单PDF或图片，AI自动解析</p>
-      <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
-        <span style="padding:8px 20px;border-radius:8px;background:var(--accent);color:#fff;font-size:13px;font-weight:600;cursor:default;opacity:0.6;">选择文件</span>
-        <span style="padding:8px 20px;border-radius:8px;background:var(--btn-disabled-bg);color:var(--btn-disabled-text);font-size:13px;font-weight:600;">粘贴图片</span>
+    <div class="tool-card-header">
+      <div class="tool-icon">📄</div>
+      <div>
+        <h3>电费联单AI分析</h3>
+        <p class="desc">上传国网电费账单PDF，AI自动解析电费结构，展示度电成本、峰谷分析、需量分析等关键指标，支持多月份对比与两部制测算。</p>
       </div>
-      <p style="font-size:12px;color:var(--text-muted);margin-top:14px;">🔒 需使用电小团API Key · <a href="/pro/" style="color:var(--accent);">获取API Key →</a></p>
+    </div>
+    <div class="tool-api-key-bar">
+      <span>🔑 电小团 API Key</span>
+      <input type="password" id="billApiKey" placeholder="输入您的电小团 API Key" value="">
+      <button onclick="saveBillApiKey()">保存</button>
+    </div>
+    <div class="tool-iframe-wrapper">
+      <iframe src="https://wjych.github.io/elec-bill-analyzer/" width="100%" height="850" style="border:none;border-radius:12px;" loading="lazy"></iframe>
     </div>
     <div class="tool-footer">
       <span class="tag tag-free">需API Key</span>
-      <a href="https://github.com/wjych/elec-bill-analyzer" target="_blank" class="btn-gh" style="display:inline-flex;align-items:center;gap:5px;color:var(--text-secondary);text-decoration:none;font-size:12px;padding:6px 12px;border-radius:8px;border:1px solid var(--border-card);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='';this.style.color=''">
-        <i class="fa-brands fa-github" style="font-size:14px;"></i> 源码
-      </a>
+      <a href="https://github.com/wjych/elec-bill-analyzer" target="_blank" class="btn-gh-style"><i class="fa-brands fa-github" style="font-size:14px;"></i> GitHub 源码</a>
     </div>
   </div>
 
-  <!-- Tool 2: 能源运营规划 -->
-  <div class="tool-card">
-    <div class="tool-icon">📋</div>
-    <h3>能源运营规划</h3>
-    <p class="desc">基于项目基础数据（电费联单、设备参数、运营时间等），自动生成综合能源运营方案框架，涵盖储能、光伏、空调、VPP等多维度评估。</p>
+  <!-- Tool 2: 能源运营规划 - iframe嵌入 -->
+  <div class="tool-card tool-wide" id="vpp">
+    <div class="tool-card-header">
+      <div class="tool-icon">📋</div>
+      <div>
+        <h3>能源运营规划</h3>
+        <p class="desc">基于项目基础数据（电费联单、设备参数、运营时间等），自动生成综合能源运营方案框架，涵盖储能、光伏、空调、VPP等多维度评估。</p>
+      </div>
+    </div>
+    <div class="tool-iframe-wrapper">
+      <iframe src="https://wjych.github.io/vpp-aggregator-ha/" width="100%" height="850" style="border:none;border-radius:12px;" loading="lazy"></iframe>
+    </div>
     <div class="tool-footer">
       <span class="tag tag-demo">演示</span>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <a href="https://wjych.github.io/vpp-aggregator-ha/" target="_blank" class="btn" style="font-size:12px;padding:6px 14px;">
-          <i class="fa-regular fa-eye" style="font-size:11px"></i> 查看演示
-        </a>
-        <a href="https://github.com/wjych/vpp-aggregator-ha" target="_blank" class="btn-gh" style="display:inline-flex;align-items:center;gap:5px;color:var(--text-secondary);text-decoration:none;font-size:12px;padding:6px 12px;border-radius:8px;border:1px solid var(--border-card);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='';this.style.color=''">
-          <i class="fa-brands fa-github" style="font-size:14px;"></i>
-        </a>
-      </div>
+      <a href="https://github.com/wjych/vpp-aggregator-ha" target="_blank" class="btn-gh-style"><i class="fa-brands fa-github" style="font-size:14px;"></i> GitHub 源码</a>
     </div>
   </div>
 
-  <!-- Tool 3: 能源运营诊断 -->
-  <div class="tool-card">
-    <div class="tool-icon">🔍</div>
-    <h3>能源运营诊断</h3>
-    <p class="desc">接入负荷数据后，系统自动诊断用能效率、异常识别、节能潜力评估，生成专业诊断报告，助力运营优化提效。</p>
+  <!-- Tool 3: 能源运营诊断 - 即将上线占位 -->
+  <div class="tool-card tool-wide" id="diagnosis">
+    <div class="tool-card-header">
+      <div class="tool-icon">🔍</div>
+      <div>
+        <h3>能源运营诊断</h3>
+        <p class="desc">接入负荷数据后，系统自动诊断用能效率、异常识别、节能潜力评估，生成专业诊断报告，助力运营优化提效。</p>
+      </div>
+    </div>
+    <div class="coming-soon-placeholder">
+      <div class="big-icon">🚀</div>
+      <p>即将上线，敬请期待</p>
+    </div>
     <div class="tool-footer">
       <span class="tag tag-demo">演示</span>
-      <div style="display:flex;gap:8px;align-items:center;">
-        <span class="btn btn-disabled" style="font-size:12px;padding:6px 14px;">
-          <i class="fa-regular fa-clock" style="font-size:11px"></i> 即将上线
-        </span>
-        <a href="https://github.com/wjych/vpp-aggregator-ha" target="_blank" class="btn-gh" style="display:inline-flex;align-items:center;gap:5px;color:var(--text-secondary);text-decoration:none;font-size:12px;padding:6px 12px;border-radius:8px;border:1px solid var(--border-card);transition:all 0.2s;" onmouseover="this.style.borderColor='var(--accent)';this.style.color='var(--accent)'" onmouseout="this.style.borderColor='';this.style.color=''">
-          <i class="fa-brands fa-github" style="font-size:14px;"></i>
-        </a>
-      </div>
+      <a href="https://github.com/wjych/vpp-aggregator-ha" target="_blank" class="btn-gh-style"><i class="fa-brands fa-github" style="font-size:14px;"></i> GitHub 源码</a>
     </div>
   </div>
 
@@ -345,6 +458,25 @@ body {
 </div>
 
 <script>
+// Save bill API key to localStorage
+function saveBillApiKey() {
+  const key = document.getElementById('billApiKey').value.trim();
+  if (key) {
+    localStorage.setItem('dxt-bill-api-key', key);
+    alert('API Key 已保存');
+  } else {
+    localStorage.removeItem('dxt-bill-api-key');
+    alert('已清除 API Key');
+  }
+}
+// Restore bill API key on load
+(function() {
+  const saved = localStorage.getItem('dxt-bill-api-key');
+  if (saved) {
+    const el = document.getElementById('billApiKey');
+    if (el) el.value = saved;
+  }
+})();
 // Theme toggle
 function toggleTheme() {
   const body = document.body;
