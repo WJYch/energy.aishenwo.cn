@@ -224,8 +224,189 @@ body {
 .footer p { font-size: 13px; color: var(--text-muted); }
 .footer strong { color: var(--accent); font-weight: 600; }
 </style>
-\n<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">\n</head>
+<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
+
+</head>
 <body class="theme-dark">
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/assets/images/dxt-logo.webp" alt="电小团">
+    <div>
+      <div class="logo-text">电小团</div>
+      <div class="logo-sub">Little Electric Cloud</div>
+    </div>
+  </a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links">
+    <li><a href="/">首页</a></li>
+    <li><a href="/training/">免费课程</a></li>
+    <li><a href="/policy/">政策数据库</a></li>
+    <li><a href="/price/">电价数据库</a></li>
+    <li><a href="/tools/">能源运营工具</a></li>
+    <li><a href="/pro/">增值服务</a></li>
+    <li><a href="/about/" class="active">公司介绍</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
+  </ul>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+  <div class="tag"><span>电小团</span> 公司介绍</div>
+  <h1>关于我们</h1>
+</section>
+
+<!-- Content -->
+<div class="about-content">
+
+  <!-- 深沃控股集团 -->
+  <div class="about-card">
+    <h2><i class="fa-solid fa-building accent-green"></i> 深沃控股集团</h2>
+    <p>深沃核心团队深耕城市更新领域十余年，作为城市更新的创新实践者，曾深度操盘深圳南头古城、福州烟台山、东莞记忆、苏州源点LiveLab等项目。</p>
+    <p>公司总部扎根于深圳，在江苏、浙江、福建等地均设有分公司。项目范围覆盖大湾区、长三角及东南沿海片区。</p>
+    <p>业务体系主要为两大核心板块：<strong>开发板块</strong>，提供项目全链条、全过程开发综合服务，贯穿前期策划、城市规划设计、设计咨询、工程管理等环节。<strong>运营板块</strong>，通过设计运营一体化模式，精准研判定位，盘活闲置低效资产，运营标的包括历史街区、小体量商业、非标商业等。</p>
+    <p>从项目开发到持续运营，我们将站在市场与未来的视角，提出综合的项目解决方案，用独到认知和专业技术，助力城市发展与资产升级，为更美好的城市而努力。</p>
+  </div>
+
+  <!-- 电小团 -->
+  <div class="about-card">
+    <h2><i class="fa-solid fa-bolt accent-green"></i> 电小团</h2>
+    <p><strong>电小团</strong>是深沃控股集团旗下综合能源运营服务工具品牌，致力于为能源从业者提供从数据采集、数据分析到能源运营的全流程工具支持。</p>
+    <p>电小团提供"一套完整的能管系统 + 若干能源节费算法 + 长期能源运营服务"的综合解决方案。以轻硬件改造、重软件算法为特色，实现低投入、低改造、少布线、不破坏装修，并为客户提供运营兜底保障。</p>
+  </div>
+
+  <!-- 项目展示 -->
+  <div class="about-card">
+    <h2><i class="fa-solid fa-city accent-blue"></i> 项目展示</h2>
+
+    <div class="section-subtitle">城市更新项目</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/shenzhen-nantou-old-city.webp" alt="深圳南头古城">
+        <div class="project-info">
+          <h4>深圳南头古城</h4>
+          <p>历史街区活化</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/shenzhen-nantou-phase2.webp" alt="深圳南头古城2期">
+        <div class="project-info">
+          <h4>深圳南头古城2期</h4>
+          <p>历史街区活化</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/dongguan-dg-memory.webp" alt="东莞记忆">
+        <div class="project-info">
+          <h4>东莞·东莞记忆</h4>
+          <p>历史街区活化保护</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/fuzhou-yantaishan.webp" alt="福州烟台山">
+        <div class="project-info">
+          <h4>福州烟台山</h4>
+          <p>历史街区活化</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/suzhou-huaihai-street.webp" alt="苏州淮海街">
+        <div class="project-info">
+          <h4>苏州淮海街</h4>
+          <p>特色商业街区</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/chengdu-mengzhuiwan.webp" alt="成都猛追湾">
+        <div class="project-info">
+          <h4>成都猛追湾</h4>
+          <p>城市更新项目</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/shenzhen-pingshan.webp" alt="深圳平山村">
+        <div class="project-info">
+          <h4>深圳平山村</h4>
+          <p>城中村综合治理</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/shenzhen-baiwang.webp" alt="深圳百旺村">
+        <div class="project-info">
+          <h4>深圳百旺村</h4>
+          <p>城中村综合治理</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/shenzhen-zhongying-street.webp" alt="深圳中英街">
+        <div class="project-info">
+          <h4>深圳中英街</h4>
+          <p>历史街区活化</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/shanghai-guanghe.webp" alt="上海光合新座">
+        <div class="project-info">
+          <h4>上海光合新座</h4>
+          <p>城市更新项目</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/yancheng-kkpark.webp" alt="盐城KK PARK">
+        <div class="project-info">
+          <h4>盐城KK PARK国际街区</h4>
+          <p>特色商业街区</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/shaoguan-ruyuan.webp" alt="韶关乳源">
+        <div class="project-info">
+          <h4>韶关乳源</h4>
+          <p>城市更新项目</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-subtitle" style="margin-top:24px;">综合能源运营和低碳项目</div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/yuandian.webp" alt="苏州源点综合能源运营">
+        <div class="project-info">
+          <h4>苏州源点</h4>
+          <p>综合能源运营</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/suzhou-livelab.webp" alt="苏州源点LiveLab街区">
+        <div class="project-info">
+          <h4>苏州源点LiveLab街区</h4>
+          <p>城市更新+综合能源</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/yangzhou-emergency-base.webp" alt="扬州应急救援基地">
+        <div class="project-info">
+          <h4>扬州应急救援基地</h4>
+          <p>绿色低碳项目</p>
+        </div>
+      </div>
+      <div class="project-card">
+        <img class="project-img" src="/assets/images/projects/wuxi-icampus.webp" alt="无锡国际生命科学创新园区">
+        <div class="project-info">
+          <h4>无锡I·Campus</h4>
+          <p>低碳产业园区</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+</footer>
 
 
 
@@ -258,6 +439,48 @@ function toggleTheme() {
 })();
 </script>
 
+
+
+<!-- Pet Chat Button -->
+<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
+  <div class="dxt-pet-body" style="background:#fff;">
+    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+    <div class="dxt-pet-dot">💬</div>
+  </div>
+</div>
+
+<div id="dxt-pet-overlay">
+  <div class="dxt-overlay-head">
+    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <div class="head-text">
+      <h3>电小团</h3>
+      <p>综合能源运营助手 · 随时为您解答</p>
+    </div>
+    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
+  </div>
+  <div class="dxt-msg-area" id="dxt-msg-area">
+    <div class="dxt-msg bot">
+      你好！我是电小团 👋<br>
+      我可以帮你了解产品、服务，或者查找官网资料。<br>
+      有什么想问的吗？
+    </div>
+    <div class="dxt-msg-time">刚刚</div>
+  </div>
+  <div class="dxt-quick-replies" id="dxt-quick-replies">
+    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
+  </div>
+  <div class="dxt-input-area">
+    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
+      </svg>
+    </button>
+  </div>
+</div>
 
 <script>
 const FAQ = {
@@ -338,5 +561,6 @@ document.addEventListener('click', function(e) {
     closePetChat();
   }
 });
-</script></body>
+</script>
+</body>
 </html>

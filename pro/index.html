@@ -246,8 +246,120 @@ body {
 .footer p { font-size: 14px; color: var(--text-muted); }
 .footer strong { color: var(--accent); font-weight: 600; }
 </style>
-\n<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">\n</head>
+<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
+
+</head>
 <body class="theme-dark">
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a href="/" class="nav-logo">
+    <img src="/assets/images/dxt-logo.webp" alt="电小团">
+    <div>
+      <div class="logo-text">电小团</div>
+      <div class="logo-sub">Little Electric Cloud</div>
+    </div>
+  </a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links">
+    <li><a href="/">首页</a></li>
+    <li><a href="/training/">免费课程</a></li>
+    <li><a href="/policy/">政策数据库</a></li>
+    <li><a href="/price/">电价数据库</a></li>
+    <li><a href="/tools/">能源运营工具</a></li>
+    <li><a href="/pro/" class="active">增值服务</a></li>
+    <li><a href="/about/">公司介绍</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
+  </ul>
+</nav>
+
+<!-- Page Header -->
+<section class="page-header">
+  <h1>⚡ 增值 <span>服务</span></h1>
+  <p>从能效优化到电力市场运营，一站式数字化能源增值解决方案</p>
+</section>
+
+<!-- Service Cards -->
+<div class="services">
+
+  <!-- 板块 1：水冷空调节能 -->
+  <div class="service-card">
+    <div class="card-icon">
+      <i class="fa-solid fa-snowflake"></i>
+    </div>
+    <div class="card-body">
+      <h2>❄️ 水冷空调节能</h2>
+      <p class="desc">
+        制冷主机 + 冷却塔 + 冷冻泵冷却泵系统级寻优，基于负荷预测与气象数据实时优化运行策略，有效降低空调系统能耗 15%–30%。
+      </p>
+      <ul class="feature-list">
+        <li><i class="fa-solid fa-check"></i> 制冷主机群控智能调度</li>
+        <li><i class="fa-solid fa-check"></i> 冷却塔风机变频优化</li>
+        <li><i class="fa-solid fa-check"></i> 冷冻 / 冷却水泵最优温差控制</li>
+        <li><i class="fa-solid fa-check"></i> 负荷预测 + 气象数据融合驱动</li>
+        <li><i class="fa-solid fa-check"></i> 全系统 COP 实时监测与寻优</li>
+        <li><i class="fa-solid fa-check"></i> 系统能耗降低 15%–30%</li>
+      </ul>
+      <a href="https://dianxiaotuan.agent.qq.com" target="_blank" class="btn-cta">
+        <i class="fa-regular fa-envelope"></i> 联系咨询
+      </a>
+    </div>
+  </div>
+
+  <!-- 板块 2：虚拟电厂聚合 -->
+  <div class="service-card">
+    <div class="card-icon">
+      <i class="fa-solid fa-plug-circle-bolt"></i>
+    </div>
+    <div class="card-body">
+      <h2>🔌 虚拟电厂聚合</h2>
+      <p class="desc">
+        可调负荷资源聚合平台，支持蔚来换电站、充电桩、空气源热泵、水冷空调等多类型柔性负荷接入，实现统一调度管理。
+      </p>
+      <ul class="feature-list">
+        <li><i class="fa-solid fa-check"></i> 多类型柔性负荷统一接入</li>
+        <li><i class="fa-solid fa-check"></i> 蔚来换电站、充电桩即插即用</li>
+        <li><i class="fa-solid fa-check"></i> 空气源热泵 / 水冷空调快速适配</li>
+        <li><i class="fa-solid fa-check"></i> 资源实时监测与可调能力评估</li>
+        <li><i class="fa-solid fa-check"></i> 统一调度指令下发与执行跟踪</li>
+        <li><i class="fa-solid fa-check"></i> 聚合容量可视化看板</li>
+      </ul>
+      <a href="https://dianxiaotuan.agent.qq.com" target="_blank" class="btn-cta">
+        <i class="fa-regular fa-envelope"></i> 联系咨询
+      </a>
+    </div>
+  </div>
+
+  <!-- 板块 3：虚拟电厂运营 -->
+  <div class="service-card">
+    <div class="card-icon">
+      <i class="fa-solid fa-chart-line"></i>
+    </div>
+    <div class="card-body">
+      <h2>📈 虚拟电厂运营</h2>
+      <p class="desc">
+        需求响应竞标、聚合商结算、响应效果评估全流程运营服务，帮助用户获取电力市场收益。
+      </p>
+      <ul class="feature-list">
+        <li><i class="fa-solid fa-check"></i> 需求响应竞标策略优化</li>
+        <li><i class="fa-solid fa-check"></i> 聚合商收益自动结算</li>
+        <li><i class="fa-solid fa-check"></i> 响应效果实时评估与报告</li>
+        <li><i class="fa-solid fa-check"></i> 电力市场规则智能适配</li>
+        <li><i class="fa-solid fa-check"></i> 收益预测与风险预警</li>
+        <li><i class="fa-solid fa-check"></i> 全流程闭环运营管理</li>
+      </ul>
+      <a href="https://dianxiaotuan.agent.qq.com" target="_blank" class="btn-cta">
+        <i class="fa-regular fa-envelope"></i> 联系咨询
+      </a>
+    </div>
+  </div>
+
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+</footer>
 
 
 
@@ -280,6 +392,48 @@ function toggleTheme() {
 })();
 </script>
 
+
+
+<!-- Pet Chat Button -->
+<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
+  <div class="dxt-pet-body" style="background:#fff;">
+    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+    <div class="dxt-pet-dot">💬</div>
+  </div>
+</div>
+
+<div id="dxt-pet-overlay">
+  <div class="dxt-overlay-head">
+    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <div class="head-text">
+      <h3>电小团</h3>
+      <p>综合能源运营助手 · 随时为您解答</p>
+    </div>
+    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
+  </div>
+  <div class="dxt-msg-area" id="dxt-msg-area">
+    <div class="dxt-msg bot">
+      你好！我是电小团 👋<br>
+      我可以帮你了解产品、服务，或者查找官网资料。<br>
+      有什么想问的吗？
+    </div>
+    <div class="dxt-msg-time">刚刚</div>
+  </div>
+  <div class="dxt-quick-replies" id="dxt-quick-replies">
+    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
+  </div>
+  <div class="dxt-input-area">
+    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
+      </svg>
+    </button>
+  </div>
+</div>
 
 <script>
 const FAQ = {
@@ -360,5 +514,6 @@ document.addEventListener('click', function(e) {
     closePetChat();
   }
 });
-</script></body>
+</script>
+</body>
 </html>

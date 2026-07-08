@@ -398,8 +398,21 @@
         .footer p { font-size: 13px; color: var(--text-muted); letter-spacing: 0.03em; }
         .footer strong { color: var(--text-strong); font-weight: 500; }
 
-
-
+        /* ===== Chat Button ===== */
+        #dxt-chat-btn {
+            position: fixed; bottom: 24px; right: 24px;
+            width: 52px; height: 52px; border-radius: 50%;
+            background: var(--dxt-btn-bg);
+            box-shadow: 0 4px 24px var(--dxt-btn-shadow);
+            cursor: pointer; z-index: 999;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid var(--dxt-btn-border);
+            backdrop-filter: blur(8px);
+            transition: all 0.2s, background 0.3s ease, border-color 0.3s ease;
+        }
+        #dxt-chat-btn img {
+            width: 36px; height: 36px; border-radius: 50%; filter: brightness(1.1);
+        }
 
         @media (max-width: 640px) {
             .page-header { padding-top: 90px; }
@@ -407,8 +420,133 @@
             .stats-bar { gap: 24px; }
         }
     </style>
-\n<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">\n</head>
+<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
+
+</head>
 <body>
+
+<!-- Navbar (dark, match homepage) -->
+<nav class="navbar">
+    <a href="/" class="nav-logo">
+        <img src="/assets/images/dxt-logo.webp" alt="电小团">
+        <div>
+            <div class="logo-text">电小团</div>
+            <div class="logo-sub">Little Electric Cloud</div>
+        </div>
+    </a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')">
+        <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul class="nav-links">
+        <li><a href="/">首页</a></li>
+        <li><a href="/training/">免费课程</a></li>
+        <li><a href="/policy/" class="active">政策数据库</a></li>
+        <li><a href="/price/">电价数据库</a></li>
+        <li><a href="/tools/">能源运营工具</a></li>
+        <li><a href="/pro/">增值服务</a></li>
+        <li><a href="/about/">公司介绍</a></li>
+        <li><button class="theme-toggle" onclick="toggleTheme()" title="切换主题" aria-label="切换主题">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+            <span class="toggle-label" id="theme-label">深色</span>
+        </button></li>
+    </ul>
+</nav>
+
+<!-- Header -->
+<section class="page-header">
+    <span class="header-icon">📜</span>
+    <h1>政策数据库</h1>
+    <p>
+        电力交易政策 <span class="highlight">结构化入库</span> · 智能检索 · AI 解读分析
+    </p>
+    <p style="font-size:14px;color:rgba(255,255,255,0.35);margin-top:4px;">
+        覆盖全国各省电力市场政策文件，让政策检索与解读变得简单高效
+    </p>
+</section>
+
+<!-- Stats -->
+<div class="stats-bar">
+    <div class="stat-item">
+        <div class="stat-num">50+</div>
+        <div class="stat-label">政策文件</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-num">31</div>
+        <div class="stat-label">覆盖省份</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-num">10+</div>
+        <div class="stat-label">政策维度</div>
+    </div>
+    <div class="stat-item">
+        <div class="stat-num">AI</div>
+        <div class="stat-label">智能分析</div>
+    </div>
+</div>
+
+<!-- Feature Chips -->
+<div class="features-row">
+    <span class="feature-chip"><span class="chip-dot"></span> 电力市场化交易</span>
+    <span class="feature-chip"><span class="chip-dot"></span> 可再生能源配额</span>
+    <span class="feature-chip"><span class="chip-dot"></span> 碳交易与绿证</span>
+    <span class="feature-chip"><span class="chip-dot"></span> 需求响应政策</span>
+    <span class="feature-chip"><span class="chip-dot"></span> 储能补贴政策</span>
+    <span class="feature-chip"><span class="chip-dot"></span> 虚拟电厂</span>
+</div>
+
+<!-- Capabilities -->
+<section class="capabilities">
+    <h2>我们的政策分析能力</h2>
+    <p class="subtitle">从数据采集到智能解读，全方位覆盖政策分析全链路</p>
+    <div class="cap-grid">
+        <div class="cap-card">
+            <div class="cap-icon">📥</div>
+            <h3>自动采集入库</h3>
+            <p>自动化抓取各省发改委、能源局、交易中心政策文件，结构化入库，实时更新。</p>
+        </div>
+        <div class="cap-card">
+            <div class="cap-icon">🏷️</div>
+            <h3>多维度标签</h3>
+            <p>按省份、年份、政策类型、相关主体、关键条款等多维度分类，精准定位。</p>
+        </div>
+        <div class="cap-card">
+            <div class="cap-icon">🔍</div>
+            <h3>智能全文检索</h3>
+            <p>支持关键词搜索、语义检索、全文检索，秒级定位目标政策条款。</p>
+        </div>
+        <div class="cap-card">
+            <div class="cap-icon">🧠</div>
+            <h3>AI 政策解读</h3>
+            <p>基于大语言模型的智能分析，自动提取关键信息、解读政策要点、对比历史变化。</p>
+        </div>
+        <div class="cap-card">
+            <div class="cap-icon">📊</div>
+            <h3>趋势分析</h3>
+            <p>追踪政策演变趋势，分析各省政策差异，辅助决策与合规评估。</p>
+        </div>
+        <div class="cap-card">
+            <div class="cap-icon">🔔</div>
+            <h3>政策变动预警</h3>
+            <p>监控政策更新动态，及时推送变动通知，帮助用户第一时间掌握政策变化。</p>
+        </div>
+    </div>
+</section>
+
+<!-- Iframe: 政策分析工具 -->
+<section class="iframe-section">
+    <p class="iframe-label">
+        <i class="fa-solid fa-arrow-right" style="font-size:12px;"></i>
+        政策分析工具（无需跳转，直接在本页使用）
+    </p>
+    <div class="iframe-wrapper">
+        <iframe src="https://wjych.github.io/policy-analyzer-ha/" title="政策分析工具"></iframe>
+    </div>
+</section>
+
+<!-- Footer (dark, match homepage) -->
+<footer class="footer">
+    <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+</footer>
 
 
 
@@ -441,6 +579,48 @@ function updateThemeUI(theme) {
 }
 </script>
 
+
+
+<!-- Pet Chat Button -->
+<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
+  <div class="dxt-pet-body" style="background:#fff;">
+    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+    <div class="dxt-pet-dot">💬</div>
+  </div>
+</div>
+
+<div id="dxt-pet-overlay">
+  <div class="dxt-overlay-head">
+    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <div class="head-text">
+      <h3>电小团</h3>
+      <p>综合能源运营助手 · 随时为您解答</p>
+    </div>
+    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
+  </div>
+  <div class="dxt-msg-area" id="dxt-msg-area">
+    <div class="dxt-msg bot">
+      你好！我是电小团 👋<br>
+      我可以帮你了解产品、服务，或者查找官网资料。<br>
+      有什么想问的吗？
+    </div>
+    <div class="dxt-msg-time">刚刚</div>
+  </div>
+  <div class="dxt-quick-replies" id="dxt-quick-replies">
+    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
+  </div>
+  <div class="dxt-input-area">
+    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
+      </svg>
+    </button>
+  </div>
+</div>
 
 <script>
 const FAQ = {
@@ -521,5 +701,6 @@ document.addEventListener('click', function(e) {
     closePetChat();
   }
 });
-</script></body>
+</script>
+</body>
 </html>
