@@ -155,7 +155,7 @@ body {
   margin: 0 auto;
   padding: 0 24px 40px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 20px;
 }
 .tool-card {
@@ -378,6 +378,18 @@ body {
     <div class="card-desc">AI商业能耗诊断系统</div>
   </div>
 
+  <div class="tool-card" onclick="openTool('sop')">
+    <div class="card-icon">📋</div>
+    <h3>方案SOP生成</h3>
+    <div class="card-desc">填表自动生成运营方案</div>
+  </div>
+
+  <div class="tool-card" onclick="openTool('storage')">
+    <div class="card-icon">🔋</div>
+    <h3>储能投资测算</h3>
+    <div class="card-desc">工商业储能收益分析</div>
+  </div>
+
 </div>
 
 <!-- ===== Iframe Sections ===== -->
@@ -430,6 +442,38 @@ body {
   </div>
   <div class="iframe-wrapper">
     <iframe src="https://wjych.github.io/energy-diagnosis/" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- 方案SOP生成 -->
+<div id="section-sop" class="iframe-section">
+  <div class="iframe-bar">
+    <div class="iframe-title">
+      <button class="back-btn" onclick="closeTool('sop')"><i class="fa-solid fa-arrow-left"></i> 返回</button>
+      📋 方案SOP生成
+    </div>
+    <div class="iframe-links">
+      <a href="https://tool.aishenwo.cn/sop/" target="_blank" class="open-link">新窗口打开 <i class="fa-solid fa-external-link-alt"></i></a>
+    </div>
+  </div>
+  <div class="iframe-wrapper">
+    <iframe src="https://tool.aishenwo.cn/sop/" loading="lazy"></iframe>
+  </div>
+</div>
+
+<!-- 储能投资测算 -->
+<div id="section-storage" class="iframe-section">
+  <div class="iframe-bar">
+    <div class="iframe-title">
+      <button class="back-btn" onclick="closeTool('storage')"><i class="fa-solid fa-arrow-left"></i> 返回</button>
+      🔋 储能投资测算
+    </div>
+    <div class="iframe-links">
+      <a href="https://tool.aishenwo.cn/storage/" target="_blank" class="open-link">新窗口打开 <i class="fa-solid fa-external-link-alt"></i></a>
+    </div>
+  </div>
+  <div class="iframe-wrapper">
+    <iframe src="https://tool.aishenwo.cn/storage/" loading="lazy"></iframe>
   </div>
 </div>
 
