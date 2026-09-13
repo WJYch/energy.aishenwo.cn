@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>电小团 — 较低成本 + 较好服务，降低工商业用户电费</title>
+<meta name="description" content="电小团科技（苏州）有限公司 — 以能源监测为底盘，用较低成本 + 较好服务，降低工商业用户电费：降电价、降电量、降需量、多补贴。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root { --transition: 0.3s; }
+/* ===== Light Theme (default) ===== */
+.theme-light {
+  --bg-body: #F8F9FC;
+  --bg-nav: rgba(255,255,255,0.9);
+  --border-nav: rgba(0,0,0,0.04);
+  --text: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --bg-card: #FFFFFF;
+  --border-card: rgba(0,0,0,0.06);
+  --card-hover: rgba(94,139,126,0.06);
+  --accent: #5E8B7E;
+  --accent2: #7C9FBA;
+  --accent3: #A78BCC;
+  --accent4: #E8A87C;
+  --ink: #111418;          /* 自主交付 / 关键强调 */
+  --ink-soft: #9AA3AB;     /* 合作方交付 */
+  --rule: #111418;         /* 黑色实线 */
+  --popover-bg: #FFFFFF;
+  --popover-shadow: 0 12px 40px rgba(0,0,0,0.12);
+  --hero-glow: radial-gradient(ellipse 60% 55% at 15% 0%, rgba(94,139,126,0.10) 0%, transparent 60%),
+               radial-gradient(ellipse 55% 50% at 88% 15%, rgba(124,159,186,0.10) 0%, transparent 60%);
+  --chip-bg: #FFFFFF;
+  --pill-bg: #F1F4F6;
+  --group-bg: #FBFCFD;
+  --plinth: linear-gradient(180deg, rgba(17,20,24,0.05) 0%, rgba(17,20,24,0.015) 65%, transparent 100%);
+  --connector: rgba(17,20,24,0.16);
+  --dash: rgba(17,20,24,0.20);
+}
+/* ===== Dark Theme ===== */
+.theme-dark {
+  --bg-body: #000;
+  --bg-nav: rgba(0,0,0,0.85);
+  --border-nav: rgba(255,255,255,0.06);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.5);
+  --text-muted: rgba(255,255,255,0.32);
+  --bg-card: rgba(255,255,255,0.04);
+  --border-card: rgba(255,255,255,0.08);
+  --card-hover: rgba(255,255,255,0.06);
+  --accent: #6BB5A6;
+  --accent2: #8FB3CC;
+  --accent3: #B79FDA;
+  --accent4: #EFB78F;
+  --ink: #FFFFFF;
+  --ink-soft: rgba(255,255,255,0.38);
+  --rule: #FFFFFF;
+  --popover-bg: #14161A;
+  --popover-shadow: 0 12px 40px rgba(0,0,0,0.6);
+  --hero-glow: radial-gradient(ellipse 60% 55% at 15% 0%, rgba(20,184,166,0.10) 0%, transparent 60%),
+               radial-gradient(ellipse 55% 50% at 88% 15%, rgba(59,130,246,0.08) 0%, transparent 60%);
+  --chip-bg: rgba(255,255,255,0.05);
+  --pill-bg: rgba(255,255,255,0.06);
+  --group-bg: rgba(255,255,255,0.03);
+  --plinth: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 65%, transparent 100%);
+  --connector: rgba(255,255,255,0.24);
+  --dash: rgba(255,255,255,0.34);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg-body);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg-nav); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-nav);
+  padding: 0 32px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 34px; width: auto; }
+.nav-logo .logo-text { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+.nav-logo .logo-sub { font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 2px; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; }
+.nav-links a:hover { color: var(--text); background: var(--card-hover); }
+.nav-links a.active { color: var(--accent); font-weight: 700; background: var(--card-hover); }
+.nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 8px; }
+.theme-toggle {
+  background: none; border: 1px solid var(--border-card); border-radius: 20px;
+  padding: 6px 14px; cursor: pointer; font-size: 14px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 6px; transition: all 0.2s; margin-left: 8px;
+}
+.theme-toggle:hover { background: var(--card-hover); color: var(--text); }
+@media (max-width: 900px) {
+  .navbar { padding: 0 16px; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--bg-nav); backdrop-filter: blur(20px);
+    flex-direction: column; padding: 12px 16px;
+    border-bottom: 1px solid var(--border-nav);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 14px; width: 100%; }
+}
+/* ===== Hero / Slogan ===== */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 100px 32px 44px;
+  min-height: 82vh; display: flex; align-items: center; justify-content: center;
+}
+.hero-bg { position: absolute; inset: 0; pointer-events: none; background: var(--hero-glow); }
+.hero-inner { position: relative; z-index: 1; width: 100%; max-width: 1120px; text-align: center; }
+
+.hero-kicker {
+  font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--text-muted);
+  text-transform: uppercase; margin-bottom: 26px;
+}
+.hero-kicker b { color: var(--accent); font-weight: 700; }
+
+/* 第一行：较低成本 + 较好服务 */
+.line1 {
+  display: flex; align-items: flex-end; justify-content: center;
+  gap: clamp(16px, 4vw, 56px); flex-wrap: wrap;
+}
+.field { display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.chips {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
+  max-width: 440px; min-width: 300px; min-height: 104px;
+  align-items: center; align-content: center;
+  position: relative;
+  background: var(--bg-card); border: 1px solid var(--border-card);
+  border-radius: 16px; padding: 10px 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.035);
+}
+/* 分组到下方大词的连接短线，标明从属关系 */
+.chips::after {
+  content: ''; position: absolute; left: 50%; bottom: -12px; width: 2px; height: 12px;
+  background: var(--connector); border-radius: 1px;
+}
+.chips.two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: center; }
+.chips.two-col .chip { justify-content: center; }
+.chip {
+  font-family: inherit; font-size: 13px; font-weight: 600;
+  color: var(--text-secondary); background: var(--chip-bg);
+  border: 1px solid var(--border-card); border-radius: 20px;
+  padding: 7px 15px; cursor: pointer; text-decoration: none;
+  transition: all 0.22s; white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.chip:hover, .chip:focus-visible {
+  color: var(--text); border-color: var(--accent);
+  box-shadow: 0 6px 18px rgba(94,139,126,0.16); transform: translateY(-2px); outline: none;
+}
+.chip::after { content: 'ⓘ'; font-size: 10px; opacity: 0.45; }
+.chip.chip-link::after { content: '↗'; font-size: 11px; opacity: 0.5; }
+.chip.pending { border-style: dashed; }
+.chip.pending::after { content: '◷'; font-size: 11px; opacity: 0.6; }
+
+.word {
+  font-size: clamp(38px, 6vw, 74px); font-weight: 900; letter-spacing: -0.03em;
+  line-height: 1.06; color: var(--text);
+  cursor: pointer; user-select: none;
+  border-bottom: 3px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+}
+.word:hover, .word:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
+.word.active { color: var(--accent); border-bottom-color: var(--accent); }
+.plus {
+  font-size: clamp(30px, 4.4vw, 54px); font-weight: 300; color: var(--text-muted);
+  line-height: 1.2; padding-bottom: 6px;
+}
+
+/* 第二行：降低工商业用户电费 */
+.line2 {
+  margin-top: clamp(12px, 1.8vw, 22px);
+  font-size: clamp(28px, 4.4vw, 54px); font-weight: 900; letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+/* 公式行 */
+.formula-kicker {
+  margin-top: clamp(20px, 3vw, 32px);
+  font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em;
+  color: var(--text-secondary); text-transform: uppercase;
+}
+.formula {
+  margin-top: 14px;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: clamp(4px, 1.1vw, 14px);
+  font-size: clamp(19px, 2.3vw, 28px); font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.formula .op { color: var(--text-muted); font-weight: 400; }
+/* 运算符与其后的项绑定成不可断行的一组，避免手机端「−」孤悬行尾 */
+.fpart { display: inline-flex; align-items: center; gap: clamp(4px, 1.1vw, 14px); white-space: nowrap; }
+.term {
+  position: relative; cursor: pointer; padding: 3px 6px;
+  border-bottom: 2px dashed var(--dash);
+  transition: color 0.2s, border-color 0.2s;
+}
+.term:hover, .term:focus-visible, .term.active {
+  color: var(--accent); border-bottom-color: var(--accent); border-bottom-style: solid; outline: none;
+}
+.arrow { font-size: 0.78em; margin-left: 2px; font-weight: 900; color: #35996F; }
+.theme-dark .arrow { color: #5FD3A3; }
+
+/* 举措面板 */
+.measures {
+  margin-top: clamp(14px, 2vw, 22px);
+  min-height: 108px;
+  display: flex; align-items: center; justify-content: center;
+}
+.measures-hint { font-size: 13px; color: var(--text-muted); }
+.measure-group { display: none; flex-direction: column; align-items: center; gap: 12px; animation: fadeUp 0.25s ease; }
+.measure-group.active { display: flex; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.measure-group .group-title { font-size: 12px; letter-spacing: 0.12em; color: var(--text-muted); text-transform: uppercase; }
+.measure-items { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.measure {
+  font-size: 14px; font-weight: 600; border-radius: 20px; padding: 8px 20px;
+  border: 1px solid var(--border-card); background: var(--bg-card); white-space: nowrap;
+}
+.measure.own { color: var(--bg-body); background: var(--ink); border-color: var(--ink); font-weight: 700; }
+.measure.partner { color: var(--ink-soft); font-weight: 500; }
+.legend {
+  margin-top: 18px; font-size: 12.5px; color: var(--text-muted);
+  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
+}
+.legend i {
+  font-style: normal; font-weight: 700; color: var(--bg-body); background: var(--ink);
+  border-radius: 20px; padding: 3px 12px; margin-right: 4px;
+}
+.legend u {
+  text-decoration: none; color: var(--ink-soft); border: 1px solid var(--border-card);
+  border-radius: 20px; padding: 3px 12px; margin-right: 4px;
+}
+
+/* 黑色实线 + 能源监测底盘 */
+.baseline { margin-top: clamp(22px, 3.2vw, 38px); }
+.baseline .rule { height: 2px; background: var(--rule); }
+.baseline-plinth { background: var(--plinth); border-radius: 0 0 16px 16px; padding: 20px 16px 24px; }
+.baseline-label {
+  font-size: clamp(24px, 2.9vw, 34px); font-weight: 900;
+  letter-spacing: 0.22em; color: var(--text);
+}
+.baseline-desc { margin-top: 8px; font-size: 13.5px; color: var(--text-secondary); font-weight: 300; }
+
+/* ===== Stats ===== */
+.section { padding: 72px 32px; }
+.section-inner { max-width: 1000px; margin: 0 auto; }
+.stats-bar {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
+  background: var(--border-card); border-radius: 12px; overflow: hidden; max-width: 900px; margin: 0 auto;
+}
+.stat-item { background: var(--bg-card); padding: 24px 16px; text-align: center; }
+.stat-item .stat-num { font-size: 28px; font-weight: 800; color: var(--accent); }
+.stat-item .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+@media (max-width: 640px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
+
+/* ===== Section titles ===== */
+.section-label { font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.15em; text-align: center; margin-bottom: 10px; }
+.section h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; text-align: center; letter-spacing: -0.02em; margin-bottom: 10px; }
+.section .subtitle { font-size: 15px; color: var(--text-secondary); font-weight: 300; text-align: center; max-width: 520px; margin: 0 auto 46px; line-height: 1.7; }
+
+/* ===== Radial capability ===== */
+.radial-section { background: var(--bg-body); border-top: 1px solid var(--border-card); border-bottom: 1px solid var(--border-card); }
+.radial-container { position: relative; display: flex; flex-direction: column; align-items: center; gap: 40px; }
+.radial-layer { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.radial-center {
+  display: inline-flex; align-items: center; gap: 10px; padding: 10px 28px; border-radius: 30px;
+  font-size: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--text);
+  border: 1.5px solid var(--accent); background: var(--bg-card);
+}
+.radial-center .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
+.radial-nodes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 8px 0; }
+.radial-node {
+  display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 20px;
+  font-size: 13px; font-weight: 500; color: var(--text-secondary); background: var(--bg-card);
+  border: 1px solid var(--border-card); cursor: pointer; text-decoration: none; transition: all 0.2s;
+}
+.radial-node:hover { color: var(--accent); border-color: var(--accent); background: var(--card-hover); transform: translateY(-2px); }
+.radial-node .node-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.node-dot.green { background: #5E8B7E; }
+.node-dot.blue { background: #7C9FBA; }
+.node-dot.purple { background: #A78BCC; }
+.node-dot.orange { background: #E8A87C; }
+.node-dot.pink { background: #D489A7; }
+.node-dot.teal { background: #5BA3A3; }
+.radial-node .info-badge { font-size: 10px; color: var(--text-muted); margin-left: 4px; opacity: 0.6; }
+
+/* ===== Service cards ===== */
+.service-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.service-card {
+  background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px;
+  padding: 36px 28px 28px; transition: all 0.3s; text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; position: relative; overflow: hidden;
+}
+.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
+.service-card:nth-child(1)::before { background: linear-gradient(90deg, #5E8B7E, #7C9FBA); }
+.service-card:nth-child(2)::before { background: linear-gradient(90deg, #7C9FBA, #A78BCC); }
+.service-card:nth-child(3)::before { background: linear-gradient(90deg, #A78BCC, #E8A87C); }
+.service-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 32px rgba(0,0,0,0.10); }
+.service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+.service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; flex: 1; }
+.service-card .svc-tag {
+  display: inline-block; margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--accent);
+  padding: 5px 16px; border: 1px solid var(--accent); border-radius: 20px; align-self: flex-start; transition: all 0.2s;
+}
+.service-card:hover .svc-tag { background: var(--accent); color: #fff; }
+@media (max-width: 768px) { .service-cards { grid-template-columns: 1fr; } }
+
+/* ===== Popover ===== */
+.popover {
+  display: none; position: fixed; z-index: 200; max-width: 340px;
+  background: var(--popover-bg); border: 1px solid var(--border-card); border-radius: 14px;
+  padding: 20px 22px; box-shadow: var(--popover-shadow); backdrop-filter: blur(12px);
+}
+.popover.show { display: block; animation: fadeUp 0.18s ease; }
+.popover h4 { font-size: 15px; font-weight: 700; margin-bottom: 10px; color: var(--text); }
+.popover p { font-size: 13px; color: var(--text-secondary); line-height: 1.75; }
+.popover .pop-trio { display: flex; flex-wrap: wrap; gap: 8px; margin: 4px 0 10px; }
+.popover .pop-trio span {
+  font-size: 13px; font-weight: 700; color: var(--ink); background: var(--pill-bg);
+  border-radius: 8px; padding: 5px 12px;
+}
+.popover .pop-links { display: flex; flex-direction: column; gap: 6px; margin-top: 4px; }
+.popover .pop-links a { font-size: 13px; color: var(--accent); text-decoration: none; font-weight: 600; }
+.popover .pop-links a:hover { text-decoration: underline; }
+.popover .pop-note { font-size: 11px; color: var(--text-muted); margin-top: 8px; }
+.popover .pop-close { position: absolute; top: 10px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); }
+.popover .pop-close:hover { color: var(--text); }
+
+/* ===== Toast ===== */
+#toast {
+  position: fixed; left: 50%; bottom: 40px; transform: translate(-50%, 20px);
+  background: var(--ink); color: var(--bg-body); font-size: 13px; font-weight: 600;
+  padding: 10px 22px; border-radius: 22px; opacity: 0; pointer-events: none;
+  transition: all 0.28s; z-index: 300;
+}
+#toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* ===== Footer ===== */
+.footer { border-top: 1px solid var(--border-card); padding: 28px 32px; text-align: center; }
+.footer p { font-size: 13px; color: var(--text-muted); }
+.footer strong { color: var(--accent); font-weight: 500; }
+
+@media (max-width: 900px) {
+  .hero { padding: 100px 20px 92px; min-height: auto; }
+  .line1 { flex-direction: column; align-items: center; gap: 18px; }
+  .plus { font-size: 26px; padding-bottom: 0; }
+  .word { font-size: clamp(30px, 9vw, 46px); }
+  .chips { max-width: 100%; }
+  .chips { min-width: 0; min-height: auto; }
+}
+@media (max-width: 640px) { .section { padding: 50px 16px; } }
+</style>
+<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
+</head>
+<body class="theme-light">
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a href="/dianxiaotuan/" class="nav-logo">
+    <img src="/assets/images/dxt-logo-2026.webp" alt="电小团">
+    <div>
+      <div class="logo-text">电小团</div>
+      <div class="logo-sub">Little Electric Cloud</div>
+    </div>
+  </a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links">
+    <li><a href="/dianxiaotuan/" class="active">首页</a></li>
+    <li><a href="/training/">免费课程</a></li>
+    <li><a href="/policy/">政策数据库</a></li>
+    <li><a href="/price/">电价数据库</a></li>
+    <li><a href="/tools/">能源运营工具</a></li>
+    <li><a href="/pro/">增值服务</a></li>
+    <li><a href="/about/">公司介绍</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span><span id="theme-label">深色</span></button></li>
+  </ul>
+</nav>
+
+<div class="popover" id="popover">
+  <button class="pop-close" onclick="closePopover()">×</button>
+  <div id="popBody"></div>
+</div>
+<div id="toast"></div>
+
+<!-- ================= Slogan Hero ================= -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+
+    <div class="hero-kicker"><b>电小团</b> Little Electric Cloud · 综合能源运营</div>
+
+    <!-- 第一行：较低成本 + 较好服务 -->
+    <div class="line1">
+
+      <!-- 较低成本 -->
+      <div class="field" id="field-cost">
+        <div class="chips">
+          <button class="chip" data-pop="reform" aria-describedby="popover">低成本能源改造</button>
+          <button class="chip" data-pop="operate" aria-describedby="popover">低成本能源运营</button>
+        </div>
+        <h1 class="word" tabindex="0" data-detail="cost">较低成本</h1>
+      </div>
+
+      <div class="plus">+</div>
+
+      <!-- 较好服务 -->
+      <div class="field" id="field-service">
+        <div class="chips two-col">
+          <a class="chip chip-link" href="/tools/" data-mod="audit">用能诊断</a>
+          <a class="chip chip-link pending" href="#" data-mod="esg" data-pending="1">ESG服务</a>
+          <a class="chip chip-link" href="https://tool.aishenwo.cn/water-cooled-energy-saving/" data-mod="hvac" data-pop="hvac">空调节能</a>
+          <a class="chip chip-link" href="/pro/" data-mod="vpp">虚拟电厂聚合</a>
+        </div>
+        <h1 class="word" tabindex="0" data-detail="service">较好服务</h1>
+      </div>
+
+    </div>
+
+    <!-- 第二行 -->
+    <h2 class="line2">降低工商业用户电费</h2>
+
+    <!-- 公式：电价 × 电量 + 基本电费 − 补贴 -->
+    <div class="formula-kicker">降费路径</div>
+    <div class="formula">
+      <span class="term" tabindex="0" data-term="price">电价<span class="arrow">↓</span></span>
+      <span class="fpart"><span class="op">×</span><span class="term" tabindex="0" data-term="kwh">电量<span class="arrow">↓</span></span></span>
+      <span class="fpart"><span class="op">+</span><span class="term" tabindex="0" data-term="demand">基本电费<span class="arrow">↓</span></span></span>
+      <span class="fpart"><span class="op">−</span><span class="term" tabindex="0" data-term="subsidy">补贴<span class="arrow">↑</span></span></span>
+    </div>
+
+    <!-- 举措面板（悬浮/点击公式中的字段切换） -->
+    <div class="measures" id="measures">
+      <div class="measures-hint" id="measuresHint">悬浮或点击「电价 / 电量 / 基本电费 / 补贴」，查看对应的具体举措</div>
+
+      <div class="measure-group" data-group="price">
+        <div class="group-title">降电价 · 具体举措</div>
+        <div class="measure-items">
+          <span class="measure partner">光伏</span>
+          <span class="measure partner">售电</span>
+        </div>
+      </div>
+
+      <div class="measure-group" data-group="kwh">
+        <div class="group-title">降电量 · 具体举措</div>
+        <div class="measure-items">
+          <span class="measure own">空调节能</span>
+          <span class="measure partner">照明节能</span>
+          <span class="measure partner">变压器节能</span>
+          <span class="measure partner">电梯节能</span>
+        </div>
+      </div>
+
+      <div class="measure-group" data-group="demand">
+        <div class="group-title">降基本电费 · 具体举措</div>
+        <div class="measure-items">
+          <span class="measure own">虚量管理</span>
+          <span class="measure partner">储能</span>
+        </div>
+      </div>
+
+      <div class="measure-group" data-group="subsidy">
+        <div class="group-title">多补贴 · 具体举措</div>
+        <div class="measure-items">
+          <span class="measure own">虚拟电厂</span>
+          <span class="measure own">零碳园区</span>
+          <span class="measure own">绿色建筑</span>
+          <span class="measure own">ESG奖项</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span><i>实心</i> = 电小团自主交付</span>
+      <span><u>描边</u> = 联合合作伙伴交付</span>
+    </div>
+
+    <!-- 黑色实线 + 能源监测底盘 -->
+    <div class="baseline">
+      <div class="rule"></div>
+      <div class="baseline-plinth">
+        <div class="baseline-label">能源监测</div>
+        <p class="baseline-desc">三级计量 · 利旧采集 · 数据整合 —— 以上所有举措的共同底盘</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="section" style="padding-top: 24px;">
+  <div class="section-inner">
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">覆盖省份</div></div>
+      <div class="stat-item"><div class="stat-num">15min</div><div class="stat-label">数据粒度</div></div>
+      <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">政策文件库</div></div>
+      <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">运营模块</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 能力金字塔 -->
+<section class="section radial-section">
+  <div class="section-inner">
+    <div class="section-label">能力架构</div>
+    <h2>能力金字塔</h2>
+    <p class="subtitle">从采集到分析，从数据库到运营决策</p>
+
+    <div class="radial-container">
+
+      <div class="radial-layer">
+        <div class="radial-center"><span class="dot"></span> 数据采集 · 能源监测 <span class="dot"></span></div>
+        <div class="radial-nodes">
+          <span class="radial-node" onclick="showPopover(this,'三级计量','建筑级 · 楼层级 · 设备级三级电能计量体系，精准溯源每一度电的流向')">
+            <span class="node-dot green"></span>三级计量<span class="info-badge">ⓘ</span>
+          </span>
+          <span class="radial-node" onclick="showPopover(this,'利旧设备','兼容既有智能表计与采集终端，无需更换硬件，大幅降低改造成本')">
+            <span class="node-dot blue"></span>利旧设备<span class="info-badge">ⓘ</span>
+          </span>
+          <span class="radial-node" onclick="showPopover(this,'多设备协议打通','支持 Modbus RTU/TCP、MQTT、BACnet、DL/T645 等多种协议的统一接入与数据汇聚')">
+            <span class="node-dot purple"></span>多设备协议打通<span class="info-badge">ⓘ</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="radial-layer">
+        <div class="radial-center"><span class="dot"></span> 数据清洗 · 专有负荷侧数据库 <span class="dot"></span></div>
+        <div class="radial-nodes">
+          <a class="radial-node" href="/policy/"><span class="node-dot green"></span>政策数据库</a>
+          <a class="radial-node" href="/price/"><span class="node-dot blue"></span>电价数据库</a>
+          <a class="radial-node" href="/data/"><span class="node-dot purple"></span>负荷数据库</a>
+          <a class="radial-node" href="/data/"><span class="node-dot orange"></span>需量数据库</a>
+          <a class="radial-node" href="/data/"><span class="node-dot pink"></span>气象数据库</a>
+        </div>
+      </div>
+
+      <div class="radial-layer">
+        <div class="radial-center"><span class="dot"></span> 数据应用 · 综合能源运营 <span class="dot"></span></div>
+        <div class="radial-nodes">
+          <a class="radial-node" href="/tools/"><span class="node-dot green"></span>电费单分析</a>
+          <a class="radial-node" href="/tools/"><span class="node-dot blue"></span>售电优化</a>
+          <a class="radial-node" href="/pro/"><span class="node-dot teal"></span>水机空调寻优节能</a>
+          <a class="radial-node" href="/pro/"><span class="node-dot purple"></span>多联机末端管理节能</a>
+          <a class="radial-node" href="/tools/"><span class="node-dot orange"></span>最大需量管理</a>
+          <a class="radial-node" href="/tools/"><span class="node-dot pink"></span>分时电价管理</a>
+          <a class="radial-node" href="/pro/"><span class="node-dot" style="background:#5BA3A3"></span>VPP可调负荷聚合</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 三大服务模块 -->
+<section class="section">
+  <div class="section-inner">
+    <div class="section-label">服务体系</div>
+    <h2>三大服务模块</h2>
+    <p class="subtitle">系统化学习 · 在线工具 · 深度服务</p>
+    <div class="service-cards">
+      <a href="/training/" class="service-card">
+        <h3>综合能源学习课程</h3>
+        <p>9大主题，覆盖电力市场、储能、风电、虚拟电厂、零碳园区等核心领域，系统化的综合能源知识库，免费学习。</p>
+        <span class="svc-tag">免费学习 →</span>
+      </a>
+      <a href="/tools/" class="service-card">
+        <h3>综合能源运营服务工具</h3>
+        <p>电费联单分析、能源运营规划、能源运营诊断等实用工具，免费试用，助力日常作业提效。</p>
+        <span class="svc-tag">免费试用 →</span>
+      </a>
+      <a href="/pro/" class="service-card">
+        <h3>增值服务</h3>
+        <p>水冷空调节能优化、虚拟电厂聚合管理、虚拟电厂运营服务，深度能源服务释放数据价值。</p>
+        <span class="svc-tag">了解更多 →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 电小团科技（苏州）有限公司 &nbsp;|&nbsp; energy.aishenwo.cn/dianxiaotuan/</p>
+</footer>
+
+<script>
+/* ============================================================
+   模块跳转配置 —— 下阶段「空调节能」等模块融合时，只改这里
+   hvac: 空调节能 = 水机空调节能 + 多联机(VRF)分户计量 两套工具融合
+   ============================================================ */
+var MODULES = {
+  audit: { label: '用能诊断',    href: '/tools/' },
+  esg:   { label: 'ESG服务',     href: null },   // TODO 二级模块页待建
+  hvac:  { label: '空调节能',    href: 'https://tool.aishenwo.cn/water-cooled-energy-saving/',
+           alt: [['水机空调节能寻优', 'https://tool.aishenwo.cn/water-cooled-energy-saving/'],
+                 ['多联机(VRF)分户计量', 'https://tool.aishenwo.cn/HVACAccounting/']] },
+  vpp:   { label: '虚拟电厂聚合', href: '/pro/' }
+};
+
+/* 悬浮提示文案 */
+var POPS = {
+  reform: {
+    title: '低成本能源改造',
+    trio: ['利旧采集', '无损施工', '数据整合'],
+    desc: '能源监测的三大核心特点：不动装修、不换设备，把既有表计与终端的数据先接进来、再整合成一个数据底座。'
+  },
+  operate: {
+    title: '低成本能源运营',
+    trio: ['能效诊断', '策略优化', '效果验证'],
+    desc: '以监测数据为底座，先诊断、再优化、后验证，按效果计费，让节能收益可测量、可追溯。'
+  },
+  hvac: {
+    title: '空调节能',
+    links: MODULES.hvac.alt,
+    note: '水机与多联机两套工具的融合版页面建设中，先留功能接口。'
+  }
+};
+
+/* ===== Theme (默认浅色，与全站共用 dxt-theme) ===== */
+function applyTheme(mode) {
+  var body = document.body;
+  body.classList.remove('theme-dark', 'theme-light');
+  body.classList.add(mode === 'dark' ? 'theme-dark' : 'theme-light');
+  document.getElementById('theme-icon').textContent = mode === 'dark' ? '☀️' : '🌙';
+  document.getElementById('theme-label').textContent = mode === 'dark' ? '浅色' : '深色';
+}
+function toggleTheme() {
+  var next = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+  localStorage.setItem('dxt-theme', next);
+  applyTheme(next);
+}
+(function () {
+  var saved = localStorage.getItem('dxt-theme');
+  applyTheme(saved === 'dark' ? 'dark' : 'light');
+})();
+
+/* ===== Popover ===== */
+var popTimer = null, popPinned = false;
+function showPopover(el, title, desc) {
+  document.getElementById('popBody').innerHTML =
+    '<h4>' + title + '</h4><p>' + desc + '</p>';
+  placePopover(el);
+}
+function placePopover(el) {
+  var pop = document.getElementById('popover');
+  pop.classList.add('show');
+  var r = el.getBoundingClientRect(), w = 340;
+  var left = Math.min(Math.max(r.left + r.width / 2 - w / 2, 12), window.innerWidth - w - 12);
+  var top = r.bottom + 12;
+  if (top + pop.offsetHeight > window.innerHeight - 12) top = Math.max(r.top - pop.offsetHeight - 12, 12);
+  pop.style.left = left + 'px';
+  pop.style.top = top + 'px';
+}
+function closePopover() {
+  document.getElementById('popover').classList.remove('show');
+  popPinned = false;
+  if (popTimer) { clearTimeout(popTimer); popTimer = null; }
+}
+function scheduleClose() {
+  if (popPinned) return;
+  if (popTimer) clearTimeout(popTimer);
+  popTimer = setTimeout(closePopover, 320);
+}
+function cancelClose() { if (popTimer) { clearTimeout(popTimer); popTimer = null; } }
+(function () {
+  var pop = document.getElementById('popover');
+  pop.addEventListener('mouseenter', cancelClose);
+  pop.addEventListener('mouseleave', scheduleClose);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closePopover(); });
+})();
+function showModulePopover(el, key) {
+  var d = POPS[key];
+  if (!d) return;
+  var html = '<h4>' + d.title + '</h4>';
+  if (d.trio) {
+    html += '<div class="pop-trio">' + d.trio.map(function (t) { return '<span>' + t + '</span>'; }).join('') + '</div>';
+  }
+  html += d.desc ? '<p>' + d.desc + '</p>' : '';
+  if (d.links) {
+    html += '<div class="pop-links">' + d.links.map(function (l) {
+      return '<a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + ' ↗</a>';
+    }).join('') + '</div>';
+    html += '<div class="pop-note">' + d.note + '</div>';
+  }
+  document.getElementById('popBody').innerHTML = html;
+  placePopover(el);
+}
+
+/* 悬浮/点击出现说明 */
+Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (el) {
+  el.addEventListener('mouseenter', function () {
+    cancelClose();
+    if (!popPinned) showModulePopover(el, el.dataset.pop);
+  });
+  el.addEventListener('mouseleave', function () { scheduleClose(); });
+  el.addEventListener('click', function (e) {
+    if (el.dataset.pending === '1') {
+      e.preventDefault();
+      toast('ESG服务模块页面建设中，先留功能接口');
+      return;
+    }
+    if (el.dataset.pop) { e.preventDefault(); popPinned = true; showModulePopover(el, el.dataset.pop); }
+  });
+});
+
+/* ===== 「较低成本 / 较好服务」可独立点击 ===== */
+var DETAILS = {
+  cost: {
+    title: '较低成本',
+    html: '<div class="pop-trio"><span>低成本能源改造</span><span>低成本能源运营</span></div>' +
+          '<p>利旧采集 + 无损施工 + 数据整合，不动装修、不换设备即可完成能源监测；后续的用能诊断与节能优化按效果分成，把一次性投入变成长期收益。</p>'
+  },
+  service: {
+    title: '较好服务',
+    html: '<div class="pop-trio"><span>用能诊断</span><span>ESG服务</span><span>空调节能</span><span>虚拟电厂聚合</span></div>' +
+          '<p>用能诊断摸清家底，ESG服务支撑对外披露，空调节能落地降电量，虚拟电厂聚合把可调负荷变成收益。</p>'
+  }
+};
+Array.prototype.forEach.call(document.querySelectorAll('.word'), function (w) {
+  var key = w.dataset.detail;
+  function open() {
+    if (!DETAILS[key]) return;
+    document.getElementById('popBody').innerHTML = '<h4>' + DETAILS[key].title + '</h4>' + DETAILS[key].html;
+    placePopover(w);
+    w.classList.add('active');
+    popPinned = true;
+  }
+  w.addEventListener('click', open);
+  w.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+});
+document.addEventListener('click', function (e) {
+  if (!e.target.closest('.popover') && !e.target.closest('[data-pop]') && !e.target.closest('.word') && !e.target.closest('.radial-node')) {
+    closePopover();
+    Array.prototype.forEach.call(document.querySelectorAll('.word.active'), function (w) { w.classList.remove('active'); });
+  }
+});
+
+/* ===== 举措面板 ===== */
+function activateTerm(term) {
+  var key = term.dataset.term;
+  Array.prototype.forEach.call(document.querySelectorAll('.term'), function (t) {
+    t.classList.toggle('active', t === term);
+  });
+  Array.prototype.forEach.call(document.querySelectorAll('.measure-group'), function (g) {
+    g.classList.toggle('active', g.dataset.group === key);
+  });
+  document.getElementById('measuresHint').style.display = 'none';
+}
+Array.prototype.forEach.call(document.querySelectorAll('.term'), function (t) {
+  t.addEventListener('mouseenter', function () { activateTerm(t); });
+  t.addEventListener('focus', function () { activateTerm(t); });
+  t.addEventListener('click', function () { activateTerm(t); });
+  t.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); activateTerm(t); } });
+});
+/* 移动端：点击公式之外的区域不重置，保持内容可见 */
+
+/* ===== Toast ===== */
+var toastTimer = null;
+function toast(msg) {
+  var el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  if (toastTimer) clearTimeout(toastTimer);
+  toastTimer = setTimeout(function () { el.classList.remove('show'); }, 2600);
+}
+</script>
+
+<!-- Pet Chat Button -->
+<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
+  <div class="dxt-pet-body" style="background:#fff;">
+    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
+    <div class="dxt-pet-dot">💬</div>
+  </div>
+</div>
+
+<div id="dxt-pet-overlay">
+  <div class="dxt-overlay-head">
+    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
+    <div class="head-text">
+      <h3>电小团</h3>
+      <p>综合能源运营助手 · 随时为您解答</p>
+    </div>
+    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
+  </div>
+  <div class="dxt-msg-area" id="dxt-msg-area">
+    <div class="dxt-msg bot">
+      你好！我是电小团 👋<br>
+      我可以帮你了解产品、服务，或者查找官网资料。<br>
+      有什么想问的吗？
+    </div>
+    <div class="dxt-msg-time">刚刚</div>
+  </div>
+  <div class="dxt-quick-replies" id="dxt-quick-replies">
+    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
+    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
+  </div>
+  <div class="dxt-input-area">
+    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
+    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<script>
+/* ===== Pet Chat ===== */
+function togglePetChat() {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  overlay.classList.toggle('open');
+  if (overlay.classList.contains('open')) {
+    setTimeout(function () { document.getElementById('dxt-user-input').focus(); }, 350);
+  }
+}
+function closePetChat() { document.getElementById('dxt-pet-overlay').classList.remove('open'); }
+function addMessage(text, role) {
+  var area = document.getElementById('dxt-msg-area');
+  var msg = document.createElement('div');
+  msg.className = 'dxt-msg ' + role;
+  msg.innerHTML = text.replace(/\n/g, '<br>');
+  area.appendChild(msg);
+  var now = new Date();
+  var t = String(now.getHours()).padStart(2, '0') + ':' + String(now.getMinutes()).padStart(2, '0');
+  var tm = document.createElement('div');
+  tm.className = 'dxt-msg-time';
+  tm.textContent = t;
+  area.appendChild(tm);
+  area.scrollTop = area.scrollHeight;
+}
+var dxtTypingTimer = null;
+function showTyping() {
+  var area = document.getElementById('dxt-msg-area');
+  var el = document.createElement('div');
+  el.className = 'dxt-typing';
+  el.id = 'dxt-typing-indicator';
+  el.innerHTML = '<span></span><span></span><span></span><span class="dxt-typing-text"></span>';
+  area.appendChild(el);
+  area.scrollTop = area.scrollHeight;
+  var txt = el.querySelector('.dxt-typing-text');
+  if (dxtTypingTimer) clearTimeout(dxtTypingTimer);
+  dxtTypingTimer = setTimeout(function () { txt.textContent = ' 正在查资料...'; area.scrollTop = area.scrollHeight; }, 3000);
+  dxtTypingTimer = setTimeout(function () { txt.textContent = ' 还在思考中，再稍等一下...'; area.scrollTop = area.scrollHeight; }, 10000);
+  dxtTypingTimer = setTimeout(function () { txt.textContent = ' 问题有点复杂，正在全力分析...'; area.scrollTop = area.scrollHeight; }, 20000);
+}
+function hideTyping() {
+  var el = document.getElementById('dxt-typing-indicator');
+  if (el) el.remove();
+  if (dxtTypingTimer) { clearTimeout(dxtTypingTimer); dxtTypingTimer = null; }
+}
+function sendMessage() {
+  var input = document.getElementById('dxt-user-input');
+  var text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMessage(text, 'user');
+  document.getElementById('dxt-send-btn').disabled = true;
+  document.getElementById('dxt-quick-replies').style.display = 'none';
+  showTyping();
+  var sid = localStorage.getItem('dxt_session_id');
+  if (!sid) {
+    sid = 'dxt_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+    localStorage.setItem('dxt_session_id', sid);
+  }
+  fetch('https://ecs.aishenwo.cn/api/chat', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ message: text, session_id: sid, api_key: 'dxt_website_public' })
+  })
+    .then(function (res) { return res.json(); })
+    .then(function (data) {
+      hideTyping();
+      if (data.error) { addMessage('抱歉，暂时无法回答，请稍后再试。', 'bot'); }
+      else { addMessage(data.response || '(无回复)', 'bot'); }
+      document.getElementById('dxt-send-btn').disabled = false;
+    })
+    .catch(function () {
+      hideTyping();
+      addMessage('网络连接失败，请检查网络后重试。', 'bot');
+      document.getElementById('dxt-send-btn').disabled = false;
+    });
+}
+function sendQuick(text) {
+  document.getElementById('dxt-user-input').value = text;
+  sendMessage();
+}
+document.addEventListener('click', function (e) {
+  var overlay = document.getElementById('dxt-pet-overlay');
+  var btn = document.getElementById('dxt-pet-btn');
+  if (overlay && overlay.classList.contains('open') && !overlay.contains(e.target) && !btn.contains(e.target)) {
+    closePetChat();
+  }
+});
+</script>
+
+</body>
+</html>

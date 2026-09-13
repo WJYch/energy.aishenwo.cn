@@ -3,705 +3,216 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>电小团 — 让每一度电创造更多价值</title>
+<title>深绿数据 · 电小团 — 从绿色低碳建设，到综合能源运营</title>
+<meta name="description" content="深绿数据（深圳）有限公司 — 低碳社区营建（建的绿）；电小团科技（苏州）有限公司 — 综合能源运营（用的绿）。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-:root { --transition: 0.3s; }
-/* ===== Light Theme (default) ===== */
-.theme-light {
+:root {
+  --transition: 0.3s;
   --bg-body: #F8F9FC;
-  --bg-nav: rgba(255,255,255,0.9);
-  --border-nav: rgba(0,0,0,0.04);
   --text: #1F2937;
   --text-secondary: #6B7280;
   --text-muted: #9CA3AF;
   --bg-card: #FFFFFF;
-  --border-card: rgba(0,0,0,0.04);
-  --card-hover: rgba(94,139,126,0.06);
-  --accent: #5E8B7E;
-  --accent2: #7C9FBA;
-  --accent3: #A78BCC;
-  --accent4: #E8A87C;
-  --hero-bg: linear-gradient(135deg, #5E8B7E 0%, #7C9FBA 40%, #A78BCC 70%, #E8A87C 100%);
-  --stat-bg: #FFFFFF;
-  --stat-num: #5E8B7E;
-  --line-color: rgba(94,139,126,0.2);
-  --popover-bg: #FFFFFF;
-  --popover-shadow: 0 8px 32px rgba(0,0,0,0.10);
-}
-/* ===== Dark Theme ===== */
-.theme-dark {
-  --bg-body: #000;
-  --bg-nav: rgba(0,0,0,0.85);
-  --border-nav: rgba(255,255,255,0.06);
-  --text: #FFFFFF;
-  --text-secondary: rgba(255,255,255,0.45);
-  --text-muted: rgba(255,255,255,0.25);
-  --bg-card: rgba(255,255,255,0.03);
-  --border-card: rgba(255,255,255,0.06);
-  --card-hover: rgba(255,255,255,0.06);
-  --accent: #5E8B7E;
-  --accent2: #7C9FBA;
-  --accent3: #A78BCC;
-  --accent4: #E8A87C;
-  --hero-bg: linear-gradient(135deg, #fff 40%, rgba(20,184,166,0.8) 100%);
-  --stat-bg: rgba(255,255,255,0.03);
-  --stat-num: #fff;
-  --line-color: rgba(255,255,255,0.12);
-  --popover-bg: #1A1A1A;
-  --popover-shadow: 0 8px 32px rgba(0,0,0,0.5);
+  --border-card: rgba(0,0,0,0.06);
+  --accent: #5E8B7E;      /* 电小团 · 青绿 */
+  --green: #2F8F63;       /* 深绿数据 · 深绿 */
+  --green-soft: #E8F3ED;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
-  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg-body);
-  color: var(--text);
-  line-height: 1.6;
-  transition: background var(--transition), color var(--transition);
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg-body); color: var(--text); line-height: 1.6;
   -webkit-font-smoothing: antialiased;
+  min-height: 100vh; display: flex; flex-direction: column;
 }
-/* ===== Navbar ===== */
+.glow {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0;
+  background:
+    radial-gradient(ellipse 50% 45% at 12% 8%, rgba(47,143,99,0.10) 0%, transparent 62%),
+    radial-gradient(ellipse 48% 42% at 88% 12%, rgba(94,139,126,0.10) 0%, transparent 62%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(124,159,186,0.08) 0%, transparent 60%);
+}
+/* ===== Nav ===== */
 .navbar {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  background: var(--bg-nav);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border-nav);
-  padding: 0 32px;
-  height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background var(--transition), border var(--transition);
+  position: relative; z-index: 2;
+  height: 64px; padding: 0 32px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--border-card);
+  background: rgba(255,255,255,0.7); backdrop-filter: blur(16px);
 }
-.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo img { height: 28px; width: auto; }
-.theme-dark .nav-logo img { filter: brightness(1.2); }
-.nav-logo .logo-text { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
-.nav-logo .logo-sub { font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
-.nav-links { display: flex; gap: 2px; list-style: none; align-items: center; }
+.nav-brand { font-size: 13px; font-weight: 700; letter-spacing: 0.16em; color: var(--text-muted); text-transform: uppercase; }
+.nav-links { display: flex; gap: 4px; list-style: none; }
 .nav-links a {
-  text-decoration: none; color: var(--text-secondary);
-  font-size: 13px; font-weight: 500; padding: 6px 14px;
-  border-radius: 6px; transition: all 0.2s;
+  text-decoration: none; color: var(--text-secondary); font-size: 13px; font-weight: 500;
+  padding: 6px 14px; border-radius: 6px; transition: all 0.2s;
 }
-.nav-links a:hover { color: var(--text); background: var(--card-hover); }
-.nav-links a.active { color: var(--accent); }
-.theme-dark .nav-links a.active { color: #fff; }
-.nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 8px; }
-.theme-toggle {
-  background: none; border: 1px solid var(--border-card); border-radius: 20px;
-  padding: 6px 14px; cursor: pointer; font-size: 14px; color: var(--text-secondary);
-  display: flex; align-items: center; gap: 6px; transition: all 0.2s; margin-left: 8px;
+.nav-links a:hover { color: var(--text); background: rgba(94,139,126,0.07); }
+/* ===== Header ===== */
+.head { position: relative; z-index: 1; text-align: center; padding: clamp(44px, 7vh, 84px) 24px clamp(20px, 3vh, 34px); }
+.head h1 {
+  font-size: clamp(24px, 3.4vw, 40px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.25;
 }
-.theme-toggle:hover { background: var(--card-hover); color: var(--text); }
+.head h1 .g { color: var(--green); }
+.head h1 .c { color: var(--accent); }
+.head p { margin-top: 12px; font-size: 14px; color: var(--text-secondary); font-weight: 300; }
+.head .kicker {
+  font-size: 12.5px; font-weight: 700; letter-spacing: 0.15em; color: var(--text-secondary);
+  text-transform: uppercase; margin-bottom: 16px;
+}
+/* ===== Split ===== */
+.split {
+  position: relative; z-index: 1; flex: 1;
+  max-width: 1240px; width: 100%; margin: 0 auto;
+  padding: clamp(10px, 2vh, 28px) 32px clamp(30px, 5vh, 56px);
+  display: grid; grid-template-columns: 1fr 1px 1fr; gap: clamp(24px, 4vw, 56px);
+  align-items: stretch;
+}
+.divider { background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.10) 18%, rgba(0,0,0,0.10) 82%, transparent 100%); }
+
+.col {
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+  background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 22px;
+  padding: clamp(28px, 3.4vw, 46px) clamp(22px, 2.6vw, 40px);
+  box-shadow: 0 10px 36px rgba(0,0,0,0.045);
+  transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+.col:hover { transform: translateY(-4px); box-shadow: 0 18px 48px rgba(0,0,0,0.09); }
+.col-dd:hover { border-color: rgba(47,143,99,0.4); }
+.col-dxt:hover { border-color: rgba(94,139,126,0.4); }
+
+.logo-slot { height: 134px; display: flex; align-items: center; justify-content: center; margin-bottom: 24px; }
+.logo-dd { height: 122px; width: auto; }
+.logo-dxt { height: 122px; width: auto; }
+
+.col h2 { font-size: clamp(20px, 2.1vw, 27px); font-weight: 900; letter-spacing: -0.01em; line-height: 1.35; }
+.col .en {
+  margin-top: 8px; font-size: 12px; font-weight: 600; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--text-muted);
+}
+.col .tag {
+  margin: 20px 0 18px; display: inline-flex; align-items: center; gap: 8px;
+  font-size: 13px; font-weight: 700; letter-spacing: 0.04em;
+  padding: 7px 18px; border-radius: 20px;
+}
+.col-dd .tag { color: var(--green); background: var(--green-soft); }
+.col-dxt .tag { color: var(--accent); background: rgba(94,139,126,0.10); }
+.col p.desc { font-size: 14px; color: var(--text-secondary); line-height: 1.85; font-weight: 300; max-width: 430px; }
+.col p.desc .chain { display: inline-block; margin-top: 6px; font-size: 13px; color: var(--text-muted); letter-spacing: 0.01em; }
+.kws-grid {
+  margin-top: 20px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%; max-width: 380px; border: 1px solid var(--border-card);
+  border-radius: 12px; overflow: hidden; background: #FBFCFD;
+}
+.kws-grid span {
+  padding: 12px 10px; font-size: 13px; font-weight: 600; color: var(--text-secondary);
+  border-right: 1px solid var(--border-card); border-bottom: 1px solid var(--border-card);
+  text-align: center; letter-spacing: 0.01em;
+}
+.kws-grid span:nth-child(2n) { border-right: none; }
+.kws-grid span:nth-child(n+3) { border-bottom: none; }
+.refs { margin-top: 18px; font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+.cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 14px; font-weight: 700; text-decoration: none;
+  padding: 12px 30px; border-radius: 30px; transition: all 0.25s;
+  min-width: 226px; justify-content: center;
+}
+.col-dd .cta { color: #fff; background: var(--green); }
+.col-dxt .cta { color: #fff; background: var(--accent); }
+.cta:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(0,0,0,0.16); opacity: 0.94; }
+.cta-wrap { margin-top: auto; padding-top: 30px; }
+
+/* ===== Footer ===== */
+.footer { position: relative; z-index: 1; border-top: 1px solid var(--border-card); padding: 22px 32px; text-align: center; }
+.footer p { font-size: 12px; color: var(--text-muted); }
+
 @media (max-width: 900px) {
   .navbar { padding: 0 16px; }
-  .nav-toggle { display: block; }
-  .nav-links {
-    display: none; position: absolute; top: 64px; left: 0; right: 0;
-    background: var(--bg-nav); backdrop-filter: blur(20px);
-    flex-direction: column; padding: 12px 16px;
-    border-bottom: 1px solid var(--border-nav);
-  }
-  .nav-links.open { display: flex; }
-  .nav-links a { padding: 12px 14px; width: 100%; }
+  .nav-links a { padding: 6px 10px; font-size: 12px; }
+  .split { grid-template-columns: 1fr; gap: 0; padding: 8px 18px 36px; }
+  .divider { height: 1px; width: 60%; margin: 22px auto; background: linear-gradient(90deg, transparent, rgba(0,0,0,0.10), transparent); }
+  .logo-slot { height: 112px; }
+  .logo-dd { height: 100px; }
+  .logo-dxt { height: 100px; }
 }
-/* ===== Hero ===== */
-.hero {
-  min-height: 88vh; display: flex; align-items: center; justify-content: center;
-  position: relative; overflow: hidden; padding: 120px 32px 60px;
-}
-.theme-dark .hero-bg {
-  position: absolute; inset: 0; pointer-events: none;
-  background:
-    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(20,184,166,0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 60% 50% at 80% 100%, rgba(59,130,246,0.06) 0%, transparent 50%);
-}
-.theme-light .hero-bg { display: none; }
-.theme-dark .hero-grid {
-  position: absolute; inset: 0; pointer-events: none; opacity: 0.5;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-}
-.theme-light .hero-grid { display: none; }
-.hero-content { position: relative; z-index: 1; text-align: center; max-width: 800px; }
-.hero-tag {
-  font-size: 12px; font-weight: 600; color: var(--text-muted);
-  letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 20px;
-}
-.hero-tag span { color: var(--accent); }
-.theme-dark .hero-tag span { color: rgba(255,255,255,0.6); }
-.theme-light .hero h1 { color: var(--text); }
-.hero h1 {
-  font-size: clamp(36px, 5.5vw, 64px); font-weight: 900;
-  line-height: 1.05; letter-spacing: -0.03em; margin-bottom: 20px;
-}
-.theme-dark .hero h1 .gradient {
-  background: linear-gradient(135deg, #fff 40%, rgba(20,184,166,0.8) 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-}
-.theme-light .hero h1 .gradient { color: var(--accent); -webkit-text-fill-color: var(--accent); }
-.hero p {
-  font-size: 16px; color: var(--text-secondary);
-  max-width: 560px; margin: 0 auto 36px; line-height: 1.8; font-weight: 300;
-}
-.hero-cta { display: inline-flex; gap: 14px; }
-.hero-cta a {
-  display: inline-block; padding: 13px 32px; border-radius: 8px;
-  font-size: 14px; font-weight: 600; text-decoration: none; transition: all 0.3s;
-}
-.theme-dark .hero-cta .primary { background: #fff; color: #000; }
-.theme-light .hero-cta .primary { background: var(--accent); color: #fff; }
-.hero-cta .primary:hover { transform: translateY(-2px); opacity: 0.9; }
-.hero-cta .secondary {
-  background: transparent; color: var(--text);
-  border: 1px solid var(--border-card);
-}
-.hero-cta .secondary:hover { border-color: var(--text-secondary); transform: translateY(-2px); }
-/* ===== Stats ===== */
-.stats-bar {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-  background: var(--border-card); border-radius: 12px; overflow: hidden;
-  max-width: 900px; margin: 0 auto 0;
-}
-.stat-item { background: var(--stat-bg); padding: 24px 16px; text-align: center; }
-.stat-item .stat-num { font-size: 28px; font-weight: 800; color: var(--stat-num); }
-.stat-item .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-@media (max-width: 640px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
-/* ===== Section ===== */
-.section { padding: 80px 32px; }
-.section-inner { max-width: 1000px; margin: 0 auto; }
-.section-label {
-  font-size: 12px; font-weight: 600; color: var(--text-muted);
-  letter-spacing: 0.15em; text-align: center; margin-bottom: 10px;
-}
-.section h2 {
-  font-size: clamp(26px, 3.5vw, 40px); font-weight: 800;
-  text-align: center; letter-spacing: -0.02em; margin-bottom: 10px;
-}
-.section .subtitle {
-  font-size: 15px; color: var(--text-secondary); font-weight: 300;
-  text-align: center; max-width: 500px; margin: 0 auto 50px; line-height: 1.7;
-}
-/* ===== Radial Capability ===== */
-.radial-section {
-  background: var(--bg-body);
-  border-top: 1px solid var(--border-card);
-  border-bottom: 1px solid var(--border-card);
-}
-.radial-container {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 40px;
-}
-.radial-layer {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-}
-.radial-center {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 28px;
-  border-radius: 30px;
-  font-size: 14px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--text);
-  border: 1.5px solid var(--accent);
-  background: var(--bg-card);
-  position: relative;
-}
-.radial-center .dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--accent); display: inline-block;
-}
-/* Connection lines */
-.radial-nodes {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  position: relative;
-  padding: 8px 0;
-}
-.radial-node {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  border-radius: 20px;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  cursor: pointer;
-  text-decoration: none;
-  transition: all 0.2s;
-  position: relative;
-}
-.radial-node:hover {
-  color: var(--accent);
-  border-color: var(--accent);
-  background: var(--card-hover);
-  transform: translateY(-2px);
-}
-.radial-node .node-dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  flex-shrink: 0;
-}
-.radial-node .node-dot.green { background: #5E8B7E; }
-.radial-node .node-dot.blue { background: #7C9FBA; }
-.radial-node .node-dot.purple { background: #A78BCC; }
-.radial-node .node-dot.orange { background: #E8A87C; }
-.radial-node .node-dot.pink { background: #D489A7; }
-.radial-node .node-dot.teal { background: #5BA3A3; }
-.radial-node.clickable { cursor: pointer; }
-.radial-node.no-click { cursor: default; }
-.radial-node.no-click .info-badge {
-  font-size: 10px; color: var(--text-muted); margin-left: 4px; opacity: 0.6;
-}
-/* ===== Popover ===== */
-.popover {
-  display: none;
-  position: fixed;
-  z-index: 200;
-  background: var(--popover-bg);
-  border: 1px solid var(--border-card);
-  border-radius: 14px;
-  padding: 20px 22px;
-  box-shadow: var(--popover-shadow);
-  max-width: 320px;
-  backdrop-filter: blur(12px);
-}
-.popover.show { display: block; }
-.popover h4 {
-  font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--text);
-}
-.popover p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
-.popover .pop-close {
-  position: absolute; top: 10px; right: 14px;
-  background: none; border: none; font-size: 18px;
-  cursor: pointer; color: var(--text-muted);
-}
-.popover .pop-close:hover { color: var(--text); }
-.popover-overlay {
-  display: none; position: fixed; inset: 0; z-index: 199;
-}
-.popover-overlay.show { display: block; }
-/* ===== Service Cards (区别于辐射式) ===== */
-.service-section { padding-top: 0; }
-.service-cards {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.service-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-card);
-  border-radius: 16px;
-  padding: 36px 28px 28px;
-  transition: all 0.3s;
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  overflow: hidden;
-}
-.service-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-}
-.service-card:nth-child(1)::before { background: linear-gradient(90deg, #5E8B7E, #7C9FBA); }
-.service-card:nth-child(2)::before { background: linear-gradient(90deg, #7C9FBA, #A78BCC); }
-.service-card:nth-child(3)::before { background: linear-gradient(90deg, #A78BCC, #E8A87C); }
-.service-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 32px rgba(0,0,0,0.12); }
-.theme-light .service-card:hover { box-shadow: 0 12px 32px rgba(94,139,126,0.10); }
-.service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-.service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; flex: 1; }
-.service-card .svc-tag {
-  display: inline-block; margin-top: 18px;
-  font-size: 12px; font-weight: 600;
-  color: var(--accent); padding: 5px 16px;
-  border: 1px solid var(--accent); border-radius: 20px;
-  align-self: flex-start; transition: all 0.2s;
-}
-.service-card:hover .svc-tag { background: var(--accent); color: #fff; }
-@media (max-width: 768px) { .service-cards { grid-template-columns: 1fr; } }
-/* ===== Footer ===== */
-.footer {
-  border-top: 1px solid var(--border-card); padding: 28px 32px; text-align: center;
-}
-.footer p { font-size: 13px; color: var(--text-muted); }
-.footer strong { color: var(--accent); font-weight: 500; }
-@media (max-width: 640px) { .section { padding: 50px 16px; } }
 </style>
-<link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
-
 </head>
-<body class="theme-dark">
+<body>
+<div class="glow"></div>
 
-<!-- Navbar -->
 <nav class="navbar">
-  <a href="/" class="nav-logo">
-    <img src="/assets/images/dxt-logo.webp" alt="电小团">
-    <div>
-      <div class="logo-text">电小团</div>
-      <div class="logo-sub">Little Electric Cloud</div>
-    </div>
-  </a>
-  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <div class="nav-brand">深绿数据 · 电小团</div>
   <ul class="nav-links">
     <li><a href="/" class="active">首页</a></li>
-    <li><a href="/training/">免费课程</a></li>
-    <li><a href="/policy/">政策数据库</a></li>
-    <li><a href="/price/">电价数据库</a></li>
-    <li><a href="/tools/">能源运营工具</a></li>
-    <li><a href="/pro/">增值服务</a></li>
-    <li><a href="/about/">公司介绍</a></li>
-    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
+    <li><a href="/deepdata/">深绿数据</a></li>
+    <li><a href="/dianxiaotuan/">电小团</a></li>
   </ul>
 </nav>
 
-<!-- Overlay for popover -->
-<div class="popover-overlay" id="popoverOverlay" onclick="closePopover()"></div>
-<div class="popover" id="popover">
-  <button class="pop-close" onclick="closePopover()">×</button>
-  <h4 id="popTitle"></h4>
-  <p id="popDesc"></p>
-</div>
+<header class="head">
+  <div class="kicker">Green Construction · Energy Operation</div>
+  <h1>从<span class="g">绿色低碳建设</span>，到<span class="c">综合能源运营</span></h1>
+  <p>建得绿 · 用得绿 —— 一份管建设期的低碳，一份管运营期的能效</p>
+</header>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-tag"><span>电小团</span> Little Electric Cloud</div>
-    <h1>让每一度电<br><span class="gradient">创造更多价值</span></h1>
-    <p>电小团是综合能源运营服务工具集，从数据采集到智能分析，从电力政策到电价查询，从运营商机洞察到项目决策支持，助力能源从业者高效工作。</p>
-    <div class="hero-cta">
-      <a href="/tools/" class="primary">探索工具集</a>
-      <a href="/about/" class="secondary">了解更多</a>
+<main class="split">
+
+  <!-- 左：深绿数据 -->
+  <section class="col col-dd">
+    <div class="logo-slot">
+      <img class="logo-dd" src="/assets/images/deepdata-logo.webp" alt="深绿数据 DeepData Green">
     </div>
-  </div>
-</section>
-
-<!-- Stats -->
-<section class="section" style="padding: 30px 32px 0;">
-  <div class="section-inner">
-    <div class="stats-bar">
-      <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">覆盖省份</div></div>
-      <div class="stat-item"><div class="stat-num">15min</div><div class="stat-label">数据粒度</div></div>
-      <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">政策文件库</div></div>
-      <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">运营模块</div></div>
+    <h2>深绿数据（深圳）有限公司</h2>
+    <div class="en">DeepData Green</div>
+    <div class="tag">低碳社区营建 · 建的绿</div>
+    <p class="desc">
+      把「低碳」做进片区、园区与建筑的规划设计与营造，<br>
+      从源头降低全生命周期碳排放。<br>
+      <span class="chain">服务链条：策划 → 规划 → 设计 → 施工 → 交付</span>
+    </p>
+    <div class="kws-grid">
+      <span>近零碳社区</span>
+      <span>碳中和园区</span>
+      <span>近零能耗建筑</span>
+      <span>正产能住宅</span>
     </div>
-  </div>
-</section>
+    <p class="refs">代表实践：大梅沙生物圈三号 · 扬州应急中心 · 十七英里住宅</p>
+    <div class="cta-wrap"><a class="cta" href="/deepdata/">进入深绿数据官网 →</a></div>
+  </section>
 
-<!-- Radial Capability -->
-<section class="section radial-section">
-  <div class="section-inner">
-    <div class="section-label">能力架构</div>
-    <h2>能力金字塔</h2>
-    <p class="subtitle">从采集到分析，从数据库到运营决策</p>
+  <div class="divider"></div>
 
-    <div class="radial-container">
-
-      <!-- Layer 1: 数据采集 -->
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据采集 · 能源监测 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <span class="radial-node no-click" onclick="showPopover(this,'三级计量','建筑级 · 楼层级 · 设备级三级电能计量体系，精准溯源每一度电的流向')">
-            <span class="node-dot green"></span>三级计量
-            <span class="info-badge">ⓘ</span>
-          </span>
-          <span class="radial-node no-click" onclick="showPopover(this,'利旧设备','兼容既有智能表计与采集终端，无需更换硬件，大幅降低改造成本')">
-            <span class="node-dot blue"></span>利旧设备
-            <span class="info-badge">ⓘ</span>
-          </span>
-          <span class="radial-node no-click" onclick="showPopover(this,'多设备协议打通','支持 Modbus RTU/TCP、MQTT、BACnet、DL/T645 等多种协议的统一接入与数据汇聚')">
-            <span class="node-dot purple"></span>多设备协议打通
-            <span class="info-badge">ⓘ</span>
-          </span>
-        </div>
-      </div>
-
-      <!-- Layer 2: 数据清洗 -->
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据清洗 · 专有负荷侧数据库 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <a class="radial-node clickable" href="/policy/"><span class="node-dot green"></span>政策数据库</a>
-          <a class="radial-node clickable" href="/price/"><span class="node-dot blue"></span>电价数据库</a>
-          <a class="radial-node clickable" href="/data/"><span class="node-dot purple"></span>负荷数据库</a>
-          <a class="radial-node clickable" href="/data/"><span class="node-dot orange"></span>需量数据库</a>
-          <a class="radial-node clickable" href="/data/"><span class="node-dot pink"></span>气象数据库</a>
-        </div>
-      </div>
-
-      <!-- Layer 3: 数据应用 -->
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据应用 · 综合能源运营 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot green"></span>电费单分析</a>
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot blue"></span>售电优化</a>
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot teal"></span>水机空调寻优节能</a>
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot purple"></span>多联机末端管理节能</a>
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot orange"></span>最大需量管理</a>
-          <a class="radial-node clickable" href="/tools/"><span class="node-dot pink"></span>分时电价管理</a>
-          <a class="radial-node clickable" href="/pro/"><span class="node-dot" style="background:#5BA3A3"></span>VPP可调负荷聚合</a>
-        </div>
-      </div>
-
+  <!-- 右：电小团 -->
+  <section class="col col-dxt">
+    <div class="logo-slot">
+      <img class="logo-dxt" src="/assets/images/dxt-logo-2026.webp" alt="电小团 Little Electric Cloud">
     </div>
-  </div>
-</section>
-
-<!-- Service Cards (三大服务模块) -->
-<section class="section service-section">
-  <div class="section-inner">
-    <div class="section-label">服务体系</div>
-    <h2>三大服务模块</h2>
-    <p class="subtitle">系统化学习 · 在线工具 · 深度服务</p>
-    <div class="service-cards">
-      <a href="/training/" class="service-card">
-        <h3>综合能源学习课程</h3>
-        <p>9大主题，覆盖电力市场、储能、风电、虚拟电厂、零碳园区等核心领域，系统化的综合能源知识库，免费学习。</p>
-        <span class="svc-tag">免费学习 →</span>
-      </a>
-      <a href="/tools/" class="service-card">
-        <h3>综合能源运营服务工具</h3>
-        <p>电费联单分析、能源运营规划、能源运营诊断等实用工具，免费试用，助力日常作业提效。</p>
-        <span class="svc-tag">免费试用 →</span>
-      </a>
-      <a href="/pro/" class="service-card">
-        <h3>增值服务</h3>
-        <p>水冷空调节能优化、虚拟电厂聚合管理、虚拟电厂运营服务，深度能源服务释放数据价值。</p>
-        <span class="svc-tag">了解更多 →</span>
-      </a>
+    <h2>电小团科技（苏州）有限公司</h2>
+    <div class="en">Little Electric Cloud</div>
+    <div class="tag">综合能源运营 · 用的绿</div>
+    <p class="desc">
+      以「数据 + 算法」唤醒沉睡的能源资产：<br>
+      从能源监测、用能诊断，到空调节能与虚拟电厂聚合。<br>
+      <span class="chain">用较低成本 + 较好服务，降低工商业用户电费</span>
+    </p>
+    <div class="kws-grid">
+      <span>降低电价</span>
+      <span>降低电量</span>
+      <span>降低需量</span>
+      <span>增加补贴</span>
     </div>
-  </div>
-</section>
+    <p class="refs">代表实践：苏州源点 · 扬州应急基地 · 无锡 I·Campus</p>
+    <div class="cta-wrap"><a class="cta" href="/dianxiaotuan/">进入电小团官网 →</a></div>
+  </section>
 
-<!-- Footer -->
+</main>
+
 <footer class="footer">
-  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 深沃控股集团 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+  <p>©2026 深绿数据（深圳）有限公司 · 电小团科技（苏州）有限公司 &nbsp;|&nbsp; energy.aishenwo.cn</p>
 </footer>
-
-
-
-<script>
-// Theme toggle
-function toggleTheme() {
-  const body = document.body;
-  const icon = document.getElementById('theme-icon');
-  const label = document.getElementById('theme-label');
-  if (body.classList.contains('theme-dark')) {
-    body.classList.replace('theme-dark', 'theme-light');
-    icon.textContent = '🌙';
-    label.textContent = '深色';
-    localStorage.setItem('dxt-theme', 'light');
-  } else {
-    body.classList.replace('theme-light', 'theme-dark');
-    icon.textContent = '☀️';
-    label.textContent = '浅色';
-    localStorage.setItem('dxt-theme', 'dark');
-  }
-}
-// Restore theme
-(function() {
-  const saved = localStorage.getItem('dxt-theme');
-  if (saved === 'light') {
-    document.body.classList.replace('theme-dark', 'theme-light');
-    document.getElementById('theme-icon').textContent = '🌙';
-    document.getElementById('theme-label').textContent = '深色';
-  }
-})();
-
-// Popover
-function showPopover(el, title, desc) {
-  const pop = document.getElementById('popover');
-  document.getElementById('popTitle').textContent = title;
-  document.getElementById('popDesc').textContent = desc;
-  const rect = el.getBoundingClientRect();
-  const top = rect.bottom + 10;
-  const left = Math.min(rect.left + rect.width/2 - 160, window.innerWidth - 340);
-  pop.style.top = Math.max(top, 10) + 'px';
-  pop.style.left = Math.max(left, 10) + 'px';
-  pop.classList.add('show');
-  document.getElementById('popoverOverlay').classList.add('show');
-}
-function closePopover() {
-  document.getElementById('popover').classList.remove('show');
-  document.getElementById('popoverOverlay').classList.remove('show');
-}
-</script>
-
-
-
-<!-- Pet Chat Button -->
-<div id="dxt-pet-btn" onclick="togglePetChat()" aria-label="打开电小团对话">
-  <div class="dxt-pet-body" style="background:#fff;">
-    <img src="/assets/images/dxt-pet-icon.jpeg" alt="电小团" style="width:52px;height:52px;border-radius:50%;object-fit:cover;">
-    <div class="dxt-pet-dot">💬</div>
-  </div>
-</div>
-
-<div id="dxt-pet-overlay">
-  <div class="dxt-overlay-head">
-    <img src="/assets/images/dxt-pet-head.jpeg" alt="电小团" style="width:36px;height:36px;border-radius:50%;object-fit:cover;flex-shrink:0;">
-    <div class="head-text">
-      <h3>电小团</h3>
-      <p>综合能源运营助手 · 随时为您解答</p>
-    </div>
-    <button class="dxt-overlay-close" onclick="closePetChat()" aria-label="关闭">✕</button>
-  </div>
-  <div class="dxt-msg-area" id="dxt-msg-area">
-    <div class="dxt-msg bot">
-      你好！我是电小团 👋<br>
-      我可以帮你了解产品、服务，或者查找官网资料。<br>
-      有什么想问的吗？
-    </div>
-    <div class="dxt-msg-time">刚刚</div>
-  </div>
-  <div class="dxt-quick-replies" id="dxt-quick-replies">
-    <button class="dxt-quick-btn" onclick="sendQuick('你们做哪些业务？')">你们做哪些业务？</button>
-    <button class="dxt-quick-btn" onclick="sendQuick('储能测算怎么用？')">储能测算怎么用？</button>
-    <button class="dxt-quick-btn" onclick="sendQuick('有哪些培训课程？')">有哪些培训课程？</button>
-    <button class="dxt-quick-btn" onclick="sendQuick('怎么联系合作？')">怎么联系合作？</button>
-  </div>
-  <div class="dxt-input-area">
-    <input type="text" id="dxt-user-input" placeholder="输入问题..." onkeydown="if(event.key==='Enter')sendMessage()">
-    <button class="dxt-send-btn" id="dxt-send-btn" onclick="sendMessage()" aria-label="发送">
-      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <path d="M2 8L13 2 8 13 7 9 2 8Z" fill="white" stroke="white" stroke-width="0.5"/>
-      </svg>
-    </button>
-  </div>
-</div>
-
-<script>
-/* ===== Pet Chat Config ===== */
-function togglePetChat() {
-  var overlay = document.getElementById('dxt-pet-overlay');
-  overlay.classList.toggle('open');
-  if (overlay.classList.contains('open')) {
-    setTimeout(function(){ document.getElementById('dxt-user-input').focus(); }, 350);
-  }
-}
-function closePetChat() {
-  document.getElementById('dxt-pet-overlay').classList.remove('open');
-}
-function addMessage(text, role) {
-  var area = document.getElementById('dxt-msg-area');
-  var msg = document.createElement('div');
-  msg.className = 'dxt-msg ' + role;
-  msg.innerHTML = text.replace(/\n/g, '<br>');
-  area.appendChild(msg);
-  var now = new Date();
-  var t = String(now.getHours()).padStart(2,'0')+':'+String(now.getMinutes()).padStart(2,'0');
-  var tm = document.createElement('div');
-  tm.className = 'dxt-msg-time';
-  tm.textContent = t;
-  area.appendChild(tm);
-  area.scrollTop = area.scrollHeight;
-}
-var dxtTypingTimer = null;
-function showTyping() {
-  var area = document.getElementById('dxt-msg-area');
-  var el = document.createElement('div');
-  el.className = 'dxt-typing';
-  el.id = 'dxt-typing-indicator';
-  el.innerHTML = '<span></span><span></span><span></span><span class="dxt-typing-text"></span>';
-  area.appendChild(el);
-  area.scrollTop = area.scrollHeight;
-  // 渐次提示文案
-  var txt = el.querySelector('.dxt-typing-text');
-  if (dxtTypingTimer) clearTimeout(dxtTypingTimer);
-  dxtTypingTimer = setTimeout(function() {
-    txt.textContent = ' 正在查资料...';
-    area.scrollTop = area.scrollHeight;
-  }, 3000);
-  dxtTypingTimer = setTimeout(function() {
-    txt.textContent = ' 还在思考中，再稍等一下...';
-    area.scrollTop = area.scrollHeight;
-  }, 10000);
-  dxtTypingTimer = setTimeout(function() {
-    txt.textContent = ' 问题有点复杂，正在全力分析...';
-    area.scrollTop = area.scrollHeight;
-  }, 20000);
-}
-function hideTyping() {
-  var el = document.getElementById('dxt-typing-indicator');
-  if (el) el.remove();
-  if (dxtTypingTimer) { clearTimeout(dxtTypingTimer); dxtTypingTimer = null; }
-}
-function sendMessage() {
-  var input = document.getElementById('dxt-user-input');
-  var text = input.value.trim();
-  if (!text) return;
-  input.value = '';
-  addMessage(text, 'user');
-  document.getElementById('dxt-send-btn').disabled = true;
-  document.getElementById('dxt-quick-replies').style.display = 'none';
-  showTyping();
-  // Call Hermes Agent via ECS API gateway
-  var sid = localStorage.getItem('dxt_session_id');
-  if (!sid) {
-    sid = 'dxt_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
-    localStorage.setItem('dxt_session_id', sid);
-  }
-  fetch('https://ecs.aishenwo.cn/api/chat', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      message: text,
-      session_id: sid,
-      api_key: 'dxt_website_public'
-    })
-  })
-  .then(function(res) { return res.json(); })
-  .then(function(data) {
-    hideTyping();
-    if (data.error) {
-      addMessage('抱歉，暂时无法回答，请稍后再试。', 'bot');
-    } else {
-      addMessage(data.response || '(无回复)', 'bot');
-    }
-    document.getElementById('dxt-send-btn').disabled = false;
-  })
-  .catch(function() {
-    hideTyping();
-    addMessage('网络连接失败，请检查网络后重试。', 'bot');
-    document.getElementById('dxt-send-btn').disabled = false;
-  });
-}
-function sendQuick(text) {
-  document.getElementById('dxt-user-input').value = text;
-  sendMessage();
-}
-// Click outside to close
-document.addEventListener('click', function(e) {
-  var overlay = document.getElementById('dxt-pet-overlay');
-  var btn = document.getElementById('dxt-pet-btn');
-  if (overlay && overlay.classList.contains('open') && !overlay.contains(e.target) && !btn.contains(e.target)) {
-    closePetChat();
-  }
-});
-</script>
 
 </body>
 </html>
