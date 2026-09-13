@@ -10,7 +10,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-:root { --transition: 0.3s; --lvl2: clamp(18px, 2.2vw, 27px); }
+:root {
+  --transition: 0.3s;
+  --lvl2: clamp(18px, 2.2vw, 27px);            /* 子项 / 公式项 字号 */
+  --word-size: clamp(42px, 6.6vw, 81px);       /* 三个大词统一字号（= 原 较低成本 74px × 1.1） */
+}
 /* ===== Light Theme (default) ===== */
 .theme-light {
   --bg-body: #F8F9FC;
@@ -120,7 +124,7 @@ body {
 /* ===== Hero / Slogan ===== */
 .hero {
   position: relative; overflow: hidden;
-  padding: 100px 32px 44px;
+  padding: 90px 32px 44px;
   min-height: 82vh; display: flex; align-items: center; justify-content: center;
 }
 .hero-bg { position: absolute; inset: 0; pointer-events: none; background: var(--hero-glow); }
@@ -128,7 +132,7 @@ body {
 
 .hero-kicker {
   font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--text-muted);
-  text-transform: uppercase; margin-bottom: 26px;
+  text-transform: uppercase; margin-bottom: 22px;
 }
 .hero-kicker b { color: var(--c1); font-weight: 700; }
 
@@ -158,13 +162,10 @@ body {
 .chip.chip-link::after { content: '↗'; font-size: 0.55em; opacity: 0.5; }
 
 .word {
-  font-size: clamp(38px, 6vw, 74px); font-weight: 900; letter-spacing: -0.03em;
+  font-size: var(--word-size); font-weight: 900; letter-spacing: -0.03em;
   line-height: 1.06; color: var(--c1);
-  cursor: pointer; user-select: none;
-  border-bottom: 3px solid transparent;
-  transition: border-color 0.2s;
+  user-select: none;
 }
-.word:hover, .word:focus-visible, .word.active { border-bottom-color: currentColor; outline: none; }
 #field-service .word { color: var(--c2); }
 .plus {
   font-size: clamp(30px, 4.4vw, 54px); font-weight: 300; color: var(--text-muted);
@@ -174,7 +175,7 @@ body {
 /* 第二行：降低工商业用户电费 */
 .line2 {
   margin-top: clamp(14px, 2vw, 26px);
-  font-size: clamp(28px, 4.4vw, 54px); font-weight: 900; letter-spacing: -0.01em;
+  font-size: var(--word-size); font-weight: 900; letter-spacing: -0.03em;
   line-height: 1.15; color: var(--c3);
 }
 
@@ -217,12 +218,20 @@ body {
 .measure.own { color: var(--bg-body); background: var(--ink); border-color: var(--ink); font-weight: 700; }
 .measure.partner { color: var(--ink-soft); font-weight: 500; }
 /* 黑色实线 + 能源监测底盘 */
-.baseline { margin-top: clamp(22px, 3.2vw, 38px); }
-.baseline .rule { height: 2px; background: var(--rule); }
+.baseline { margin-top: clamp(18px, 2.6vw, 30px); }
+/* 长方形底座条：三个颜色从左至右渐变 */
+.baseline .bar {
+  height: 12px; border-radius: 3px;
+  background: linear-gradient(90deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
+}
 .baseline-plinth { background: var(--plinth); border-radius: 0 0 16px 16px; padding: 20px 16px 24px; }
 .baseline-label {
+  display: inline-block;
   font-size: clamp(24px, 2.9vw, 34px); font-weight: 900;
-  letter-spacing: 0.22em; color: var(--text);
+  letter-spacing: 0.22em;
+  background: linear-gradient(90deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent; color: transparent;
 }
 .baseline-desc { margin-top: 8px; font-size: 13.5px; color: var(--text-secondary); font-weight: 300; }
 
@@ -256,7 +265,7 @@ body {
   .hero { padding: 100px 20px 92px; min-height: auto; }
   .line1 { flex-direction: column; align-items: center; gap: 18px; }
   .plus { font-size: 26px; padding-bottom: 0; }
-  .word { font-size: clamp(30px, 9vw, 46px); }
+  .word, .line2 { font-size: clamp(30px, 8vw, 44px); }
   .chips { max-width: 100%; }
   .chips.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -307,7 +316,7 @@ body {
           <button class="chip" data-pop="reform" aria-describedby="popover">低成本能源改造</button>
           <button class="chip" data-pop="operate" aria-describedby="popover">低成本能源运营</button>
         </div>
-        <h1 class="word" tabindex="0" data-detail="cost">较低成本</h1>
+        <h1 class="word">较低成本</h1>
       </div>
 
       <div class="plus">+</div>
@@ -320,7 +329,7 @@ body {
           <a class="chip chip-link" href="https://tool.aishenwo.cn/water-cooled-energy-saving/" data-mod="hvac" data-pop="hvac">空调节能</a>
           <a class="chip chip-link" href="https://tool.aishenwo.cn/vpp-forecast/" target="_blank" rel="noopener" data-mod="vpp">虚拟电厂聚合</a>
         </div>
-        <h1 class="word" tabindex="0" data-detail="service">较好服务</h1>
+        <h1 class="word">较好服务</h1>
       </div>
 
     </div>
@@ -379,7 +388,7 @@ body {
 
     <!-- 黑色实线 + 能源监测底盘 -->
     <div class="baseline">
-      <div class="rule"></div>
+      <div class="bar"></div>
       <div class="baseline-plinth">
         <div class="baseline-label">能源监测</div>
         <p class="baseline-desc">三级计量 · 利旧采集 · 数据整合 —— 以上所有举措的共同底盘</p>
@@ -502,35 +511,10 @@ Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (
   });
 });
 
-/* ===== 「较低成本 / 较好服务」可独立点击 ===== */
-var DETAILS = {
-  cost: {
-    title: '较低成本',
-    html: '<div class="pop-trio"><span>低成本能源改造</span><span>低成本能源运营</span></div>' +
-          '<p>利旧采集 + 无损施工 + 数据整合，不动装修、不换设备即可完成能源监测；后续的用能诊断与节能优化按效果分成，把一次性投入变成长期收益。</p>'
-  },
-  service: {
-    title: '较好服务',
-    html: '<div class="pop-trio"><span>用能诊断</span><span>ESG服务</span><span>空调节能</span><span>虚拟电厂聚合</span></div>' +
-          '<p>用能诊断摸清家底，ESG服务支撑对外披露，空调节能落地降电量，虚拟电厂聚合把可调负荷变成收益。</p>'
-  }
-};
-Array.prototype.forEach.call(document.querySelectorAll('.word'), function (w) {
-  var key = w.dataset.detail;
-  function open() {
-    if (!DETAILS[key]) return;
-    document.getElementById('popBody').innerHTML = '<h4>' + DETAILS[key].title + '</h4>' + DETAILS[key].html;
-    placePopover(w);
-    w.classList.add('active');
-    popPinned = true;
-  }
-  w.addEventListener('click', open);
-  w.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
-});
+/* 「较低成本 / 较好服务」为分组标题，纯展示，点击不弹出任何文字 */
 document.addEventListener('click', function (e) {
-  if (!e.target.closest('.popover') && !e.target.closest('[data-pop]') && !e.target.closest('.word')) {
+  if (!e.target.closest('.popover') && !e.target.closest('[data-pop]')) {
     closePopover();
-    Array.prototype.forEach.call(document.querySelectorAll('.word.active'), function (w) { w.classList.remove('active'); });
   }
 });
 
