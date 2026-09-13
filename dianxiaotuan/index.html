@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>电小团 — 较低成本 + 较好服务，降低工商业用户电费</title>
-<meta name="description" content="电小团科技（苏州）有限公司 — 以能源监测为底盘，用较低成本 + 较好服务，降低工商业用户电费：降电价、降电量、降需量、多补贴。">
+<title>电小团 — 低成本 + 好服务，降低工商业用户电费</title>
+<meta name="description" content="电小团科技（苏州）有限公司 — 以能源监测为底盘，用低成本 + 好服务，降低工商业用户电费：降电价、降电量、降需量、多补贴。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -13,7 +13,7 @@
 :root {
   --transition: 0.3s;
   --lvl2: clamp(18px, 2.2vw, 27px);            /* 子项 / 公式项 字号 */
-  --word-size: clamp(42px, 6.6vw, 81px);       /* 三个大词统一字号（= 原 较低成本 74px × 1.1） */
+  --word-size: clamp(42px, 6.6vw, 81px);       /* 三个大词统一字号（基于原大词 74px × 1.1） */
 }
 /* ===== Light Theme (default) ===== */
 .theme-light {
@@ -42,7 +42,7 @@
   --group-bg: #FBFCFD;
   --plinth: linear-gradient(180deg, rgba(17,20,24,0.05) 0%, rgba(17,20,24,0.015) 65%, transparent 100%);
   --dash: rgba(17,20,24,0.20);
-  /* 三组配色：① 较低成本 ② 较好服务 ③ 降低工商业用户电费 */
+  /* 三组配色：① 低成本 ② 好服务 ③ 降低工商业用户电费 */
   --c1: #3F7F6C;
   --c2: #4E82AC;
   --c3: #7A5CA8;
@@ -136,7 +136,7 @@ body {
 }
 .hero-kicker b { color: var(--c1); font-weight: 700; }
 
-/* 第一行：较低成本 + 较好服务 */
+/* 第一行：低成本 + 好服务 */
 .line1 {
   display: flex; align-items: flex-end; justify-content: center;
   gap: clamp(16px, 4vw, 56px); flex-wrap: wrap;
@@ -307,21 +307,21 @@ body {
 
     <div class="hero-kicker"><b>电小团</b> Little Electric Cloud · 综合能源运营</div>
 
-    <!-- 第一行：较低成本 + 较好服务 -->
+    <!-- 第一行：低成本 + 好服务 -->
     <div class="line1">
 
-      <!-- 较低成本 -->
+      <!-- 低成本 -->
       <div class="field" id="field-cost">
         <div class="chips">
           <button class="chip" data-pop="reform" aria-describedby="popover">低成本能源改造</button>
           <button class="chip" data-pop="operate" aria-describedby="popover">低成本能源运营</button>
         </div>
-        <h1 class="word">较低成本</h1>
+        <h1 class="word">低成本</h1>
       </div>
 
       <div class="plus">+</div>
 
-      <!-- 较好服务 -->
+      <!-- 好服务 -->
       <div class="field" id="field-service">
         <div class="chips two-col">
           <a class="chip chip-link" href="https://tool.aishenwo.cn/analyzer/" target="_blank" rel="noopener" data-mod="audit">用能诊断</a>
@@ -329,7 +329,7 @@ body {
           <a class="chip chip-link" href="https://tool.aishenwo.cn/water-cooled-energy-saving/" data-mod="hvac" data-pop="hvac">空调节能</a>
           <a class="chip chip-link" href="https://tool.aishenwo.cn/vpp-forecast/" target="_blank" rel="noopener" data-mod="vpp">虚拟电厂聚合</a>
         </div>
-        <h1 class="word">较好服务</h1>
+        <h1 class="word">好服务</h1>
       </div>
 
     </div>
@@ -511,7 +511,7 @@ Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (
   });
 });
 
-/* 「较低成本 / 较好服务」为分组标题，纯展示，点击不弹出任何文字 */
+/* 「低成本 / 好服务」为分组标题，纯展示，点击不弹出任何文字 */
 document.addEventListener('click', function (e) {
   if (!e.target.closest('.popover') && !e.target.closest('[data-pop]')) {
     closePopover();
