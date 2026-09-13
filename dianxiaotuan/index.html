@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>电小团 — 低成本 + 好服务，降低工商业用户电费</title>
-<meta name="description" content="电小团科技（苏州）有限公司 — 以能源监测为底盘，用低成本 + 好服务，降低工商业用户电费：降电价、降电量、降需量、多补贴。">
+<meta name="description" content="电小团科技（苏州）有限公司 — 以能源监测为底盘，用低成本 + 好服务（前期用能诊断 · 自带投资建设 · 节费率兜底 · 定期用能报告），降低工商业用户电费：降电价、降电量、降需量、多补贴。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -217,6 +217,12 @@ body {
 }
 .measure.own { color: var(--bg-body); background: var(--ink); border-color: var(--ink); font-weight: 700; }
 .measure.partner { color: var(--ink-soft); font-weight: 500; }
+/* 举措里的可点击项：链接跳工具页（↗）/ 悬浮弹说明（ⓘ） */
+.measure.link { text-decoration: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; }
+.measure.link:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0,0,0,0.12); }
+.measure.link::after { content: ' ↗'; font-size: 0.82em; opacity: 0.75; }
+.measure[data-pop] { cursor: pointer; }
+.measure[data-pop]::after { content: ' ⓘ'; font-size: 0.82em; opacity: 0.6; }
 /* 黑色实线 + 能源监测底盘 */
 .baseline { margin-top: clamp(18px, 2.6vw, 30px); }
 /* 长方形底座条：三个颜色从左至右渐变 */
@@ -324,10 +330,10 @@ body {
       <!-- 好服务 -->
       <div class="field" id="field-service">
         <div class="chips two-col">
-          <a class="chip chip-link" href="https://tool.aishenwo.cn/analyzer/" target="_blank" rel="noopener" data-mod="audit">用能诊断</a>
-          <a class="chip chip-link" href="https://tool.aishenwo.cn/green-hotel/" target="_blank" rel="noopener" data-mod="esg">ESG服务</a>
-          <a class="chip chip-link" href="https://tool.aishenwo.cn/water-cooled-energy-saving/" data-mod="hvac" data-pop="hvac">空调节能</a>
-          <a class="chip chip-link" href="https://tool.aishenwo.cn/vpp-forecast/" target="_blank" rel="noopener" data-mod="vpp">虚拟电厂聚合</a>
+          <a class="chip chip-link" href="https://tool.aishenwo.cn/analyzer/" target="_blank" rel="noopener" data-mod="audit">前期用能诊断</a>
+          <button class="chip" data-pop="build" aria-describedby="popover">自带投资建设</button>
+          <button class="chip" data-pop="cap" aria-describedby="popover">节费率兜底</button>
+          <button class="chip" data-pop="report" aria-describedby="popover">定期用能报告</button>
         </div>
         <h1 class="word">好服务</h1>
       </div>
@@ -360,7 +366,7 @@ body {
       <div class="measure-group" data-group="kwh">
         <div class="group-title">降电量 · 具体举措</div>
         <div class="measure-items">
-          <span class="measure own">空调节能</span>
+          <span class="measure own" data-pop="hvac" tabindex="0">空调节能</span>
           <span class="measure partner">照明节能</span>
           <span class="measure partner">变压器节能</span>
           <span class="measure partner">电梯节能</span>
@@ -378,10 +384,10 @@ body {
       <div class="measure-group" data-group="subsidy">
         <div class="group-title">多补贴 · 具体举措</div>
         <div class="measure-items">
-          <span class="measure own">虚拟电厂</span>
+          <a class="measure own link" href="https://tool.aishenwo.cn/vpp-forecast/" target="_blank" rel="noopener">虚拟电厂</a>
           <span class="measure own">零碳园区</span>
           <span class="measure own">绿色建筑</span>
-          <span class="measure own">ESG奖项</span>
+          <a class="measure own link" href="https://tool.aishenwo.cn/green-hotel/" target="_blank" rel="noopener">ESG奖项</a>
         </div>
       </div>
     </div>
@@ -404,8 +410,12 @@ body {
 
 <script>
 /* ============================================================
-   模块跳转配置 —— 下阶段「空调节能」等模块融合时，只改这里
-   hvac: 空调节能 = 水机空调节能 + 多联机(VRF)分户计量 两套工具融合
+   工具页链接对照表（实际 href 写在 HTML 标签上，这里留档）
+   · 好服务「前期用能诊断」→ analyzer
+   · 举措「空调节能」(ⓘ 悬浮双工具) → water-cooled-energy-saving + HVACAccounting
+   · 举措「ESG奖项」→ green-hotel
+   · 举措「虚拟电厂」→ vpp-forecast
+   ⚠️ 下阶段「空调节能」融合页做好后：把 hvac 的 alt 换成单个融合页地址即可
    ============================================================ */
 var MODULES = {
   audit: { label: '用能诊断',    href: 'https://tool.aishenwo.cn/analyzer/' },
@@ -427,6 +437,18 @@ var POPS = {
     title: '低成本能源运营',
     trio: ['能效诊断', '策略优化', '效果验证'],
     desc: '以监测数据为底座，先诊断、再优化、后验证，按效果计费，让节能收益可测量、可追溯。'
+  },
+  build: {
+    title: '自带投资建设',
+    desc: '轻硬件改造、重软件算法：改造与建设的投入由电小团承担（PEPC+O），业主零投入、不占改造预算。'
+  },
+  cap: {
+    title: '节费率兜底',
+    desc: '按效果分成、节费率兜底：把约定的节费幅度写进合同，业主收益可控、风险可预期。'
+  },
+  report: {
+    title: '定期用能报告',
+    desc: '定期出具用能报告：电量与电费构成、节费效果核验、后续优化建议，让每笔收益可测量、可追溯。'
   },
   hvac: {
     title: '空调节能',
