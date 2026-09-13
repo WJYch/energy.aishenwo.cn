@@ -10,7 +10,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <style>
-:root { --transition: 0.3s; }
+:root { --transition: 0.3s; --lvl2: clamp(18px, 2.2vw, 27px); }
 /* ===== Light Theme (default) ===== */
 .theme-light {
   --bg-body: #F8F9FC;
@@ -37,8 +37,11 @@
   --pill-bg: #F1F4F6;
   --group-bg: #FBFCFD;
   --plinth: linear-gradient(180deg, rgba(17,20,24,0.05) 0%, rgba(17,20,24,0.015) 65%, transparent 100%);
-  --connector: rgba(17,20,24,0.16);
   --dash: rgba(17,20,24,0.20);
+  /* 三组配色：① 较低成本 ② 较好服务 ③ 降低工商业用户电费 */
+  --c1: #3F7F6C;
+  --c2: #4E82AC;
+  --c3: #7A5CA8;
 }
 /* ===== Dark Theme ===== */
 .theme-dark {
@@ -64,10 +67,11 @@
                radial-gradient(ellipse 55% 50% at 88% 15%, rgba(59,130,246,0.08) 0%, transparent 60%);
   --chip-bg: rgba(255,255,255,0.05);
   --pill-bg: rgba(255,255,255,0.06);
-  --group-bg: rgba(255,255,255,0.03);
   --plinth: linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 65%, transparent 100%);
-  --connector: rgba(255,255,255,0.24);
   --dash: rgba(255,255,255,0.34);
+  --c1: #7CC4AF;
+  --c2: #93B8D6;
+  --c3: #BFA3E0;
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
@@ -126,7 +130,7 @@ body {
   font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--text-muted);
   text-transform: uppercase; margin-bottom: 26px;
 }
-.hero-kicker b { color: var(--accent); font-weight: 700; }
+.hero-kicker b { color: var(--c1); font-weight: 700; }
 
 /* 第一行：较低成本 + 较好服务 */
 .line1 {
@@ -135,47 +139,33 @@ body {
 }
 .field { display: flex; flex-direction: column; align-items: center; gap: 16px; }
 .chips {
-  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px;
-  max-width: 440px; min-width: 300px; min-height: 104px;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 24px;
   align-items: center; align-content: center;
-  position: relative;
-  background: var(--bg-card); border: 1px solid var(--border-card);
-  border-radius: 16px; padding: 10px 12px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.035);
 }
-/* 分组到下方大词的连接短线，标明从属关系 */
-.chips::after {
-  content: ''; position: absolute; left: 50%; bottom: -12px; width: 2px; height: 12px;
-  background: var(--connector); border-radius: 1px;
-}
-.chips.two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); justify-content: center; }
+.chips.two-col { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px 24px; justify-content: center; }
 .chips.two-col .chip { justify-content: center; }
 .chip {
-  font-family: inherit; font-size: 13px; font-weight: 600;
-  color: var(--text-secondary); background: var(--chip-bg);
-  border: 1px solid var(--border-card); border-radius: 20px;
-  padding: 7px 15px; cursor: pointer; text-decoration: none;
-  transition: all 0.22s; white-space: nowrap;
+  font-family: inherit; font-size: var(--lvl2); font-weight: 700;
+  color: var(--c1); background: none; border: none; padding: 4px 0;
+  cursor: pointer; text-decoration: none;
+  transition: border-color 0.2s; white-space: nowrap;
   display: inline-flex; align-items: center; gap: 6px;
+  border-bottom: 2px dashed transparent;
 }
-.chip:hover, .chip:focus-visible {
-  color: var(--text); border-color: var(--accent);
-  box-shadow: 0 6px 18px rgba(94,139,126,0.16); transform: translateY(-2px); outline: none;
-}
-.chip::after { content: 'ⓘ'; font-size: 10px; opacity: 0.45; }
-.chip.chip-link::after { content: '↗'; font-size: 11px; opacity: 0.5; }
-.chip.pending { border-style: dashed; }
-.chip.pending::after { content: '◷'; font-size: 11px; opacity: 0.6; }
+#field-service .chip { color: var(--c2); }
+.chip:hover, .chip:focus-visible { border-bottom-color: currentColor; outline: none; }
+.chip::after { content: 'ⓘ'; font-size: 0.5em; opacity: 0.45; }
+.chip.chip-link::after { content: '↗'; font-size: 0.55em; opacity: 0.5; }
 
 .word {
   font-size: clamp(38px, 6vw, 74px); font-weight: 900; letter-spacing: -0.03em;
-  line-height: 1.06; color: var(--text);
+  line-height: 1.06; color: var(--c1);
   cursor: pointer; user-select: none;
   border-bottom: 3px solid transparent;
-  transition: color 0.2s, border-color 0.2s;
+  transition: border-color 0.2s;
 }
-.word:hover, .word:focus-visible { color: var(--accent); border-bottom-color: var(--accent); outline: none; }
-.word.active { color: var(--accent); border-bottom-color: var(--accent); }
+.word:hover, .word:focus-visible, .word.active { border-bottom-color: currentColor; outline: none; }
+#field-service .word { color: var(--c2); }
 .plus {
   font-size: clamp(30px, 4.4vw, 54px); font-weight: 300; color: var(--text-muted);
   line-height: 1.2; padding-bottom: 6px;
@@ -183,35 +173,28 @@ body {
 
 /* 第二行：降低工商业用户电费 */
 .line2 {
-  margin-top: clamp(12px, 1.8vw, 22px);
+  margin-top: clamp(14px, 2vw, 26px);
   font-size: clamp(28px, 4.4vw, 54px); font-weight: 900; letter-spacing: -0.01em;
-  line-height: 1.15;
+  line-height: 1.15; color: var(--c3);
 }
 
 /* 公式行 */
-.formula-kicker {
-  margin-top: clamp(20px, 3vw, 32px);
-  font-size: 12.5px; font-weight: 700; letter-spacing: 0.16em;
-  color: var(--text-secondary); text-transform: uppercase;
-}
 .formula {
-  margin-top: 14px;
+  margin-top: clamp(16px, 2.4vw, 26px);
   display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
   gap: clamp(4px, 1.1vw, 14px);
-  font-size: clamp(19px, 2.3vw, 28px); font-weight: 700;
-  letter-spacing: -0.01em;
+  font-size: var(--lvl2); font-weight: 700;
+  letter-spacing: -0.01em; color: var(--c3);
 }
 .formula .op { color: var(--text-muted); font-weight: 400; }
 /* 运算符与其后的项绑定成不可断行的一组，避免手机端「−」孤悬行尾 */
 .fpart { display: inline-flex; align-items: center; gap: clamp(4px, 1.1vw, 14px); white-space: nowrap; }
 .term {
-  position: relative; cursor: pointer; padding: 3px 6px;
+  position: relative; cursor: pointer; padding: 3px 0; color: var(--c3);
   border-bottom: 2px dashed var(--dash);
-  transition: color 0.2s, border-color 0.2s;
+  transition: border-color 0.2s;
 }
-.term:hover, .term:focus-visible, .term.active {
-  color: var(--accent); border-bottom-color: var(--accent); border-bottom-style: solid; outline: none;
-}
+.term:hover, .term:focus-visible, .term.active { border-bottom-color: var(--c3); border-bottom-style: solid; outline: none; }
 .arrow { font-size: 0.78em; margin-left: 2px; font-weight: 900; color: #35996F; }
 .theme-dark .arrow { color: #5FD3A3; }
 
@@ -233,19 +216,6 @@ body {
 }
 .measure.own { color: var(--bg-body); background: var(--ink); border-color: var(--ink); font-weight: 700; }
 .measure.partner { color: var(--ink-soft); font-weight: 500; }
-.legend {
-  margin-top: 18px; font-size: 12.5px; color: var(--text-muted);
-  display: flex; gap: 20px; justify-content: center; flex-wrap: wrap;
-}
-.legend i {
-  font-style: normal; font-weight: 700; color: var(--bg-body); background: var(--ink);
-  border-radius: 20px; padding: 3px 12px; margin-right: 4px;
-}
-.legend u {
-  text-decoration: none; color: var(--ink-soft); border: 1px solid var(--border-card);
-  border-radius: 20px; padding: 3px 12px; margin-right: 4px;
-}
-
 /* 黑色实线 + 能源监测底盘 */
 .baseline { margin-top: clamp(22px, 3.2vw, 38px); }
 .baseline .rule { height: 2px; background: var(--rule); }
@@ -255,70 +225,6 @@ body {
   letter-spacing: 0.22em; color: var(--text);
 }
 .baseline-desc { margin-top: 8px; font-size: 13.5px; color: var(--text-secondary); font-weight: 300; }
-
-/* ===== Stats ===== */
-.section { padding: 72px 32px; }
-.section-inner { max-width: 1000px; margin: 0 auto; }
-.stats-bar {
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px;
-  background: var(--border-card); border-radius: 12px; overflow: hidden; max-width: 900px; margin: 0 auto;
-}
-.stat-item { background: var(--bg-card); padding: 24px 16px; text-align: center; }
-.stat-item .stat-num { font-size: 28px; font-weight: 800; color: var(--accent); }
-.stat-item .stat-label { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
-@media (max-width: 640px) { .stats-bar { grid-template-columns: repeat(2, 1fr); } }
-
-/* ===== Section titles ===== */
-.section-label { font-size: 12px; font-weight: 600; color: var(--text-muted); letter-spacing: 0.15em; text-align: center; margin-bottom: 10px; }
-.section h2 { font-size: clamp(26px, 3.5vw, 40px); font-weight: 800; text-align: center; letter-spacing: -0.02em; margin-bottom: 10px; }
-.section .subtitle { font-size: 15px; color: var(--text-secondary); font-weight: 300; text-align: center; max-width: 520px; margin: 0 auto 46px; line-height: 1.7; }
-
-/* ===== Radial capability ===== */
-.radial-section { background: var(--bg-body); border-top: 1px solid var(--border-card); border-bottom: 1px solid var(--border-card); }
-.radial-container { position: relative; display: flex; flex-direction: column; align-items: center; gap: 40px; }
-.radial-layer { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 16px; }
-.radial-center {
-  display: inline-flex; align-items: center; gap: 10px; padding: 10px 28px; border-radius: 30px;
-  font-size: 14px; font-weight: 700; letter-spacing: 0.08em; color: var(--text);
-  border: 1.5px solid var(--accent); background: var(--bg-card);
-}
-.radial-center .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); display: inline-block; }
-.radial-nodes { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; padding: 8px 0; }
-.radial-node {
-  display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 20px;
-  font-size: 13px; font-weight: 500; color: var(--text-secondary); background: var(--bg-card);
-  border: 1px solid var(--border-card); cursor: pointer; text-decoration: none; transition: all 0.2s;
-}
-.radial-node:hover { color: var(--accent); border-color: var(--accent); background: var(--card-hover); transform: translateY(-2px); }
-.radial-node .node-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-.node-dot.green { background: #5E8B7E; }
-.node-dot.blue { background: #7C9FBA; }
-.node-dot.purple { background: #A78BCC; }
-.node-dot.orange { background: #E8A87C; }
-.node-dot.pink { background: #D489A7; }
-.node-dot.teal { background: #5BA3A3; }
-.radial-node .info-badge { font-size: 10px; color: var(--text-muted); margin-left: 4px; opacity: 0.6; }
-
-/* ===== Service cards ===== */
-.service-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-.service-card {
-  background: var(--bg-card); border: 1px solid var(--border-card); border-radius: 16px;
-  padding: 36px 28px 28px; transition: all 0.3s; text-decoration: none; color: inherit;
-  display: flex; flex-direction: column; position: relative; overflow: hidden;
-}
-.service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; }
-.service-card:nth-child(1)::before { background: linear-gradient(90deg, #5E8B7E, #7C9FBA); }
-.service-card:nth-child(2)::before { background: linear-gradient(90deg, #7C9FBA, #A78BCC); }
-.service-card:nth-child(3)::before { background: linear-gradient(90deg, #A78BCC, #E8A87C); }
-.service-card:hover { transform: translateY(-4px); border-color: var(--accent); box-shadow: 0 12px 32px rgba(0,0,0,0.10); }
-.service-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
-.service-card p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; flex: 1; }
-.service-card .svc-tag {
-  display: inline-block; margin-top: 18px; font-size: 12px; font-weight: 600; color: var(--accent);
-  padding: 5px 16px; border: 1px solid var(--accent); border-radius: 20px; align-self: flex-start; transition: all 0.2s;
-}
-.service-card:hover .svc-tag { background: var(--accent); color: #fff; }
-@media (max-width: 768px) { .service-cards { grid-template-columns: 1fr; } }
 
 /* ===== Popover ===== */
 .popover {
@@ -341,15 +247,6 @@ body {
 .popover .pop-close { position: absolute; top: 10px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-muted); }
 .popover .pop-close:hover { color: var(--text); }
 
-/* ===== Toast ===== */
-#toast {
-  position: fixed; left: 50%; bottom: 40px; transform: translate(-50%, 20px);
-  background: var(--ink); color: var(--bg-body); font-size: 13px; font-weight: 600;
-  padding: 10px 22px; border-radius: 22px; opacity: 0; pointer-events: none;
-  transition: all 0.28s; z-index: 300;
-}
-#toast.show { opacity: 1; transform: translate(-50%, 0); }
-
 /* ===== Footer ===== */
 .footer { border-top: 1px solid var(--border-card); padding: 28px 32px; text-align: center; }
 .footer p { font-size: 13px; color: var(--text-muted); }
@@ -361,9 +258,8 @@ body {
   .plus { font-size: 26px; padding-bottom: 0; }
   .word { font-size: clamp(30px, 9vw, 46px); }
   .chips { max-width: 100%; }
-  .chips { min-width: 0; min-height: auto; }
+  .chips.two-col { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
-@media (max-width: 640px) { .section { padding: 50px 16px; } }
 </style>
 <link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
 </head>
@@ -395,8 +291,6 @@ body {
   <button class="pop-close" onclick="closePopover()">×</button>
   <div id="popBody"></div>
 </div>
-<div id="toast"></div>
-
 <!-- ================= Slogan Hero ================= -->
 <section class="hero">
   <div class="hero-bg"></div>
@@ -421,10 +315,10 @@ body {
       <!-- 较好服务 -->
       <div class="field" id="field-service">
         <div class="chips two-col">
-          <a class="chip chip-link" href="/tools/" data-mod="audit">用能诊断</a>
-          <a class="chip chip-link pending" href="#" data-mod="esg" data-pending="1">ESG服务</a>
+          <a class="chip chip-link" href="https://tool.aishenwo.cn/analyzer/" target="_blank" rel="noopener" data-mod="audit">用能诊断</a>
+          <a class="chip chip-link" href="https://tool.aishenwo.cn/green-hotel/" target="_blank" rel="noopener" data-mod="esg">ESG服务</a>
           <a class="chip chip-link" href="https://tool.aishenwo.cn/water-cooled-energy-saving/" data-mod="hvac" data-pop="hvac">空调节能</a>
-          <a class="chip chip-link" href="/pro/" data-mod="vpp">虚拟电厂聚合</a>
+          <a class="chip chip-link" href="https://tool.aishenwo.cn/vpp-forecast/" target="_blank" rel="noopener" data-mod="vpp">虚拟电厂聚合</a>
         </div>
         <h1 class="word" tabindex="0" data-detail="service">较好服务</h1>
       </div>
@@ -435,7 +329,6 @@ body {
     <h2 class="line2">降低工商业用户电费</h2>
 
     <!-- 公式：电价 × 电量 + 基本电费 − 补贴 -->
-    <div class="formula-kicker">降费路径</div>
     <div class="formula">
       <span class="term" tabindex="0" data-term="price">电价<span class="arrow">↓</span></span>
       <span class="fpart"><span class="op">×</span><span class="term" tabindex="0" data-term="kwh">电量<span class="arrow">↓</span></span></span>
@@ -484,11 +377,6 @@ body {
       </div>
     </div>
 
-    <div class="legend">
-      <span><i>实心</i> = 电小团自主交付</span>
-      <span><u>描边</u> = 联合合作伙伴交付</span>
-    </div>
-
     <!-- 黑色实线 + 能源监测底盘 -->
     <div class="baseline">
       <div class="rule"></div>
@@ -498,96 +386,6 @@ body {
       </div>
     </div>
 
-  </div>
-</section>
-
-<!-- Stats -->
-<section class="section" style="padding-top: 24px;">
-  <div class="section-inner">
-    <div class="stats-bar">
-      <div class="stat-item"><div class="stat-num">30+</div><div class="stat-label">覆盖省份</div></div>
-      <div class="stat-item"><div class="stat-num">15min</div><div class="stat-label">数据粒度</div></div>
-      <div class="stat-item"><div class="stat-num">50+</div><div class="stat-label">政策文件库</div></div>
-      <div class="stat-item"><div class="stat-num">7</div><div class="stat-label">运营模块</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- 能力金字塔 -->
-<section class="section radial-section">
-  <div class="section-inner">
-    <div class="section-label">能力架构</div>
-    <h2>能力金字塔</h2>
-    <p class="subtitle">从采集到分析，从数据库到运营决策</p>
-
-    <div class="radial-container">
-
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据采集 · 能源监测 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <span class="radial-node" onclick="showPopover(this,'三级计量','建筑级 · 楼层级 · 设备级三级电能计量体系，精准溯源每一度电的流向')">
-            <span class="node-dot green"></span>三级计量<span class="info-badge">ⓘ</span>
-          </span>
-          <span class="radial-node" onclick="showPopover(this,'利旧设备','兼容既有智能表计与采集终端，无需更换硬件，大幅降低改造成本')">
-            <span class="node-dot blue"></span>利旧设备<span class="info-badge">ⓘ</span>
-          </span>
-          <span class="radial-node" onclick="showPopover(this,'多设备协议打通','支持 Modbus RTU/TCP、MQTT、BACnet、DL/T645 等多种协议的统一接入与数据汇聚')">
-            <span class="node-dot purple"></span>多设备协议打通<span class="info-badge">ⓘ</span>
-          </span>
-        </div>
-      </div>
-
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据清洗 · 专有负荷侧数据库 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <a class="radial-node" href="/policy/"><span class="node-dot green"></span>政策数据库</a>
-          <a class="radial-node" href="/price/"><span class="node-dot blue"></span>电价数据库</a>
-          <a class="radial-node" href="/data/"><span class="node-dot purple"></span>负荷数据库</a>
-          <a class="radial-node" href="/data/"><span class="node-dot orange"></span>需量数据库</a>
-          <a class="radial-node" href="/data/"><span class="node-dot pink"></span>气象数据库</a>
-        </div>
-      </div>
-
-      <div class="radial-layer">
-        <div class="radial-center"><span class="dot"></span> 数据应用 · 综合能源运营 <span class="dot"></span></div>
-        <div class="radial-nodes">
-          <a class="radial-node" href="/tools/"><span class="node-dot green"></span>电费单分析</a>
-          <a class="radial-node" href="/tools/"><span class="node-dot blue"></span>售电优化</a>
-          <a class="radial-node" href="/pro/"><span class="node-dot teal"></span>水机空调寻优节能</a>
-          <a class="radial-node" href="/pro/"><span class="node-dot purple"></span>多联机末端管理节能</a>
-          <a class="radial-node" href="/tools/"><span class="node-dot orange"></span>最大需量管理</a>
-          <a class="radial-node" href="/tools/"><span class="node-dot pink"></span>分时电价管理</a>
-          <a class="radial-node" href="/pro/"><span class="node-dot" style="background:#5BA3A3"></span>VPP可调负荷聚合</a>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- 三大服务模块 -->
-<section class="section">
-  <div class="section-inner">
-    <div class="section-label">服务体系</div>
-    <h2>三大服务模块</h2>
-    <p class="subtitle">系统化学习 · 在线工具 · 深度服务</p>
-    <div class="service-cards">
-      <a href="/training/" class="service-card">
-        <h3>综合能源学习课程</h3>
-        <p>9大主题，覆盖电力市场、储能、风电、虚拟电厂、零碳园区等核心领域，系统化的综合能源知识库，免费学习。</p>
-        <span class="svc-tag">免费学习 →</span>
-      </a>
-      <a href="/tools/" class="service-card">
-        <h3>综合能源运营服务工具</h3>
-        <p>电费联单分析、能源运营规划、能源运营诊断等实用工具，免费试用，助力日常作业提效。</p>
-        <span class="svc-tag">免费试用 →</span>
-      </a>
-      <a href="/pro/" class="service-card">
-        <h3>增值服务</h3>
-        <p>水冷空调节能优化、虚拟电厂聚合管理、虚拟电厂运营服务，深度能源服务释放数据价值。</p>
-        <span class="svc-tag">了解更多 →</span>
-      </a>
-    </div>
   </div>
 </section>
 
@@ -601,12 +399,12 @@ body {
    hvac: 空调节能 = 水机空调节能 + 多联机(VRF)分户计量 两套工具融合
    ============================================================ */
 var MODULES = {
-  audit: { label: '用能诊断',    href: '/tools/' },
-  esg:   { label: 'ESG服务',     href: null },   // TODO 二级模块页待建
+  audit: { label: '用能诊断',    href: 'https://tool.aishenwo.cn/analyzer/' },
+  esg:   { label: 'ESG服务',     href: 'https://tool.aishenwo.cn/green-hotel/' },
   hvac:  { label: '空调节能',    href: 'https://tool.aishenwo.cn/water-cooled-energy-saving/',
            alt: [['水机空调节能寻优', 'https://tool.aishenwo.cn/water-cooled-energy-saving/'],
                  ['多联机(VRF)分户计量', 'https://tool.aishenwo.cn/HVACAccounting/']] },
-  vpp:   { label: '虚拟电厂聚合', href: '/pro/' }
+  vpp:   { label: '虚拟电厂聚合', href: 'https://tool.aishenwo.cn/vpp-forecast/' }
 };
 
 /* 悬浮提示文案 */
@@ -623,8 +421,7 @@ var POPS = {
   },
   hvac: {
     title: '空调节能',
-    links: MODULES.hvac.alt,
-    note: '水机与多联机两套工具的融合版页面建设中，先留功能接口。'
+    links: MODULES.hvac.alt
   }
 };
 
@@ -648,11 +445,6 @@ function toggleTheme() {
 
 /* ===== Popover ===== */
 var popTimer = null, popPinned = false;
-function showPopover(el, title, desc) {
-  document.getElementById('popBody').innerHTML =
-    '<h4>' + title + '</h4><p>' + desc + '</p>';
-  placePopover(el);
-}
 function placePopover(el) {
   var pop = document.getElementById('popover');
   pop.classList.add('show');
@@ -692,7 +484,7 @@ function showModulePopover(el, key) {
     html += '<div class="pop-links">' + d.links.map(function (l) {
       return '<a href="' + l[1] + '" target="_blank" rel="noopener">' + l[0] + ' ↗</a>';
     }).join('') + '</div>';
-    html += '<div class="pop-note">' + d.note + '</div>';
+    html += d.note ? '<div class="pop-note">' + d.note + '</div>' : '';
   }
   document.getElementById('popBody').innerHTML = html;
   placePopover(el);
@@ -706,11 +498,6 @@ Array.prototype.forEach.call(document.querySelectorAll('[data-pop]'), function (
   });
   el.addEventListener('mouseleave', function () { scheduleClose(); });
   el.addEventListener('click', function (e) {
-    if (el.dataset.pending === '1') {
-      e.preventDefault();
-      toast('ESG服务模块页面建设中，先留功能接口');
-      return;
-    }
     if (el.dataset.pop) { e.preventDefault(); popPinned = true; showModulePopover(el, el.dataset.pop); }
   });
 });
@@ -741,7 +528,7 @@ Array.prototype.forEach.call(document.querySelectorAll('.word'), function (w) {
   w.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
 });
 document.addEventListener('click', function (e) {
-  if (!e.target.closest('.popover') && !e.target.closest('[data-pop]') && !e.target.closest('.word') && !e.target.closest('.radial-node')) {
+  if (!e.target.closest('.popover') && !e.target.closest('[data-pop]') && !e.target.closest('.word')) {
     closePopover();
     Array.prototype.forEach.call(document.querySelectorAll('.word.active'), function (w) { w.classList.remove('active'); });
   }
@@ -766,15 +553,6 @@ Array.prototype.forEach.call(document.querySelectorAll('.term'), function (t) {
 });
 /* 移动端：点击公式之外的区域不重置，保持内容可见 */
 
-/* ===== Toast ===== */
-var toastTimer = null;
-function toast(msg) {
-  var el = document.getElementById('toast');
-  el.textContent = msg;
-  el.classList.add('show');
-  if (toastTimer) clearTimeout(toastTimer);
-  toastTimer = setTimeout(function () { el.classList.remove('show'); }, 2600);
-}
 </script>
 
 <!-- Pet Chat Button -->
