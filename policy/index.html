@@ -171,6 +171,24 @@
         }
         .nav-links a:hover { color: var(--nav-link-hover); background: var(--nav-link-hover-bg); }
         .nav-links a.active { color: var(--nav-link-hover); }
+
+    /* ===== 政策速读入口横幅 ===== */
+    .insight-banner {
+        display: flex; align-items: center; gap: 18px;
+        max-width: 1080px; margin: 6px auto 0; padding: 18px 24px;
+        border: 1px solid rgba(94,139,126,0.28); border-radius: 16px;
+        background: linear-gradient(90deg, rgba(94,139,126,0.10) 0%, rgba(124,159,186,0.08) 50%, rgba(167,139,204,0.08) 100%);
+        text-decoration: none; transition: all 0.25s;
+    }
+    .insight-banner:hover { border-color: rgba(94,139,126,0.6); transform: translateY(-2px); }
+    .insight-banner .ib-icon { font-size: 22px; flex-shrink: 0; }
+    .insight-banner .ib-text { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+    .insight-banner .ib-text b { font-size: 15px; font-weight: 800; color: var(--text); letter-spacing: 0.01em; }
+    .insight-banner .ib-text i { font-style: normal; font-size: 12.5px; color: var(--text-secondary); line-height: 1.6; }
+    .insight-banner .ib-go { flex-shrink: 0; font-size: 13px; font-weight: 700; color: var(--highlight-color); white-space: nowrap; }
+    @media (max-width: 720px) {
+        .insight-banner { flex-direction: column; align-items: flex-start; gap: 10px; }
+    }
         .nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--nav-toggle-color); cursor: pointer; padding: 8px; }
 
         /* ===== Theme Toggle Button ===== */
@@ -441,6 +459,7 @@
         <li><a href="/">首页</a></li>
         <li><a href="/training/">免费课程</a></li>
         <li><a href="/policy/" class="active">政策数据库</a></li>
+        <li><a href="/policy-insight/">政策速读</a></li>
         <li><a href="/price/">电价数据库</a></li>
         <li><a href="/tools/">能源运营工具</a></li>
         <li><a href="/pro/">增值服务</a></li>
@@ -463,6 +482,16 @@
         覆盖全国各省电力市场政策文件，让政策检索与解读变得简单高效
     </p>
 </section>
+
+<!-- 政策速读 入口 -->
+<a class="insight-banner" href="/policy-insight/">
+    <span class="ib-icon">🔎</span>
+    <span class="ib-text">
+        <b>政策速读 · 三个方向一眼看懂政策在关注什么</b>
+        <i>把 1700+ 份政策原文做成词云：电力市场化 / 公共机构节能 / 零碳园区 —— 词越大，说明政策越关注它，点词看白话解释与代表文件</i>
+    </span>
+    <span class="ib-go">去看看 →</span>
+</a>
 
 <!-- Stats -->
 <div class="stats-bar">

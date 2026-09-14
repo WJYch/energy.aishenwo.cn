@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>政策速读 — 三个方向，一眼看懂政策在关注什么 | 电小团</title>
+<meta name="description" content="把国内电力市场化、公共机构节能、零碳园区三个方向的政策原文读一遍，用词云呈现政策最关注的名词。词越大 = 政策里被提到越多，点词看白话解释与代表文件。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --transition: 0.25s;
+  /* 浅色（默认） */
+  --bg-body: #F8F9FC;
+  --bg-nav: rgba(255,255,255,0.9);
+  --text: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --bg-card: #FFFFFF;
+  --border-card: rgba(0,0,0,0.07);
+  --card-hover: rgba(94,139,126,0.06);
+  --accent: #5E8B7E;
+  --soft: #FBFCFD;
+  --c-market: #4E7FA8;
+  --c-public: #C4813F;
+  --c-zero: #3E8F69;
+  --dc: var(--accent);
+  --c-market-soft: rgba(78,127,168,0.07);
+  --c-public-soft: rgba(196,129,63,0.07);
+  --c-zero-soft: rgba(62,143,105,0.07);
+}
+.theme-dark {
+  --bg-body: #0A0C10;
+  --bg-nav: rgba(0,0,0,0.85);
+  --text: #E8EDF2;
+  --text-secondary: rgba(255,255,255,0.55);
+  --text-muted: rgba(255,255,255,0.34);
+  --bg-card: rgba(255,255,255,0.04);
+  --border-card: rgba(255,255,255,0.09);
+  --card-hover: rgba(255,255,255,0.06);
+  --accent: #6BB5A6;
+  --soft: rgba(255,255,255,0.02);
+  --c-market: #8FB3CC;
+  --c-public: #EFB78F;
+  --c-zero: #6BB5A6;
+  --c-market-soft: rgba(143,179,204,0.09);
+  --c-public-soft: rgba(239,183,143,0.09);
+  --c-zero-soft: rgba(107,181,166,0.09);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg-body); color: var(--text); line-height: 1.6;
+  -webkit-font-smoothing: antialiased; transition: background var(--transition), color var(--transition);
+}
+/* ===== Nav ===== */
+.navbar {
+  position: sticky; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg-nav); backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-card);
+  padding: 0 32px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 34px; width: auto; }
+.nav-logo .logo-text { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+.nav-logo .logo-sub { font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 2px; list-style: none; align-items: center; }
+.nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 13px; font-weight: 500; padding: 6px 14px; border-radius: 6px; transition: all 0.2s; }
+.nav-links a:hover { color: var(--text); background: var(--card-hover); }
+.nav-links a.active { color: var(--accent); font-weight: 700; background: var(--card-hover); }
+.nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 8px; }
+.theme-toggle {
+  background: none; border: 1px solid var(--border-card); border-radius: 20px;
+  padding: 6px 14px; cursor: pointer; font-size: 14px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 6px; transition: all 0.2s; margin-left: 8px;
+}
+.theme-toggle:hover { background: var(--card-hover); color: var(--text); }
+@media (max-width: 1180px) {
+  .navbar { padding: 0 16px; }
+  .nav-toggle { display: block; }
+  .nav-links { display: none; position: absolute; top: 64px; left: 0; right: 0; background: var(--bg-nav); backdrop-filter: blur(20px); flex-direction: column; padding: 12px 16px; border-bottom: 1px solid var(--border-card); align-items: stretch; }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 14px; }
+  .theme-toggle { margin: 8px 0 0; justify-content: center; }
+}
+/* ===== Layout ===== */
+.wrap { max-width: 1180px; margin: 0 auto; padding: 0 24px; }
+.head { text-align: center; padding: clamp(36px, 5.5vh, 68px) 0 clamp(18px, 2vh, 26px); }
+.head .kicker { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; color: var(--accent); text-transform: uppercase; margin-bottom: 14px; }
+.head h1 { font-size: clamp(26px, 3.4vw, 42px); font-weight: 900; letter-spacing: -0.02em; line-height: 1.24; }
+.head h1 em { font-style: normal; color: var(--accent); }
+.head p.sub { margin: 14px auto 0; max-width: 660px; font-size: 14.5px; color: var(--text-secondary); font-weight: 300; line-height: 1.85; }
+.head .src { margin-top: 16px; font-size: 12px; color: var(--text-muted); }
+/* ===== Tabs ===== */
+.tabs { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 26px 0 30px; }
+.tab {
+  font-family: inherit; font-size: 14px; font-weight: 700; letter-spacing: 0.01em;
+  padding: 11px 24px; border-radius: 30px; cursor: pointer;
+  border: 1px solid var(--border-card); background: var(--bg-card); color: var(--text-secondary);
+  display: inline-flex; align-items: center; gap: 9px; transition: all 0.22s;
+}
+.tab:hover { color: var(--text); transform: translateY(-1px); }
+.tab .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--tc); }
+.tab[aria-selected="true"] { color: #fff; border-color: transparent; background: var(--tc); box-shadow: 0 8px 22px rgba(0,0,0,0.12); }
+.tab[aria-selected="true"] .dot { background: rgba(255,255,255,0.85); }
+.tab[data-dir="market"] { --tc: var(--c-market); }
+.tab[data-dir="public"] { --tc: var(--c-public); }
+.tab[data-dir="zerocarbon"] { --tc: var(--c-zero); }
+/* ===== Panel ===== */
+.panel { display: none; }
+.panel.on { display: block; animation: fadeUp 0.28s ease; }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.lead {
+  border: 1px solid var(--border-card); background: var(--bg-card); border-radius: 18px;
+  padding: 22px 26px; display: grid; grid-template-columns: 1fr auto; gap: 8px 26px; align-items: start;
+}
+.lead .ltext { font-size: 15px; line-height: 1.9; color: var(--text); }
+.lead .ltext b { color: var(--dc); }
+.lead .ltext .mean { display: block; margin-top: 8px; font-size: 14px; color: var(--text-secondary); font-weight: 300; }
+.lead .ltext .mean i { font-style: normal; color: var(--dc); font-weight: 600; }
+.lead .lstats { display: flex; gap: 22px; flex-shrink: 0; }
+.lead .lstats div { text-align: right; }
+.lead .lstats b { display: block; font-size: 22px; font-weight: 900; color: var(--dc); line-height: 1.2; }
+.lead .lstats span { font-size: 11.5px; color: var(--text-muted); }
+.grid { display: grid; grid-template-columns: minmax(0, 1fr) 330px; gap: 20px; margin-top: 20px; align-items: start; }
+/* ===== Cloud ===== */
+.cloud-card {
+  border: 1px solid var(--border-card); border-radius: 18px; overflow: hidden;
+  background: radial-gradient(ellipse 70% 60% at 50% 40%, var(--dcs) 0%, transparent 70%), var(--soft);
+  position: relative;
+}
+.cloud-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  padding: 13px 18px; border-bottom: 1px solid var(--border-card); flex-wrap: wrap;
+}
+.cloud-bar .hint { font-size: 12.5px; color: var(--text-muted); display: flex; align-items: center; gap: 7px; }
+.cloud-bar .hint b { color: var(--dc); font-weight: 700; }
+.cloud-bar .again { font-family: inherit; font-size: 12px; font-weight: 600; color: var(--text-secondary); background: none; border: 1px solid var(--border-card); border-radius: 20px; padding: 5px 14px; cursor: pointer; transition: all 0.2s; }
+.cloud-bar .again:hover { color: var(--dc); border-color: var(--dc); }
+.cloud { position: relative; height: 600px; }
+.cw {
+  position: absolute; transform: translate(-50%, -50%); white-space: nowrap;
+  cursor: pointer; font-weight: 900; letter-spacing: -0.02em; line-height: 1;
+  color: var(--dc); opacity: 0.72; transition: opacity 0.18s, color 0.18s, text-shadow 0.18s;
+  user-select: none;
+}
+.cw:hover { opacity: 1; text-shadow: 0 4px 16px rgba(0,0,0,0.14); }
+.cw.on { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+.cloud-empty { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 13px; color: var(--text-muted); }
+/* ===== Detail ===== */
+.detail { position: sticky; top: 84px; border: 1px solid var(--border-card); background: var(--bg-card); border-radius: 18px; padding: 22px; }
+.detail .dword { font-size: 26px; font-weight: 900; color: var(--dc); letter-spacing: -0.02em; line-height: 1.25; word-break: break-all; }
+.detail .ddef { margin-top: 12px; font-size: 14px; line-height: 1.9; color: var(--text); }
+.detail .dmeta { margin-top: 14px; display: flex; gap: 20px; padding-top: 14px; border-top: 1px solid var(--border-card); }
+.detail .dmeta div { font-size: 12px; color: var(--text-muted); }
+.detail .dmeta b { display: block; font-size: 19px; font-weight: 900; color: var(--text); line-height: 1.3; }
+.detail .dex { margin-top: 14px; }
+.detail .dex .t { font-size: 11.5px; color: var(--text-muted); letter-spacing: 0.06em; margin-bottom: 8px; }
+.detail .dex ul { list-style: none; display: flex; flex-direction: column; gap: 7px; }
+.detail .dex li { font-size: 12.5px; line-height: 1.65; color: var(--text-secondary); padding-left: 14px; position: relative; }
+.detail .dex li::before { content: ''; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; border-radius: 50%; background: var(--dc); opacity: 0.6; }
+.detail .dempty { font-size: 13px; color: var(--text-muted); line-height: 1.9; }
+.detail .dempty i { display: block; font-style: normal; font-size: 26px; color: var(--dc); opacity: 0.35; margin-bottom: 12px; }
+.detail .dalso { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border-card); }
+.detail .dalso .t { font-size: 11.5px; color: var(--text-muted); letter-spacing: 0.06em; margin-bottom: 8px; }
+.detail .dalso .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.detail .dalso .chips button { font-family: inherit; font-size: 12px; font-weight: 600; color: var(--text-secondary); background: var(--soft); border: 1px solid var(--border-card); border-radius: 20px; padding: 4px 12px; cursor: pointer; transition: all 0.2s; }
+.detail .dalso .chips button:hover { color: var(--dc); border-color: var(--dc); }
+/* ===== Notes ===== */
+.notes { margin: 46px 0 60px; border: 1px solid var(--border-card); background: var(--bg-card); border-radius: 18px; padding: 24px 28px; }
+.notes h3 { font-size: 14px; font-weight: 800; letter-spacing: 0.02em; margin-bottom: 12px; }
+.notes ol { margin-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+.notes li { font-size: 12.8px; color: var(--text-secondary); line-height: 1.85; }
+.notes li b { color: var(--text); font-weight: 600; }
+.notes .cs { margin-top: 14px; font-size: 12px; color: var(--text-muted); }
+.footer { border-top: 1px solid var(--border-card); padding: 26px 24px; text-align: center; }
+.footer p { font-size: 12.5px; color: var(--text-muted); }
+.footer strong { color: var(--accent); font-weight: 600; }
+@media (max-width: 980px) {
+  .grid { grid-template-columns: 1fr; }
+  .detail { position: static; }
+  .lead { grid-template-columns: 1fr; }
+  .lead .lstats { justify-content: flex-start; }
+  .lead .lstats div { text-align: left; }
+  .cloud { height: 460px; }
+}
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px; }
+  .cloud { height: 400px; }
+  .detail .dword { font-size: 22px; }
+}
+</style>
+</head>
+<body class="theme-light">
+
+<nav class="navbar">
+  <a href="/dianxiaotuan/" class="nav-logo">
+    <img src="/assets/images/dxt-logo-2026.webp" alt="电小团">
+    <div>
+      <div class="logo-text">电小团</div>
+      <div class="logo-sub">Little Electric Cloud</div>
+    </div>
+  </a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links">
+    <li><a href="/dianxiaotuan/">首页</a></li>
+    <li><a href="/training/">免费课程</a></li>
+    <li><a href="/policy/">政策数据库</a></li>
+    <li><a href="/policy-insight/" class="active">政策速读</a></li>
+    <li><a href="/price/">电价数据库</a></li>
+    <li><a href="/tools/">能源运营工具</a></li>
+    <li><a href="/pro/">增值服务</a></li>
+    <li><a href="/about/">公司介绍</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">🌙</span><span id="theme-label">深色</span></button></li>
+  </ul>
+</nav>
+
+<div class="wrap">
+
+  <header class="head">
+    <div class="kicker">Policy at a glance</div>
+    <h1>国内政策在关注什么，<em>看词云就够了</em></h1>
+    <p class="sub">
+      我们把归档的政策原文全部读了一遍，统计关键词被提及的次数，做成词云——<b>词越大，说明政策越关注它</b>。<br>
+      点任意一个词，看它的白话解释、出现次数，以及在哪些文件里出现。
+    </p>
+    <div class="src" id="srcLine"></div>
+  </header>
+
+  <div class="tabs" role="tablist" id="tabs"></div>
+
+  <div id="panels"></div>
+
+  <section class="notes">
+    <h3>口径说明（怎么读这张词云）</h3>
+    <ol>
+      <li><b>数据来源：</b>本地知识库中已归档、已打标的国家与地方政策<b>原文</b>（含国家发改委、国家能源局、各省发改委/能源局、交易中心与国标行标），不含解读稿、评论与研究报告。</li>
+      <li><b>怎么算的：</b>先用方向关键词（如「零碳园区」「绿电直连」「公共机构」「合同能源管理」）圈出相关段落，再统计下方词条在这些段落中出现的<b>实际次数</b>；词的大小按出现次数排布，出现越多字号越大。</li>
+      <li><b>词条范围：</b>显示的是能源与节能领域常用名词表（人工整理，约 300 条），因此这是一张「政策关注点」词云，不是中文分词的全量结果——这样能避免「的、和、应当、进行」这类无意义词进入画面。</li>
+      <li><b>方向之间会重叠：</b>同一个词可能同时出现在两个方向（例如「储能」在电力市场化与零碳园区里都是重点），这是政策本身的关系，不是重复统计。</li>
+      <li><b>只做呈现，不做预测：</b>本页呈现的是政策文本的分布现状，不代表任何投资或收益承诺；具体项目请以现行文件原文与主管部门口径为准。</li>
+    </ol>
+    <div class="cs" id="footSrc"></div>
+  </section>
+
+</div>
+
+<footer class="footer">
+  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 电小团科技（苏州）有限公司 &nbsp;|&nbsp; energy.aishenwo.cn/policy-insight/</p>
+</footer>
+
+<script>var DATA = {"_updated":"2026-09-14","_meta":{"libDocs":1708,"uniqueDocs":1701,"sumChars":4805956},"market":{"label":"电力市场化","lead":"电力的价格，正在从<b>政府定</b>变成<b>市场定</b>。用户既可以继续由电网代理买电，也可以入市交易、选择售电公司、跟着电价波动做经营决策。","meaning":"对资产运营者：<i>电费里最大的那一块——电价，现在是可管理的</i>。买电方式、报量报价、偏差控制、分时用电，都会直接改变电费账单。","docCount":1681,"chars":4438522,"terms":[{"w":"电力市场","n":7343,"df":1230,"ex":["国家能源局福建监管办公室 福建省发展和改革委员会关于印发《福建电力市场规则体系管理办法（试行）》的通知（闽监能市场规〔2025〕147号）","国务院办公厅关于完善全国统一电力市场体系的实施意见（国办发〔2026〕4号）","中华人民共和国国家发展和改革委员会令（第20号） 电力市场运行基本规则"],"def":"电力从「计划分配」变成「买卖交易」的总称，价格由供需与规则共同决定。"},{"w":"新能源","n":6843,"df":800,"ex":["国家能源局关于做好新能源消纳工作 保障新能源高质量发展的通知（国能发电力〔2024〕44号）","广东新能源试点参与电力现货市场交易方案","关于征求对《山西省深化新能源上网电价市场化改革 促进新能源高质量发展实施方案（征求意见稿）》意见建议的函(10)"],"def":"风电、光伏等可再生能源发电，是政策扶持的主力电源。"},{"w":"售电公司","n":6730,"df":781,"ex":["江苏电力交易中心有限公司关于印发《江苏电力市场2026年保底售电服务工作方案》的通知","关于印发《售电公司管理实施细则》的通知(晋能源规〔2025〕7号)","售电公司管理办法"],"def":"替用户去市场买电的中间商，帮用户省电费、管偏差、做套餐。"},{"w":"现货市场","n":5625,"df":824,"ex":["川电市场管委会秘〔2025〕18号(盖章)关于征求《四川电力现货市场建设方案（征求意见稿）》意见的通知(1)","附件1：南方区域电力现货市场正式运行广西实施方案（2026年）（征求意见稿）","附件1"],"def":"按小时/15分钟竞价买卖电，一天内价格多次变化，是市场化改革的核心。"},{"w":"储能","n":5184,"df":637,"ex":["云南省新型储能高质量发展专项行动方案（2025—2027年）","青海省新型储能参与电力市场交易方案","南方电网新型储能调度运行规则(试行)"],"def":"低谷把电存起来、高峰再放出来，靠电价差和调节服务赚钱。"},{"w":"发电企业","n":4799,"df":900,"ex":["上海市绿色电力交易实施方案","附件1_关于优化浙江省内集中式新能源发电企业市场报价的通知（试行）","新疆电力市场结算方案（修订稿）"],"def":"电厂（卖方），含煤电、新能源、储能等各类市场主体。"},{"w":"电费","n":4794,"df":701,"ex":["2024年9月-1陕西电力市场结算实施细则(1)","国家能源局---2009年度电价执行及电费结算情况","国家能源局---2010年度电价执行及电费结算情况"],"def":"用户最终付的钱＝电量×电价＋基本电费−补贴，这四项都是可管理的。"},{"w":"电力交易中心","n":3875,"df":858,"ex":["【附件6】昆明交易函〔2025〕167号 附件6：云南电力市场履约保函（保险）管理实施细则（2026年V1.0版）（征求意见稿）-2025-09-30","关于开展南方区域电力现货市场连续结算试运行的通知20250623(1)","附件7.云南电力市场售电公司履约保函管理实施细则（审定稿）"],"def":"组织电力买卖的平台机构，负责注册、出清、结算与信息披露。"},{"w":"报价","n":3794,"df":601,"ex":["模拟试运行期间日前市场经济出清交易组织流程简介","附件1_关于优化浙江省内集中式新能源发电企业市场报价的通知（试行）","关于开展用户侧报量报价燃煤机组两套报价参与日前现货市场模拟运行的通知"],"def":"卖方申报卖价、买方申报买价，是形成市场价格的输入。"},{"w":"调频","n":3474,"df":333,"ex":["蒙西电力市场调频辅助服务交易实施细则（202603）","【附件1】总调市场〔2025〕4号 南方区域调频辅助服务市场交易实施细则（2025年版）-2025-08-28","蒙东电力辅助服务（调频）市场指引"],"def":"电网频率的秒级调节服务，由机组或储能提供，可单独获得收益。"},{"w":"电力用户","n":3461,"df":733,"ex":["内蒙古自治区能源局关于做好2025年内蒙古电力多边交易市场中长期交易有关事宜的通知","蒙西电力市场中长期交易方案（2025年版）(4)","川电交〔2025〕68号(盖章)四川电力交易中心有限公司关于印发《四川电力零售市场交易管理实施细则（暂行）》的通知"],"def":"买电的一方，包括工商业用户与居民，工商业是电费与改革的大头。"},{"w":"市场主体","n":3304,"df":604,"ex":["关于征求《国网、南网跨经营区常态化交易机制方案》意见的通知","内蒙古电力多边交易市场市场主体信用评价实施细则（试行）20240620170630","05-云南电力市场交易行为信用管理办法"],"def":"能够进场交易的身份，用户/售电公司需先注册才能交易。"},{"w":"辅助服务","n":2987,"df":509,"ex":["电力辅助服务市场基本规则（发改能源规【2025】411号）","《电力辅助服务市场基本规则（征求意见稿）》","关于印发《山东电力爬坡辅助服务市场交易规则（试行）》的通知"],"def":"调频、调峰、备用、黑启动等保电网安全的服务，单独计价付费。"},{"w":"绿证","n":2316,"df":216,"ex":["国家能源局关于印发《可再生能源绿色电力证书管理实施细则（试行）》的通知（国能发资质规﹝2025﹞107号）","中国可再生能源绿色电力证书百问百答（2025年版）(2)","《可再生能源绿色电力证书核发实施细则（试行）》"],"def":"绿色电力证书，一证对应1000度绿电，可交易、可核销碳排放。"},{"w":"中长期交易","n":2264,"df":641,"ex":["附件1：南方区域电力市场中长期电能量交易实施细则（2025年V1.0版）","关于印发《吉林省电力中长期交易规则补充规定》的通知（东北监能〔2025〕1号）","关于发布南方区域跨省“点对点”及跨经营区送广东“点对点”中长期交易省内衔接事项的通知"],"def":"提前签月度/年度合同锁定电量与价格，占用电量的大头，是价格的压舱石。"},{"w":"消纳","n":2189,"df":513,"ex":["国家发展改革委 国家能源局关于建立健全可再生能源电力消纳保障机制的通知（发改能源〔2019〕807号）","北京电力交易中心可再生能源电力超额消纳量交易规则(试行)","副本1-附件1-广西壮族自治区2025年可再生能源电力消纳保障实施方案（第二次征求意见稿）20250715125141"],"def":"把风电光伏发的电用掉、不浪费，是国家给各省的硬指标。"},{"w":"代理购电","n":1918,"df":479,"ex":["四川省发展和改革委员会四川省能源局关于印发《四川省电网企业代理购电工作实施方案》的通知（川发改价格〔2025〕34号）","《宁夏回族自治区电网企业代理购电工作实施细则（试行）》","国家发展改革委办公厅关于组织开展电网企业代理购电工作有关事项的通知（发改办价格〔2021〕809号）"],"def":"不自己入市的用户，由电网公司代为买电，价格按月公告。"},{"w":"电力现货市场","n":1872,"df":543,"ex":["南方区域电力现货市场技术支持系统第三方校验报告","20250829《四川电力现货市场2025年结算试运行工作方案》的通知（川发改能源〔2025〕419号）","上海市发展改革委市经济信息化委国家能源局华东监管局关于同意开展上海电力现货市场模拟试运行的复函"],"def":"电力价格随供需实时波动（日前+实时），是储能与负荷策略的价格依据。"},{"w":"虚拟电厂","n":1796,"df":345,"ex":["江苏省发展改革委关于促进我省虚拟电厂高质量发展的通知（苏发改能源发〔2025〕1198号）(1)(1)","附件4.虚拟电厂参与云南电力市场实施细则（审定稿）","GBT+44241-2024虚拟电厂管理规范"],"def":"把分散的空调、储能、充电桩等可调资源聚合起来，像一座电厂那样参与市场。"},{"w":"调峰","n":1762,"df":349,"ex":["华北电力调峰容量市场运营规则","《福建省电力调峰辅助服务市场交易规则（试行）（2022年修订版）》","江西调峰辅助服务计算方法和组织流程20241206152456"],"def":"用电高峰「削」、低谷「填」的调节服务，与峰谷分时电价配合。"},{"w":"风电","n":1758,"df":444,"ex":["GBT+19963.2-2024风电场接入电力系统技术规定 第2部分：海上风电","GBT+19963.1-2021风电场接入电力系统技术规定 第1部分：陆上风电","国家能源局关于印发《风电场利用率监测统计管理办法》的通知国能发新能规〔2022〕49号"],"def":"风力发电，出力看天气，成本低但波动大。"},{"w":"可再生能源","n":1607,"df":339,"ex":["可再生能源消费最低比重目标和可再生能源电力消纳责任权重制度实施办法（征求意见稿）","国家发展改革委 国家能源局关于建立健全可再生能源电力消纳保障机制的通知（发改能源〔2019〕807号）","2021.02.10--关于印发《上海市可再生能源电力消纳保障实施方案》的通知（沪发改能源〔2021〕32号）"],"def":"风电、光伏、水电、生物质等可持续能源，享有消纳与绿证政策。"},{"w":"独立储能","n":1507,"df":283,"ex":["内蒙古自治区独立新型储能电站项目实施细则","内蒙古自治区独立新型储能电站项目实施细则（暂行）","青海省新型储能参与电力市场交易规则"],"def":"独立建站、可独立入市的储能电站，比配套储能多了市场身份。"},{"w":"备用","n":1430,"df":386,"ex":["《南方电网有功功率运行备用技术规范》20241015","南方电网有功功率运行备用技术规范","标准-GBT 45905.7-2025电力现货市场运营 第7部分：备用容量管理"],"def":"随时待命的发电容量，确保用电不出缺口，可获得容量类收益。"},{"w":"偏差电量","n":1207,"df":321,"ex":["附件-广西发电交易偏差电量认定办法（2.0版）","关于山西电力中长期交易有关事宜的补充通知","关于蒙西电力多边交易市场开展分时交易结算相关事宜的通知（内工信经运字〔2022〕40号）20230605161545"],"def":"实际用电（或发电）与合同电量之差，超出约定范围要被考核罚款。"},{"w":"日前市场","n":1195,"df":286,"ex":["模拟试运行期间日前市场经济出清交易组织流程简介","【附件】总调市场〔2025〕5号 南方区域电力现货市场日前出清和可靠性机组组合分别计算实施方案20251220","【附件】总调市场〔2025〕5号 南方区域电力现货市场日前出清和可靠性机组组合分别计算实施方案20251220(1)"],"def":"提前一天报量报价、当天统一出清的市场环节。"},{"w":"实时市场","n":1180,"df":312,"ex":["6.国网福建电力调度控制中心关于修订福建电力市场现货交易实施细则（2024年修订版）若干条款（2025年第四次修订）的通知（调计〔2025〕190号）","浙江电力市场公告(〔2025〕第1号)","省发展改革委 省能源局 浙江能源监管办关于印发《浙江电力现货市场第六次结算试运行工作方案》的通知"],"def":"当天实时平衡供需的市场环节，价格波动最大，也是偏差结算依据。"},{"w":"电能量市场","n":1157,"df":300,"ex":["附件1：《贵州电力市场现货电能量交易实施细则（试运行V2.0版）》","附件4. 南方区域电力市场贵州省内配套现货电能量交易实施细则","附件1：广东电力市场现货电能量交易实施细则（2026年修订）"],"def":"买卖「电量」本身的市场，区别于辅助服务市场。"},{"w":"绿电交易","n":1131,"df":252,"ex":["内蒙古电力多边交易市场绿色电力交易实施细则（试行）2025年修订版20241222100026","南方区域跨省跨区“点对点”绿电交易工作方案（2025版）","关于印发《上海电力中长期交易规则-绿色电力交易专章》的通知（华东监能市场〔2024〕99号）"],"def":"通过电力市场专门购买绿色电力，价格里含环境价值。"},{"w":"市场化交易","n":1109,"df":401,"ex":["国家发展改革委 国家能源局关于积极推进电力市场化交易 进一步完善交易机制的通知（发改运行〔2018〕1027号）","陕西电力交易中心有限公司关于印发《陕西电力市场新建发电机组参与市场化交易实施细则（试行）》的通知","关于完善江西电力市场新能源市场化交易组织的相关建议"],"def":"由买卖双方通过市场定价，代替政府定价。"},{"w":"电力中长期交易","n":885,"df":321,"ex":["《新疆电力市场中长期交易实施细则》部分条款修订稿","西北监能市场〔2025〕77号 -国家能源局西北监管局关于印发《西北区域跨省电力中长期交易实施细则——新型储能交易专章》的通知","华北能源监管局关于印发《京津唐电网电力中长期交易结算规则（试行）》的通知（华北监能市场〔2020〕250号）"],"def":"年度、月度、多日的合约交易，锁量锁价，是现货的对照基准。"},{"w":"市场注册","n":869,"df":314,"ex":["附件2.南方区域电力市场贵州省内配套市场注册实施细则","福建电力交易中心有限公司关于印发《福建电力市场注册实施细则（试行）》的通知（闽电交市场〔2025〕99号 ）","附件5：南方区域电力市场注册实施细则（2025年V1.0版）"],"def":"用户或售电公司进入市场的登记手续，是入市第一步。"},{"w":"集中竞价","n":843,"df":290,"ex":["关于收集2026年年度省间绿电集中竞价交易需求等事项的通知（盖章）","福建电力市场现货交易实施细则（2024年修订版）修订内容（2025年第三次修订）","关于印发《贵州省2024年电力中长期交易实施方案》的通知（黔能源运行〔2023〕96号)"],"def":"买卖双方统一报价，由平台按规则统一撮合成交。"},{"w":"分布式光伏","n":775,"df":155,"ex":["分布式光伏发电开发建设管理办法","《分布式光伏发电开发建设管理办法》问答（2025 年版）(1)","南方电网分布式光伏运行管理提升工作方案（正式）"],"def":"装在屋顶或园区里的小型光伏，自发自用、余电上网。"},{"w":"双边协商","n":775,"df":274,"ex":["2025年云南电力市场电力批发交易操作手册","02-云南电力市场交易组织管理办法","附件1-广西电力市场中长期电能量交易实施细则（非现货环境下3.0版）"],"def":"买卖双方直接谈判电价电量并签合同，不通过集中竞价。"},{"w":"需求响应","n":754,"df":104,"ex":["关于公开征求进一步做好电力需求响应工作通知意见的公告","2023年云南电力市场化需求响应业务指南","关于征求《河南省市场化电力需求响应工作方案（征求意见稿）》意见的通知"],"def":"电价高或电网紧张时主动少用电，可获得补偿收益。"},{"w":"批发市场","n":732,"df":285,"ex":["2025.8.1-关于进一步做好8-12月电力市场分时交易结算有关工作的通知(1)","广东电力交易子站系统数据交互规范（修编）","关于加强电力零售与批发市场价格传导的工作通知(1)"],"def":"发电企业与售电公司/大用户之间的批发电交易，用户侧价格从这里传导。"},{"w":"挂牌交易","n":726,"df":233,"ex":["内蒙古自治区能源局关于做好2024年内蒙古电力多边交易市场中长期交易有关事宜的通知-内能源电力字【2024】55号20240207175551","内蒙古自治区能源局关于做好2025年内蒙古电力多边交易市场中长期交易有关事宜的通知","蒙西电力市场中长期交易方案（2025年版）(4)"],"def":"一方挂出价格与电量，另一方摘牌成交，比双边协商更便捷。"},{"w":"中长期合同","n":726,"df":249,"ex":["鄂尔多斯市能源局关于转发内蒙古自治区能源局转发国家发展改革委办公厅关于做好2025年电煤中长期合同签订履约工作的紧急通知》（鄂能局发〔2024〕218号）","国家发展改革委 国家能源局关于做好2021年电力中长期合同签订工作的通知","云南省能源局关于征求做好2026年云南电力中长期合同签订履约工作通知（征求意见稿）意见建议的函"],"def":"提前签订的购售电协议，锁定大部分电量与价格。"},{"w":"上网电价","n":724,"df":262,"ex":["国家能源局---2007年度电价执行及电费结算情况","国家能源局---2008年度电价执行及电费结算情况","国家能源局---2010年度电价执行及电费结算情况"],"def":"发电厂卖给电网的电价，是用户电价的源头之一。"},{"w":"现货交易","n":708,"df":314,"ex":["2025.12.30-附件5.陕西省间电力现货市场购售电交易实施细则（连续试运行V2.0）","附件4陕西省间电力现货市场购售电交易实施细则（V1）","附件5陕西省间电力现货市场购售电交易实施细则（连续试运行V2）"],"def":"按现货市场规则的交易（日前/实时），价格逐时段变化。"},{"w":"工商业用户","n":660,"df":296,"ex":["四川省发展和改革委员会四川省能源局关于印发《四川省电网企业代理购电工作实施方案》的通知（川发改价格〔2025〕34号）","关于优化工商业分时电价结构促进新能源消纳降低企业用电成本支持经济社会发展的通知（苏发改价格发〔2025〕426号）","广东交易〔2025〕322号 关于组织开展2026年广东电力市场低压工商业用户试点参与市场化交易相关工作的通知-正文"],"def":"非居民用户，电费总量最大，也是电价机制改革的主要对象。"},{"w":"年度交易","n":654,"df":238,"ex":["关于2025年云南电力中长期年度交易及1月月度交易安排的通知","内工信经运字 [2021]472号 关于做好2022年内蒙古电力多边交易市场中长期交易有关事宜的通知20230526162950","2020.11.27--关于印发《2021年上海市电力用户（含售电公司）与发电企业直接交易工作方案》的通知（沪经信运〔2020〕1036号）"],"def":"一次性签一整年的电量与价格，价格通常最稳。"},{"w":"跨省跨区","n":620,"df":234,"ex":["南方区域跨省跨区“点对点”绿电交易工作方案（2025版）","《跨省跨区专项工程输电价格定价办法（修订征求意见稿）》","跨省跨区专项工程输电价格定价办法-P020251127364890979771"],"def":"电力在不同省份与区域之间互济买卖，含跨省绿电与省间现货。"},{"w":"零售套餐","n":578,"df":123,"ex":["四川省能源局四川省发展和改革委员会关于优化我省丰水期电力零售套餐的通知（川发改能源〔2025〕288号）(1)","关于深化电力零售套餐推广应用加快推动零售市场建设的通知","福建省电力零售市场运营工作方案"],"def":"售电公司卖给用户的组合报价方案，如固定价、分时联动、偏差分担。"}],"docs":["青海省新型储能参与电力市场交易方案","9.内蒙古电力多边交易市场2024年市场方案","青海省新型储能参与电力市场交易规则","关于征求对《山西省深化新能源上网电价市场化改革 促进新能源高质量发展实施方案（征求意见稿）》意见建议的函(10)","蒙西电力市场中长期交易方案（2025年版）(4)","内蒙古自治区能源局关于做好2024年内蒙古电力多边交易市场中长期交易有关事宜的通知-内能源电力字【2024】55号20240207175551"]},"public":{"label":"公共机构节能","lead":"机关、学校、医院这类靠财政拨款的单位，被要求<b>带头节能</b>，并且政策鼓励「<b>不用你出钱改造、用省下的电费付账</b>」的合作模式（合同能源管理 / 能源费用托管）。","meaning":"对资产运营者：<i>这是政策最明确、最容易签下节能合同的一类市场</i>。有考核压力、有预算约束、有成熟的收益分享规则，改造与运营需求是刚性的。","docCount":72,"chars":70816,"terms":[{"w":"公共机构","n":696,"df":31,"ex":["【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】凉山州公共机构碳达峰实施方案","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"靠财政供养的单位——政府机关、学校、医院、场馆等，节能政策的第一责任人。"},{"w":"绿色低碳","n":237,"df":19,"ex":["【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案"],"def":"既省能源又减碳的发展口径，是当前各类文件的标准表述。"},{"w":"合同能源管理","n":153,"df":52,"ex":["【政策】山东省公共机构合同能源管理办法","《广东省公共机构合同能源管理办法（试行）（征求意见稿）》","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"「不用你出钱改造，用省下来的电费付我」的节能模式（EMC）。"},{"w":"节能服务公司","n":84,"df":5,"ex":["公共机构能源费用托管实施规程","【政策】山东省公共机构合同能源管理办法","《广东省公共机构合同能源管理办法（试行）（征求意见稿）》"],"def":"专门做节能改造并分享节能收益的公司（ESCO），是合同能源管理的乙方。"},{"w":"公共机构节能","n":82,"df":15,"ex":["【政策】贵州省公共机构节能管理办法","《广东省公共机构合同能源管理办法（试行）（征求意见稿）》","【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排"],"def":"面向机关、学校、医院的节能要求，含能耗定额、监测与年度考核。"},{"w":"能源费用托管","n":74,"df":6,"ex":["公共机构能源费用托管实施规程","JST 301-2024公共机构能源费用托管实施规程(1)","《广东省公共机构合同能源管理办法（试行）（征求意见稿）》"],"def":"把单位能源系统整体托管给专业公司运营，按约定节费分成。"},{"w":"碳达峰","n":66,"df":14,"ex":["【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案","【政策】凉山州公共机构碳达峰实施方案"],"def":"碳排放量由增转降的拐点，国家目标2030年前。"},{"w":"节能降碳","n":65,"df":15,"ex":["【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案","【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"省能源和减碳一起抓，是当前政策的主线索。"},{"w":"能源托管","n":59,"df":10,"ex":["JST 301-2024公共机构能源费用托管实施规程(1)","公共机构能源费用托管实施规程","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案"],"def":"把用能管理交给专业公司，按效果付费，公共机构最常见的合作方式。"},{"w":"节能改造","n":56,"df":14,"ex":["JST 301-2024公共机构能源费用托管实施规程(1)","公共机构能源费用托管实施规程","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案"],"def":"更换高效设备、加装控制与计量系统来降低实际能耗。"},{"w":"合同能源管理项目","n":55,"df":8,"ex":["《广东省公共机构合同能源管理办法（试行）（征求意见稿）》","【政策】山东省公共机构合同能源管理办法","浦东新区节能低碳专项资金管理办法"],"def":"以 EMC 模式实施的节能项目，通常可申请节能奖励与专项资金。"},{"w":"用能单位","n":48,"df":11,"ex":["【政策】凉山州公共机构碳达峰实施方案","【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"使用能源的法人单位，是节能政策下的责任主体与考核对象。"},{"w":"节约能源","n":47,"df":15,"ex":["【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排"],"def":"《节约能源法》的核心表述，即节能，是我国能源政策的法律基础。"},{"w":"分布式光伏","n":45,"df":15,"ex":["20250625哈尔滨会议参考资料(定稿）(1)(1)","2025年上半年国家政策汇编","分布式光伏发电开发建设管理办法"],"def":"装在屋顶或园区里的小型光伏，自发自用、余电上网。"},{"w":"碳中和","n":38,"df":13,"ex":["【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】凉山州公共机构碳达峰实施方案","【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"排放的碳通过减排或抵消归零，国家目标2060年前。"},{"w":"医院","n":29,"df":12,"ex":["【政策】2024-2026年度绿色低碳公共机构名单-20240412","【政策】上海市公共机构绿色低碳循环发展行动方案","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案"],"def":"公共机构中的高耗能类型——24小时运行、空调与热水负荷大，节能空间可观。"},{"w":"绿色低碳转型","n":28,"df":13,"ex":["【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】凉山州公共机构碳达峰实施方案","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"从高碳发展模式整体转向绿色低碳模式的长期过程。"},{"w":"能源消费","n":26,"df":13,"ex":["电力行业节能环保低碳法规政策动态（2024年度）","【政策】凉山州公共机构碳达峰实施方案","【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"用了多少能源（电、气、水、油），是考核与定额的基数。"},{"w":"垃圾分类","n":26,"df":10,"ex":["【政策】临海市2023年公共机构节能工作要点","【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"公共机构绿色低碳行动的组成项，反映这类考核是「能源+资源」一起管。"},{"w":"托管费用","n":24,"df":3,"ex":["公共机构能源费用托管实施规程","JST 301-2024公共机构能源费用托管实施规程(1)","《广东省公共机构合同能源管理办法（试行）（征求意见稿）》"],"def":"能源费用托管模式下支付给服务方的费用，一般与节费效果挂钩。"},{"w":"能源资源节约","n":24,"df":6,"ex":["【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】广东省能源局关于2023年公共机构节能降碳工作安排的通知-20230511","【政策】临海市2023年公共机构节能工作要点"],"def":"公共机构考核的官方提法，涵盖电、水、油、气等全部资源。"},{"w":"节约型机关","n":21,"df":9,"ex":["【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案","【政策】凉山州公共机构碳达峰实施方案"],"def":"面向机关单位的创建活动，有明确的评价指标与验收办法。"},{"w":"节水","n":21,"df":6,"ex":["【政策】凉山州公共机构碳达峰实施方案","【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】临海市2023年公共机构节能工作要点"],"def":"公共机构考核项之一，与节电并列，属「能源资源节约」的一部分。"},{"w":"学校","n":19,"df":12,"ex":["【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案","【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】上海市公共机构绿色低碳循环发展行动方案"],"def":"公共机构中的主要类型，寒暑假负荷特征明显，适合做分时与分区管理。"},{"w":"碳排放核算","n":19,"df":9,"ex":["【标准】公共机构碳排放核算与管理要求","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案"],"def":"按国家标准算清排了多少碳，是零碳申报与ESG披露的前置工作。"},{"w":"节能目标","n":16,"df":5,"ex":["《广东省公共机构合同能源管理办法（试行）（征求意见稿）》","JST 301-2024公共机构能源费用托管实施规程(1)","【政策】山东省公共机构合同能源管理办法"],"def":"上级下达的节能量指标，通常按年度考核、逐年加码。"},{"w":"能源审计","n":15,"df":9,"ex":["《广东省公共机构合同能源管理办法（试行）（征求意见稿）》","【政策】山东省公共机构合同能源管理办法","JST 301-2024公共机构能源费用托管实施规程(1)"],"def":"对用能状况做一次「体检」，找出浪费点与改造空间，是节能的第一份报告。"},{"w":"公共机构碳达峰","n":11,"df":3,"ex":["【政策】凉山州公共机构碳达峰实施方案","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"公共机构系统的碳达峰专项行动，把节能目标升级为碳目标。"},{"w":"公共建筑","n":9,"df":7,"ex":["【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案","【政策】关于印发浦东新区2024年碳达峰碳中和及节能重点工作安排的通知"],"def":"商场、办公楼、医院等非住宅建筑，是建筑节能的重点领域。"},{"w":"能耗监测","n":9,"df":7,"ex":["【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","公共机构能源费用托管实施规程","JST 301-2024公共机构能源费用托管实施规程(1)"],"def":"装表计量、在线看能耗，是节能考核、诊断与效果验证的数据基础。"},{"w":"能源管理体系","n":9,"df":6,"ex":["【政策】凉山州公共机构碳达峰实施方案","【政策】临海市2023年公共机构节能工作要点","JST 301-2024公共机构能源费用托管实施规程(1)"],"def":"类似 ISO 50001 的管理制度，让节能从项目变成常态化管理。"},{"w":"能耗定额","n":8,"df":7,"ex":["【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案","【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","【政策】凉山州公共机构碳达峰实施方案"],"def":"给每家单位定的用能上限，超出要说明原因并整改。"},{"w":"温室气体排放核算","n":8,"df":3,"ex":["【标准】公共机构温室气体排放核算与报告要求","【标准】公共机构碳转换应用规范","【标准】公共机构碳排放核算与管理要求"],"def":"按国家标准核算二氧化碳等温室气体排放量，是碳管理的第一步。"},{"w":"节能诊断","n":7,"df":4,"ex":["《广东省公共机构合同能源管理办法（试行）（征求意见稿）》","【政策】凉山州公共机构碳达峰实施方案","JST 301-2024公共机构能源费用托管实施规程(1)"],"def":"由专业机构给出的节能机会清单，通常对应后续改造方案。"},{"w":"绿色低碳公共机构","n":7,"df":2,"ex":["【政策】国管局 国家发展改革委关于发布绿色低碳公共机构名单的通知-20240412","【政策】2024-2026年度绿色低碳公共机构名单-20240412"],"def":"国家评出的绿色低碳公共机构名单/称号，是各单位争创的目标。"}],"docs":["【政策】凉山州公共机构碳达峰实施方案","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】钦州市开展公共机构绿色低碳 引领促进碳达峰工作方案","《广东省公共机构合同能源管理办法（试行）（征求意见稿）》","【政策】渝中区深入开展公共机构绿色低碳引领行动促进碳达峰实施方案","【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排"]},"zerocarbon":{"label":"零碳园区","lead":"园区要把<b>碳排放算清、降下来</b>，靠的是绿电、储能、微电网和源网荷储一体化，政策同时给了申报通道与配套支持。","meaning":"对资产运营者：<i>申报与建设会带来一批真实的改造与长期运营需求</i>。园区级项目体量大、计量与调节要求高，正是数据与算法能够发挥价值的地方。","docCount":512,"chars":296618,"terms":[{"w":"消纳","n":1376,"df":322,"ex":["副本1-附件1-广西壮族自治区2025年可再生能源电力消纳保障实施方案（第二次征求意见稿）20250715125141","3.0四川省发展和改革委员会  四川省能源局 国家能源局四川监管办公室关于公开征求《四川电力现货规则体系V3.0（征求意见稿）》意见的通知","关于印发四川2026年电力市场交易总体方案及四川电力市场规则体系V4.0的通知"],"def":"把风光发出的电用掉、不浪费；园区内就近消纳是零碳园区的核心要求。"},{"w":"新能源","n":559,"df":138,"ex":["2025年上半年国家政策汇编","20250625哈尔滨会议参考资料(定稿）(1)(1)","【附件2】南方区域电力市场现货电能量交易实施细则（2026年V1.0版）（征求意见稿）"],"def":"风电、光伏等可再生能源发电，是政策扶持的主力电源。"},{"w":"园区","n":460,"df":42,"ex":["中国能源政策汇编2025——国家部委篇（简版）","国家发展改革委 工业和信息化部 国家能源局关于开展零碳园区建设的通知(1)(1)","关于开展零碳园区建设和组织申报国家级零碳园区的通知"],"def":"零碳园区的空间载体，含工业、物流、商贸、数据中心等类型。"},{"w":"储能","n":447,"df":176,"ex":["云南省新型储能高质量发展专项行动方案（2025—2027年）","广东省独立储能参与电能量市场交易细则（试行）（广东交易〔2023〕177号）","新疆电力市场零碳园区内经营主体参与交易服务指南（试行）"],"def":"低谷把电存起来、高峰再放出来，靠电价差和调节服务赚钱。"},{"w":"绿电直连","n":408,"df":62,"ex":["关于印发《山东省有序推动绿电直连发展实施方案》的通知（鲁发改能源〔2025〕709号）(2)","青海省绿电直连实施方案","附件1陕西电力现货市场实施细则（V1）（征集意见稿）"],"def":"新能源电站直接给用户供电（专线或就近接入），不经公共电网的常规通道。"},{"w":"碳排放","n":367,"df":37,"ex":["电力行业节能环保低碳法规政策动态（2024年度）","中国能源政策汇编2025——国家部委篇（简版）","零碳园区碳排放核算方法（试行"],"def":"温室气体排放的量；零碳园区要求先算清、再降下来。"},{"w":"微电网","n":291,"df":115,"ex":["关于印发《山东电力市场规则（试行）》的通知（鲁监能市场〔2025〕57号）","安徽省能源局关于组织申报新型电力系统建设第一批试点工作的通知","2025年上半年国家政策汇编"],"def":"园区内的小型发配用电系统，可并网也可孤岛运行，自身平衡。"},{"w":"源网荷储","n":260,"df":95,"ex":["关于印发源网荷储一体化试点实施细则的通知（鲁发改能源〔2025〕155号）","关于征求《关于印发源网荷储一体化试点工作方案的通知（征求意见稿）》意见建议的函","内蒙古自治区源网荷储一体化项目实施细则2023年修订版"],"def":"电源、电网、负荷、储能四侧一体化协调运行，是零碳园区的技术主线。"},{"w":"虚拟电厂","n":254,"df":118,"ex":["附件1陕西电力现货市场实施细则（V1）（征集意见稿）","江苏省发展改革委关于促进我省虚拟电厂高质量发展的通知（苏发改能源发〔2025〕1198号）(1)(1)","3.0四川省发展和改革委员会  四川省能源局 国家能源局四川监管办公室关于公开征求《四川电力现货规则体系V3.0（征求意见稿）》意见的通知"],"def":"聚合园区可调负荷与储能参与电网调节与电力市场，把调节能力变成收益。"},{"w":"碳达峰","n":220,"df":80,"ex":["【政策】关于印发浦东新区2024年碳达峰碳中和及节能重点工作安排的通知","《碳达峰碳中和综合评价考核办法》(5)","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"碳排放量由增转降的拐点，国家目标2030年前。"},{"w":"零碳园区","n":209,"df":24,"ex":["中国能源政策汇编2025——国家部委篇（简版）","国家发展改革委 工业和信息化部 国家能源局关于开展零碳园区建设的通知(1)(1)","新疆电力市场零碳园区内经营主体参与交易服务指南（试行）"],"def":"园区内碳排放趋近于零，国家正组织建设与国家级申报。"},{"w":"可再生能源","n":196,"df":68,"ex":["电力行业节能环保低碳法规政策动态（2024年度）","新疆电力市场零碳园区内经营主体参与交易服务指南（试行）","可再生能源消费最低比重目标和可再生能源电力消纳责任权重制度实施办法（征求意见稿）"],"def":"风、光、水、生物质等；零碳园区的能源「原料」。"},{"w":"碳中和","n":188,"df":74,"ex":["【政策】关于印发浦东新区2024年碳达峰碳中和及节能重点工作安排的通知","电力行业节能环保低碳法规政策动态（2024年度）","《碳达峰碳中和综合评价考核办法》(5)"],"def":"排放的碳通过减排或抵消归零，国家目标2060年前。"},{"w":"绿色电力","n":185,"df":57,"ex":["中国可再生能源绿色电力证书百问百答（2025年版）(2)","绿色电力消费评价技术规范》NBT 11898-2025（报批稿）","国家能源局云南监管办公室+云南省发展和改革委员会+云南省能源局关于印发《云南电力中长期交易实施细则》《云南省绿色电力交易实施细则》的通知"],"def":"风光等可再生能源发的电，带环境属性，是零碳园区的用能要求。"},{"w":"绿证","n":167,"df":31,"ex":["新疆电力市场零碳园区内经营主体参与交易服务指南（试行）","中国可再生能源绿色电力证书百问百答（2025年版）(2)","电力行业节能环保低碳法规政策动态（2024年度）"],"def":"绿色电力证书，一证对应1000度绿电，可交易、可核销碳排放。"},{"w":"碳足迹","n":166,"df":17,"ex":["电力行业节能环保低碳法规政策动态（2024年度）","中国可再生能源绿色电力证书百问百答（2025年版）(2)","《关于开展零碳工厂建设工作的指导意见》"],"def":"产品或活动全生命周期的碳排放量，用于核算与对外披露。"},{"w":"新型储能","n":152,"df":84,"ex":["国家发展改革委办公厅 国家能源局综合司关于进一步推动新型储能参与电力市场和调度运用的通知（发改办运行〔2022〕475号）","国家发展改革委办公厅 国家能源局综合司关于进一步推动新型储能参与电力市场和调度运用的通知（发改办运行〔2022〕475号）20230605163019","关于征求海南独立储能参与电力市场交易实施方案（试行）（征求意见稿）"],"def":"电化学等新技术储能，是政策支持的重点方向，也是园区的调节手段。"},{"w":"绿电消费","n":112,"df":31,"ex":["副本1-附件1-广西壮族自治区2025年可再生能源电力消纳保障实施方案（第二次征求意见稿）20250715125141","附件2陕西电力零售市场实施细则（V1）（征集意见稿）","2024.11.5-陕西电力交易中心《陕西省电力零售市场交易细则（2024年10月修订版）》的通知（陕电交易〔2024〕79号）"],"def":"实际用了多少绿电，是零碳园区与消纳责任考核的抓手。"},{"w":"碳排放核算","n":94,"df":23,"ex":["电力行业节能环保低碳法规政策动态（2024年度）","【标准】公共机构碳排放核算与管理要求","中国能源政策汇编2025——国家部委篇（简版）"],"def":"按国家标准算清排了多少碳，是零碳申报与ESG披露的前置工作。"},{"w":"绿电交易","n":77,"df":41,"ex":["云南电力市场高质量发展三年行动计划（2026-2028）","新疆电力市场零碳园区内经营主体参与交易服务指南（试行）","内蒙古电力多边交易市场绿色电力交易实施细则（试行）2025年修订版20241222100026"],"def":"通过电力市场专门购买绿色电力，价格里含环境价值。"},{"w":"电力现货市场","n":74,"df":35,"ex":["南方区域电力现货市场技术支持系统第三方校验报告","4.河北南部电网现货电能量市场交易实施细则（结算试运行V3.0版)","附件1陕西电力现货市场实施细则（V1）（征集意见稿）"],"def":"电力价格随供需实时波动（日前+实时），是储能与负荷策略的价格依据。"},{"w":"分布式光伏","n":54,"df":44,"ex":["安徽省发展改革委 安徽省能源局关于征求推动绿电直连发展有关事项通知(征求意见稿)意见的函(5)","20250625哈尔滨会议参考资料(定稿）(1)(1)","2025年上半年国家政策汇编"],"def":"装在屋顶或园区里的小型光伏，自发自用、余电上网。"},{"w":"节能降碳","n":53,"df":20,"ex":["中国能源政策汇编2025——国家部委篇（简版）","关于开展零碳工厂建设工作的指导意见","《关于开展零碳工厂建设工作的指导意见》"],"def":"省能源和减碳一起抓，是当前政策的主线索。"},{"w":"零碳工厂","n":50,"df":7,"ex":["关于开展零碳工厂建设工作的指导意见","《关于开展零碳工厂建设工作的指导意见》","【政策】关于印发浦东新区2024年碳达峰碳中和及节能重点工作安排的通知"],"def":"工厂层面实现零碳，与零碳园区配套推进，通常先做工厂再报园区。"},{"w":"国家级零碳园区","n":41,"df":7,"ex":["关于开展零碳园区建设和组织申报国家级零碳园区的通知","国家发展改革委 工业和信息化部 国家能源局关于开展零碳园区建设的通知(1)(1)","中国能源政策汇编2025——国家部委篇（简版）"],"def":"国家发改委等组织建设的国家级名单，需按指标体系申报评审。"},{"w":"工业园区","n":24,"df":16,"ex":["生态文明建设示范区（生态工业园区）管理办法","中国能源政策汇编2025——国家部委篇（简版）","关于开展零碳园区建设和组织申报国家级零碳园区的通知"],"def":"零碳园区中最主要的申报类型——用能集中、单体大、改造空间最大。"},{"w":"需求响应","n":19,"df":9,"ex":["广东省能源局 国家能源局南方监管局关于印发《广东省市场化需求响应交易实施方案（试行）》的通知","安徽省电力需求响应实施方案（2025年版）(1)","江苏省电力需求响应实施细则"],"def":"电价高或电网紧张时主动少用电，可获得补偿收益。"},{"w":"多能互补","n":17,"df":14,"ex":["国家发展改革委办公厅 国家能源局综合司关于进一步推动新型储能参与电力市场和调度运用的通知（发改办运行〔2022〕475号）","国家发展改革委办公厅 国家能源局综合司关于进一步推动新型储能参与电力市场和调度运用的通知（发改办运行〔2022〕475号）20230605163019","安徽省能源局关于征求2025年度光伏发电和风电项目建设规模竞争性配置方案意见的函"],"def":"电、热、冷、气多种能源协同优化，提高整体效率。"},{"w":"碳排放强度","n":17,"df":8,"ex":["电力行业节能环保低碳法规政策动态（2024年度）","【政策】上海市公共机构绿色低碳循环发展行动方案","附件 杭州市重点企业节能降碳改造行动方案（2026—2030年）（征求意见稿）"],"def":"单位产值或单位产品的碳排放，比总量更能反映效率水平。"},{"w":"合同能源管理","n":15,"df":12,"ex":["【政策】2023年广西全区公共机构能源资源节约和生态环境保护工作安排","冀发改能源【2025】879号河北省发展改革委关于组织开展绿电直连项目申报工作的通知","《广东省公共机构合同能源管理办法（试行）（征求意见稿）》"],"def":"「不用你出钱改造，用省下来的电费付我」的节能模式（EMC）。"},{"w":"余电上网","n":14,"df":8,"ex":["江苏省发展改革委关于转发《国家发展改革委 国家能源局关于有序推动绿电直连发展有关事项的通知》的通知","《宁夏电力现货市场长周期结算试运行工作方案》","宁夏回族自治区电力市场管理委员会关于征集《宁夏发电机组进入及退出商业运营管理实施细则》等3项议题意见的通知"],"def":"自建光伏用不完的电卖给电网，是园区光伏收益的一部分。"},{"w":"碳排放总量","n":14,"df":9,"ex":["《碳达峰碳中和综合评价考核办法》(5)","【政策】凉山州公共机构碳达峰实施方案","【政策】深入开展公共机构绿色低碳引领行动促进碳达峰实施方案"],"def":"园区一年排放的碳的绝对量，是零碳考核与申报的基础数据。"}],"docs":["电力行业节能环保低碳法规政策动态（2024年度）","中国能源政策汇编2025——国家部委篇（简版）","国家发展改革委 工业和信息化部 国家能源局关于开展零碳园区建设的通知(1)(1)","新疆电力市场零碳园区内经营主体参与交易服务指南（试行）","2025年上半年国家政策汇编","关于开展零碳园区建设和组织申报国家级零碳园区的通知"]}};</script>
+<script>
+/* ============================================================
+   政策速读 —— 词云渲染（自研螺旋排布，无外部依赖）
+   ============================================================ */
+var DIRS = ['market', 'public', 'zerocarbon'];
+var CVAR = { market: '--c-market', public: '--c-public', zerocarbon: '--c-zero' };
+var CSOFT = { market: '--c-market-soft', public: '--c-public-soft', zerocarbon: '--c-zero-soft' };
+var MIN_S = 13, MAX_S = 62;
+
+/* ---------- 主题 ---------- */
+function applyTheme(mode) {
+  document.body.classList.toggle('theme-dark', mode === 'dark');
+  document.body.classList.toggle('theme-light', mode !== 'dark');
+  document.getElementById('theme-icon').textContent = mode === 'dark' ? '☀️' : '🌙';
+  document.getElementById('theme-label').textContent = mode === 'dark' ? '浅色' : '深色';
+}
+function toggleTheme() {
+  var next = document.body.classList.contains('theme-dark') ? 'light' : 'dark';
+  localStorage.setItem('dxt-theme', next);
+  applyTheme(next);
+}
+applyTheme(localStorage.getItem('dxt-theme') === 'dark' ? 'dark' : 'light');
+
+/* ---------- 词云排布 ---------- */
+var meas = document.createElement('canvas').getContext('2d');
+function cloudFont(px) {
+  return '900 ' + px + 'px Inter, "Noto Sans SC", "PingFang SC", "Microsoft YaHei", sans-serif';
+}
+function sizeFor(n, min, max) {
+  var s = Math.sqrt(n), smin = Math.sqrt(min), smax = Math.sqrt(max);
+  var t = smax > smin ? (s - smin) / (smax - smin) : 1;
+  return Math.round(_lo + t * (_hi - _lo));
+}
+var _lo = MIN_S, _hi = MAX_S;
+function place(all, W, H) {
+  var out = [], rects = [];
+  var cx = W / 2, cy = H / 2;
+  var pad = 5;
+  for (var k = 0; k < all.length; k++) {
+    var t = all[k];
+    var put = null;
+    var seedAng = k * 1.7;
+    var scales = [1, 0.88, 0.78, 0.68, 0.58];
+    for (var si = 0; si < scales.length && !put; si++) {
+      var size = Math.max(10, Math.round(t.size * scales[si]));
+      meas.font = cloudFont(size);
+      var w = meas.measureText(t.w).width + pad * 2;
+      var h = size * 1.2 + pad * 1.4;
+      for (var i = 0; i < 4200; i++) {
+        var a = seedAng + i * 0.26;
+        var r = 1.75 * i;
+        var x = cx + r * Math.cos(a) * 1.68;
+        var y = cy + r * Math.sin(a) * 1.0;
+        if (x - w / 2 < 3 || x + w / 2 > W - 3 || y - h / 2 < 3 || y + h / 2 > H - 3) continue;
+        var hit = false;
+        for (var j = 0; j < rects.length; j++) {
+          var q = rects[j];
+          if (Math.abs(x - q.x) < (w + q.w) / 2 && Math.abs(y - q.y) < (h + q.h) / 2) { hit = true; break; }
+        }
+        if (!hit) { put = { x: x, y: y, w: w, h: h, size: size }; break; }
+      }
+    }
+    if (put) { rects.push(put); out.push({ term: t, x: put.x, y: put.y, size: put.size }); }
+  }
+  return out;
+}
+function buildCloud(box, dir) {
+  box.innerHTML = '';
+  var d = DATA[dir];
+  var terms = d.terms.slice();
+  var mobile = window.innerWidth < 760;
+  var shown = mobile ? terms.slice(0, 22) : terms;
+  var ns = shown.map(function (t) { return t.n; });
+  var min = Math.min.apply(null, ns), max = Math.max.apply(null, ns);
+  var W0 = box.clientWidth || 700;
+  _hi = Math.max(32, Math.min(MAX_S, Math.round(W0 * 0.078)));
+  _lo = Math.max(11, Math.round(_hi * 0.24));
+  if (mobile) { _hi = Math.round(_hi * 0.82); _lo = Math.max(10, Math.round(_hi * 0.26)); }
+  var scaled = shown.map(function (t) {
+    return { w: t.w, n: t.n, term: t, size: sizeFor(t.n, min, max) };
+  });
+  scaled.sort(function (a, b) { return b.size - a.size; });
+  var W = W0, H = box.clientHeight || 600;
+  var laid = place(scaled, W, H);
+  laid.forEach(function (it) {
+    var el = document.createElement('span');
+    el.className = 'cw';
+    el.textContent = it.term.w;
+    el.style.fontSize = it.size + 'px';
+    el.style.left = (it.x / W * 100) + '%';
+    el.style.top = (it.y / H * 100) + '%';
+    el.style.opacity = (0.56 + 0.44 * (it.size - _lo) / Math.max(1, _hi - _lo)).toFixed(2);
+    el.title = it.term.w + ' · 出现 ' + it.term.n + ' 次';
+    el.onclick = function () { selectTerm(dir, it.term.w); };
+    box.appendChild(el);
+  });
+  box.dataset.placed = laid.length;
+  box.dataset.total = scaled.length;
+  if (!laid.length) {
+    var e = document.createElement('div');
+    e.className = 'cloud-empty';
+    e.textContent = '词云排布空间不足，请放大窗口后点「重新排布」';
+    box.appendChild(e);
+  }
+}
+function renderPanels() {
+  var tabs = document.getElementById('tabs');
+  var panels = document.getElementById('panels');
+  tabs.innerHTML = ''; panels.innerHTML = '';
+  var totalDocs = 0, totalChars = 0;
+  DIRS.forEach(function (dir) {
+    var d = DATA[dir];
+    totalDocs += d.docCount; totalChars += d.chars;
+    var b = document.createElement('button');
+    b.className = 'tab'; b.dataset.dir = dir; b.type = 'button';
+    b.setAttribute('aria-selected', 'false');
+    b.innerHTML = '<span class="dot"></span>' + d.label;
+    b.onclick = function () { showTab(dir); };
+    tabs.appendChild(b);
+
+    var p = document.createElement('div');
+    p.className = 'panel'; p.id = 'panel-' + dir;
+    p.style.setProperty('--dc', 'var(' + CVAR[dir] + ')');
+    p.style.setProperty('--dcs', 'var(' + CSOFT[dir] + ')');
+    p.innerHTML =
+      '<div class="lead">' +
+        '<div class="ltext">' + d.lead + '<span class="mean">' + d.meaning + '</span></div>' +
+        '<div class="lstats">' +
+          '<div><b>' + d.docCount + '</b><span>份文件</span></div>' +
+          '<div><b>' + (d.chars / 10000).toFixed(1) + '</b><span>万字原文</span></div>' +
+          '<div><b>' + d.terms.length + '</b><span>个词条</span></div>' +
+        '</div>' +
+      '</div>' +
+      '<div class="grid">' +
+        '<div class="cloud-card">' +
+          '<div class="cloud-bar">' +
+            '<div class="hint"><i class="fa-solid fa-circle-info"></i> 词越大 = 政策里被提到越多 · 点词看解释与出处</div>' +
+            '<button class="again" type="button" onclick="redraw(\'' + dir + '\')"><i class="fa-solid fa-shuffle"></i> 重新排布</button>' +
+          '</div>' +
+          '<div class="cloud" id="cloud-' + dir + '"></div>' +
+        '</div>' +
+        '<div class="detail" id="detail-' + dir + '"></div>' +
+      '</div>';
+    panels.appendChild(p);
+    drawDetailEmpty(dir);
+  });
+  var M = DATA._meta || {};
+  document.getElementById('srcLine').textContent =
+    '知识库已归档 ' + (M.libDocs || totalDocs) + ' 份政策原文 · 三个方向共圈定 ' + (M.uniqueDocs || totalDocs) + ' 份相关文件';
+  document.getElementById('footSrc').textContent =
+    '本页统计截止：' + DATA._updated + '；知识库共 ' + (M.libDocs || totalDocs) + ' 份政策原文，三个方向分别按关键词圈出相关段落统计，' +
+    '合计统计文本约 ' + (totalChars / 10000).toFixed(0) + ' 万字（同一段落可能同时计入两个方向）。';
+}
+function redraw(dir) {
+  var box = document.getElementById('cloud-' + dir);
+  if (box) buildCloud(box, dir);
+}
+function drawDetailEmpty(dir) {
+  var el = document.getElementById('detail-' + dir);
+  var d = DATA[dir];
+  el.innerHTML = '<div class="dempty"><i class="fa-solid fa-hand-pointer"></i>' +
+    '点击左边词云里的任意一个词，这里会显示：<br>① 它的白话解释；② 在政策里被提及多少次；③ 出现在哪些文件里。' +
+    '<div class="dex" style="margin-top:16px"><div class="t">该方向出现最多的代表文件</div><ul>' +
+    d.docs.slice(0, 4).map(function (t) { return '<li>' + t + '</li>'; }).join('') +
+    '</ul></div></div>';
+}
+function selectTerm(dir, word) {
+  var d = DATA[dir];
+  var t = null;
+  for (var i = 0; i < d.terms.length; i++) { if (d.terms[i].w === word) { t = d.terms[i]; break; } }
+  if (!t) return;
+  var box = document.getElementById('cloud-' + dir);
+  Array.prototype.forEach.call(box.querySelectorAll('.cw'), function (el) {
+    el.classList.toggle('on', el.textContent === word);
+  });
+  var others = d.terms.filter(function (x) { return x.w !== word; }).slice(0, 9);
+  document.getElementById('detail-' + dir).innerHTML =
+    '<div class="dword">' + t.w + '</div>' +
+    '<div class="ddef">' + (t.def || '（该词条暂无白话解释，可参考右下方代表文件原文）') + '</div>' +
+    '<div class="dmeta">' +
+      '<div><b>' + t.n + '</b><span>次提及</span></div>' +
+      '<div><b>' + t.df + '</b><span>份文件涉及</span></div>' +
+    '</div>' +
+    (t.ex && t.ex.length ?
+      '<div class="dex"><div class="t">出现该词的代表文件</div><ul>' +
+      t.ex.map(function (x) { return '<li>' + x + '</li>'; }).join('') + '</ul></div>' : '') +
+    '<div class="dalso"><div class="t">继续看</div><div class="chips">' +
+      others.map(function (x) { return '<button type="button" onclick="selectTerm(\'' + dir + '\',\'' + x.w.replace(/'/g, "\\'") + '\')">' + x.w + '</button>'; }).join('') +
+    '</div></div>';
+}
+function showTab(dir) {
+  DIRS.forEach(function (k) {
+    var on = k === dir;
+    var tab = document.querySelector('.tab[data-dir="' + k + '"]');
+    if (tab) tab.setAttribute('aria-selected', on ? 'true' : 'false');
+    var p = document.getElementById('panel-' + k);
+    if (p) p.classList.toggle('on', on);
+  });
+  if (location.hash !== '#' + dir) history.replaceState(null, '', '#' + dir);
+  var box = document.getElementById('cloud-' + dir);
+  if (box && !box.childElementCount) buildCloud(box, dir);
+}
+function init() {
+  renderPanels();
+  var dir = (location.hash || '').replace('#', '');
+  if (DIRS.indexOf(dir) < 0) dir = 'market';
+  showTab(dir);
+}
+var rT = null;
+window.addEventListener('resize', function () {
+  clearTimeout(rT);
+  rT = setTimeout(function () {
+    DIRS.forEach(function (k) {
+      var p = document.getElementById('panel-' + k);
+      if (p && p.classList.contains('on')) redraw(k);
+    });
+  }, 220);
+});
+window.addEventListener('hashchange', function () {
+  var dir = (location.hash || '').replace('#', '');
+  if (DIRS.indexOf(dir) >= 0) showTab(dir);
+});
+document.addEventListener('DOMContentLoaded', init);
+</script>
+</body>
+</html>

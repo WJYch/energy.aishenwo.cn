@@ -114,6 +114,13 @@ body {
 .kws-grid span:nth-child(2n) { border-right: none; }
 .kws-grid span:nth-child(n+3) { border-bottom: none; }
 .refs { margin-top: 18px; font-size: 12px; color: var(--text-muted); line-height: 1.8; }
+/* ===== 代表实践（图文） ===== */
+.refs-title { margin-top: 24px; font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--text-muted); text-transform: uppercase; }
+.ref-grid { margin-top: 12px; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; width: 100%; max-width: 440px; }
+.ref-item { margin: 0; border: 1px solid var(--border-card); border-radius: 12px; overflow: hidden; background: #fff; transition: transform 0.28s, box-shadow 0.28s; }
+.ref-item:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(0,0,0,0.10); }
+.ref-item img { display: block; width: 100%; aspect-ratio: 3 / 2; object-fit: cover; }
+.ref-item figcaption { padding: 8px 7px; font-size: 12px; font-weight: 600; color: var(--text-secondary); text-align: center; line-height: 1.45; letter-spacing: 0.005em; }
 .cta {
   display: inline-flex; align-items: center; gap: 8px;
   font-size: 14px; font-weight: 700; text-decoration: none;
@@ -179,7 +186,25 @@ body {
       <span>近零能耗建筑</span>
       <span>正产能住宅</span>
     </div>
-    <p class="refs">代表实践：大梅沙生物圈三号 · 扬州应急中心 · 十七英里住宅</p>
+    <div class="refs-title">代表实践</div>
+    <div class="ref-grid">
+      <figure class="ref-item">
+        <img src="/assets/images/projects/dd-1-dameisha.webp" alt="深圳大梅沙碳中和社区" loading="lazy" style="object-position:48% 50%">
+        <figcaption>深圳大梅沙碳中和社区</figcaption>
+      </figure>
+      <figure class="ref-item">
+        <img src="/assets/images/projects/dd-2-meisha.webp" alt="深圳梅沙街道近零碳片区" loading="lazy" style="object-position:50% 50%">
+        <figcaption>深圳梅沙街道近零碳片区</figcaption>
+      </figure>
+      <figure class="ref-item">
+        <img src="/assets/images/projects/dd-3-shiqiying.webp" alt="深圳十七英里正产能住宅" loading="lazy">
+        <figcaption>深圳十七英里正产能住宅</figcaption>
+      </figure>
+      <figure class="ref-item">
+        <img src="/assets/images/projects/dd-4-yangzhou.webp" alt="扬州近零能耗应急救援基地" loading="lazy" style="object-position:50% 50%">
+        <figcaption>扬州近零能耗应急救援基地</figcaption>
+      </figure>
+    </div>
     <div class="cta-wrap"><a class="cta" href="/deepdata/">进入深绿数据官网 →</a></div>
   </section>
 
@@ -204,7 +229,25 @@ body {
       <span>降低需量</span>
       <span>增加补贴</span>
     </div>
-    <p class="refs">代表实践：苏州源点 · 扬州应急基地 · 无锡 I·Campus</p>
+    <div class="refs-title">代表实践</div>
+    <div class="ref-grid">
+      <figure class="ref-item">
+        <img src="/assets/images/projects/dxt-1-yuandian.webp" alt="苏州源点商业" loading="lazy" style="object-position:50% 50%">
+        <figcaption>苏州源点商业</figcaption>
+      </figure>
+      <figure class="ref-item">
+        <img src="/assets/images/projects/dxt-2-yuansu.webp" alt="苏州源宿酒店" loading="lazy" style="object-position:50% 45%">
+        <figcaption>苏州源宿酒店</figcaption>
+      </figure>
+      <figure class="ref-item">
+        <img src="/assets/images/projects/dxt-3-fanhuali.webp" alt="苏州龙湖繁花里商业" loading="lazy" style="object-position:50% 50%">
+        <figcaption>苏州龙湖繁花里商业</figcaption>
+      </figure>
+      <figure class="ref-item">
+        <img src="/assets/images/projects/dxt-4-longxing.webp" alt="苏州隆兴未来社" loading="lazy" style="object-position:65% 50%">
+        <figcaption>苏州隆兴未来社</figcaption>
+      </figure>
+    </div>
     <div class="cta-wrap"><a class="cta" href="/dianxiaotuan/">进入电小团官网 →</a></div>
   </section>
 
