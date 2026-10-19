@@ -51,12 +51,44 @@ function initViewer() {
     if (im.decode) im.decode().catch(() => {});
   };
 
+  // 有交互版的原页：桌面直接嵌，窄屏给按钮
+  const INTERACTIVE = { 12: '/deck/price/' };
+
+  function useFrame(layer, i) {
+    const frame = layer.querySelector('.frame');
+    const open = layer.querySelector('.frame-open');
+    const url = INTERACTIVE[i + 1];
+    const wide = window.innerWidth > 820;
+    if (url && wide) {
+      if (frame.dataset.page !== String(i)) {
+        frame.innerHTML = '<iframe src="' + url + '?embed=1" title="交互版第 ' + (i + 1) + ' 页" loading="eager"></iframe>';
+        frame.dataset.page = String(i);
+      }
+      frame.style.display = 'block';
+      if (open) open.hidden = true;
+      return true;
+    }
+    frame.style.display = 'none';
+    if (frame.dataset.page) { frame.innerHTML = ''; frame.dataset.page = ''; }
+    if (open) {
+      open.hidden = !url;
+      if (url) open.href = url;
+    }
+    return false;
+  }
+
   function show(i) {
     const next = 1 - front;
     const layer = layers[next];
     const prev = layers[front];
     const img = layer.querySelector('img');
     let fired = false;
+    if (useFrame(layer, i)) {
+      layer.classList.add('on');
+      prev.classList.remove('on');
+      front = next;
+      return;
+    }
     const done = () => {
       if (fired) return;
       fired = true;

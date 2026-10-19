@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>电价是怎么组成的 — 电小团</title>
+<meta name="description" content="交互版：拖动时间轴，看清电费公式里的四项——电价 × 电量、最大需量 × 政策单价、补贴；三条曲线（实时功率、行政分时电价、现货市场电价）和那个决定基本电费的点。">
+<style>
+:root{
+  --green:#4EA72E; --blue:#0F9ED5; --orange:#E97132; --purple:#9B5AA8;
+  --ink:#14171A; --muted:#6B7280; --line:#E6E9ED; --soft:#F5F7F9;
+  --bg:#FFFFFF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  background:var(--bg); color:var(--ink);
+  font-family:"Microsoft YaHei","PingFang SC","Noto Sans SC",-apple-system,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  display:flex; flex-direction:column; height:100%;
+}
+a{color:inherit}
+.topbar{display:flex;align-items:center;justify-content:space-between;padding:10px 18px;border-bottom:1px solid var(--line);flex:0 0 auto}
+.topbar .back{font-size:13px;color:var(--muted);text-decoration:none;display:inline-flex;gap:6px;align-items:center}
+.topbar .back:hover{color:var(--ink)}
+.topbar .name{font-size:12px;letter-spacing:.08em;color:var(--muted)}
+body.embed .topbar{display:none}
+
+.wrap{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;padding:18px 26px 10px}
+.head{flex:0 0 auto;margin-bottom:6px}
+.head h1{font-size:clamp(19px,2.35vw,34px);font-weight:800;letter-spacing:-.01em;line-height:1.25;white-space:nowrap}
+.head h1 .term{cursor:pointer;border-radius:6px;padding:2px 4px;margin:0 -2px;transition:background .18s,color .18s;position:relative}
+.head h1 .term:hover{background:var(--soft)}
+.head .note{font-size:clamp(11px,1.05vw,14px);color:var(--muted);margin-top:4px}
+.head .note b{color:var(--ink);font-weight:600}
+
+.board{flex:1 1 auto;display:grid;grid-template-columns:minmax(0,1fr) clamp(240px,27vw,380px);gap:clamp(12px,1.6vw,26px);min-height:0;margin-top:10px}
+.chartcard{position:relative;min-width:0;min-height:0;display:flex;flex-direction:column}
+.canvasbox{position:relative;flex:1 1 auto;min-height:0}
+canvas{position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;cursor:crosshair}
+.legend{flex:0 0 auto;display:flex;gap:18px;flex-wrap:wrap;font-size:clamp(10px,.95vw,13px);color:#3B4046;padding:6px 2px 0}
+.legend i{display:inline-block;width:22px;height:3px;border-radius:2px;margin-right:6px;vertical-align:middle}
+
+.panel{min-width:0;display:flex;flex-direction:column;gap:6px;overflow:hidden}
+.card{border:1px solid var(--line);border-radius:9px;padding:8px 10px;background:#fff}
+.card.now{background:linear-gradient(180deg,#FBFCFD,#fff)}
+.kicker{font-size:10px;letter-spacing:.12em;color:var(--muted);font-weight:700;margin-bottom:5px}
+.clock{display:flex;align-items:baseline;gap:8px;margin-bottom:6px}
+.clock b{font-size:clamp(20px,2.1vw,30px);font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+.clock span{font-size:11.5px;color:var(--muted)}
+.rows{display:grid;gap:4px}
+.row{display:flex;align-items:baseline;justify-content:space-between;gap:8px;font-size:clamp(11px,1.02vw,14px)}
+.row .k{color:var(--muted)}
+.row .v{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.row .v small{font-weight:500;color:var(--muted);font-size:.82em;margin-left:2px}
+.dotmark{display:inline-block;width:7px;height:7px;border-radius:50%;margin-right:6px;vertical-align:1px}
+.big{font-size:clamp(19px,1.9vw,26px);font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.big small{font-size:.5em;font-weight:600;color:var(--muted);margin-left:3px}
+.sub{font-size:10.5px;color:var(--muted);line-height:1.45;margin-top:5px}
+.formula-small{font-size:clamp(10px,.92vw,12.5px);color:#3B4046;background:var(--soft);border-radius:6px;padding:4px 7px;margin-top:5px;font-variant-numeric:tabular-nums}
+.ctrl{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:7px;overflow:hidden;margin-top:7px;justify-self:start;width:fit-content}
+.seg button{border:0;background:#fff;padding:5px 9px;font-size:11.5px;color:var(--muted);cursor:pointer;font-family:inherit}
+.seg button.on{background:var(--ink);color:#fff}
+.btn{border:1px solid var(--line);background:#fff;border-radius:7px;padding:5px 10px;font-size:11.5px;cursor:pointer;font-family:inherit;color:#3B4046;display:inline-flex;align-items:center;gap:5px}
+.btn:hover{background:var(--soft)}
+.lab{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted)}
+.slider input{width:100%;accent-color:#9B5AA8}
+.slider .lab{display:flex;justify-content:space-between;font-size:10.5px;color:var(--muted)}
+.lab b{color:var(--purple);font-variant-numeric:tabular-nums}
+#boost{width:100%;accent-color:#9B5AA8;margin:4px 0 2px}
+
+.foot{flex:0 0 auto;padding:6px 4px 2px;font-size:10.5px;color:#9AA1A8;display:flex;justify-content:space-between;gap:10px}
+
+@media (max-width: 900px){
+  html,body{height:auto}
+  body{min-height:100%;overflow:auto}
+  .head h1{white-space:normal;font-size:20px}
+  .board{grid-template-columns:1fr;grid-template-rows:minmax(260px,44vh) auto;flex:0 0 auto}
+  .wrap{flex:0 0 auto;padding:12px 14px 8px}
+  .panel{overflow:visible}
+  .foot{padding-top:12px}
+}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <a class="back" href="/deck/#p=12">← 回到介绍册 P12</a>
+  <span class="name">公司介绍册 · 交互版</span>
+</div>
+
+<div class="wrap">
+  <div class="head">
+    <h1>电费 = <span class="term" data-term="price" style="color:var(--blue)">电价</span> × <span class="term" data-term="energy" style="color:var(--green)">电量</span> + <span class="term" data-term="demand" style="color:var(--purple)">最大需量</span> × <span class="term" data-term="policy" style="color:var(--purple)">政策单价</span> − <span class="term" data-term="subsidy" style="color:var(--orange)">补贴</span></h1>
+    <div class="note" id="note">拖动竖线看任意时刻；<b>电量是绿线下面的面积</b>，<b>基本电费只由最高的那一个点决定</b>，与用了多少电无关。点公式里的词看解释。</div>
+  </div>
+
+  <div class="board">
+    <div class="chartcard">
+      <div class="canvasbox"><canvas id="cv"></canvas></div>
+      <div class="legend">
+        <span><i style="background:var(--green)"></i>实时功率</span>
+        <span><i style="background:var(--blue)"></i>电网行政电价（分时）</span>
+        <span><i style="background:var(--orange)"></i>现货市场电价（15 分钟一变）</span>
+        <span><i style="background:var(--purple);height:8px;border-radius:50%;width:8px"></i>最大需量</span>
+      </div>
+    </div>
+
+    <aside class="panel">
+      <div class="card now">
+        <div class="clock"><b id="clock">21:15</b><span>15 分钟一档</span></div>
+        <div class="rows">
+          <div class="row"><span class="k"><span class="dotmark" style="background:var(--green)"></span>实时功率</span><span class="v" id="v-kw">301<small>kW</small></span></div>
+          <div class="row"><span class="k"><span class="dotmark" style="background:var(--blue)"></span>行政电价</span><span class="v" id="v-admin">0.80<small>元/kWh</small></span></div>
+          <div class="row"><span class="k"><span class="dotmark" style="background:var(--orange)"></span>现货电价</span><span class="v" id="v-spot">0.62<small>元/kWh</small></span></div>
+          <div class="row"><span class="k">这 15 分钟</span><span class="v" id="v-seg">75.3<small>kWh</small></span></div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">截至此刻</div>
+        <div class="rows">
+          <div class="row"><span class="k">累计电量（面积）</span><span class="v" id="v-cum-q">0<small>kWh</small></span></div>
+          <div class="row"><span class="k">累计电度电费</span><span class="v" id="v-cum-cost">0<small>元</small></span></div>
+          <div class="seg" id="seg-price">
+            <button data-price="admin" class="on">按行政电价</button>
+            <button data-price="spot">按现货电价</button>
+          </div>
+        </div>
+        <div class="sub" id="v-day">—</div>
+      </div>
+
+      <div class="card">
+        <div class="kicker">那个点：最大需量</div>
+        <div class="big" id="v-max">301<small>kW</small></div>
+        <div class="formula-small" id="v-max-formula">301 × 51.2 = 15,411 元/月</div>
+        <div class="seg" id="seg-region">
+          <button data-policy="51.2" class="on">江苏 51.2</button>
+          <button data-policy="44.8">上海 44.8</button>
+        </div>
+        <div class="sub">只看一个月里最高的那一个 15 分钟，和用了多少电无关。</div>
+      </div>
+
+      <div class="card">
+        <div class="lab"><span>晚高峰（18–22 点）再加</span><b><span id="v-boost">0</span> kW</b></div>
+        <input type="range" id="boost" min="0" max="80" step="5" value="0">
+        <div class="sub" id="boost-note">拖动看基本电费怎么跳</div>
+        <div class="ctrl" style="margin-top:6px">
+          <button class="btn" id="play">▶ 播放一天</button>
+          <button class="btn" id="reset">复位</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <div class="foot">
+    <span>数据取自《深绿数据 × 电小团 公司介绍册 2026.10》P12 的曲线</span>
+    <span>金额为演示口径，不含补贴与力调</span>
+  </div>
+</div>
+
+<script src="data.js"></script>
+<script>
+(function(){
+  const D = window.PRICE_DATA;
+  const N = D.kw.length;            // 96 个 15 分钟
+  const STEP = 0.25;
+  let cur = 85;                      // 当前档位索引（约 21:20）
+  let priceMode = 'admin';
+  let policy = 51.2;
+  let boost = 0;
+  let focus = null;
+  let playing = false;
+
+  const $ = id => document.getElementById(id);
+  const cv = $('cv'), ctx = cv.getContext('2d');
+  let W = 0, H = 0, DPR = 1;
+
+  function kwAt(i){ return D.kw[i] + (i*STEP >= 18 && i*STEP < 22 ? boost : 0); }
+  function series(){
+    const kw = [], adm = [], spot = [];
+    for (let i=0;i<N;i++){ kw.push(kwAt(i)); adm.push(D.admin[i]); spot.push(D.spot[i]); }
+    return {kw, adm, spot};
+  }
+  let S = series();
+  function recompute(){ S = series(); }
+
+  function maxPoint(){
+    let m = -1, idx = 0;
+    for (let i=0;i<N;i++){ if (S.kw[i] > m){ m = S.kw[i]; idx = i; } }
+    return {kw: m, i: idx};
+  }
+
+  function fmt(n, d=0){
+    if (typeof n !== 'number' || !isFinite(n)) n = 0;
+    return n.toLocaleString('zh-CN', {minimumFractionDigits:d, maximumFractionDigits:d});
+  }
+  function priceAt(i){ return priceMode === 'admin' ? S.adm[i] : S.spot[i]; }
+
+  // ---------- 布局 ----------
+  function resize(){
+    const r = cv.parentElement.getBoundingClientRect();
+    DPR = Math.min(2, window.devicePixelRatio || 1);
+    W = Math.max(320, r.width);
+    H = Math.max(200, r.height);
+    cv.width = Math.round(W * DPR); cv.height = Math.round(H * DPR);
+    cv.style.width = W + 'px'; cv.style.height = H + 'px';
+    ctx.setTransform(DPR,0,0,DPR,0,0);
+    draw();
+  }
+
+  const PAD = {l: 46, r: 46, t: 14, b: 26};
+  const pw = () => W - PAD.l - PAD.r;
+  const ph = () => H - PAD.t - PAD.b;
+  const xOf = t => PAD.l + (t/24) * pw();
+  const yKw = v => PAD.t + ph() - (v/350) * ph();
+  const yPrice = v => PAD.t + ph() - (v/0.9) * ph();
+
+  function draw(){
+    cur = Math.max(0, Math.min(N-1, cur));
+    ctx.clearRect(0,0,W,H);
+    const maxKw = 350;
+
+    // 网格
+    ctx.font = '11px "Microsoft YaHei",sans-serif';
+    ctx.textBaseline = 'middle';
+    for (let v=0; v<=maxKw; v+=50){
+      const y = yKw(v);
+      ctx.strokeStyle = v===0 ? '#C9CFD6' : '#EDF0F3';
+      ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(PAD.l, y+.5); ctx.lineTo(W-PAD.r, y+.5); ctx.stroke();
+      if (v % 100 === 0){
+        ctx.fillStyle = '#8A9199'; ctx.textAlign = 'right';
+        ctx.fillText(String(v), PAD.l-8, y);
+        ctx.textAlign = 'left';
+        ctx.fillText((v/100*0.3).toFixed(1), W-PAD.r+8, y);
+      }
+    }
+    for (let t=0; t<=24; t+=2){
+      const x = xOf(t);
+      ctx.strokeStyle = t%4===0 ? '#EDF0F3' : '#F6F8FA';
+      ctx.beginPath(); ctx.moveTo(x+.5, PAD.t); ctx.lineTo(x+.5, PAD.t+ph()); ctx.stroke();
+      if (t%4===0){
+        ctx.fillStyle = '#8A9199'; ctx.textAlign = 'center';
+        ctx.fillText(t===24 ? '24:00' : t + ':00', x, H-10);
+      }
+    }
+    // 轴标题
+    ctx.fillStyle = '#6B7280'; ctx.textAlign = 'left';
+    ctx.fillText('功率 / kW', 4, PAD.t + 6);
+    ctx.textAlign = 'right';
+    ctx.fillText('电价 元/kWh', W-4, PAD.t + 6);
+
+    // 行政电价（阶梯）
+    ctx.beginPath();
+    for (let i=0;i<N;i++){
+      const x0 = xOf(i*STEP), x1 = xOf((i+1)*STEP), y = yPrice(S.adm[i]);
+      if (i===0) ctx.moveTo(x0, y); else ctx.lineTo(x0, y);
+      ctx.lineTo(x1, y);
+    }
+    ctx.strokeStyle = 'rgba(15,158,213,' + (focus==='price'?1:.9) + ')';
+    ctx.lineWidth = focus==='price' ? 3 : 2.2; ctx.stroke();
+
+    // 现货电价
+    ctx.beginPath();
+    for (let i=0;i<N;i++){
+      const x = xOf(i*STEP + STEP/2), y = yPrice(S.spot[i]);
+      i ? ctx.lineTo(x,y) : ctx.moveTo(x,y);
+    }
+    ctx.strokeStyle = 'rgba(233,113,50,' + (focus==='price'?1:.9) + ')';
+    ctx.lineWidth = focus==='price' ? 3 : 2.2; ctx.stroke();
+
+    // 功率面积
+    const grad = ctx.createLinearGradient(0, PAD.t, 0, PAD.t+ph());
+    grad.addColorStop(0, focus==='energy' ? 'rgba(78,167,46,.42)' : 'rgba(78,167,46,.20)');
+    grad.addColorStop(1, focus==='energy' ? 'rgba(78,167,46,.10)' : 'rgba(78,167,46,.02)');
+    ctx.beginPath();
+    ctx.moveTo(xOf(STEP/2), yKw(0));
+    for (let i=0;i<N;i++) ctx.lineTo(xOf(i*STEP + STEP/2), yKw(S.kw[i]));
+    ctx.lineTo(xOf((N-1)*STEP + STEP/2), yKw(0));
+    ctx.closePath();
+    ctx.fillStyle = grad; ctx.fill();
+
+    // 功率线
+    ctx.beginPath();
+    for (let i=0;i<N;i++){
+      const x = xOf(i*STEP + STEP/2), y = yKw(S.kw[i]);
+      i ? ctx.lineTo(x,y) : ctx.moveTo(x,y);
+    }
+    ctx.lineJoin = 'round'; ctx.lineCap = 'round';
+    ctx.strokeStyle = '#4EA72E'; ctx.lineWidth = 2.4; ctx.stroke();
+
+    // 最大需量
+    const mp = maxPoint();
+    const mx = xOf(mp.i*STEP + STEP/2), my = yKw(mp.kw);
+    ctx.save();
+    ctx.setLineDash([5,5]);
+    ctx.strokeStyle = 'rgba(155,90,168,.55)'; ctx.lineWidth = 1.2;
+    ctx.beginPath(); ctx.moveTo(PAD.l, my); ctx.lineTo(W-PAD.r, my); ctx.stroke();
+    ctx.restore();
+    ctx.beginPath(); ctx.arc(mx, my, focus==='demand' ? 8 : 6, 0, Math.PI*2);
+    ctx.fillStyle = 'rgba(155,90,168,.95)'; ctx.fill();
+    ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; ctx.stroke();
+    ctx.fillStyle = '#7B4A86'; ctx.font = '600 11px "Microsoft YaHei",sans-serif';
+    ctx.textAlign = mx > W - 220 ? 'right' : 'left'; ctx.textBaseline = 'bottom';
+    ctx.fillText('最大需量 ' + fmt(mp.kw) + ' kW', mx + (mx > W-220 ? -12 : 12), my - 10);
+
+    // 游标
+    const cx = xOf(cur*STEP + STEP/2);
+    ctx.strokeStyle = 'rgba(20,23,26,.35)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx, PAD.t); ctx.lineTo(cx, PAD.t+ph()); ctx.stroke();
+    const pts = [[yKw(S.kw[cur]), '#4EA72E'], [yPrice(S.adm[cur]), '#0F9ED5'], [yPrice(S.spot[cur]), '#E97132']];
+    pts.forEach(([y,c]) => {
+      ctx.beginPath(); ctx.arc(cx, y, 4.2, 0, Math.PI*2);
+      ctx.fillStyle = c; ctx.fill(); ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.8; ctx.stroke();
+    });
+  }
+
+  // ---------- 数字 ----------
+  function render(){
+    cur = Math.max(0, Math.min(N-1, cur));
+    const i = cur, kw = S.kw[i], q = kw*STEP, p = priceAt(i);
+    const full = 24*STEP;
+    let cumQ = 0, cumCost = 0;
+    for (let k=0;k<=i;k++){ cumQ += S.kw[k]*STEP; cumCost += S.kw[k]*STEP*priceAt(k); }
+    let cumMax = 0; for (let k=0;k<=i;k++) cumMax = Math.max(cumMax, S.kw[k]);
+    const mp = maxPoint();
+    const hh = String(Math.floor(i*STEP)).padStart(2,'0');
+    const mm = (i%4)*15;
+    $('clock').textContent = hh + ':' + String(mm).padStart(2,'0');
+    $('v-kw').innerHTML = fmt(kw) + '<small>kW</small>';
+    $('v-admin').innerHTML = S.adm[i].toFixed(2) + '<small>元/kWh</small>';
+    $('v-spot').innerHTML = S.spot[i].toFixed(2) + '<small>元/kWh</small>';
+    $('v-seg').innerHTML = fmt(q,1) + '<small>kWh</small> · ' + fmt(q*p,1) + '<small>元</small>';
+    $('v-cum-q').innerHTML = fmt(cumQ) + '<small>kWh</small>';
+    $('v-cum-cost').innerHTML = fmt(cumCost) + '<small>元</small>';
+    let dayQ = 0, dayCost = 0;
+    for (let k=0;k<N;k++){ dayQ += S.kw[k]*STEP; dayCost += S.kw[k]*STEP*priceAt(k); }
+    $('v-day').textContent = '全天 ' + fmt(dayQ) + ' kWh · 电度 ' + fmt(dayCost) + ' 元 · 基本 ' + fmt(mp.kw*policy) + ' 元/月';
+    $('v-max').innerHTML = fmt(mp.kw) + '<small>kW</small>';
+    $('v-max-formula').textContent = fmt(mp.kw) + ' kW × ' + policy.toFixed(1) + ' = ' + fmt(mp.kw*policy) + ' 元/月';
+    draw();
+  }
+
+  // ---------- 交互 ----------
+  let dragging = false;
+  function setFromX(clientX){
+    const r = cv.getBoundingClientRect();
+    const t = ((clientX - r.left) - PAD.l) / pw() * 24;
+    cur = Math.max(0, Math.min(N-1, Math.floor(t/STEP)));
+    render();
+  }
+  cv.addEventListener('pointerdown', e => { dragging = true; cv.setPointerCapture(e.pointerId); setFromX(e.clientX); });
+  cv.addEventListener('pointermove', e => { if (dragging) setFromX(e.clientX); });
+  cv.addEventListener('pointerup', () => dragging = false);
+  cv.addEventListener('pointercancel', () => dragging = false);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight'){ cur = Math.min(N-1, cur+1); render(); e.preventDefault(); }
+    if (e.key === 'ArrowLeft'){ cur = Math.max(0, cur-1); render(); e.preventDefault(); }
+  });
+
+  const NOTE0 = '拖动竖线看任意时刻；<b>电量是绿线下面的面积</b>，<b>基本电费只由最高的那一个点决定</b>，与用了多少电无关。点公式里的词看解释。';
+  const NOTES = {
+    price: '<b style="color:#0F9ED5">电价</b>：行政电价按分时档位、现货电价 15 分钟一变；乘上这一段的电量，才是这一段的电费。',
+    energy: '<b style="color:#4EA72E">电量</b>：绿线下面的面积，功率 × 时间，一段一段加起来；同样的用电量，落在贵的时段就更贵。',
+    demand: '<b style="color:#9B5AA8">最大需量</b>：这条线上最高的那一个 15 分钟，乘政策单价就是基本电费——它是一件“点”的事，不是面积。',
+    policy: '<b style="color:#9B5AA8">政策单价</b>：容量/需量电价，按地区定，江苏 51.2、上海 44.8 元/kW·月；它乘的是需量，不是电量。',
+    subsidy: '<b style="color:#E97132">补贴</b>：需求响应、绿电等补贴另计，可能按次、按电量或按月返还，本页没有计入。'
+  };
+  const note = $('note');
+  document.querySelectorAll('.term').forEach(el => {
+    el.addEventListener('click', () => {
+      const k = el.dataset.term;
+      focus = focus === k ? null : k;
+      note.innerHTML = focus ? NOTES[k] : NOTE0;
+      draw();
+    });
+  });
+
+  $('seg-price').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    [...$('seg-price').children].forEach(x => x.classList.toggle('on', x === b));
+    priceMode = b.dataset.price; render();
+  });
+  $('seg-region').addEventListener('click', e => {
+    const b = e.target.closest('button'); if (!b) return;
+    [...$('seg-region').children].forEach(x => x.classList.toggle('on', x === b));
+    policy = parseFloat(b.dataset.policy); render();
+  });
+
+  $('boost').addEventListener('input', e => {
+    boost = Number(e.target.value);
+    $('v-boost').textContent = boost;
+    recompute();
+    $('boost-note').textContent = boost
+      ? '晚高峰抬了 ' + boost + ' kW，最大需量变成 ' + fmt(maxPoint().kw) + ' kW，基本电费多 ' + fmt(boost*policy) + ' 元/月。'
+      : '拖动看基本电费怎么跳';
+    render();
+  });
+
+  let raf = null;
+  $('play').addEventListener('click', () => {
+    if (playing){ playing = false; cancelAnimationFrame(raf); $('play').textContent = '▶ 播放一天'; return; }
+    playing = true; $('play').textContent = '⏸ 暂停';
+    cur = 0;
+    const t0 = performance.now();
+    const tick = now => {
+      if (!playing) return;
+      const p = Math.min(1, (now - t0) / 9000);
+      cur = Math.max(0, Math.min(N-1, Math.floor(p*N)));
+      render();
+      if (p < 1) raf = requestAnimationFrame(tick);
+      else { playing = false; $('play').textContent = '▶ 播放一天'; }
+    };
+    raf = requestAnimationFrame(tick);
+  });
+
+  $('reset').addEventListener('click', () => {
+    playing = false; cancelAnimationFrame(raf); $('play').textContent = '▶ 播放一天';
+    cur = 85; boost = 0; $('boost').value = 0; $('v-boost').textContent = '0';
+    $('boost-note').textContent = '拖动看基本电费怎么跳';
+    priceMode = 'admin'; policy = 51.2;
+    [...$('seg-price').children].forEach((x,k) => x.classList.toggle('on', k===0));
+    [...$('seg-region').children].forEach((x,k) => x.classList.toggle('on', k===0));
+    recompute(); render();
+  });
+
+  if (new URLSearchParams(location.search).get('embed') === '1') document.body.classList.add('embed');
+  window.addEventListener('resize', resize);
+  resize(); render();
+})();
+</script>
+</body>
+</html>

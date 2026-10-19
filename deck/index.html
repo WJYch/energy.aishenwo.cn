@@ -227,6 +227,39 @@ a { color: inherit; }
 .part .d { display: block; font-size: 13px; color: var(--text-secondary); margin-top: 3px; line-height: 1.6; }
 .part .pg { font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .part .pg i { font-size: 11px; margin-left: 8px; opacity: 0.7; }
+/* ===== Live band ===== */
+.live { max-width: 1160px; margin: 46px auto 0; padding: 0 32px; }
+.live-inner {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--border-card); border-radius: 18px;
+  background: var(--bg-card); padding: 26px 30px;
+  display: flex; align-items: center; gap: 26px; flex-wrap: wrap;
+}
+.live-inner::before {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse 40% 120% at 8% 0%, rgba(94,139,126,0.16) 0%, transparent 65%),
+              radial-gradient(ellipse 34% 110% at 92% 100%, rgba(167,139,204,0.14) 0%, transparent 65%);
+}
+.live-copy { position: relative; flex: 1 1 420px; min-width: 260px; }
+.live-tag {
+  display: inline-flex; align-items: center; gap: 6px; margin-bottom: 10px;
+  font-size: 11px; font-weight: 700; letter-spacing: 0.12em; color: var(--accent);
+}
+.live-tag .pulse {
+  width: 7px; height: 7px; border-radius: 50%; background: var(--accent);
+  box-shadow: 0 0 0 0 rgba(94,139,126,0.6); animation: pulse 2.4s infinite;
+}
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(94,139,126,0.5); }
+  70% { box-shadow: 0 0 0 9px rgba(94,139,126,0); }
+  100% { box-shadow: 0 0 0 0 rgba(94,139,126,0); }
+}
+.live h2 { font-size: clamp(19px, 2.2vw, 25px); font-weight: 700; letter-spacing: -0.01em; margin-bottom: 8px; }
+.live p { font-size: 14px; line-height: 1.75; color: var(--text-secondary); }
+.live p b { color: var(--text); font-weight: 600; }
+.live .btn { position: relative; flex: 0 0 auto; }
+@media (max-width: 640px) { .live { padding: 0 20px; margin-top: 34px; } .live-inner { padding: 22px; gap: 18px; } }
+
 /* ===== Note ===== */
 .note {
   max-width: 1160px; margin: 44px auto 0; padding: 0 32px 72px;
@@ -283,6 +316,18 @@ a { color: inherit; }
   border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,0.65);
   background: #0b0e12; display: block;
 }
+.layer .frame {
+  position: absolute; inset: 0; display: none; background: #fff;
+  border-radius: 8px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+}
+.layer .frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.layer .frame-open {
+  position: absolute; right: 14px; bottom: 14px; z-index: 3;
+  padding: 8px 14px; border-radius: 999px; text-decoration: none;
+  background: rgba(20,23,26,0.82); color: #fff; font-size: 12.5px; font-weight: 600;
+  border: 1px solid rgba(255,255,255,0.22); backdrop-filter: blur(8px);
+}
+.layer .frame-open:hover { background: rgba(20,23,26,0.94); }
 .arrow {
   position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
   width: 46px; height: 46px; border-radius: 50%;
@@ -476,6 +521,17 @@ a { color: inherit; }
     </ol>
   </section>
 
+  <section class="live">
+    <div class="live-inner">
+      <div class="live-copy">
+        <div class="live-tag"><span class="pulse"></span>其中 1 页是可交互的</div>
+        <h2>第 12 页是活的：拖动时间轴，看电费怎么长出来</h2>
+        <p>三条曲线（实时功率、行政分时电价、现货电价）和一个点（最大需量）。拖动竖线能看见：<b>电量是绿线下面的面积</b>，<b>基本电费只由最高的那一个点决定</b>——所以晚高峰多 50 kW，代价是一整年的基本电费。</p>
+      </div>
+      <a class="btn btn-primary" href="/deck/price/">打开交互版 <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+  </section>
+
   <section class="note">
     <div class="note-inner">
       <i class="fa-regular fa-lightbulb"></i>
@@ -504,8 +560,8 @@ a { color: inherit; }
   </div>
 
   <div class="stage" id="stage">
-    <div class="layer" id="layer-a"><img alt=""></div>
-    <div class="layer" id="layer-b"><img alt=""></div>
+    <div class="layer" id="layer-a"><img alt=""><div class="frame"></div><a class="frame-open" hidden target="_blank" rel="noopener">打开交互版 ↗</a></div>
+    <div class="layer" id="layer-b"><img alt=""><div class="frame"></div><a class="frame-open" hidden target="_blank" rel="noopener">打开交互版 ↗</a></div>
     <button class="arrow prev" id="btn-prev" aria-label="上一页">‹</button>
     <button class="arrow next" id="btn-next" aria-label="下一页">›</button>
   </div>
