@@ -1,0 +1,357 @@
+{
+ "title": "深绿数据 × 电小团 公司介绍册",
+ "version": "2026.10 技术版",
+ "pages": [
+  {
+   "n": 1,
+   "src": "slide-01.webp",
+   "thumb": "thumb-01.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#756c6b",
+   "kb": 142
+  },
+  {
+   "n": 2,
+   "src": "slide-02.webp",
+   "thumb": "thumb-02.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#f6f6f6",
+   "kb": 23
+  },
+  {
+   "n": 3,
+   "src": "slide-03.webp",
+   "thumb": "thumb-03.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#353b2e",
+   "kb": 239
+  },
+  {
+   "n": 4,
+   "src": "slide-04.webp",
+   "thumb": "thumb-04.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#242022",
+   "kb": 67
+  },
+  {
+   "n": 5,
+   "src": "slide-05.webp",
+   "thumb": "thumb-05.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#bebfc3",
+   "kb": 120
+  },
+  {
+   "n": 6,
+   "src": "slide-06.webp",
+   "thumb": "thumb-06.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#dae7ea",
+   "kb": 85
+  },
+  {
+   "n": 7,
+   "src": "slide-07.webp",
+   "thumb": "thumb-07.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#f4f2f3",
+   "kb": 108
+  },
+  {
+   "n": 8,
+   "src": "slide-08.webp",
+   "thumb": "thumb-08.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#b5cbe8",
+   "kb": 86
+  },
+  {
+   "n": 9,
+   "src": "slide-09.webp",
+   "thumb": "thumb-09.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#a2a3a3",
+   "kb": 75
+  },
+  {
+   "n": 10,
+   "src": "slide-10.webp",
+   "thumb": "thumb-10.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#ccd5d6",
+   "kb": 148
+  },
+  {
+   "n": 11,
+   "src": "slide-11.webp",
+   "thumb": "thumb-11.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#f9f9f9",
+   "kb": 16
+  },
+  {
+   "n": 12,
+   "src": "slide-12.webp",
+   "thumb": "thumb-12.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#f3f3f2",
+   "kb": 54
+  },
+  {
+   "n": 13,
+   "src": "slide-13.webp",
+   "thumb": "thumb-13.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#a7bdcf",
+   "kb": 121
+  },
+  {
+   "n": 14,
+   "src": "slide-14.webp",
+   "thumb": "thumb-14.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#bec6c4",
+   "kb": 183
+  },
+  {
+   "n": 15,
+   "src": "slide-15.webp",
+   "thumb": "thumb-15.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#a5babe",
+   "kb": 67
+  },
+  {
+   "n": 16,
+   "src": "slide-16.webp",
+   "thumb": "thumb-16.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#8d98a0",
+   "kb": 74
+  },
+  {
+   "n": 17,
+   "src": "slide-17.webp",
+   "thumb": "thumb-17.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#f2f2f1",
+   "kb": 68
+  },
+  {
+   "n": 18,
+   "src": "slide-18.webp",
+   "thumb": "thumb-18.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#929598",
+   "kb": 70
+  },
+  {
+   "n": 19,
+   "src": "slide-19.webp",
+   "thumb": "thumb-19.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#f9f9f9",
+   "kb": 18
+  },
+  {
+   "n": 20,
+   "src": "slide-20.webp",
+   "thumb": "thumb-20.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#c1c6c4",
+   "kb": 117
+  },
+  {
+   "n": 21,
+   "src": "slide-21.webp",
+   "thumb": "thumb-21.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#989fba",
+   "kb": 125
+  },
+  {
+   "n": 22,
+   "src": "slide-22.webp",
+   "thumb": "thumb-22.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#d2e0e1",
+   "kb": 155
+  },
+  {
+   "n": 23,
+   "src": "slide-23.webp",
+   "thumb": "thumb-23.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#7c90a6",
+   "kb": 83
+  },
+  {
+   "n": 24,
+   "src": "slide-24.webp",
+   "thumb": "thumb-24.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#dbdfe1",
+   "kb": 130
+  },
+  {
+   "n": 25,
+   "src": "slide-25.webp",
+   "thumb": "thumb-25.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#fbfbfb",
+   "kb": 12
+  },
+  {
+   "n": 26,
+   "src": "slide-26.webp",
+   "thumb": "thumb-26.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#f3f3f3",
+   "kb": 85
+  },
+  {
+   "n": 27,
+   "src": "slide-27.webp",
+   "thumb": "thumb-27.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#a9abac",
+   "kb": 199
+  },
+  {
+   "n": 28,
+   "src": "slide-28.webp",
+   "thumb": "thumb-28.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#e7e7e6",
+   "kb": 80
+  },
+  {
+   "n": 29,
+   "src": "slide-29.webp",
+   "thumb": "thumb-29.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#eeeceb",
+   "kb": 94
+  },
+  {
+   "n": 30,
+   "src": "slide-30.webp",
+   "thumb": "thumb-30.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#b5b5b5",
+   "kb": 117
+  },
+  {
+   "n": 31,
+   "src": "slide-31.webp",
+   "thumb": "thumb-31.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#c4c3c4",
+   "kb": 66
+  },
+  {
+   "n": 32,
+   "src": "slide-32.webp",
+   "thumb": "thumb-32.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#b6b6b6",
+   "kb": 85
+  },
+  {
+   "n": 33,
+   "src": "slide-33.webp",
+   "thumb": "thumb-33.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#d0d0d0",
+   "kb": 88
+  },
+  {
+   "n": 34,
+   "src": "slide-34.webp",
+   "thumb": "thumb-34.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#c4c4c4",
+   "kb": 123
+  },
+  {
+   "n": 35,
+   "src": "slide-35.webp",
+   "thumb": "thumb-35.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#f8f8f8",
+   "kb": 19
+  },
+  {
+   "n": 36,
+   "src": "slide-36.webp",
+   "thumb": "thumb-36.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#cbcfd2",
+   "kb": 99
+  },
+  {
+   "n": 37,
+   "src": "slide-37.webp",
+   "thumb": "thumb-37.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#dcddde",
+   "kb": 106
+  },
+  {
+   "n": 38,
+   "src": "slide-38.webp",
+   "thumb": "thumb-38.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#e9e9e9",
+   "kb": 118
+  },
+  {
+   "n": 39,
+   "src": "slide-39.webp",
+   "thumb": "thumb-39.webp",
+   "w": 1600,
+   "h": 900,
+   "color": "#7e7778",
+   "kb": 134
+  }
+ ]
+}

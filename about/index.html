@@ -223,6 +223,23 @@ body {
 }
 .footer p { font-size: 13px; color: var(--text-muted); }
 .footer strong { color: var(--accent); font-weight: 600; }
+/* ===== 介绍册入口 ===== */
+.deck-card { padding: 18px; }
+.deck-link { display: flex; gap: 24px; align-items: center; text-decoration: none; color: inherit; }
+.deck-cover {
+  width: 246px; height: auto; flex-shrink: 0; aspect-ratio: 16 / 9; object-fit: cover;
+  border-radius: 12px; display: block; background: var(--project-bg);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.18); transition: transform 0.25s;
+}
+.deck-link:hover .deck-cover { transform: translateY(-2px); }
+.deck-copy h2 { margin-bottom: 9px; }
+.deck-copy .deck-sub { font-size: 12px; color: var(--text-muted); letter-spacing: 0.06em; font-weight: 600; margin-bottom: 10px; }
+.deck-copy p { font-size: 13.5px; color: var(--p-text); line-height: 1.8; margin-bottom: 14px; }
+.deck-cta { font-size: 13px; font-weight: 600; color: var(--accent); display: inline-flex; align-items: center; gap: 7px; }
+@media (max-width: 640px) {
+  .deck-link { flex-direction: column; align-items: stretch; gap: 16px; }
+  .deck-cover { width: 100%; }
+}
 </style>
 <link rel="stylesheet" href="/assets/css/dxt-chat-pet.css">
 
@@ -259,6 +276,19 @@ body {
 
 <!-- Content -->
 <div class="about-content">
+
+  <!-- 公司介绍册 -->
+  <div class="about-card deck-card">
+    <a class="deck-link" href="/deck/">
+      <img class="deck-cover" src="/deck/slide-01.webp" alt="公司介绍册 2026.10 封面" width="1600" height="900" loading="lazy">
+      <div class="deck-copy">
+        <div class="deck-sub">2026.10 技术版 · 39 页</div>
+        <h2><i class="fa-solid fa-book-open accent-green"></i> 公司介绍册</h2>
+        <p>四个市场与四类资产、四条降费策略、两个平台、九个项目的业态与做法，以及「先诊断、再投资、后运营」的标准交付路径。可在线翻页阅读，也可下载 PDF 转发。</p>
+        <span class="deck-cta">在线阅读 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </a>
+  </div>
 
   <!-- 深沃控股集团 -->
   <div class="about-card">

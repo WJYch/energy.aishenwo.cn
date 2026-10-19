@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>公司介绍册 2026.10 — 电小团</title>
+<meta name="description" content="深绿数据 × 电小团 公司介绍册（2026.10 技术版，39 页）：四个市场与四类资产、四条降费策略、综合能源运营平台、九个项目的业态与做法、先诊断再投资后运营的标准交付路径。支持在线翻页阅读与 PDF 下载。">
+<link rel="canonical" href="https://energy.aishenwo.cn/deck/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="公司介绍册 2026.10 — 电小团">
+<meta property="og:description" content="39 页技术版：从电价机制讲到交付路径。在线翻页阅读，或下载 PDF 转发。">
+<meta property="og:image" content="https://energy.aishenwo.cn/deck/slide-01.webp">
+<meta property="og:url" content="https://energy.aishenwo.cn/deck/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" media="print" onload="this.media='all'">
+<style>
+:root { --transition: 0.3s; }
+/* ===== Light Theme ===== */
+.theme-light {
+  --bg-body: #F8F9FC;
+  --bg-nav: rgba(255,255,255,0.9);
+  --border-nav: rgba(0,0,0,0.04);
+  --text: #1F2937;
+  --text-secondary: #6B7280;
+  --text-muted: #9CA3AF;
+  --bg-card: #FFFFFF;
+  --border-card: rgba(0,0,0,0.06);
+  --card-hover: rgba(94,139,126,0.06);
+  --accent: #5E8B7E;
+  --accent2: #7C9FBA;
+  --accent3: #A78BCC;
+  --accent4: #E8A87C;
+  --p-text: #4B5563;
+  --rule: rgba(17,20,24,0.10);
+  --shadow-sm: 0 2px 12px rgba(0,0,0,0.04);
+  --shadow-lg: 0 24px 60px rgba(17,20,24,0.14);
+}
+/* ===== Dark Theme ===== */
+.theme-dark {
+  --bg-body: #000;
+  --bg-nav: rgba(0,0,0,0.85);
+  --border-nav: rgba(255,255,255,0.06);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.5);
+  --text-muted: rgba(255,255,255,0.3);
+  --bg-card: rgba(255,255,255,0.035);
+  --border-card: rgba(255,255,255,0.08);
+  --card-hover: rgba(255,255,255,0.06);
+  --accent: #6BB5A6;
+  --accent2: #8FB3CC;
+  --accent3: #B79FDA;
+  --accent4: #EFB78F;
+  --p-text: rgba(255,255,255,0.62);
+  --rule: rgba(255,255,255,0.10);
+  --shadow-sm: 0 2px 12px rgba(0,0,0,0.3);
+  --shadow-lg: 0 24px 60px rgba(0,0,0,0.6);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', 'Noto Sans SC', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-body);
+  color: var(--text);
+  line-height: 1.6;
+  transition: background var(--transition), color var(--transition);
+  -webkit-font-smoothing: antialiased;
+}
+body.locked { overflow: hidden; }
+a { color: inherit; }
+/* ===== Navbar ===== */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: var(--bg-nav);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border-nav);
+  padding: 0 32px; height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo img { height: 28px; width: auto; }
+.theme-dark .nav-logo img { filter: brightness(1.2); }
+.nav-logo .logo-text { font-size: 16px; font-weight: 700; color: var(--text); letter-spacing: 0.02em; }
+.nav-logo .logo-sub { font-size: 10px; font-weight: 400; color: var(--text-muted); letter-spacing: 0.12em; text-transform: uppercase; }
+.nav-links { display: flex; gap: 2px; list-style: none; align-items: center; }
+.nav-links a {
+  text-decoration: none; color: var(--text-secondary);
+  font-size: 13px; font-weight: 500; padding: 6px 14px;
+  border-radius: 6px; transition: all 0.2s;
+}
+.nav-links a:hover { color: var(--text); background: var(--card-hover); }
+.nav-links a.active { color: var(--accent); }
+.theme-dark .nav-links a.active { color: #fff; }
+.nav-toggle { display: none; background: none; border: none; font-size: 20px; color: var(--text); cursor: pointer; padding: 8px; }
+.theme-toggle {
+  background: none; border: 1px solid var(--border-card); border-radius: 20px;
+  padding: 6px 14px; cursor: pointer; font-size: 14px; color: var(--text-secondary);
+  display: flex; align-items: center; gap: 6px; transition: all 0.2s; margin-left: 8px;
+}
+.theme-toggle:hover { background: var(--card-hover); color: var(--text); }
+@media (max-width: 900px) {
+  .navbar { padding: 0 16px; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    display: none; position: absolute; top: 64px; left: 0; right: 0;
+    background: var(--bg-nav); backdrop-filter: blur(20px);
+    flex-direction: column; padding: 12px 16px;
+    border-bottom: 1px solid var(--border-nav);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 14px; width: 100%; }
+}
+/* ===== Hero ===== */
+.hero {
+  position: relative;
+  max-width: 1160px; margin: 0 auto;
+  padding: 124px 32px 8px;
+  display: grid; grid-template-columns: 1fr 1.04fr; gap: 48px; align-items: center;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 40px 0 0; z-index: -1; pointer-events: none;
+  background:
+    radial-gradient(ellipse 46% 48% at 76% 32%, rgba(94,139,126,0.16) 0%, transparent 70%),
+    radial-gradient(ellipse 38% 40% at 96% 62%, rgba(124,159,186,0.12) 0%, transparent 70%);
+}
+.theme-light .hero::before {
+  background:
+    radial-gradient(ellipse 46% 48% at 76% 32%, rgba(94,139,126,0.10) 0%, transparent 70%),
+    radial-gradient(ellipse 38% 40% at 96% 62%, rgba(124,159,186,0.10) 0%, transparent 70%);
+}
+.hero-copy { max-width: 520px; }
+.back-link {
+  display: flex; width: fit-content; align-items: center; gap: 6px;
+  font-size: 13px; color: var(--text-muted); text-decoration: none;
+  margin-bottom: 22px; transition: color 0.2s;
+}
+.back-link:hover { color: var(--text); }
+.tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.08em;
+  color: var(--text-muted); margin-bottom: 14px;
+}
+.tag span { color: var(--accent); font-weight: 700; }
+.tag .dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--text-muted); font-style: normal; }
+.hero h1 {
+  font-size: clamp(30px, 4.2vw, 50px);
+  font-weight: 800; line-height: 1.18; letter-spacing: -0.025em;
+  margin-bottom: 18px;
+  background: linear-gradient(120deg, #93DCBF 0%, #A2CBE8 38%, #C6ACE9 68%, #F6CCA1 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+/* 浅色主题下用深一档的渐变，否则字发白看不清 */
+.theme-light .hero h1 {
+  background-image: linear-gradient(135deg, #4C7E70 0%, #5C86AE 40%, #8A6EB8 72%, #C4825A 100%);
+}
+.hero .lede { font-size: 16px; line-height: 1.85; color: var(--p-text); margin-bottom: 30px; }
+.hero .lede b { color: var(--text); font-weight: 600; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 9px;
+  height: 46px; padding: 0 22px; border-radius: 10px;
+  font-size: 15px; font-weight: 600; text-decoration: none; cursor: pointer;
+  border: 1px solid transparent; transition: all 0.2s; font-family: inherit;
+}
+.btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 20px rgba(94,139,126,0.28); }
+.btn-primary:hover { filter: brightness(1.06); transform: translateY(-1px); }
+.btn-ghost { background: transparent; border-color: var(--border-card); color: var(--text); }
+.btn-ghost:hover { background: var(--card-hover); }
+.btn small { font-size: 12px; font-weight: 500; opacity: 0.62; }
+.facts {
+  display: flex; gap: 22px; margin-top: 30px; padding-top: 22px;
+  border-top: 1px solid var(--rule); list-style: none; flex-wrap: wrap;
+}
+.facts li { font-size: 12px; color: var(--text-muted); letter-spacing: 0.02em; }
+.facts li b { display: block; font-size: 17px; font-weight: 700; color: var(--text); letter-spacing: 0; margin-bottom: 2px; }
+/* cover */
+.cover {
+  position: relative; border-radius: 16px; overflow: hidden; cursor: pointer;
+  box-shadow: var(--shadow-lg); border: 1px solid var(--border-card);
+  background: #0b0e12; aspect-ratio: 16 / 9;
+}
+.cover img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(.2,.7,.3,1); }
+.cover:hover img { transform: scale(1.025); }
+.cover::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,0,0,0) 45%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+/* 封面右下角的阅读提示（不遮挡画面主体） */
+.cover-read {
+  position: absolute; right: 16px; bottom: 14px; z-index: 2;
+  display: inline-flex; align-items: center; gap: 6px;
+  height: 30px; padding: 0 12px; border-radius: 999px;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.3);
+  backdrop-filter: blur(8px); color: #fff; font-size: 12px; font-weight: 600;
+  letter-spacing: 0.02em; transition: background 0.25s, transform 0.25s;
+}
+.cover:hover .cover-read { background: rgba(255,255,255,0.24); transform: translateY(-1px); }
+.cover-foot {
+  position: absolute; left: 20px; right: 20px; bottom: 16px; z-index: 2;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  color: #fff; font-size: 12px; letter-spacing: 0.04em;
+}
+.cover-foot .k { opacity: 0.72; }
+.cover-foot .v { font-weight: 600; }
+/* ===== Parts ===== */
+.parts { max-width: 1160px; margin: 0 auto; padding: 44px 32px 8px; }
+.section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 22px; flex-wrap: wrap; }
+.section-head h2 { font-size: clamp(20px, 2.4vw, 26px); font-weight: 700; letter-spacing: -0.01em; }
+.section-head p { font-size: 13px; color: var(--text-muted); }
+.part-list { list-style: none; border-top: 1px solid var(--rule); }
+.part {
+  display: grid; grid-template-columns: 78px 1fr auto; gap: 18px; align-items: center;
+  padding: 20px 8px; border-bottom: 1px solid var(--rule);
+  cursor: pointer; transition: background 0.2s, padding 0.2s; text-align: left;
+  background: none; border-left: 0; border-right: 0; border-top: 0; width: 100%;
+  font-family: inherit; color: inherit;
+}
+.part:hover { background: var(--card-hover); padding-left: 16px; padding-right: 16px; }
+.part .no {
+  font-size: 12px; font-weight: 700; letter-spacing: 0.08em; color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+.part .t { display: block; font-size: 16px; font-weight: 600; letter-spacing: -0.01em; }
+.part .d { display: block; font-size: 13px; color: var(--text-secondary); margin-top: 3px; line-height: 1.6; }
+.part .pg { font-size: 12px; color: var(--text-muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.part .pg i { font-size: 11px; margin-left: 8px; opacity: 0.7; }
+/* ===== Note ===== */
+.note {
+  max-width: 1160px; margin: 44px auto 0; padding: 0 32px 72px;
+}
+.note-inner {
+  border: 1px solid var(--border-card); background: var(--bg-card); border-radius: 16px;
+  padding: 22px 26px; display: flex; gap: 16px; align-items: flex-start;
+}
+.note-inner i { color: var(--accent); font-size: 17px; margin-top: 3px; }
+.note-inner p { font-size: 13.5px; color: var(--text-secondary); line-height: 1.8; }
+.note-inner b { color: var(--text); font-weight: 600; }
+/* ===== Footer ===== */
+.footer { border-top: 1px solid var(--border-card); padding: 24px; text-align: center; }
+.footer p { font-size: 13px; color: var(--text-muted); }
+.footer strong { color: var(--accent); font-weight: 600; }
+
+/* ================= Viewer ================= */
+.viewer {
+  position: fixed; inset: 0; z-index: 1000;
+  background: #05070A; color: #fff;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.28s ease, visibility 0.28s;
+}
+.viewer.open { opacity: 1; visibility: visible; }
+.viewer-top {
+  position: absolute; top: 0; left: 0; right: 0; height: 60px; z-index: 3;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 20px; gap: 16px;
+  background: linear-gradient(180deg, rgba(5,7,10,0.9), rgba(5,7,10,0));
+}
+.v-title { display: flex; align-items: center; gap: 12px; min-width: 0; }
+.v-title img { height: 30px; width: auto; flex-shrink: 0; }
+.v-title .txt { font-size: 13px; color: rgba(255,255,255,0.55); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.v-title .txt b { color: #fff; font-weight: 600; }
+.v-actions { display: flex; align-items: center; gap: 6px; flex-shrink: 0; }
+.icon-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  height: 36px; min-width: 36px; padding: 0 11px; border-radius: 8px;
+  background: transparent; border: 1px solid transparent; color: rgba(255,255,255,0.72);
+  font-size: 13px; font-family: inherit; cursor: pointer; text-decoration: none;
+  transition: all 0.18s;
+}
+.icon-btn:hover { background: rgba(255,255,255,0.09); color: #fff; }
+.icon-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+/* stage */
+.stage { position: absolute; inset: 54px 44px 78px; }
+.layer {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  opacity: 0; transition: opacity 0.3s ease; will-change: opacity;
+}
+.layer.on { opacity: 1; }
+.layer img {
+  max-width: 100%; max-height: 100%; width: auto; height: auto;
+  border-radius: 8px; box-shadow: 0 30px 80px rgba(0,0,0,0.65);
+  background: #0b0e12; display: block;
+}
+.arrow {
+  position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+  width: 46px; height: 46px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  color: #fff; font-size: 26px; line-height: 1; padding-bottom: 3px;
+  cursor: pointer; transition: all 0.2s; backdrop-filter: blur(6px);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+.arrow:hover:not(:disabled) { background: rgba(255,255,255,0.16); }
+.arrow:disabled { opacity: 0.2; cursor: default; }
+.arrow.prev { left: 10px; }
+.arrow.next { right: 10px; }
+/* bottom bar */
+.viewer-bottom {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 72px; z-index: 3;
+  display: flex; align-items: center; gap: 18px; padding: 0 20px;
+  background: linear-gradient(0deg, rgba(5,7,10,0.94), rgba(5,7,10,0));
+}
+.counter { font-size: 13px; color: rgba(255,255,255,0.72); font-variant-numeric: tabular-nums; letter-spacing: 0.04em; white-space: nowrap; }
+.counter b { color: #fff; font-weight: 600; }
+.progress { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,0.13); overflow: hidden; cursor: pointer; }
+.progress i {
+  display: block; height: 100%; width: 0;
+  background: linear-gradient(90deg, #5E8B7E, #7C9FBA 55%, #A78BCC);
+  transition: width 0.3s ease;
+}
+/* thumbs sheet */
+.sheet {
+  position: absolute; left: 0; right: 0; bottom: 72px; z-index: 4;
+  max-height: 68vh; overflow-y: auto; overscroll-behavior: contain;
+  background: #0A0D12; border-top: 1px solid rgba(255,255,255,0.1);
+  padding: 18px 20px 26px; transform: translateY(calc(100% + 72px));
+  transition: transform 0.32s cubic-bezier(.2,.7,.3,1);
+  box-shadow: 0 -20px 50px rgba(0,0,0,0.5);
+}
+.sheet.open { transform: none; }
+@media (max-width: 640px) { .sheet { bottom: 72px; max-height: 60vh; padding: 14px 12px 18px; } }
+.th-group + .th-group { margin-top: 18px; }
+.th-label { font-size: 11px; letter-spacing: 0.08em; color: rgba(255,255,255,0.38); font-weight: 600; margin-bottom: 9px; }
+.th-label b { color: var(--accent); }
+.th-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.th {
+  position: relative; aspect-ratio: 16/9; border-radius: 6px; overflow: hidden;
+  border: 2px solid transparent; cursor: pointer; background: #10141a;
+  padding: 0; transition: border-color 0.18s, transform 0.18s;
+}
+.th:hover { transform: translateY(-2px); }
+.th img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.th .num {
+  position: absolute; left: 4px; bottom: 4px; font-size: 10px;
+  background: rgba(0,0,0,0.62); color: rgba(255,255,255,0.8);
+  border-radius: 4px; padding: 1px 5px; font-variant-numeric: tabular-nums;
+}
+.th.cur { border-color: var(--accent); }
+.th.cur .num { background: var(--accent); color: #05100d; font-weight: 700; }
+/* 手机滑动提示 */
+.swipe-tip {
+  display: none;
+  position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%);
+  z-index: 2; padding: 7px 14px; border-radius: 999px;
+  background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.18);
+  color: #fff; font-size: 12px; letter-spacing: 0.04em; white-space: nowrap;
+  backdrop-filter: blur(8px); transition: opacity 0.5s;
+}
+.swipe-tip.hide { opacity: 0; }
+@media (max-width: 640px) { .swipe-tip { display: block; } }
+
+/* 键盘提示：只在有鼠标的宽屏显示 */
+.hint-key {
+  font-size: 11.5px; color: rgba(255,255,255,0.3); white-space: nowrap;
+  letter-spacing: 0.04em; margin-right: 2px;
+}
+@media (max-width: 900px) { .hint-key { display: none; } }
+
+@media (max-width: 1100px) {
+  .hero { grid-template-columns: 1fr; gap: 34px; padding-top: 116px; }
+  .hero-copy { max-width: 640px; order: 1; }
+  .cover { order: 2; }
+}
+@media (max-width: 640px) {
+  .hero { padding: 100px 20px 12px; gap: 26px; }
+  .hero .lede { font-size: 15px; }
+  .facts { gap: 18px; }
+  .parts { padding: 40px 20px 0; }
+  .part { grid-template-columns: 54px 1fr; gap: 12px; padding: 18px 4px; }
+  .part .pg { grid-column: 2; font-size: 11px; }
+  .part .pg i { display: none; }
+  .note { padding: 0 20px 56px; }
+  .stage { inset: 52px 0 78px; }
+  .layer img { border-radius: 0; }
+  .arrow { display: none; }
+  .viewer-top { height: 54px; padding: 0 12px; }
+  .v-title .txt { display: none; }
+  .viewer-bottom { height: 72px; gap: 10px; padding: 0 12px; }
+  .th-grid { grid-template-columns: repeat(3, 1fr); gap: 7px; }
+  .viewer-bottom .lbl, .v-actions .lbl { display: none; }
+
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .layer, .viewer, .sheet, .progress i, .cover img, .part { transition: none !important; }
+}
+</style>
+</head>
+<body class="theme-dark">
+
+<!-- Navbar -->
+<nav class="navbar">
+  <a href="/dianxiaotuan/" class="nav-logo">
+    <img src="/assets/images/dxt-logo-2026.webp" alt="电小团">
+    <div>
+      <div class="logo-text">电小团</div>
+      <div class="logo-sub">Little Electric Cloud</div>
+    </div>
+  </a>
+  <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')"><i class="fa-solid fa-bars"></i></button>
+  <ul class="nav-links">
+    <li><a href="/dianxiaotuan/">首页</a></li>
+    <li><a href="/training/">免费课程</a></li>
+    <li><a href="/policy/">政策数据库</a></li>
+    <li><a href="/price/">电价数据库</a></li>
+    <li><a href="/tools/">能源运营工具</a></li>
+    <li><a href="/pro/">增值服务</a></li>
+    <li><a href="/about/" class="active">公司介绍</a></li>
+    <li><button class="theme-toggle" onclick="toggleTheme()"><span id="theme-icon">☀️</span><span id="theme-label">浅色</span></button></li>
+  </ul>
+</nav>
+
+<main>
+  <section class="hero">
+    <div class="hero-copy">
+      <a class="back-link" href="/about/"><i class="fa-solid fa-arrow-left"></i> 返回公司介绍</a>
+      <div class="tag"><span>电小团</span><em class="dot"></em>公司介绍册<em class="dot"></em>2026.10 技术版</div>
+      <h1>从电价机制，<br>讲到交付路径</h1>
+      <p class="lede">39 页，五个部分：<b>四个市场与四类资产</b>、<b>四条降费策略</b>、<b>两个平台</b>、<b>九个项目的业态与做法</b>，以及<b>先诊断、再投资、后运营</b>的标准交付路径。</p>
+      <div class="cta-row">
+        <button class="btn btn-primary" id="open-deck"><i class="fa-solid fa-book-open"></i> 开始阅读</button>
+        <a class="btn btn-ghost" href="/assets/docs/dianxiaotuan-intro-202610-public.pdf" download>
+          <i class="fa-solid fa-download"></i> 下载 PDF <small>13.6 MB</small>
+        </a>
+      </div>
+      <ul class="facts">
+        <li><b>39</b>页数</li>
+        <li><b>5</b>个部分</li>
+        <li><b>16:9</b>比例</li>
+        <li><b>2026.10</b>版本</li>
+      </ul>
+    </div>
+
+    <figure class="cover" id="cover" role="button" tabindex="0" aria-label="打开介绍册第 1 页">
+      <img src="/deck/slide-01.webp" alt="介绍册封面：您的全生命周期数字能源管家" width="1600" height="900">
+      <figcaption class="cover-foot">
+        <span><span class="k">深绿数据 × 电小团</span><br><span class="v">公司介绍册 2026.10</span></span>
+        <span class="cover-read"><i class="fa-solid fa-book-open"></i> 在线阅读</span>
+      </figcaption>
+    </figure>
+  </section>
+
+  <section class="parts">
+    <div class="section-head">
+      <h2>五个部分</h2>
+      <p>点击任一部分，从该部分第一页开始读</p>
+    </div>
+    <ol class="part-list" id="part-list">
+      <li><button class="part" data-page="2">
+        <span class="no">PART 01</span>
+        <span><span class="t">为什么现在必须关注能源</span><span class="d">四个市场、四类资产，以及电费规则、实时电价、管理抓手、设备效率四个绕不开的痛点</span></span>
+        <span class="pg">P2–P10<i class="fa-solid fa-arrow-right"></i></span>
+      </button></li>
+      <li><button class="part" data-page="11">
+        <span class="no">PART 02</span>
+        <span><span class="t">我们能带来什么</span><span class="d">能源数据监测底座，加上降电价、降电量、降容需量、多补贴四条策略</span></span>
+        <span class="pg">P11–P18<i class="fa-solid fa-arrow-right"></i></span>
+      </button></li>
+      <li><button class="part" data-page="19">
+        <span class="no">PART 03</span>
+        <span><span class="t">我们为什么能做到</span><span class="d">行业经验、生态链、全生命周期兜底，以及负荷侧与售电侧两个平台</span></span>
+        <span class="pg">P19–P24<i class="fa-solid fa-arrow-right"></i></span>
+      </button></li>
+      <li><button class="part" data-page="25">
+        <span class="no">PART 04</span>
+        <span><span class="t">我们做过的项目</span><span class="d">商场、酒店、办公与片区，九个项目的业态与做法</span></span>
+        <span class="pg">P25–P34<i class="fa-solid fa-arrow-right"></i></span>
+      </button></li>
+      <li><button class="part" data-page="35">
+        <span class="no">PART 05</span>
+        <span><span class="t">为什么选择电小团</span><span class="d">数据运营式改造与标准交付路径：方案策划、系统设计、硬件软件、无损施工、能源运营</span></span>
+        <span class="pg">P35–P39<i class="fa-solid fa-arrow-right"></i></span>
+      </button></li>
+    </ol>
+  </section>
+
+  <section class="note">
+    <div class="note-inner">
+      <i class="fa-regular fa-lightbulb"></i>
+      <p><b>怎么用这份册子：</b>线上直接翻页，电脑上可用 <b>← →</b> 键，手机上左右滑动；点底部「目录」跳转到任意页。需要转发给业主或合作伙伴时，用「下载 PDF」拿完整版——微信里打不开大 PDF，建议先存到手机再发送。</p>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <p><strong>电小团</strong> 出品 &nbsp;|&nbsp; ©2026 电小团科技（苏州）有限公司 &nbsp;|&nbsp; energy.aishenwo.cn</p>
+</footer>
+
+<!-- ================= 阅读器 ================= -->
+<div class="viewer" id="viewer" role="dialog" aria-modal="true" aria-label="公司介绍册阅读器">
+  <div class="viewer-top">
+    <div class="v-title">
+      <img src="/assets/images/dxt-logo-2026.webp" alt="">
+      <span class="txt"><b>公司介绍册 2026.10</b> · 深绿数据 × 电小团</span>
+    </div>
+    <div class="v-actions">
+      <a class="icon-btn" href="/assets/docs/dianxiaotuan-intro-202610-public.pdf" download aria-label="下载 PDF">
+        <i class="fa-solid fa-download"></i><span class="lbl">下载</span>
+      </a>
+      <button class="icon-btn" id="btn-close" aria-label="关闭阅读器"><span aria-hidden="true" style="font-size:15px;line-height:1;">✕</span><span class="lbl">关闭</span></button>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div class="layer" id="layer-a"><img alt=""></div>
+    <div class="layer" id="layer-b"><img alt=""></div>
+    <button class="arrow prev" id="btn-prev" aria-label="上一页">‹</button>
+    <button class="arrow next" id="btn-next" aria-label="下一页">›</button>
+  </div>
+
+  <div class="swipe-tip" id="swipe-tip">左右滑动翻页</div>
+
+  <div class="viewer-bottom">
+    <span class="counter" id="counter"><b>01</b> / 39</span>
+    <div class="progress" id="progress" role="progressbar" aria-valuemin="1" aria-valuemax="39" aria-valuenow="1"><i id="progress-bar"></i></div>
+    <span class="hint-key">← → 翻页</span>
+    <button class="icon-btn" id="btn-thumbs" aria-label="目录"><i class="fa-solid fa-table-cells"></i><span class="lbl">目录</span></button>
+    <button class="icon-btn" id="btn-full" aria-label="全屏"><i class="fa-solid fa-expand"></i><span class="lbl">全屏</span></button>
+  </div>
+
+  <div class="sheet" id="sheet"></div>
+</div>
+
+<script id="deck-pages" type="application/json">
+[{"n":1,"src":"slide-01.webp","thumb":"thumb-01.webp","w":1600,"h":900,"color":"#756c6b","kb":142},{"n":2,"src":"slide-02.webp","thumb":"thumb-02.webp","w":1600,"h":900,"color":"#f6f6f6","kb":23},{"n":3,"src":"slide-03.webp","thumb":"thumb-03.webp","w":1600,"h":900,"color":"#353b2e","kb":239},{"n":4,"src":"slide-04.webp","thumb":"thumb-04.webp","w":1600,"h":900,"color":"#242022","kb":67},{"n":5,"src":"slide-05.webp","thumb":"thumb-05.webp","w":1600,"h":900,"color":"#bebfc3","kb":120},{"n":6,"src":"slide-06.webp","thumb":"thumb-06.webp","w":1600,"h":900,"color":"#dae7ea","kb":85},{"n":7,"src":"slide-07.webp","thumb":"thumb-07.webp","w":1600,"h":900,"color":"#f4f2f3","kb":108},{"n":8,"src":"slide-08.webp","thumb":"thumb-08.webp","w":1600,"h":900,"color":"#b5cbe8","kb":86},{"n":9,"src":"slide-09.webp","thumb":"thumb-09.webp","w":1600,"h":900,"color":"#a2a3a3","kb":75},{"n":10,"src":"slide-10.webp","thumb":"thumb-10.webp","w":1600,"h":900,"color":"#ccd5d6","kb":148},{"n":11,"src":"slide-11.webp","thumb":"thumb-11.webp","w":1600,"h":900,"color":"#f9f9f9","kb":16},{"n":12,"src":"slide-12.webp","thumb":"thumb-12.webp","w":1600,"h":900,"color":"#f3f3f2","kb":54},{"n":13,"src":"slide-13.webp","thumb":"thumb-13.webp","w":1600,"h":900,"color":"#a7bdcf","kb":121},{"n":14,"src":"slide-14.webp","thumb":"thumb-14.webp","w":1600,"h":900,"color":"#bec6c4","kb":183},{"n":15,"src":"slide-15.webp","thumb":"thumb-15.webp","w":1600,"h":900,"color":"#a5babe","kb":67},{"n":16,"src":"slide-16.webp","thumb":"thumb-16.webp","w":1600,"h":900,"color":"#8d98a0","kb":74},{"n":17,"src":"slide-17.webp","thumb":"thumb-17.webp","w":1600,"h":900,"color":"#f2f2f1","kb":68},{"n":18,"src":"slide-18.webp","thumb":"thumb-18.webp","w":1600,"h":900,"color":"#929598","kb":70},{"n":19,"src":"slide-19.webp","thumb":"thumb-19.webp","w":1600,"h":900,"color":"#f9f9f9","kb":18},{"n":20,"src":"slide-20.webp","thumb":"thumb-20.webp","w":1600,"h":900,"color":"#c1c6c4","kb":117},{"n":21,"src":"slide-21.webp","thumb":"thumb-21.webp","w":1600,"h":900,"color":"#989fba","kb":125},{"n":22,"src":"slide-22.webp","thumb":"thumb-22.webp","w":1600,"h":900,"color":"#d2e0e1","kb":155},{"n":23,"src":"slide-23.webp","thumb":"thumb-23.webp","w":1600,"h":900,"color":"#7c90a6","kb":83},{"n":24,"src":"slide-24.webp","thumb":"thumb-24.webp","w":1600,"h":900,"color":"#dbdfe1","kb":130},{"n":25,"src":"slide-25.webp","thumb":"thumb-25.webp","w":1600,"h":900,"color":"#fbfbfb","kb":12},{"n":26,"src":"slide-26.webp","thumb":"thumb-26.webp","w":1600,"h":900,"color":"#f3f3f3","kb":85},{"n":27,"src":"slide-27.webp","thumb":"thumb-27.webp","w":1600,"h":900,"color":"#a9abac","kb":199},{"n":28,"src":"slide-28.webp","thumb":"thumb-28.webp","w":1600,"h":900,"color":"#e7e7e6","kb":80},{"n":29,"src":"slide-29.webp","thumb":"thumb-29.webp","w":1600,"h":900,"color":"#eeeceb","kb":94},{"n":30,"src":"slide-30.webp","thumb":"thumb-30.webp","w":1600,"h":900,"color":"#b5b5b5","kb":117},{"n":31,"src":"slide-31.webp","thumb":"thumb-31.webp","w":1600,"h":900,"color":"#c4c3c4","kb":66},{"n":32,"src":"slide-32.webp","thumb":"thumb-32.webp","w":1600,"h":900,"color":"#b6b6b6","kb":85},{"n":33,"src":"slide-33.webp","thumb":"thumb-33.webp","w":1600,"h":900,"color":"#d0d0d0","kb":88},{"n":34,"src":"slide-34.webp","thumb":"thumb-34.webp","w":1600,"h":900,"color":"#c4c4c4","kb":123},{"n":35,"src":"slide-35.webp","thumb":"thumb-35.webp","w":1600,"h":900,"color":"#f8f8f8","kb":19},{"n":36,"src":"slide-36.webp","thumb":"thumb-36.webp","w":1600,"h":900,"color":"#cbcfd2","kb":99},{"n":37,"src":"slide-37.webp","thumb":"thumb-37.webp","w":1600,"h":900,"color":"#dcddde","kb":106},{"n":38,"src":"slide-38.webp","thumb":"thumb-38.webp","w":1600,"h":900,"color":"#e9e9e9","kb":118},{"n":39,"src":"slide-39.webp","thumb":"thumb-39.webp","w":1600,"h":900,"color":"#7e7778","kb":134}]
+</script>
+
+<script src="/deck/app.js" async></script>
+</body>
+</html>
